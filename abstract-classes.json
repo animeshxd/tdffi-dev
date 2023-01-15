@@ -1,0 +1,1377 @@
+{
+    "AuthenticationCodeType": {
+        "description": "Provides information about the method by which an authentication code is delivered to the user",
+        "child": [
+            "AuthenticationCodeTypeSms",
+            "AuthenticationCodeTypeTelegramMessage",
+            "AuthenticationCodeTypeFlashCall",
+            "AuthenticationCodeTypeFragment",
+            "AuthenticationCodeTypeMissedCall",
+            "AuthenticationCodeTypeCall"
+        ]
+    },
+    "EmailAddressAuthentication": {
+        "description": "Contains authentication data for a email address",
+        "child": [
+            "EmailAddressAuthenticationCode",
+            "EmailAddressAuthenticationAppleId",
+            "EmailAddressAuthenticationGoogleId"
+        ]
+    },
+    "AuthorizationState": {
+        "description": "Represents the current authorization state of the TDLib client",
+        "child": [
+            "AuthorizationStateWaitEmailAddress",
+            "AuthorizationStateWaitOtherDeviceConfirmation",
+            "AuthorizationStateWaitPhoneNumber",
+            "AuthorizationStateWaitPassword",
+            "AuthorizationStateWaitCode",
+            "AuthorizationStateClosing",
+            "AuthorizationStateWaitTdlibParameters",
+            "AuthorizationStateWaitRegistration",
+            "AuthorizationStateReady",
+            "AuthorizationStateWaitEmailCode",
+            "AuthorizationStateClosed",
+            "AuthorizationStateLoggingOut"
+        ]
+    },
+    "InputFile": {
+        "description": "Points to a file",
+        "child": [
+            "InputFileId",
+            "InputFileLocal",
+            "InputFileRemote",
+            "InputFileGenerated"
+        ]
+    },
+    "ThumbnailFormat": {
+        "description": "Describes format of a thumbnail",
+        "child": [
+            "ThumbnailFormatGif",
+            "ThumbnailFormatTgs",
+            "ThumbnailFormatMpeg4",
+            "ThumbnailFormatJpeg",
+            "ThumbnailFormatWebm",
+            "ThumbnailFormatWebp",
+            "ThumbnailFormatPng"
+        ]
+    },
+    "MaskPoint": {
+        "description": "Part of the face, relative to which a mask is placed",
+        "child": [
+            "MaskPointChin",
+            "MaskPointForehead",
+            "MaskPointMouth",
+            "MaskPointEyes"
+        ]
+    },
+    "StickerFormat": {
+        "description": "Describes format of a sticker",
+        "child": [
+            "StickerFormatWebp",
+            "StickerFormatWebm",
+            "StickerFormatTgs"
+        ]
+    },
+    "StickerType": {
+        "description": "Describes type of a sticker",
+        "child": [
+            "StickerTypeMask",
+            "StickerTypeRegular",
+            "StickerTypeCustomEmoji"
+        ]
+    },
+    "StickerFullType": {
+        "description": "Contains full information about sticker type",
+        "child": [
+            "StickerFullTypeCustomEmoji",
+            "StickerFullTypeRegular",
+            "StickerFullTypeMask"
+        ]
+    },
+    "PollType": {
+        "description": "Describes the type of a poll",
+        "child": [
+            "PollTypeQuiz",
+            "PollTypeRegular"
+        ]
+    },
+    "UserType": {
+        "description": "Represents the type of a user. The following types are possible: regular users, deleted users and bots",
+        "child": [
+            "UserTypeUnknown",
+            "UserTypeRegular",
+            "UserTypeBot",
+            "UserTypeDeleted"
+        ]
+    },
+    "InputChatPhoto": {
+        "description": "Describes a photo to be set as a user profile or chat photo",
+        "child": [
+            "InputChatPhotoPrevious",
+            "InputChatPhotoAnimation",
+            "InputChatPhotoStatic"
+        ]
+    },
+    "ChatMemberStatus": {
+        "description": "Provides information about the status of a member in a chat",
+        "child": [
+            "ChatMemberStatusMember",
+            "ChatMemberStatusBanned",
+            "ChatMemberStatusCreator",
+            "ChatMemberStatusRestricted",
+            "ChatMemberStatusAdministrator",
+            "ChatMemberStatusLeft"
+        ]
+    },
+    "ChatMembersFilter": {
+        "description": "Specifies the kind of chat members to return in searchChatMembers",
+        "child": [
+            "ChatMembersFilterBanned",
+            "ChatMembersFilterContacts",
+            "ChatMembersFilterAdministrators",
+            "ChatMembersFilterBots",
+            "ChatMembersFilterMembers",
+            "ChatMembersFilterRestricted",
+            "ChatMembersFilterMention"
+        ]
+    },
+    "SupergroupMembersFilter": {
+        "description": "Specifies the kind of chat members to return in getSupergroupMembers",
+        "child": [
+            "SupergroupMembersFilterSearch",
+            "SupergroupMembersFilterAdministrators",
+            "SupergroupMembersFilterBots",
+            "SupergroupMembersFilterContacts",
+            "SupergroupMembersFilterRecent",
+            "SupergroupMembersFilterMention",
+            "SupergroupMembersFilterBanned",
+            "SupergroupMembersFilterRestricted"
+        ]
+    },
+    "SecretChatState": {
+        "description": "Describes the current secret chat state",
+        "child": [
+            "SecretChatStatePending",
+            "SecretChatStateReady",
+            "SecretChatStateClosed"
+        ]
+    },
+    "MessageSender": {
+        "description": "Contains information about the sender of a message",
+        "child": [
+            "MessageSenderChat",
+            "MessageSenderUser"
+        ]
+    },
+    "MessageForwardOrigin": {
+        "description": "Contains information about the origin of a forwarded message",
+        "child": [
+            "MessageForwardOriginChannel",
+            "MessageForwardOriginUser",
+            "MessageForwardOriginHiddenUser",
+            "MessageForwardOriginMessageImport",
+            "MessageForwardOriginChat"
+        ]
+    },
+    "ReactionType": {
+        "description": "Describes type of message reaction",
+        "child": [
+            "ReactionTypeCustomEmoji",
+            "ReactionTypeEmoji"
+        ]
+    },
+    "MessageSendingState": {
+        "description": "Contains information about the sending state of the message",
+        "child": [
+            "MessageSendingStatePending",
+            "MessageSendingStateFailed"
+        ]
+    },
+    "NotificationSettingsScope": {
+        "description": "Describes the types of chats to which notification settings are relevant",
+        "child": [
+            "NotificationSettingsScopePrivateChats",
+            "NotificationSettingsScopeGroupChats",
+            "NotificationSettingsScopeChannelChats"
+        ]
+    },
+    "ChatType": {
+        "description": "Describes the type of a chat",
+        "child": [
+            "ChatTypeBasicGroup",
+            "ChatTypePrivate",
+            "ChatTypeSupergroup",
+            "ChatTypeSecret"
+        ]
+    },
+    "ChatList": {
+        "description": "Describes a list of chats",
+        "child": [
+            "ChatListMain",
+            "ChatListFilter",
+            "ChatListArchive"
+        ]
+    },
+    "ChatSource": {
+        "description": "Describes a reason why an external chat is shown in a chat list",
+        "child": [
+            "ChatSourceMtprotoProxy",
+            "ChatSourcePublicServiceAnnouncement"
+        ]
+    },
+    "ChatAvailableReactions": {
+        "description": "Describes reactions available in the chat",
+        "child": [
+            "ChatAvailableReactionsSome",
+            "ChatAvailableReactionsAll"
+        ]
+    },
+    "PublicChatType": {
+        "description": "Describes a type of public chats",
+        "child": [
+            "PublicChatTypeHasUsername",
+            "PublicChatTypeIsLocationBased"
+        ]
+    },
+    "ChatActionBar": {
+        "description": "Describes actions which must be possible to do through a chat action bar",
+        "child": [
+            "ChatActionBarReportAddBlock",
+            "ChatActionBarJoinRequest",
+            "ChatActionBarSharePhoneNumber",
+            "ChatActionBarReportSpam",
+            "ChatActionBarReportUnrelatedLocation",
+            "ChatActionBarInviteMembers",
+            "ChatActionBarAddContact"
+        ]
+    },
+    "KeyboardButtonType": {
+        "description": "Describes a keyboard button type",
+        "child": [
+            "KeyboardButtonTypeText",
+            "KeyboardButtonTypeWebApp",
+            "KeyboardButtonTypeRequestLocation",
+            "KeyboardButtonTypeRequestPoll",
+            "KeyboardButtonTypeRequestPhoneNumber"
+        ]
+    },
+    "InlineKeyboardButtonType": {
+        "description": "Describes the type of an inline keyboard button",
+        "child": [
+            "InlineKeyboardButtonTypeCallbackWithPassword",
+            "InlineKeyboardButtonTypeCallback",
+            "InlineKeyboardButtonTypeWebApp",
+            "InlineKeyboardButtonTypeBuy",
+            "InlineKeyboardButtonTypeCallbackGame",
+            "InlineKeyboardButtonTypeUrl",
+            "InlineKeyboardButtonTypeLoginUrl",
+            "InlineKeyboardButtonTypeSwitchInline",
+            "InlineKeyboardButtonTypeUser"
+        ]
+    },
+    "ReplyMarkup": {
+        "description": "Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots",
+        "child": [
+            "ReplyMarkupForceReply",
+            "ReplyMarkupShowKeyboard",
+            "ReplyMarkupInlineKeyboard",
+            "ReplyMarkupRemoveKeyboard"
+        ]
+    },
+    "LoginUrlInfo": {
+        "description": "Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl",
+        "child": [
+            "LoginUrlInfoRequestConfirmation",
+            "LoginUrlInfoOpen"
+        ]
+    },
+    "RichText": {
+        "description": "Describes a text object inside an instant-view web page",
+        "child": [
+            "RichTextReference",
+            "RichTexts",
+            "RichTextFixed",
+            "RichTextSuperscript",
+            "RichTextIcon",
+            "RichTextSubscript",
+            "RichTextPhoneNumber",
+            "RichTextAnchorLink",
+            "RichTextBold",
+            "RichTextItalic",
+            "RichTextAnchor",
+            "RichTextUnderline",
+            "RichTextMarked",
+            "RichTextPlain",
+            "RichTextStrikethrough",
+            "RichTextUrl",
+            "RichTextEmailAddress"
+        ]
+    },
+    "PageBlockHorizontalAlignment": {
+        "description": "Describes a horizontal alignment of a table cell content",
+        "child": [
+            "PageBlockHorizontalAlignmentCenter",
+            "PageBlockHorizontalAlignmentRight",
+            "PageBlockHorizontalAlignmentLeft"
+        ]
+    },
+    "PageBlockVerticalAlignment": {
+        "description": "Describes a Vertical alignment of a table cell content",
+        "child": [
+            "PageBlockVerticalAlignmentMiddle",
+            "PageBlockVerticalAlignmentBottom",
+            "PageBlockVerticalAlignmentTop"
+        ]
+    },
+    "PageBlock": {
+        "description": "Describes a block of an instant view web page",
+        "child": [
+            "PageBlockVoiceNote",
+            "PageBlockTable",
+            "PageBlockCover",
+            "PageBlockSubheader",
+            "PageBlockHeader",
+            "PageBlockSubtitle",
+            "PageBlockFooter",
+            "PageBlockCollage",
+            "PageBlockDivider",
+            "PageBlockList",
+            "PageBlockVideo",
+            "PageBlockKicker",
+            "PageBlockRelatedArticles",
+            "PageBlockAudio",
+            "PageBlockPreformatted",
+            "PageBlockAnimation",
+            "PageBlockSlideshow",
+            "PageBlockChatLink",
+            "PageBlockParagraph",
+            "PageBlockBlockQuote",
+            "PageBlockPullQuote",
+            "PageBlockEmbedded",
+            "PageBlockPhoto",
+            "PageBlockAuthorDate",
+            "PageBlockDetails",
+            "PageBlockAnchor",
+            "PageBlockTitle",
+            "PageBlockMap",
+            "PageBlockEmbeddedPost"
+        ]
+    },
+    "InputCredentials": {
+        "description": "Contains information about the payment method chosen by the user",
+        "child": [
+            "InputCredentialsSaved",
+            "InputCredentialsGooglePay",
+            "InputCredentialsApplePay",
+            "InputCredentialsNew"
+        ]
+    },
+    "PaymentProvider": {
+        "description": "Contains information about a payment provider",
+        "child": [
+            "PaymentProviderOther",
+            "PaymentProviderSmartGlocal",
+            "PaymentProviderStripe"
+        ]
+    },
+    "InputInvoice": {
+        "description": "Describes an invoice to process",
+        "child": [
+            "InputInvoiceMessage",
+            "InputInvoiceName"
+        ]
+    },
+    "MessageExtendedMedia": {
+        "description": "Describes a media, which is attached to an invoice",
+        "child": [
+            "MessageExtendedMediaPhoto",
+            "MessageExtendedMediaPreview",
+            "MessageExtendedMediaUnsupported",
+            "MessageExtendedMediaVideo"
+        ]
+    },
+    "PassportElementType": {
+        "description": "Contains the type of a Telegram Passport element",
+        "child": [
+            "PassportElementTypeTemporaryRegistration",
+            "PassportElementTypeUtilityBill",
+            "PassportElementTypeEmailAddress",
+            "PassportElementTypeIdentityCard",
+            "PassportElementTypePersonalDetails",
+            "PassportElementTypePhoneNumber",
+            "PassportElementTypeBankStatement",
+            "PassportElementTypeInternalPassport",
+            "PassportElementTypeRentalAgreement",
+            "PassportElementTypeDriverLicense",
+            "PassportElementTypeAddress",
+            "PassportElementTypePassport",
+            "PassportElementTypePassportRegistration"
+        ]
+    },
+    "PassportElement": {
+        "description": "Contains information about a Telegram Passport element",
+        "child": [
+            "PassportElementPassportRegistration",
+            "PassportElementPhoneNumber",
+            "PassportElementPassport",
+            "PassportElementEmailAddress",
+            "PassportElementRentalAgreement",
+            "PassportElementInternalPassport",
+            "PassportElementUtilityBill",
+            "PassportElementPersonalDetails",
+            "PassportElementBankStatement",
+            "PassportElementIdentityCard",
+            "PassportElementDriverLicense",
+            "PassportElementAddress",
+            "PassportElementTemporaryRegistration"
+        ]
+    },
+    "InputPassportElement": {
+        "description": "Contains information about a Telegram Passport element to be saved",
+        "child": [
+            "InputPassportElementRentalAgreement",
+            "InputPassportElementPassport",
+            "InputPassportElementBankStatement",
+            "InputPassportElementInternalPassport",
+            "InputPassportElementDriverLicense",
+            "InputPassportElementUtilityBill",
+            "InputPassportElementPhoneNumber",
+            "InputPassportElementEmailAddress",
+            "InputPassportElementAddress",
+            "InputPassportElementTemporaryRegistration",
+            "InputPassportElementIdentityCard",
+            "InputPassportElementPassportRegistration",
+            "InputPassportElementPersonalDetails"
+        ]
+    },
+    "PassportElementErrorSource": {
+        "description": "Contains the description of an error in a Telegram Passport element",
+        "child": [
+            "PassportElementErrorSourceTranslationFile",
+            "PassportElementErrorSourceFile",
+            "PassportElementErrorSourceFrontSide",
+            "PassportElementErrorSourceFiles",
+            "PassportElementErrorSourceDataField",
+            "PassportElementErrorSourceSelfie",
+            "PassportElementErrorSourceUnspecified",
+            "PassportElementErrorSourceReverseSide",
+            "PassportElementErrorSourceTranslationFiles"
+        ]
+    },
+    "InputPassportElementErrorSource": {
+        "description": "Contains the description of an error in a Telegram Passport element; for bots only",
+        "child": [
+            "InputPassportElementErrorSourceSelfie",
+            "InputPassportElementErrorSourceUnspecified",
+            "InputPassportElementErrorSourceFrontSide",
+            "InputPassportElementErrorSourceFiles",
+            "InputPassportElementErrorSourceDataField",
+            "InputPassportElementErrorSourceTranslationFile",
+            "InputPassportElementErrorSourceFile",
+            "InputPassportElementErrorSourceReverseSide",
+            "InputPassportElementErrorSourceTranslationFiles"
+        ]
+    },
+    "MessageContent": {
+        "description": "Contains the content of a message",
+        "child": [
+            "MessageForumTopicIsClosedToggled",
+            "MessageWebAppDataReceived",
+            "MessageExpiredVideo",
+            "MessageGameScore",
+            "MessageProximityAlertTriggered",
+            "MessageContact",
+            "MessageForumTopicEdited",
+            "MessageDice",
+            "MessageLocation",
+            "MessageCall",
+            "MessageAnimatedEmoji",
+            "MessageBotWriteAccessAllowed",
+            "MessageBasicGroupChatCreate",
+            "MessagePassportDataReceived",
+            "MessageChatDeleteMember",
+            "MessageVideoChatStarted",
+            "MessagePaymentSuccessfulBot",
+            "MessageSticker",
+            "MessageVideoChatEnded",
+            "MessageExpiredPhoto",
+            "MessageChatChangePhoto",
+            "MessageVideoNote",
+            "MessageUnsupported",
+            "MessageVoiceNote",
+            "MessageChatJoinByLink",
+            "MessageVideoChatScheduled",
+            "MessageAnimation",
+            "MessageDocument",
+            "MessagePassportDataSent",
+            "MessageGame",
+            "MessageAudio",
+            "MessagePoll",
+            "MessageCustomServiceAction",
+            "MessageWebsiteConnected",
+            "MessageChatDeletePhoto",
+            "MessageChatAddMembers",
+            "MessageChatJoinByRequest",
+            "MessageInvoice",
+            "MessageForumTopicCreated",
+            "MessageInviteVideoChatParticipants",
+            "MessageSuggestProfilePhoto",
+            "MessageSupergroupChatCreate",
+            "MessageForumTopicIsHiddenToggled",
+            "MessageGiftedPremium",
+            "MessageContactRegistered",
+            "MessageChatSetTheme",
+            "MessageChatUpgradeFrom",
+            "MessageVideo",
+            "MessageChatSetMessageAutoDeleteTime",
+            "MessageScreenshotTaken",
+            "MessagePinMessage",
+            "MessageText",
+            "MessageChatUpgradeTo",
+            "MessageVenue",
+            "MessageChatChangeTitle",
+            "MessagePhoto",
+            "MessageWebAppDataSent",
+            "MessagePaymentSuccessful"
+        ]
+    },
+    "TextEntityType": {
+        "description": "Represents a part of the text which must be formatted differently",
+        "child": [
+            "TextEntityTypePre",
+            "TextEntityTypeHashtag",
+            "TextEntityTypeEmailAddress",
+            "TextEntityTypeBold",
+            "TextEntityTypeMediaTimestamp",
+            "TextEntityTypeBankCardNumber",
+            "TextEntityTypeBotCommand",
+            "TextEntityTypeTextUrl",
+            "TextEntityTypeMentionName",
+            "TextEntityTypePhoneNumber",
+            "TextEntityTypeUnderline",
+            "TextEntityTypeSpoiler",
+            "TextEntityTypeUrl",
+            "TextEntityTypeCashtag",
+            "TextEntityTypeStrikethrough",
+            "TextEntityTypeMention",
+            "TextEntityTypeItalic",
+            "TextEntityTypeCustomEmoji",
+            "TextEntityTypeCode",
+            "TextEntityTypePreCode"
+        ]
+    },
+    "MessageSchedulingState": {
+        "description": "Contains information about the time when a scheduled message will be sent",
+        "child": [
+            "MessageSchedulingStateSendWhenOnline",
+            "MessageSchedulingStateSendAtDate"
+        ]
+    },
+    "InputMessageContent": {
+        "description": "The content of a message to send",
+        "child": [
+            "InputMessageDice",
+            "InputMessageAudio",
+            "InputMessagePhoto",
+            "InputMessageSticker",
+            "InputMessageVideo",
+            "InputMessageGame",
+            "InputMessageInvoice",
+            "InputMessageText",
+            "InputMessageVoiceNote",
+            "InputMessageDocument",
+            "InputMessageForwarded",
+            "InputMessageAnimation",
+            "InputMessageVideoNote",
+            "InputMessageContact",
+            "InputMessageLocation",
+            "InputMessageVenue",
+            "InputMessagePoll"
+        ]
+    },
+    "SearchMessagesFilter": {
+        "description": "Represents a filter for message search results",
+        "child": [
+            "SearchMessagesFilterMention",
+            "SearchMessagesFilterAudio",
+            "SearchMessagesFilterVoiceAndVideoNote",
+            "SearchMessagesFilterVideo",
+            "SearchMessagesFilterVideoNote",
+            "SearchMessagesFilterFailedToSend",
+            "SearchMessagesFilterUnreadReaction",
+            "SearchMessagesFilterPhoto",
+            "SearchMessagesFilterPinned",
+            "SearchMessagesFilterPhotoAndVideo",
+            "SearchMessagesFilterChatPhoto",
+            "SearchMessagesFilterDocument",
+            "SearchMessagesFilterUnreadMention",
+            "SearchMessagesFilterAnimation",
+            "SearchMessagesFilterUrl",
+            "SearchMessagesFilterEmpty",
+            "SearchMessagesFilterVoiceNote"
+        ]
+    },
+    "ChatAction": {
+        "description": "Describes the different types of activity in a chat",
+        "child": [
+            "ChatActionChoosingLocation",
+            "ChatActionCancel",
+            "ChatActionChoosingSticker",
+            "ChatActionUploadingVideo",
+            "ChatActionRecordingVideoNote",
+            "ChatActionStartPlayingGame",
+            "ChatActionUploadingVideoNote",
+            "ChatActionChoosingContact",
+            "ChatActionUploadingDocument",
+            "ChatActionRecordingVoiceNote",
+            "ChatActionRecordingVideo",
+            "ChatActionWatchingAnimations",
+            "ChatActionTyping",
+            "ChatActionUploadingVoiceNote",
+            "ChatActionUploadingPhoto"
+        ]
+    },
+    "UserStatus": {
+        "description": "Describes the last time the user was online",
+        "child": [
+            "UserStatusOnline",
+            "UserStatusEmpty",
+            "UserStatusLastWeek",
+            "UserStatusLastMonth",
+            "UserStatusOffline",
+            "UserStatusRecently"
+        ]
+    },
+    "CallDiscardReason": {
+        "description": "Describes the reason why a call was discarded",
+        "child": [
+            "CallDiscardReasonDeclined",
+            "CallDiscardReasonEmpty",
+            "CallDiscardReasonHungUp",
+            "CallDiscardReasonDisconnected",
+            "CallDiscardReasonMissed"
+        ]
+    },
+    "CallServerType": {
+        "description": "Describes the type of a call server",
+        "child": [
+            "CallServerTypeWebrtc",
+            "CallServerTypeTelegramReflector"
+        ]
+    },
+    "CallState": {
+        "description": "Describes the current call state",
+        "child": [
+            "CallStatePending",
+            "CallStateHangingUp",
+            "CallStateReady",
+            "CallStateError",
+            "CallStateDiscarded",
+            "CallStateExchangingKeys"
+        ]
+    },
+    "GroupCallVideoQuality": {
+        "description": "Describes the quality of a group call video",
+        "child": [
+            "GroupCallVideoQualityMedium",
+            "GroupCallVideoQualityThumbnail",
+            "GroupCallVideoQualityFull"
+        ]
+    },
+    "CallProblem": {
+        "description": "Describes the exact type of a problem with a call",
+        "child": [
+            "CallProblemPixelatedVideo",
+            "CallProblemSilentRemote",
+            "CallProblemSilentLocal",
+            "CallProblemDropped",
+            "CallProblemEcho",
+            "CallProblemDistortedSpeech",
+            "CallProblemDistortedVideo",
+            "CallProblemNoise",
+            "CallProblemInterruptions"
+        ]
+    },
+    "DiceStickers": {
+        "description": "Contains animated stickers which must be used for dice animation rendering",
+        "child": [
+            "DiceStickersSlotMachine",
+            "DiceStickersRegular"
+        ]
+    },
+    "SpeechRecognitionResult": {
+        "description": "Describes result of speech recognition in a voice note",
+        "child": [
+            "SpeechRecognitionResultText",
+            "SpeechRecognitionResultPending",
+            "SpeechRecognitionResultError"
+        ]
+    },
+    "InputInlineQueryResult": {
+        "description": "Represents a single result of an inline query; for bots only",
+        "child": [
+            "InputInlineQueryResultLocation",
+            "InputInlineQueryResultVenue",
+            "InputInlineQueryResultAudio",
+            "InputInlineQueryResultGame",
+            "InputInlineQueryResultSticker",
+            "InputInlineQueryResultContact",
+            "InputInlineQueryResultArticle",
+            "InputInlineQueryResultDocument",
+            "InputInlineQueryResultVoiceNote",
+            "InputInlineQueryResultVideo",
+            "InputInlineQueryResultPhoto",
+            "InputInlineQueryResultAnimation"
+        ]
+    },
+    "InlineQueryResult": {
+        "description": "Represents a single result of an inline query",
+        "child": [
+            "InlineQueryResultSticker",
+            "InlineQueryResultLocation",
+            "InlineQueryResultAnimation",
+            "InlineQueryResultArticle",
+            "InlineQueryResultDocument",
+            "InlineQueryResultVoiceNote",
+            "InlineQueryResultAudio",
+            "InlineQueryResultGame",
+            "InlineQueryResultVideo",
+            "InlineQueryResultContact",
+            "InlineQueryResultVenue",
+            "InlineQueryResultPhoto"
+        ]
+    },
+    "CallbackQueryPayload": {
+        "description": "Represents a payload of a callback query",
+        "child": [
+            "CallbackQueryPayloadGame",
+            "CallbackQueryPayloadDataWithPassword",
+            "CallbackQueryPayloadData"
+        ]
+    },
+    "ChatEventAction": {
+        "description": "Represents a chat event",
+        "child": [
+            "ChatEventInviteLinkDeleted",
+            "ChatEventVideoChatParticipantIsMutedToggled",
+            "ChatEventMessageAutoDeleteTimeChanged",
+            "ChatEventMemberJoinedByInviteLink",
+            "ChatEventPollStopped",
+            "ChatEventLocationChanged",
+            "ChatEventForumTopicPinned",
+            "ChatEventAvailableReactionsChanged",
+            "ChatEventIsAllHistoryAvailableToggled",
+            "ChatEventVideoChatMuteNewParticipantsToggled",
+            "ChatEventVideoChatEnded",
+            "ChatEventInviteLinkEdited",
+            "ChatEventForumTopicEdited",
+            "ChatEventMemberRestricted",
+            "ChatEventMessageEdited",
+            "ChatEventIsForumToggled",
+            "ChatEventDescriptionChanged",
+            "ChatEventPhotoChanged",
+            "ChatEventMessagePinned",
+            "ChatEventStickerSetChanged",
+            "ChatEventPermissionsChanged",
+            "ChatEventMemberInvited",
+            "ChatEventVideoChatCreated",
+            "ChatEventForumTopicToggleIsClosed",
+            "ChatEventMessageUnpinned",
+            "ChatEventUsernameChanged",
+            "ChatEventMemberJoinedByRequest",
+            "ChatEventMemberJoined",
+            "ChatEventMemberPromoted",
+            "ChatEventInviteLinkRevoked",
+            "ChatEventSignMessagesToggled",
+            "ChatEventForumTopicToggleIsHidden",
+            "ChatEventHasProtectedContentToggled",
+            "ChatEventForumTopicDeleted",
+            "ChatEventTitleChanged",
+            "ChatEventHasAggressiveAntiSpamEnabledToggled",
+            "ChatEventMemberLeft",
+            "ChatEventVideoChatParticipantVolumeLevelChanged",
+            "ChatEventLinkedChatChanged",
+            "ChatEventActiveUsernamesChanged",
+            "ChatEventForumTopicCreated",
+            "ChatEventMessageDeleted",
+            "ChatEventInvitesToggled",
+            "ChatEventSlowModeDelayChanged"
+        ]
+    },
+    "LanguagePackStringValue": {
+        "description": "Represents the value of a string in a language pack",
+        "child": [
+            "LanguagePackStringValuePluralized",
+            "LanguagePackStringValueDeleted",
+            "LanguagePackStringValueOrdinary"
+        ]
+    },
+    "PremiumLimitType": {
+        "description": "Describes type of a limit, increased for Premium users",
+        "child": [
+            "PremiumLimitTypeCreatedPublicChatCount",
+            "PremiumLimitTypePinnedArchivedChatCount",
+            "PremiumLimitTypeChatFilterCount",
+            "PremiumLimitTypeSavedAnimationCount",
+            "PremiumLimitTypeBioLength",
+            "PremiumLimitTypeFavoriteStickerCount",
+            "PremiumLimitTypeChatFilterChosenChatCount",
+            "PremiumLimitTypeSupergroupCount",
+            "PremiumLimitTypePinnedChatCount",
+            "PremiumLimitTypeCaptionLength"
+        ]
+    },
+    "PremiumFeature": {
+        "description": "Describes a feature available to Premium users",
+        "child": [
+            "PremiumFeatureAnimatedProfilePhoto",
+            "PremiumFeatureProfileBadge",
+            "PremiumFeatureVoiceRecognition",
+            "PremiumFeatureUniqueStickers",
+            "PremiumFeatureEmojiStatus",
+            "PremiumFeatureDisabledAds",
+            "PremiumFeatureUniqueReactions",
+            "PremiumFeatureAppIcons",
+            "PremiumFeatureIncreasedLimits",
+            "PremiumFeatureImprovedDownloadSpeed",
+            "PremiumFeatureForumTopicIcon",
+            "PremiumFeatureCustomEmoji",
+            "PremiumFeatureIncreasedUploadFileSize",
+            "PremiumFeatureAdvancedChatManagement"
+        ]
+    },
+    "PremiumSource": {
+        "description": "Describes a source from which the Premium features screen is opened",
+        "child": [
+            "PremiumSourceFeature",
+            "PremiumSourceSettings",
+            "PremiumSourceLimitExceeded",
+            "PremiumSourceLink"
+        ]
+    },
+    "StorePaymentPurpose": {
+        "description": "Describes a purpose of an in-store payment",
+        "child": [
+            "StorePaymentPurposePremiumSubscription",
+            "StorePaymentPurposeGiftedPremium"
+        ]
+    },
+    "DeviceToken": {
+        "description": "Represents a data needed to subscribe for push notifications through registerDevice method.",
+        "child": [
+            "DeviceTokenBlackBerryPush",
+            "DeviceTokenSimplePush",
+            "DeviceTokenApplePushVoIP",
+            "DeviceTokenUbuntuPush",
+            "DeviceTokenApplePush",
+            "DeviceTokenWindowsPush",
+            "DeviceTokenMicrosoftPushVoIP",
+            "DeviceTokenMicrosoftPush",
+            "DeviceTokenWebPush",
+            "DeviceTokenFirebaseCloudMessaging",
+            "DeviceTokenTizenPush"
+        ]
+    },
+    "BackgroundFill": {
+        "description": "Describes a fill of a background",
+        "child": [
+            "BackgroundFillGradient",
+            "BackgroundFillSolid",
+            "BackgroundFillFreeformGradient"
+        ]
+    },
+    "BackgroundType": {
+        "description": "Describes the type of a background",
+        "child": [
+            "BackgroundTypeFill",
+            "BackgroundTypeWallpaper",
+            "BackgroundTypePattern"
+        ]
+    },
+    "InputBackground": {
+        "description": "Contains information about background to set",
+        "child": [
+            "InputBackgroundRemote",
+            "InputBackgroundLocal"
+        ]
+    },
+    "CanTransferOwnershipResult": {
+        "description": "Represents result of checking whether the current session can be used to transfer a chat ownership to another user",
+        "child": [
+            "CanTransferOwnershipResultPasswordTooFresh",
+            "CanTransferOwnershipResultPasswordNeeded",
+            "CanTransferOwnershipResultSessionTooFresh",
+            "CanTransferOwnershipResultOk"
+        ]
+    },
+    "CheckChatUsernameResult": {
+        "description": "Represents result of checking whether a username can be set for a chat",
+        "child": [
+            "CheckChatUsernameResultUsernamePurchasable",
+            "CheckChatUsernameResultPublicChatsTooMany",
+            "CheckChatUsernameResultPublicGroupsUnavailable",
+            "CheckChatUsernameResultOk",
+            "CheckChatUsernameResultUsernameOccupied",
+            "CheckChatUsernameResultUsernameInvalid"
+        ]
+    },
+    "CheckStickerSetNameResult": {
+        "description": "Represents result of checking whether a name can be used for a new sticker set",
+        "child": [
+            "CheckStickerSetNameResultOk",
+            "CheckStickerSetNameResultNameInvalid",
+            "CheckStickerSetNameResultNameOccupied"
+        ]
+    },
+    "ResetPasswordResult": {
+        "description": "Represents result of 2-step verification password reset",
+        "child": [
+            "ResetPasswordResultDeclined",
+            "ResetPasswordResultPending",
+            "ResetPasswordResultOk"
+        ]
+    },
+    "MessageFileType": {
+        "description": "Contains information about a file with messages exported from another app",
+        "child": [
+            "MessageFileTypePrivate",
+            "MessageFileTypeGroup",
+            "MessageFileTypeUnknown"
+        ]
+    },
+    "PushMessageContent": {
+        "description": "Contains content of a push message notification",
+        "child": [
+            "PushMessageContentChatJoinByRequest",
+            "PushMessageContentSuggestProfilePhoto",
+            "PushMessageContentMessageForwards",
+            "PushMessageContentBasicGroupChatCreate",
+            "PushMessageContentChatAddMembers",
+            "PushMessageContentLocation",
+            "PushMessageContentScreenshotTaken",
+            "PushMessageContentDocument",
+            "PushMessageContentAudio",
+            "PushMessageContentRecurringPayment",
+            "PushMessageContentPoll",
+            "PushMessageContentContactRegistered",
+            "PushMessageContentGame",
+            "PushMessageContentGameScore",
+            "PushMessageContentMediaAlbum",
+            "PushMessageContentChatJoinByLink",
+            "PushMessageContentVideo",
+            "PushMessageContentSticker",
+            "PushMessageContentHidden",
+            "PushMessageContentAnimation",
+            "PushMessageContentChatChangeTitle",
+            "PushMessageContentVoiceNote",
+            "PushMessageContentChatSetTheme",
+            "PushMessageContentInvoice",
+            "PushMessageContentPhoto",
+            "PushMessageContentChatChangePhoto",
+            "PushMessageContentText",
+            "PushMessageContentChatDeleteMember",
+            "PushMessageContentVideoNote",
+            "PushMessageContentContact"
+        ]
+    },
+    "NotificationType": {
+        "description": "Contains detailed information about a notification",
+        "child": [
+            "NotificationTypeNewSecretChat",
+            "NotificationTypeNewMessage",
+            "NotificationTypeNewCall",
+            "NotificationTypeNewPushMessage"
+        ]
+    },
+    "NotificationGroupType": {
+        "description": "Describes the type of notifications in a notification group",
+        "child": [
+            "NotificationGroupTypeMentions",
+            "NotificationGroupTypeCalls",
+            "NotificationGroupTypeSecretChat",
+            "NotificationGroupTypeMessages"
+        ]
+    },
+    "OptionValue": {
+        "description": "Represents the value of an option",
+        "child": [
+            "OptionValueInteger",
+            "OptionValueEmpty",
+            "OptionValueBoolean",
+            "OptionValueString"
+        ]
+    },
+    "JsonValue": {
+        "description": "Represents a JSON value",
+        "child": [
+            "JsonValueBoolean",
+            "JsonValueString",
+            "JsonValueObject",
+            "JsonValueNull",
+            "JsonValueNumber",
+            "JsonValueArray"
+        ]
+    },
+    "UserPrivacySettingRule": {
+        "description": "Represents a single rule for managing privacy settings",
+        "child": [
+            "UserPrivacySettingRuleAllowAll",
+            "UserPrivacySettingRuleRestrictChatMembers",
+            "UserPrivacySettingRuleAllowUsers",
+            "UserPrivacySettingRuleRestrictUsers",
+            "UserPrivacySettingRuleRestrictAll",
+            "UserPrivacySettingRuleAllowContacts",
+            "UserPrivacySettingRuleRestrictContacts",
+            "UserPrivacySettingRuleAllowChatMembers"
+        ]
+    },
+    "UserPrivacySetting": {
+        "description": "Describes available user privacy settings",
+        "child": [
+            "UserPrivacySettingAllowChatInvites",
+            "UserPrivacySettingAllowFindingByPhoneNumber",
+            "UserPrivacySettingShowStatus",
+            "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages",
+            "UserPrivacySettingShowProfilePhoto",
+            "UserPrivacySettingAllowPeerToPeerCalls",
+            "UserPrivacySettingShowLinkInForwardedMessages",
+            "UserPrivacySettingAllowCalls",
+            "UserPrivacySettingShowPhoneNumber"
+        ]
+    },
+    "SessionType": {
+        "description": "Represents the type of a session",
+        "child": [
+            "SessionTypeAndroid",
+            "SessionTypeApple",
+            "SessionTypeIphone",
+            "SessionTypeWindows",
+            "SessionTypeLinux",
+            "SessionTypeMac",
+            "SessionTypeOpera",
+            "SessionTypeUbuntu",
+            "SessionTypeUnknown",
+            "SessionTypeXbox",
+            "SessionTypeSafari",
+            "SessionTypeFirefox",
+            "SessionTypeVivaldi",
+            "SessionTypeBrave",
+            "SessionTypeEdge",
+            "SessionTypeIpad",
+            "SessionTypeChrome"
+        ]
+    },
+    "ChatReportReason": {
+        "description": "Describes the reason why a chat is reported",
+        "child": [
+            "ChatReportReasonCustom",
+            "ChatReportReasonFake",
+            "ChatReportReasonIllegalDrugs",
+            "ChatReportReasonUnrelatedLocation",
+            "ChatReportReasonCopyright",
+            "ChatReportReasonPornography",
+            "ChatReportReasonViolence",
+            "ChatReportReasonPersonalDetails",
+            "ChatReportReasonChildAbuse",
+            "ChatReportReasonSpam"
+        ]
+    },
+    "TargetChat": {
+        "description": "Describes the target chat to be opened",
+        "child": [
+            "TargetChatCurrent",
+            "TargetChatChosen",
+            "TargetChatInternalLink"
+        ]
+    },
+    "InternalLinkType": {
+        "description": "Describes an internal https://t.me or tg: link, which must be processed by the application in a special way",
+        "child": [
+            "InternalLinkTypeEditProfileSettings",
+            "InternalLinkTypeBotAddToChannel",
+            "InternalLinkTypeLanguageSettings",
+            "InternalLinkTypeProxy",
+            "InternalLinkTypeTheme",
+            "InternalLinkTypeLanguagePack",
+            "InternalLinkTypeFilterSettings",
+            "InternalLinkTypeBotStartInGroup",
+            "InternalLinkTypeStickerSet",
+            "InternalLinkTypePhoneNumberConfirmation",
+            "InternalLinkTypeActiveSessions",
+            "InternalLinkTypeGame",
+            "InternalLinkTypeQrCodeAuthentication",
+            "InternalLinkTypeRestorePurchases",
+            "InternalLinkTypeInvoice",
+            "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings",
+            "InternalLinkTypeAuthenticationCode",
+            "InternalLinkTypeVideoChat",
+            "InternalLinkTypePublicChat",
+            "InternalLinkTypeBackground",
+            "InternalLinkTypeChatInvite",
+            "InternalLinkTypeUnsupportedProxy",
+            "InternalLinkTypePremiumFeatures",
+            "InternalLinkTypeUserToken",
+            "InternalLinkTypePassportDataRequest",
+            "InternalLinkTypeUnknownDeepLink",
+            "InternalLinkTypeUserPhoneNumber",
+            "InternalLinkTypeChangePhoneNumber",
+            "InternalLinkTypeAttachmentMenuBot",
+            "InternalLinkTypeInstantView",
+            "InternalLinkTypeBotStart",
+            "InternalLinkTypeSettings",
+            "InternalLinkTypeThemeSettings",
+            "InternalLinkTypePrivacyAndSecuritySettings",
+            "InternalLinkTypeMessageDraft",
+            "InternalLinkTypeMessage"
+        ]
+    },
+    "FileType": {
+        "description": "Represents the type of a file",
+        "child": [
+            "FileTypeAnimation",
+            "FileTypeNotificationSound",
+            "FileTypeUnknown",
+            "FileTypeVideoNote",
+            "FileTypeDocument",
+            "FileTypeSticker",
+            "FileTypeAudio",
+            "FileTypeProfilePhoto",
+            "FileTypeWallpaper",
+            "FileTypeNone",
+            "FileTypeSecure",
+            "FileTypePhoto",
+            "FileTypeSecret",
+            "FileTypeVoiceNote",
+            "FileTypeThumbnail",
+            "FileTypeSecretThumbnail",
+            "FileTypeVideo"
+        ]
+    },
+    "NetworkType": {
+        "description": "Represents the type of a network",
+        "child": [
+            "NetworkTypeOther",
+            "NetworkTypeMobile",
+            "NetworkTypeNone",
+            "NetworkTypeMobileRoaming",
+            "NetworkTypeWiFi"
+        ]
+    },
+    "NetworkStatisticsEntry": {
+        "description": "Contains statistics about network usage",
+        "child": [
+            "NetworkStatisticsEntryFile",
+            "NetworkStatisticsEntryCall"
+        ]
+    },
+    "ConnectionState": {
+        "description": "Describes the current state of the connection to Telegram servers",
+        "child": [
+            "ConnectionStateWaitingForNetwork",
+            "ConnectionStateReady",
+            "ConnectionStateConnecting",
+            "ConnectionStateUpdating",
+            "ConnectionStateConnectingToProxy"
+        ]
+    },
+    "TopChatCategory": {
+        "description": "Represents the categories of chats for which a list of frequently used chats can be retrieved",
+        "child": [
+            "TopChatCategoryCalls",
+            "TopChatCategoryChannels",
+            "TopChatCategoryBots",
+            "TopChatCategoryUsers",
+            "TopChatCategoryGroups",
+            "TopChatCategoryInlineBots",
+            "TopChatCategoryForwardChats"
+        ]
+    },
+    "TMeUrlType": {
+        "description": "Describes the type of a URL linking to an internal Telegram entity",
+        "child": [
+            "TMeUrlTypeStickerSet",
+            "TMeUrlTypeChatInvite",
+            "TMeUrlTypeSupergroup",
+            "TMeUrlTypeUser"
+        ]
+    },
+    "SuggestedAction": {
+        "description": "Describes an action suggested to the current user",
+        "child": [
+            "SuggestedActionCheckPassword",
+            "SuggestedActionSetPassword",
+            "SuggestedActionEnableArchiveAndMuteNewChats",
+            "SuggestedActionViewChecksHint",
+            "SuggestedActionCheckPhoneNumber",
+            "SuggestedActionConvertToBroadcastGroup"
+        ]
+    },
+    "TextParseMode": {
+        "description": "Describes the way the text needs to be parsed for text entities",
+        "child": [
+            "TextParseModeMarkdown",
+            "TextParseModeHTML"
+        ]
+    },
+    "ProxyType": {
+        "description": "Describes the type of a proxy server",
+        "child": [
+            "ProxyTypeMtproto",
+            "ProxyTypeSocks5",
+            "ProxyTypeHttp"
+        ]
+    },
+    "StatisticalGraph": {
+        "description": "Describes a statistical graph",
+        "child": [
+            "StatisticalGraphData",
+            "StatisticalGraphAsync",
+            "StatisticalGraphError"
+        ]
+    },
+    "ChatStatistics": {
+        "description": "Contains a detailed statistics about a chat",
+        "child": [
+            "ChatStatisticsSupergroup",
+            "ChatStatisticsChannel"
+        ]
+    },
+    "VectorPathCommand": {
+        "description": "Represents a vector path command",
+        "child": [
+            "VectorPathCommandLine",
+            "VectorPathCommandCubicBezierCurve"
+        ]
+    },
+    "BotCommandScope": {
+        "description": "Represents the scope to which bot commands are relevant",
+        "child": [
+            "BotCommandScopeChat",
+            "BotCommandScopeChatMember",
+            "BotCommandScopeAllPrivateChats",
+            "BotCommandScopeAllChatAdministrators",
+            "BotCommandScopeAllGroupChats",
+            "BotCommandScopeDefault",
+            "BotCommandScopeChatAdministrators"
+        ]
+    },
+    "Update": {
+        "description": "Contains notifications about data changes",
+        "child": [
+            "UpdateNewChosenInlineResult",
+            "UpdateChatActionBar",
+            "UpdateFile",
+            "UpdatePollAnswer",
+            "UpdateNotificationGroup",
+            "UpdateFileGenerationStop",
+            "UpdateChatMember",
+            "UpdateRecentStickers",
+            "UpdateUser",
+            "UpdateUserFullInfo",
+            "UpdateFileDownloads",
+            "UpdateChatUnreadMentionCount",
+            "UpdateFileGenerationStart",
+            "UpdateChatTheme",
+            "UpdateNewCallbackQuery",
+            "UpdateAuthorizationState",
+            "UpdateAnimationSearchParameters",
+            "UpdateSupergroupFullInfo",
+            "UpdateNewShippingQuery",
+            "UpdatePoll",
+            "UpdateMessageMentionRead",
+            "UpdateChatOnlineMemberCount",
+            "UpdateCall",
+            "UpdateSupergroup",
+            "UpdateActiveNotifications",
+            "UpdateChatNotificationSettings",
+            "UpdateUserStatus",
+            "UpdateSecretChat",
+            "UpdateChatThemes",
+            "UpdateNewInlineQuery",
+            "UpdateNewCallSignalingData",
+            "UpdateHavePendingNotifications",
+            "UpdateInstalledStickerSets",
+            "UpdateForumTopicInfo",
+            "UpdateNotification",
+            "UpdateFileRemovedFromDownloads",
+            "UpdateAttachmentMenuBots",
+            "UpdateDeleteMessages",
+            "UpdateAnimatedEmojiMessageClicked",
+            "UpdateGroupCall",
+            "UpdateStickerSet",
+            "UpdateChatHasProtectedContent",
+            "UpdateBasicGroup",
+            "UpdateSavedNotificationSounds",
+            "UpdateUsersNearby",
+            "UpdateChatHasScheduledMessages",
+            "UpdateChatDraftMessage",
+            "UpdateMessageContentOpened",
+            "UpdateChatFilters",
+            "UpdateChatPendingJoinRequests",
+            "UpdateMessageContent",
+            "UpdateNewInlineCallbackQuery",
+            "UpdateActiveEmojiReactions",
+            "UpdateChatUnreadReactionCount",
+            "UpdateChatPermissions",
+            "UpdateNewChat",
+            "UpdateChatReadOutbox",
+            "UpdateChatMessageAutoDeleteTime",
+            "UpdateScopeNotificationSettings",
+            "UpdateMessageSendFailed",
+            "UpdateDiceEmojis",
+            "UpdateChatVideoChat",
+            "UpdateMessageSendAcknowledged",
+            "UpdateOption",
+            "UpdateMessageInteractionInfo",
+            "UpdateSelectedBackground",
+            "UpdateChatIsBlocked",
+            "UpdateNewMessage",
+            "UpdateChatReplyMarkup",
+            "UpdateTrendingStickerSets",
+            "UpdateMessageLiveLocationViewed",
+            "UpdateNewCustomQuery",
+            "UpdateBasicGroupFullInfo",
+            "UpdateChatMessageSender",
+            "UpdateFileDownload",
+            "UpdateWebAppMessageSent",
+            "UpdateNewPreCheckoutQuery",
+            "UpdateMessageIsPinned",
+            "UpdateDefaultReactionType",
+            "UpdateMessageSendSucceeded",
+            "UpdateUnreadMessageCount",
+            "UpdateChatIsMarkedAsUnread",
+            "UpdateMessageUnreadReactions",
+            "UpdateMessageEdited",
+            "UpdateChatReadInbox",
+            "UpdateChatAvailableReactions",
+            "UpdateTermsOfService",
+            "UpdateNewChatJoinRequest",
+            "UpdateFavoriteStickers",
+            "UpdateLanguagePackStrings",
+            "UpdateUserPrivacySettingRules",
+            "UpdateSuggestedActions",
+            "UpdateGroupCallParticipant",
+            "UpdateNewCustomEvent",
+            "UpdateChatTitle",
+            "UpdateFileAddedToDownloads",
+            "UpdateConnectionState",
+            "UpdateChatLastMessage",
+            "UpdateChatPosition",
+            "UpdateChatDefaultDisableNotification",
+            "UpdateChatPhoto",
+            "UpdateServiceNotification",
+            "UpdateSavedAnimations",
+            "UpdateUnreadChatCount",
+            "UpdateChatAction"
+        ]
+    },
+    "LogStream": {
+        "description": "Describes a stream to which TDLib internal log is written",
+        "child": [
+            "LogStreamFile",
+            "LogStreamEmpty",
+            "LogStreamDefault"
+        ]
+    }
+}
