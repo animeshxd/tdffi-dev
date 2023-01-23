@@ -83,22 +83,26 @@ def generate_json():
                 if raw_body == "\ngetAuthorizationState = AuthorizationState;": # now function starts
                     is_function = True
                     _class_or_func = functions
-                comment = process_comment(raw_comment)
+                description = process_comment(raw_comment)
                 class_name, class_body, parent = process_body(raw_body)
                 
                 _data = {
-                        "comment": comment,
+                        "description": description,
                         "parameters": class_body.copy(),
-                        "is-function": is_function,
-                        "return": ""
+                        "return": None,
+                        "parent": None
                     }
                 if is_function:
                     _data["return"] = parent
-                
+                if parent.lower() != class_name.lower():
+                    _data['parent'] = parent
+                else:
+                    _data['parent'] = 'TlObject'
+        
                 # print(_data)
-                _class_or_func[class_name] = _data
-                if not is_function and parent.lower() != class_name.lower():
+                _class_or_func[class_name] = _data # add class or function to dictionary
 
+                if not is_function and parent.lower() != class_name.lower():
                     put_abc(parent, class_name)
                 
                 # print()

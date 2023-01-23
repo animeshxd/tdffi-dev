@@ -27,5 +27,26 @@ preamble = """
 // ignore_for_file: camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers
 import 'dart:ffi' show Pointer;
 import 'dart:convert' show jsonEncode;
-import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
+//import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
 """.strip()
+
+SPACES = '            '
+UNIMPLIMENTED_METHODS = """
+@override
+Pointer toCharPtr() {
+    // TODO: implement toCharPtr
+    throw UnimplementedError();
+}
+
+@override
+Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+}
+
+@override
+String toJsonEncoded() {
+    // TODO: implement toJsonEncoded
+    throw UnimplementedError();
+}
+"""
