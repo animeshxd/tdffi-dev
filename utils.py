@@ -1,8 +1,11 @@
 
 import enum
 import json
+import os
 import re
 from typing import Any, Optional, Tuple
+
+from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE
 
 
 class Serilizer(json.JSONEncoder):
@@ -79,3 +82,22 @@ def process_tl_parameter(source: str, lookup_dict: dict):
     result: dict
     result.update(data)
     return {parameter: result}
+
+def need_reload():
+    try:
+        assert os.path.isfile(ABC_CLASS_JSON_FILE)
+        assert os.path.isfile(CLASS_JSON_FILE)
+        assert os.path.isfile(FUNC_JSON_FILE)
+    except Exception:
+        return True
+    else:
+        return False
+
+def read_all_json():
+    with open(ABC_CLASS_JSON_FILE) as f:
+        abc = json.load(f)
+    with open(CLASS_JSON_FILE) as f:
+        clss =json.load(f)
+    with open(FUNC_JSON_FILE) as f:
+        fns = json.load(f)
+    return abc, clss, fns

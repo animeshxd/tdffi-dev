@@ -3,10 +3,11 @@ import logging
 from pprint import pprint
 import re
 
+from const import TL_API_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE, CLASS_JSON_FILE
 from utils import CamelCase, Serilizer, process_tl_parameter
 
 
-TL_API_FILE = "./td_api.tl"
+
 
 parameter_descriptions = {}
 abc_classes = {}
@@ -105,9 +106,14 @@ def generate_json():
                 # print(class_name, class_body, sep=" : ")
                 # print()
                 reset()
-    json.dump(classes, open("classes.json", "w"), cls=Serilizer, indent=4)
-    json.dump(abc_classes, open("abstract-classes.json", "w"), cls=Serilizer, indent=4)
-    json.dump(functions, open("functions.json", "w"), cls=Serilizer, indent=4)
+    for name, data in zip(
+            (CLASS_JSON_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE),
+            (classes, abc_classes, functions)
+        ):
+        with open(name, "w") as f:
+            json.dump(data, f, cls=Serilizer, indent=4)
+
+    return abc_classes, classes, functions
 
 if __name__ == "__main__":
     generate_json()
