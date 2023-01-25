@@ -1,5 +1,5 @@
 BASE_DIR_JSON = "./json/"
-TL_API_FILE = "td_api.tl"
+TL_API_FILE = "td/td/generate/scheme/td_api.tl"
 ABC_CLASS_JSON_FILE = BASE_DIR_JSON + "abstract-classes.json"
 CLASS_JSON_FILE = BASE_DIR_JSON + "classes.json"
 FUNC_JSON_FILE = BASE_DIR_JSON + "functions.json"
