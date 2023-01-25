@@ -1,5 +1,6 @@
+import io
 from generate_json import generate_json
-from utils import need_reload, read_all_json
+from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, write
 
 from const import *
 ABC = """
@@ -11,16 +12,18 @@ abstract class {name} extends {parent} {{
 }}
 """
 
+
 def generate_abc_dart(abstract_classes: dict):
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
-        print(preamble, file=f)
-        # print(TlObject, file=f)
-        print('abstract class TlObject {}', file=f) 
+        write(f, preamble)
+        write(f, TlObject )
+        write(f, Func)
+        # write(f,'abstract class TlObject {}', 
     
         for name, body in abstract_classes.items():
             
             _ = "".join(f"[{i}], " for i in body['child'])
-            # print(_)
+            # w)
             _ = dict(
                 name=name, 
                 description=body['description'], 
@@ -28,26 +31,122 @@ def generate_abc_dart(abstract_classes: dict):
                 child=_
 
             )
-            print(ABC.format(**_), file=f)
+            write(f,ABC.format(**_))
 
-def generate_child_dart(classes: dict):
+def process_body(_class: dict, abc: dict, params: dict) -> str:
+ 
+    constructor_parameters = []
+    _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
+    facrory_method_body = []
+
+    f = io.StringIO()
+    if not params:
+        write(f, f'{_class}({{this.extra}});') # constructor
+        write(f, METHODS, json=','.join(_json)) # toJson method body
+        write(f, FACTORY_METHOD, name=_class, body="\n")
+
+        f.seek(0)
+        return f.read()
+    
+
+
+    for name, info in params.items():
+        description = info['description']
+        nullable = info['nullable']
+        type = info['type']
+        tl = info['tl']
+        enum = Type(info['enum'])
+        name_ = name+'_' if name == type else name
+        _json.append(f"'{name}': {name_}")
+
+        type_ = type+'?' if nullable else type
+        late = '' if nullable else 'late '
+        
+        _ = "required" if not nullable else ''
+        constructor_parameters.append(f"{_} this.{name_}")
+
+        write(f,f"/// [{name_}] {description}") # parameter comment
+        write(f,f"{late}{type_} {name_};") # parameter field
+
+        if enum == Type.TL:
+            abstract = abc.get(type, None)
+            if abstract:
+                ... # TODO: 
+            else:
+                facrory_method_body.append(f'{name_} = {type}.fromMap(_map["{name}"]);')
+
+        elif enum == Type.VECTOR_TL:
+            _ = CamelCase(tl)
+            abstract = abc.get(_, None)
+            if abstract:
+                ... # TODO: 
+            else:
+                facrory_method_body.append(f'{name_} = {type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
+        else:
+            facrory_method_body.append(f"{name_} = _map['{name}'];")
+
+            
+
+    
+    write(f,f"{_class}({{ {','.join(constructor_parameters)}, this.extra }});") # constructor
+    write(f, METHODS, json=','.join(_json)) # toJson method body
+    write(f, FACTORY_METHOD, name=_class, body="\n".join(facrory_method_body))
+    f.seek(0)
+    return f.read()
+
+def generate_child_dart(classes: dict, abc: dict):
+    CLASS = """\
+    ///{description}
+    ///
+    {return_}
+    class {name} extends {parent} {{
+         /// [extra] - Request identifier. Must be non-zero. 
+         int? extra;
+        {body}
+    }}
+    """
     with open(EXPORT_CLASS_FILE, 'w') as f:
-        print(preamble, file=f)
-        print("import './abc.dart';", file=f)
+        write(f,preamble)
+        write(f,"import './abc.dart';")
         for name, body in classes.items():
             description = body['description']
             parent = body['parent']
             _ = body.get('return', None)
             return_ = f'///@returns {_}' if _ else ''
-            print(f"""
-            ///{description}
-            ///
-            {return_}
-            class {name} extends {parent} {{
-                
-            }}
-            """.replace(SPACES, ''), file=f)
-        
+            _ = dict(
+                description=description,
+                return_=return_,
+                name=name,
+                parent=parent,
+                body=process_body(name, abc, body['parameters']),
+            )
+            write(f,CLASS, **_)
+
+def generate_func_dart(functions: dict, abc: dict):
+    FUNC = """
+    ///{description}
+    ///
+    ///Returns [{return_}]
+    class {name} extends Func {{
+         ///[extra] - Request identifier. Must be non-zero. 
+         int? extra;
+        {body}
+    }}
+    """.replace(SPACES, '')
+    with open(EXPORT_FUNC_FILE, 'w') as f:
+        write(f,preamble)
+        write(f,"import './abc.dart';")
+        write(f,"import './classes.dart';")
+        for name, body in functions.items():
+
+           _ = dict(
+            description = body['description'],
+            return_=body['return'],
+            name=name,
+            body=process_body(name, abc, body['parameters']),
+           )
+           write(f, FUNC, **_)
+
 def generate():
     if need_reload():
         abstract_classes, classes, functions = generate_json()
@@ -55,7 +154,12 @@ def generate():
         abstract_classes, classes, functions = read_all_json()
 
     generate_abc_dart(abstract_classes)
-    generate_child_dart(classes)
+    generate_child_dart(classes, abstract_classes)
+    generate_func_dart(functions, abstract_classes)
+    
+
+
+
     
     
 

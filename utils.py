@@ -1,11 +1,12 @@
 
 import enum
+import io
 import json
 import os
 import re
 from typing import Any, Optional, Tuple
 
-from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE
+from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE, BASE_DIR_JSON
 
 
 class Serilizer(json.JSONEncoder):
@@ -42,6 +43,8 @@ dart_types = {
 def CamelCase(x: str):
     return (x[0].upper()+x[1:]).strip()
 
+def lowerCamelCase(x: str):
+    return (x[0].lower()+x[1:]).strip()
 
 def get_dart_type(type_: str) -> Tuple[str, str, Type]:
                                 #    d     t   enum
@@ -85,6 +88,8 @@ def process_tl_parameter(source: str, lookup_dict: dict):
 
 def need_reload():
     try:
+        if not os.path.isdir(BASE_DIR_JSON):
+            os.mkdir(BASE_DIR_JSON)
         assert os.path.isfile(ABC_CLASS_JSON_FILE)
         assert os.path.isfile(CLASS_JSON_FILE)
         assert os.path.isfile(FUNC_JSON_FILE)
@@ -101,3 +106,12 @@ def read_all_json():
     with open(FUNC_JSON_FILE) as f:
         fns = json.load(f)
     return abc, clss, fns
+
+def write(f, string: str, **kwargs):
+    if kwargs:
+        f.write(string.format(**kwargs))
+        f.write('\n')
+    else:
+        f.write(string)
+        f.write('\n')
+        
