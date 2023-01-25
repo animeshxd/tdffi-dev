@@ -1,0 +1,27 @@
+name: td_json_client
+description: td_json_client.h File Reference.
+output: 'tdffi/lib/src/ffi/td_json_client.dart'
+headers:
+  entry-points:
+    - headers/td_json_client.h
+
+type-map:
+  'native-types': # Targets native types.
+    'char':
+      'lib': 'pkg_ffi' # predefined import.
+      'c-type': 'Utf8'
+      'dart-type': 'Utf8'
+    'int':
+      'lib': 'ffi'
+      'c-type': 'Int32'
+      'dart-type': 'int'
+comments:
+  style: any
+preamble: |
+  //
+  // Copyright Aliaksei Levin (levlam@telegram.org), Arseny Smirnov (arseny30@gmail.com) 2014-2022
+  //
+  // Distributed under the Boost Software License, Version 1.0. (See accompanying
+  // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+  //
+  // ignore_for_file: camel_case_types, non_constant_identifier_names
