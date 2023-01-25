@@ -79,7 +79,7 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
                 
                 for a in abstract['child']:
                     temp.append(f"""
-                    case '{a}':
+                    case '{lowerCamelCase(a)}':
                         {name_} = {a}.fromMap(_map["{name}"]);
                         break;
                     """)
@@ -106,7 +106,7 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
                 ]
                 for a in abstract['child']:
                     temp.append(f"""\
-                    case '{a}':
+                    case '{lowerCamelCase(a)}':
                         return {a}.fromMap(e);
                     """
                     )
@@ -137,9 +137,14 @@ def generate_child_dart(classes: dict, abc: dict):
         {body}
     }}
     """
-    with open(EXPORT_CLASS_FILE, 'w') as f:
+
+    with open(EXPORT_CLASS_FILE, 'w') as f, open(EXPORT_MAP_CLASS_STR, 'w') as f1:
         write(f,preamble)
         write(f,"import './abc.dart';")
+        write(f1, "import './classes.dart';")
+        write(f1, "import './abc.dart';")
+        write(f1, EXPORT_MAP_BODY)
+
         for name, body in classes.items():
             description = body['description']
             parent = body['parent']
@@ -153,7 +158,8 @@ def generate_child_dart(classes: dict, abc: dict):
                 body=process_body(name, abc, body['parameters']),
             )
             write(f,CLASS, **_)
-
+            write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
+        write(f1, "};")
 def generate_func_dart(functions: dict, abc: dict):
     FUNC = """
     ///{description}
@@ -193,7 +199,7 @@ def generate():
     generate_abc_dart(abstract_classes)
     generate_child_dart(classes, abstract_classes)
     generate_func_dart(functions, abstract_classes)
-    print("Generated 3 files in {} seconds.".format(round(time.time() - st), 2))
+    print("Generated 4 files in {} seconds.".format(round(time.time() - st), 2))
     
 
 
@@ -207,5 +213,5 @@ def generate():
 
 if __name__ == '__main__':
     generate()    
-    _ = os.popen(f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE}").read()
+    _ = os.popen(f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE} {EXPORT_MAP_CLASS_STR}").read()
     print(_)
