@@ -4,7 +4,7 @@ ABC_CLASS_JSON_FILE = BASE_DIR_JSON + "abstract-classes.json"
 CLASS_JSON_FILE = BASE_DIR_JSON + "classes.json"
 FUNC_JSON_FILE = BASE_DIR_JSON + "functions.json"
 
-BASE_DIR_DART = "./tdffi/lib/src/"
+BASE_DIR_DART = "./tdffi/lib/src/generated/"
 EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
 EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
 EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"

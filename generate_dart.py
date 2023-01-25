@@ -1,4 +1,6 @@
 import io
+import os
+import time
 from generate_json import generate_json
 from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, write
 
@@ -71,7 +73,25 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
         if enum == Type.TL:
             abstract = abc.get(type, None)
             if abstract:
-                ... # TODO: 
+                
+                temp = [f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"]
+
+                
+                for a in abstract['child']:
+                    temp.append(f"""
+                    case '{a}':
+                        {name_} = {a}.fromMap(_map["{name}"]);
+                        break;
+                    """)
+                
+                temp.append(f"""\
+                    case null:
+                    default:
+                        {f"{name_} = null;" if nullable else ''}
+                        break;
+                }}
+                """)
+                facrory_method_body.append('\n'.join(temp))
             else:
                 facrory_method_body.append(f'{name_} = {type}.fromMap(_map["{name}"]);')
 
@@ -79,7 +99,19 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
             _ = CamelCase(tl)
             abstract = abc.get(_, None)
             if abstract:
-                ... # TODO: 
+                
+                temp = [
+                    f"{name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
+                    f"switch (e['@type']) {{"
+                ]
+                for a in abstract['child']:
+                    temp.append(f"""\
+                    case '{a}':
+                        return {a}.fromMap(e);
+                    """
+                    )
+                temp.append('}}).toList();')
+                facrory_method_body.append('\n'.join(temp))
             else:
                 facrory_method_body.append(f'{name_} = {type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
         else:
@@ -148,14 +180,20 @@ def generate_func_dart(functions: dict, abc: dict):
            write(f, FUNC, **_)
 
 def generate():
+    st = time.time()
     if need_reload():
         abstract_classes, classes, functions = generate_json()
     else:
         abstract_classes, classes, functions = read_all_json()
+    print("Generated json in {} seconds.".format(round(time.time() - st), 2))
+    
+    st = time.time()
+    os.makedirs(BASE_DIR_DART, exist_ok=True)
 
     generate_abc_dart(abstract_classes)
     generate_child_dart(classes, abstract_classes)
     generate_func_dart(functions, abstract_classes)
+    print("Generated 3 files in {} seconds.".format(round(time.time() - st), 2))
     
 
 
@@ -168,4 +206,6 @@ def generate():
 
 
 if __name__ == '__main__':
-    generate()
+    generate()    
+    _ = os.popen(f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE}").read()
+    print(_)
