@@ -56,7 +56,7 @@ METHODS = """
   }}
 """
 
-FACTORY_METHOD = """
+STATIC_METHOD = """
 /// Construct from [Map]
 static {name}? fromMap(Map<String, dynamic>? _map){{
     if (_map == null) return null;
