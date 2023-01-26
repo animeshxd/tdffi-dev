@@ -58,15 +58,16 @@ METHODS = """
 
 FACTORY_METHOD = """
 /// Construct from [Map]
-{name}.fromMap(Map<String, dynamic>? _map){{
-    if (_map == null) return;
+static {name}? fromMap(Map<String, dynamic>? _map){{
+    if (_map == null) return null;
     var _ = _map["@type"];
-    extra = _map['@extra'];
+    var extra = _map['@extra'];
     {body}
+    return {name}({args});
   }}
 """
 
 EXPORT_MAP_BODY = """
-Map<String,TlObject Function(Map<String, dynamic>)> tlobjects = {
+Map<String,TlObject? Function(Map<String, dynamic>)> tlobjects = {
 
 """

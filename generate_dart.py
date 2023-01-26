@@ -2,7 +2,7 @@ import io
 import os
 import time
 from generate_json import generate_json
-from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, write
+from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, write 
 
 from const import *
 ABC = """
@@ -38,6 +38,7 @@ def generate_abc_dart(abstract_classes: dict):
 def process_body(_class: dict, abc: dict, params: dict) -> str:
  
     constructor_parameters = []
+    static_parameters = ["extra: extra"]
     _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
     facrory_method_body = []
 
@@ -45,7 +46,7 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
     if not params:
         write(f, f'{_class}({{this.extra}});') # constructor
         write(f, METHODS, json=','.join(_json)) # toJson method body
-        write(f, FACTORY_METHOD, name=_class, body="\n")
+        write(f, FACTORY_METHOD, name=_class, body="\n", args=', '.join(static_parameters))
 
         f.seek(0)
         return f.read()
@@ -63,9 +64,11 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
 
         type_ = type+'?' if nullable else type
         late = '' if nullable else 'late '
+        strict = '' if nullable else '!'
         
         _ = "required" if not nullable else ''
         constructor_parameters.append(f"{_} this.{name_}")
+        static_parameters.append(f"{name_}: {name_}")
 
         write(f,f"/// [{name_}] {description}") # parameter comment
         write(f,f"{late}{type_} {name_};") # parameter field
@@ -74,13 +77,16 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
             abstract = abc.get(type, None)
             if abstract:
                 
-                temp = [f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"]
+                temp = [
+                    f"{late} {type_} {name_};",
+                    f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"
+                ]
 
                 
                 for a in abstract['child']:
                     temp.append(f"""
                     case '{lowerCamelCase(a)}':
-                        {name_} = {a}.fromMap(_map["{name}"]);
+                        {name_} = {a}.fromMap(_map["{name}"]){strict};
                         break;
                     """)
                 
@@ -93,7 +99,7 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
                 """)
                 facrory_method_body.append('\n'.join(temp))
             else:
-                facrory_method_body.append(f'{name_} = {type}.fromMap(_map["{name}"]);')
+                facrory_method_body.append(f'var {name_} = {type}.fromMap(_map["{name}"]){strict};')
 
         elif enum == Type.VECTOR_TL:
             _ = CamelCase(tl)
@@ -101,7 +107,7 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
             if abstract:
                 
                 temp = [
-                    f"{name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
+                    f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
                     f"switch (e['@type']) {{"
                 ]
                 for a in abstract['child']:
@@ -113,16 +119,18 @@ def process_body(_class: dict, abc: dict, params: dict) -> str:
                 temp.append('}}).toList();')
                 facrory_method_body.append('\n'.join(temp))
             else:
-                facrory_method_body.append(f'{name_} = {type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
+                facrory_method_body.append(f'var {name_} = {type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
+        elif enum == Type.VECTOR_DART:
+            facrory_method_body.append(f'var {name_} = {type}.from((_map["{name}"] ?? []));')
         else:
-            facrory_method_body.append(f"{name_} = _map['{name}'];")
+            facrory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
 
             
 
     
     write(f,f"{_class}({{ {','.join(constructor_parameters)}, this.extra }});") # constructor
     write(f, METHODS, json=','.join(_json)) # toJson method body
-    write(f, FACTORY_METHOD, name=_class, body="\n".join(facrory_method_body))
+    write(f, FACTORY_METHOD, name=_class, body="\n".join(facrory_method_body), args=','.join(static_parameters))
     f.seek(0)
     return f.read()
 
