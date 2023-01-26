@@ -30,12 +30,12 @@ class Client {
     var charPtr = func.toCharPtr();
     td.td_json_client_send(client, charPtr);
     // ffi.malloc.free(charPtr);
-    var return_ = await _subject
-        .where((event) => event.extra == request_id)
-        .map((event) => event as T)
-        .first;
-    if (return_ is api.Error) throw Exception(return_);
-    return return_;
+    var event =
+        await _subject.where((event) => event.extra == request_id).first;
+    if (event is api.Error) {
+      throw Exception("Error: [${event.code}] -  ${event.message}");
+    }
+    return event as T;
   }
 
   Future<api.TlObject?> _recive() async {
@@ -66,10 +66,8 @@ class Client {
       required int api_id,
       required String bot_token,
       String? phone_number}) async {
-
-
     this.bot_token = bot_token;
-    
+
     setTdlibParameter(api_hash: api_hash, api_id: api_id);
     recive().listen((event) {
       // print(event);
@@ -178,11 +176,14 @@ class Client {
 void main() async {
   var client = Client(DynamicLibrary.open('../td/build/libtdjson.so.1.8.10'));
   await client.start(
-    api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
-    api_id: 94575,
-    bot_token: ''
-  );
+      api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
+      api_id: 94575,
+      bot_token: '');
   client.tdlibParameters?.database_directory = '/tmp/tdlib';
+
+  client.updates.whereType<api.Error>().listen((event) {
+    throw Exception("Error: [${event.code}] -  ${event.message}");
+  });
 
   var result =
       await client.execute(api.SetLogVerbosityLevel(new_verbosity_level: 1));
