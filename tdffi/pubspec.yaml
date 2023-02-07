@@ -15,4 +15,5 @@ dev_dependencies:
 dependencies:
   ffi: ^2.0.1
   ffigen: ^7.2.4
+  meta: ^1.8.0
   rxdart: ^0.27.7
