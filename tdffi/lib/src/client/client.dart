@@ -103,11 +103,10 @@ class Base extends TdlibWrapper {
 
 class Auth extends Base {
   ///
-  Auth({api.SetTdlibParameters? tdlibParameters, super.dynamicLibrary}) {
-    _tdlibParameters = tdlibParameters;
-  }
+  Auth({this.tdlibParameters, super.dynamicLibrary});
 
   bool _isAuthorized = false;
+
   Future<bool> get isAuthorized async {
     if (!isRunning) return isRunning;
     var result =
@@ -116,7 +115,7 @@ class Auth extends Base {
     return _isAuthorized;
   }
 
-  api.SetTdlibParameters? _tdlibParameters;
+  api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
   var log = Logger('Auth');
@@ -149,19 +148,20 @@ class Auth extends Base {
     // start the tdlib client if not running
     await start();
 
-    if (_tdlibParameters == null) throw Exception("set TdlibParameters");
+    if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
     while (!_isAuthorized) {
       var state =
           await send<api.AuthorizationState>(api.GetAuthorizationState());
       await _handleAuthState(
         state,
-        phoneNumber,
-        botToken,
-        codeCallback,
-        password,
-        firstName,
-        lastName,
+        phoneNumber: phoneNumber,
+        botToken: botToken,
+        codeCallback: codeCallback,
+        settings: settings,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
       );
     }
 
@@ -170,12 +170,13 @@ class Auth extends Base {
         .map((event) => event.authorization_state)
         .listen((state) async => await _handleAuthState(
               state,
-              phoneNumber,
-              botToken,
-              codeCallback,
-              password,
-              firstName,
-              lastName,
+              phoneNumber: phoneNumber,
+              botToken: botToken,
+              codeCallback: codeCallback,
+              settings: settings,
+              password: password,
+              firstName: firstName,
+              lastName: lastName,
             ));
 
     _connSubscription = updates
@@ -204,19 +205,20 @@ class Auth extends Base {
 
   Future<void> _handleAuthState(
       api.AuthorizationState state,
-      String? phone,
-      String? botToken,
-      Future<String> Function()? codeCallback,
-      String? password,
-      String? firstName,
-      [String lastName = '']) async {
+      {String? botToken,
+        String? phoneNumber,
+        String? password,
+        Future<String> Function()? codeCallback,
+        api.PhoneNumberAuthenticationSettings? settings,
+        String? firstName,
+        String lastName = ''}) async {
     switch (state.runtimeType) {
       case api.AuthorizationStateWaitTdlibParameters:
-        await send(_tdlibParameters!);
+        await send(tdlibParameters!);
         break;
       case api.AuthorizationStateWaitPhoneNumber:
-        if (phone != null) {
-          await send(api.SetAuthenticationPhoneNumber(phone_number: phone));
+        if (phoneNumber != null) {
+          await send(api.SetAuthenticationPhoneNumber(phone_number: phoneNumber, settings: settings));
         } else if (botToken != null) {
           await send(api.CheckAuthenticationBotToken(token: botToken));
         }
