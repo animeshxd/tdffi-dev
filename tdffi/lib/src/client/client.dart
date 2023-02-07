@@ -38,7 +38,7 @@ class TdlibWrapper {
   }
 
   ///Receives incoming updates and request responses from the TDLib client
-  Future<api.TlObject?> _recive() async {
+  Future<api.TlObject?> _receive() async {
     var result = td.td_json_client_receive(client, 1);
     if (result.address == nullptr.address) return null;
     var object = getObject(json.decode(result.toDartString()));
@@ -46,9 +46,9 @@ class TdlibWrapper {
   }
 
   ///Receives incoming updates and request responses from the TDLib client
-  Stream<api.TlObject> recive() async* {
+  Stream<api.TlObject> receive() async* {
     while (true) {
-      var object = await _recive();
+      var object = await _receive();
       if (object != null) {
         yield object;
       }
@@ -89,7 +89,7 @@ class Base extends TdlibWrapper {
 
   Future<void> start() async {
     if (!isRunning) {
-      _subscription = recive().listen(__subject.add);
+      _subscription = receive().listen(__subject.add);
     }
     isRunning = true;
   }
@@ -154,7 +154,7 @@ class Auth extends Base {
     while (!_isAuthorized) {
       var state =
           await send<api.AuthorizationState>(api.GetAuthorizationState());
-      await _handleAuthzState(
+      await _handleAuthState(
         state,
         phoneNumber,
         botToken,
@@ -168,7 +168,7 @@ class Auth extends Base {
     _authSubscription = updates
         .whereType<api.UpdateAuthorizationState>()
         .map((event) => event.authorization_state)
-        .listen((state) async => await _handleAuthzState(
+        .listen((state) async => await _handleAuthState(
               state,
               phoneNumber,
               botToken,
@@ -202,7 +202,7 @@ class Auth extends Base {
     return await send<api.User>(api.GetMe());
   }
 
-  Future<void> _handleAuthzState(
+  Future<void> _handleAuthState(
       api.AuthorizationState state,
       String? phone,
       String? botToken,
