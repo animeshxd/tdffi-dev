@@ -17,11 +17,13 @@ abstract class {name} extends {parent} {{
 
 
 def generate_abc_dart(abstract_classes: dict):
-    with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
+    with open(EXPORT_ABC_CLASS_FILE, 'w') as f, open(EXPORT_EXTENSION, 'w') as e:
         write(f, preamble)
         write(f, TlObject)
         write(f, Func)
-        # write(f,'abstract class TlObject {}', 
+        # write(f,'abstract class TlObject {}',
+        write(e, "import './classes.dart';")
+        write(e, "import './abc.dart';")
 
         for name, body in abstract_classes.items():
             _ = "".join(f"[{i}], " for i in body['child'])
@@ -33,7 +35,9 @@ def generate_abc_dart(abstract_classes: dict):
                 child=_
 
             )
-            write(f, ABC.format(**_))
+            write(f, ABC, **_)
+            body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
+            write(e, EXTENSION_BODY, name=name, body="\n".join(body))
 
 
 def process_body(_class: str, abc: dict, params: dict) -> str:
@@ -205,11 +209,11 @@ def generate():
     generate_abc_dart(abstract_classes)
     generate_child_dart(classes, abstract_classes)
     generate_func_dart(functions, abstract_classes)
-    print("Generated 4 files in {} seconds.".format(round(time.time() - st), 2))
+    print("Generated 5 files in {} seconds.".format(round(time.time() - st), 2))
 
 
 if __name__ == '__main__':
     generate()
     _ = os.popen(
-        f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE} {EXPORT_MAP_CLASS_STR}").read()
+        f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE} {EXPORT_MAP_CLASS_STR} {EXPORT_EXTENSION}").read()
     print(_)

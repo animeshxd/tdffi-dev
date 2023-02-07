@@ -9,6 +9,7 @@ EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
 EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
 EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"
 EXPORT_MAP_CLASS_STR = BASE_DIR_DART + "objects.dart"
+EXPORT_EXTENSION = BASE_DIR_DART + 'extensions.dart'
 
 TlObject = """
 abstract class TlObject {
@@ -69,4 +70,19 @@ static {name}? fromMap(Map<String, dynamic>? _map){{
 EXPORT_MAP_BODY = """
 Map<String,TlObject? Function(Map<String, dynamic>)> tlobjects = {
 
+"""
+
+EXTENSION_BODY = """
+extension {name}Ext on {name} {{
+    {body}
+}}
+"""
+
+EXTENSION_METHOD_BODY = """
+{type}? get {name} {{
+  if(this is {type}){{
+      return this as {type};
+  }}
+  return null;
+}}
 """
