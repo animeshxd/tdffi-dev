@@ -1,6 +1,4 @@
-
 import enum
-import io
 import json
 import os
 import re
@@ -9,13 +7,14 @@ from typing import Any, Optional, Tuple
 from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE, BASE_DIR_JSON
 
 
-class Serilizer(json.JSONEncoder):
+class Serializer(json.JSONEncoder):
     def default(self, o: Any) -> Any:
         if isinstance(o, set):
             return list(o)
         if isinstance(o, Type):
             return o.value
         return super().default(o)
+
 
 class Type(enum.Enum):
     TL = 2
@@ -30,7 +29,7 @@ dart_types = {
     'int32': 'int',
     'int53': 'int',
     'int64': 'String',
-    'bytes': 'String', # 'Uint8List',
+    'bytes': 'String',  # 'Uint8List',
     'Bool': 'bool',
     "emojis": 'List<String>',
     'dynamic': 'dynamic',
@@ -39,16 +38,17 @@ dart_types = {
 }
 
 
-
 def CamelCase(x: str):
-    return (x[0].upper()+x[1:]).strip()
+    return (x[0].upper() + x[1:]).strip()
+
 
 def lowerCamelCase(x: str):
-    return (x[0].lower()+x[1:]).strip()
+    return (x[0].lower() + x[1:]).strip()
+
 
 def get_dart_type(type_: str) -> Tuple[str, str, Type]:
-                                #    d     t   enum
-    
+    #    d     t   enum
+
     if type_.startswith('vector'):
         return _vector_to_List(type_)
 
@@ -60,22 +60,23 @@ def get_dart_type(type_: str) -> Tuple[str, str, Type]:
         type_ = CamelCase(type_)
         return type_, type_, Type.TL
 
-def _vector_to_List(vector):
-    type_ = re.search("vector<(\w+)>", vector).group(1)
-    dtype, _, istl = get_dart_type(type_)
 
-    return f"List<{dtype}>", _, Type(istl.value * 2)
+def _vector_to_List(vector):
+    type_ = re.search(r"vector<(\w+)>", vector).group(1)
+    dart_type, _, _enum = get_dart_type(type_)
+    return f"List<{dart_type}>", _, Type(_enum.value * 2)
 
 
 def get_tl_to_dart(tl: str):
-    parameter, type = tl.split(":")
-    type, tl, enum = get_dart_type(type)
+    parameter, _type = tl.split(":")
+    _type, tl, _enum = get_dart_type(_type)
     data = {
-        "type": type,
+        "type": _type,
         "tl": tl,
-        "enum": enum
+        "enum": _enum
     }
     return parameter, data
+
 
 def process_tl_parameter(source: str, lookup_dict: dict):
     parameter, data = get_tl_to_dart(source)
@@ -86,6 +87,7 @@ def process_tl_parameter(source: str, lookup_dict: dict):
     result.update(data)
     return {parameter: result}
 
+
 def need_reload():
     try:
         if not os.path.isdir(BASE_DIR_JSON):
@@ -93,19 +95,21 @@ def need_reload():
         assert os.path.isfile(ABC_CLASS_JSON_FILE)
         assert os.path.isfile(CLASS_JSON_FILE)
         assert os.path.isfile(FUNC_JSON_FILE)
-    except Exception:
+    except AssertionError as _:
         return True
     else:
         return False
+
 
 def read_all_json():
     with open(ABC_CLASS_JSON_FILE) as f:
         abc = json.load(f)
     with open(CLASS_JSON_FILE) as f:
-        clss =json.load(f)
+        clss = json.load(f)
     with open(FUNC_JSON_FILE) as f:
         fns = json.load(f)
     return abc, clss, fns
+
 
 def write(f, string: str, **kwargs):
     if kwargs:
@@ -114,4 +118,3 @@ def write(f, string: str, **kwargs):
     else:
         f.write(string)
         f.write('\n')
-        

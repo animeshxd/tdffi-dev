@@ -8,8 +8,7 @@ BASE_DIR_DART = "./tdffi/lib/src/generated/"
 EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
 EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
 EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"
-EXPORT_MAP_CLASS_STR = BASE_DIR_DART+ "objects.dart"
-
+EXPORT_MAP_CLASS_STR = BASE_DIR_DART + "objects.dart"
 
 TlObject = """
 abstract class TlObject {
