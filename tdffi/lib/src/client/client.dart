@@ -3,9 +3,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
-import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tdffi/src/client/errors.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
 
@@ -32,12 +32,12 @@ class TdlibWrapper {
     var event =
         await __subject.where((event) => event.extra == _requestId).first;
     if (event is api.Error) {
-      throw Exception("Error: [${event.code}] -  ${event.message}");
+      throw TelegramError.fromError(event);
     }
     return event as T;
   }
 
-  ///Sends request to the TDLib client.
+  ///Receives incoming updates and request responses from the TDLib client
   Future<api.TlObject?> _recive() async {
     var result = td.td_json_client_receive(client, 1);
     if (result.address == nullptr.address) return null;
@@ -45,7 +45,7 @@ class TdlibWrapper {
     return object;
   }
 
-  ///Sends request to the TDLib client.
+  ///Receives incoming updates and request responses from the TDLib client
   Stream<api.TlObject> recive() async* {
     while (true) {
       var object = await _recive();
@@ -55,9 +55,9 @@ class TdlibWrapper {
     }
   }
 
-  ///Sends request to the TDLib client.
+  ///Synchronously executes TDLib request
   ///
-  ///Throws [Exception] on [api.Error]
+  ///Throws [TelegramError] on [api.Error]
   Future<T?> execute<T extends api.TlObject>(api.Func func) async {
     var response = td.td_json_client_execute(client, func.toCharPtr());
     var object = getObject(jsonDecode(response.toDartString()));
@@ -67,7 +67,7 @@ class TdlibWrapper {
     }
 
     if (object is api.Error) {
-      throw Exception("Error: [${object.code}] -  ${object.message}");
+      throw TelegramError.fromError(object);
     }
 
     return object as T;
@@ -264,9 +264,9 @@ class Auth extends Base {
 
   @override
   Future<void> destroy() async {
-    await _authSubscription?.cancel();
+    await super.destroy();
     await _connSubscription?.cancel();
-    super.destroy();
+    await _authSubscription?.cancel();
   }
 
   Future<void> logout() async {
