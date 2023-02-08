@@ -5,3 +5,6 @@ classes.dart
 functions.dart
 objects.dart
 extensions.dart
+.vscode
+.idea
+*.iml
