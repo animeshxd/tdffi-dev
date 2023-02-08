@@ -156,34 +156,27 @@ class Auth extends Base {
 
     if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
+    func(api.AuthorizationState state) async =>
+        await _handleAuthState(
+          state,
+          phoneNumber: phoneNumber,
+          botToken: botToken,
+          codeCallback: codeCallback,
+          settings: settings,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+        );
     while (!_isAuthorized) {
       var state =
           await send<api.AuthorizationState>(api.GetAuthorizationState());
-      await _handleAuthState(
-        state,
-        phoneNumber: phoneNumber,
-        botToken: botToken,
-        codeCallback: codeCallback,
-        settings: settings,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      );
+      await func.call(state);
     }
 
     _authSubscription = updates
         .whereType<api.UpdateAuthorizationState>()
         .map((event) => event.authorization_state)
-        .listen((state) async => await _handleAuthState(
-              state,
-              phoneNumber: phoneNumber,
-              botToken: botToken,
-              codeCallback: codeCallback,
-              settings: settings,
-              password: password,
-              firstName: firstName,
-              lastName: lastName,
-            ));
+        .listen((state) async => await func.call(state));
 
     _connSubscription = updates
         .whereType<api.UpdateConnectionState>()
