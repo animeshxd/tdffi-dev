@@ -38,10 +38,15 @@ class TdlibWrapper {
   }
 
   ///Receives incoming updates and request responses from the TDLib client
+  ///
+  ///and [UnknownTelegramResponseError] on unknown response
   Future<api.TlObject?> _receive() async {
     var result = td.td_json_client_receive(client, 1);
     if (result.address == nullptr.address) return null;
     var object = getObject(json.decode(result.toDartString()));
+    if(object == null) {
+      throw UnknownTelegramResponseError(message: result.toDartString());
+    }
     return object;
   }
 
@@ -58,12 +63,13 @@ class TdlibWrapper {
   ///Synchronously executes TDLib request
   ///
   ///Throws [TelegramError] on [api.Error]
-  Future<T?> execute<T extends api.TlObject>(api.Func func) async {
+  ///and [UnknownTelegramResponseError] on unknown response
+  Future<T> execute<T extends api.TlObject>(api.Func func) async {
     var response = td.td_json_client_execute(client, func.toCharPtr());
     var object = getObject(jsonDecode(response.toDartString()));
 
     if (object == null) {
-      return null;
+      throw UnknownTelegramResponseError(message: response.toDartString());
     }
 
     if (object is api.Error) {
@@ -103,7 +109,7 @@ class Base extends TdlibWrapper {
 
 class Auth extends Base {
   ///
-  Auth({this.tdlibParameters, super.dynamicLibrary});
+  Auth({required this.tdlibParameters, super.dynamicLibrary});
 
   bool _isAuthorized = false;
 
@@ -274,4 +280,9 @@ class Auth extends Base {
   Future<void> logout() async {
     await send(api.LogOut());
   }
+}
+
+class TelegramClient extends Auth {
+  TelegramClient(
+      {required super.tdlibParameters, required super.dynamicLibrary});
 }
