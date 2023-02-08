@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:rxdart/rxdart.dart';
 import 'package:tdffi/src/client/client.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:tdffi/tdffi.dart' as api;
@@ -16,7 +17,7 @@ void main() async {
         api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
         api_id: 94575,
         database_directory: '/tmp/tdlib/'),
-    dynamicLibrary: DynamicLibrary.open('../td/build/libtdjson-stripped.so'),
+    dynamicLibrary: DynamicLibrary.open('../td/build/libtdjson.so.1.8.10'),
   );
   await client.execute(api.SetLogVerbosityLevel(new_verbosity_level: 1));
   var user = await client.login(
