@@ -11,15 +11,14 @@ import 'package:logging/logging.dart';
 
 import '../utils.dart';
 
-class TdlibWrapper {
+class TdlibWrapper extends api.td_json_client {
   int _requestId = 0;
-  TdlibWrapper({this.dynamicLibrary});
   DynamicLibrary? dynamicLibrary;
-  late api.td_json_client td =
-      api.td_json_client(dynamicLibrary ?? DynamicLibrary.executable());
-  late var client = td.td_json_client_create();
-
+  late var client = td_json_client_create();
   final __subject = BehaviorSubject<api.TlObject>();
+
+  TdlibWrapper({this.dynamicLibrary})
+      : super(dynamicLibrary ?? DynamicLibrary.executable());
 
   ///Sends request to the TDLib client.
   ///
@@ -27,7 +26,7 @@ class TdlibWrapper {
   Future<T> send<T extends api.TlObject>(api.Func func) async {
     func.extra = ++_requestId;
     var charPtr = func.toCharPtr();
-    td.td_json_client_send(client, charPtr);
+    td_json_client_send(client, charPtr);
     // malloc.free(charPtr);
     var event =
         await __subject.where((event) => event.extra == _requestId).first;
@@ -39,12 +38,12 @@ class TdlibWrapper {
 
   ///Receives incoming updates and request responses from the TDLib client
   ///
-  ///and [UnknownTelegramResponseError] on unknown response
+  ///Throws [UnknownTelegramResponseError] on unknown response
   Future<api.TlObject?> _receive() async {
-    var result = td.td_json_client_receive(client, 1);
+    var result = td_json_client_receive(client, 1);
     if (result.address == nullptr.address) return null;
     var object = getObject(json.decode(result.toDartString()));
-    if(object == null) {
+    if (object == null) {
       throw UnknownTelegramResponseError(message: result.toDartString());
     }
     return object;
@@ -65,7 +64,7 @@ class TdlibWrapper {
   ///Throws [TelegramError] on [api.Error]
   ///and [UnknownTelegramResponseError] on unknown response
   Future<T> execute<T extends api.TlObject>(api.Func func) async {
-    var response = td.td_json_client_execute(client, func.toCharPtr());
+    var response = td_json_client_execute(client, func.toCharPtr());
     var object = getObject(jsonDecode(response.toDartString()));
 
     if (object == null) {
@@ -83,7 +82,7 @@ class TdlibWrapper {
   ///
   ///After this is called the client instance must not be used anymore.
   void destroy() {
-    td.td_json_client_destroy(client);
+    td_json_client_destroy(client);
   }
 }
 
@@ -93,6 +92,7 @@ class Base extends TdlibWrapper {
   late var updates = __subject.whereType<api.Update>();
   Base({super.dynamicLibrary});
 
+  /// start listening for tdlib updates
   Future<void> start() async {
     if (!isRunning) {
       _subscription = receive().listen(__subject.add);
@@ -156,8 +156,7 @@ class Auth extends Base {
 
     if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
-    func(api.AuthorizationState state) async =>
-        await _handleAuthState(
+    func(api.AuthorizationState state) async => await _handleAuthState(
           state,
           phoneNumber: phoneNumber,
           botToken: botToken,
@@ -202,22 +201,22 @@ class Auth extends Base {
     return await send<api.User>(api.GetMe());
   }
 
-  Future<void> _handleAuthState(
-      api.AuthorizationState state,
+  Future<void> _handleAuthState(api.AuthorizationState state,
       {String? botToken,
-        String? phoneNumber,
-        String? password,
-        Future<String> Function()? codeCallback,
-        api.PhoneNumberAuthenticationSettings? settings,
-        String? firstName,
-        String lastName = ''}) async {
+      String? phoneNumber,
+      String? password,
+      Future<String> Function()? codeCallback,
+      api.PhoneNumberAuthenticationSettings? settings,
+      String? firstName,
+      String lastName = ''}) async {
     switch (state.runtimeType) {
       case api.AuthorizationStateWaitTdlibParameters:
         await send(tdlibParameters!);
         break;
       case api.AuthorizationStateWaitPhoneNumber:
         if (phoneNumber != null) {
-          await send(api.SetAuthenticationPhoneNumber(phone_number: phoneNumber, settings: settings));
+          await send(api.SetAuthenticationPhoneNumber(
+              phone_number: phoneNumber, settings: settings));
         } else if (botToken != null) {
           await send(api.CheckAuthenticationBotToken(token: botToken));
         }
@@ -276,6 +275,5 @@ class Auth extends Base {
 }
 
 class TelegramClient extends Auth {
-  TelegramClient(
-      {required super.tdlibParameters, required super.dynamicLibrary});
+  TelegramClient({required super.tdlibParameters, super.dynamicLibrary});
 }
