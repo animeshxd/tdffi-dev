@@ -20,10 +20,11 @@ def generate_abc_dart(abstract_classes: dict):
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f, open(EXPORT_EXTENSION, 'w') as e:
         write(f, preamble)
         write(f, TlObject)
+        write(f, EXTENSION_ON_ABC_BODY)
         write(f, Func)
         # write(f,'abstract class TlObject {}',
-        write(e, "import './classes.dart';")
-        write(e, "import './abc.dart';")
+        write(e, IMPORT_CLASS_PREAMBLE)
+        write(e, IMPORT_ABC_PREAMBLE)
 
         for name, body in abstract_classes.items():
             _ = "".join(f"[{i}], " for i in body['child'])
@@ -148,9 +149,9 @@ def generate_child_dart(classes: dict, abc: dict):
 
     with open(EXPORT_CLASS_FILE, 'w') as f, open(EXPORT_MAP_CLASS_STR, 'w') as f1:
         write(f, preamble)
-        write(f, "import './abc.dart';")
-        write(f1, "import './classes.dart';")
-        write(f1, "import './abc.dart';")
+        write(f, IMPORT_ABC_PREAMBLE)
+        write(f1, IMPORT_CLASS_PREAMBLE)
+        write(f1, IMPORT_ABC_PREAMBLE)
         write(f1, EXPORT_MAP_BODY)
 
         for name, body in classes.items():
@@ -183,8 +184,8 @@ def generate_func_dart(functions: dict, abc: dict):
     """.replace(SPACES, '')
     with open(EXPORT_FUNC_FILE, 'w') as f:
         write(f, preamble)
-        write(f, "import './abc.dart';")
-        write(f, "import './classes.dart';")
+        write(f, IMPORT_ABC_PREAMBLE)
+        write(f, IMPORT_CLASS_PREAMBLE)
         for name, body in functions.items():
             _ = dict(
                 description=body['description'],

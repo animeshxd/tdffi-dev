@@ -14,8 +14,6 @@ EXPORT_EXTENSION = BASE_DIR_DART + 'extensions.dart'
 TlObject = """
 abstract class TlObject {
   Map<String, dynamic> toJson();
-  String toJsonEncoded();
-  Pointer<Utf8> toCharPtr();
   int? extra;
 }
 """.strip()
@@ -33,22 +31,18 @@ import 'dart:convert' show jsonEncode;
 // ignore: unused_shown_name
 import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
 """.strip()
+IMPORT_FROM = './'
+IMPORT_CLASS_PREAMBLE = f"import '{IMPORT_FROM}classes.dart';"
+IMPORT_ABC_PREAMBLE = f"import '{IMPORT_FROM}abc.dart';"
+IMPORT_FUNC_PREAMBLE = f"import '{IMPORT_FROM}func.dart';"
+IMPORT_EXT_PREAMBLE = f"import '{IMPORT_FROM}extensions.dart';"
 
 SPACES = '  '
 METHODS = """
-  @override
-  Pointer<Utf8> toCharPtr() {{
-    return jsonEncode(toJson()).toNativeUtf8();
-  }}
   
   @override
   Map<String, dynamic> toJson() {{
     return {{{json}}};
-  }}
-  
-  @override
-  String toJsonEncoded() {{
-    return jsonEncode(toJson());
   }}
   @override
   String toString(){{
@@ -70,6 +64,20 @@ static {name}? fromMap(Map<String, dynamic>? _map){{
 EXPORT_MAP_BODY = """
 Map<String,TlObject? Function(Map<String, dynamic>)> tlobjects = {
 
+"""
+
+EXTENSION_ON_ABC_BODY = """
+extension TlObjectExt on TlObject {
+  //String toJsonEncoded();
+  //Pointer<Utf8> toCharPtr();
+
+  Pointer<Utf8> toCharPtr() {
+    return toJsonEncoded().toNativeUtf8();
+  }
+  String toJsonEncoded() {
+    return jsonEncode(toJson());
+  }
+}
 """
 
 EXTENSION_BODY = """
