@@ -15,6 +15,7 @@ TlObject = """
 abstract class TlObject {
   Map<String, dynamic> toJson();
   int? extra;
+  int? clientId;
 }
 """.strip()
 
@@ -55,6 +56,7 @@ static {name}? fromMap(Map<String, dynamic>? _map){{
     if (_map == null) return null;
     var _ = _map["@type"];
     var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
     {body}
     return {name}({args});
   }}

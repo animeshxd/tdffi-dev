@@ -11,8 +11,6 @@ ABC = """
 ///
 ///Inherited by {child}
 abstract class {name} extends {parent} {{
-    /// [CONSTRUCTOR] - type
-    String CONSTRUCTOR = '{_id}';
 }}
 """
 
@@ -36,8 +34,6 @@ def generate_abc_dart(abstract_classes: dict):
                 description=body['description'],
                 parent="TlObject",
                 child=_,
-                _id=lowerCamelCase(name)
-
             )
             write(f, ABC, **_)
             body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
@@ -46,13 +42,13 @@ def generate_abc_dart(abstract_classes: dict):
 
 def process_body(_class: str, abc: dict, params: dict) -> str:
     constructor_parameters = []
-    static_parameters = ["extra: extra"]
+    static_parameters = ["extra: extra", "clientId: clientId"]
     _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
     factory_method_body = []
 
     f = io.StringIO()
     if not params:
-        write(f, f'{_class}({{this.extra}});')  # constructor
+        write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
         write(f, STATIC_METHOD, name=_class, body="\n", args=', '.join(static_parameters))
 
@@ -131,7 +127,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
         else:
             factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
 
-    write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra }});")  # constructor
+    write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
     write(f, METHODS, json=','.join(_json))  # toJson method body
     write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=','.join(static_parameters))
     f.seek(0)
@@ -146,8 +142,8 @@ def generate_child_dart(classes: dict, abc: dict):
     class {name} extends {parent} {{
          /// [extra] - Request identifier. Must be non-zero. 
          int? extra;
-         /// [CONSTRUCTOR] - type
-         String CONSTRUCTOR = '{_id}';
+         /// [clientId] - tdlib client id
+         int? clientId;
         {body}
     }}
     """
@@ -171,7 +167,6 @@ def generate_child_dart(classes: dict, abc: dict):
                 name=name,
                 parent=parent,
                 body=process_body(name, abc, body['parameters']),
-                _id=lowerCamelCase(name)
             )
             write(f, CLASS, **_)
             write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
@@ -186,8 +181,8 @@ def generate_func_dart(functions: dict, abc: dict):
     class {name} extends Func {{
          ///[extra] - Request identifier. Must be non-zero. 
          int? extra;
-         /// [CONSTRUCTOR] - type
-         String CONSTRUCTOR = '{_id}';
+        /// [clientId] - tdlib client id
+        int? clientId;
         {body}
     }}
     """.replace(SPACES, '')
