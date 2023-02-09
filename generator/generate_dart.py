@@ -11,7 +11,8 @@ ABC = """
 ///
 ///Inherited by {child}
 abstract class {name} extends {parent} {{
-
+    /// [CONSTRUCTOR] - type
+    String CONSTRUCTOR = '{_id}';
 }}
 """
 
@@ -19,12 +20,13 @@ abstract class {name} extends {parent} {{
 def generate_abc_dart(abstract_classes: dict):
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f, open(EXPORT_EXTENSION, 'w') as e:
         write(f, preamble)
+        write(f, IMPORT_)
         write(f, TlObject)
         write(f, EXTENSION_ON_ABC_BODY)
         write(f, Func)
         # write(f,'abstract class TlObject {}',
-        write(e, IMPORT_CLASS_PREAMBLE)
-        write(e, IMPORT_ABC_PREAMBLE)
+        write(e, IMPORT_CLASS_DART)
+        write(e, IMPORT_ABC_DART)
 
         for name, body in abstract_classes.items():
             _ = "".join(f"[{i}], " for i in body['child'])
@@ -33,7 +35,8 @@ def generate_abc_dart(abstract_classes: dict):
                 name=name,
                 description=body['description'],
                 parent="TlObject",
-                child=_
+                child=_,
+                _id=lowerCamelCase(name)
 
             )
             write(f, ABC, **_)
@@ -143,15 +146,18 @@ def generate_child_dart(classes: dict, abc: dict):
     class {name} extends {parent} {{
          /// [extra] - Request identifier. Must be non-zero. 
          int? extra;
+         /// [CONSTRUCTOR] - type
+         String CONSTRUCTOR = '{_id}';
         {body}
     }}
     """
 
     with open(EXPORT_CLASS_FILE, 'w') as f, open(EXPORT_MAP_CLASS_STR, 'w') as f1:
         write(f, preamble)
-        write(f, IMPORT_ABC_PREAMBLE)
-        write(f1, IMPORT_CLASS_PREAMBLE)
-        write(f1, IMPORT_ABC_PREAMBLE)
+        write(f, IMPORT_ABC_DART)
+
+        write(f1, IMPORT_CLASS_DART)
+        write(f1, IMPORT_ABC_DART)
         write(f1, EXPORT_MAP_BODY)
 
         for name, body in classes.items():
@@ -165,6 +171,7 @@ def generate_child_dart(classes: dict, abc: dict):
                 name=name,
                 parent=parent,
                 body=process_body(name, abc, body['parameters']),
+                _id=lowerCamelCase(name)
             )
             write(f, CLASS, **_)
             write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
@@ -179,19 +186,22 @@ def generate_func_dart(functions: dict, abc: dict):
     class {name} extends Func {{
          ///[extra] - Request identifier. Must be non-zero. 
          int? extra;
+         /// [CONSTRUCTOR] - type
+         String CONSTRUCTOR = '{_id}';
         {body}
     }}
     """.replace(SPACES, '')
     with open(EXPORT_FUNC_FILE, 'w') as f:
         write(f, preamble)
-        write(f, IMPORT_ABC_PREAMBLE)
-        write(f, IMPORT_CLASS_PREAMBLE)
+        write(f, IMPORT_ABC_DART)
+        write(f, IMPORT_CLASS_DART)
         for name, body in functions.items():
             _ = dict(
                 description=body['description'],
                 return_=body['return'],
                 name=name,
                 body=process_body(name, abc, body['parameters']),
+                _id=lowerCamelCase(name)
             )
             write(f, FUNC, **_)
 

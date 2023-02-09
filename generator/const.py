@@ -23,19 +23,18 @@ abstract class Func extends TlObject {
 }
 """.strip()
 
-preamble = """
-// ignore_for_file: overridden_fields, annotate_overrides, camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers
+
+preamble = "// ignore_for_file: overridden_fields, annotate_overrides, camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers"
+IMPORT_ = """
 import 'dart:ffi' show Pointer;
-// ignore: unused_import
-import 'dart:convert' show jsonEncode;
-// ignore: unused_shown_name
 import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
-""".strip()
+import 'dart:convert' show jsonEncode;
+"""
 IMPORT_FROM = './'
-IMPORT_CLASS_PREAMBLE = f"import '{IMPORT_FROM}classes.dart';"
-IMPORT_ABC_PREAMBLE = f"import '{IMPORT_FROM}abc.dart';"
-IMPORT_FUNC_PREAMBLE = f"import '{IMPORT_FROM}func.dart';"
-IMPORT_EXT_PREAMBLE = f"import '{IMPORT_FROM}extensions.dart';"
+IMPORT_CLASS_DART = f"import '{IMPORT_FROM}classes.dart';"
+IMPORT_ABC_DART = f"import '{IMPORT_FROM}abc.dart';"
+IMPORT_FUNC_DART = f"import '{IMPORT_FROM}func.dart';"
+IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 
 SPACES = '  '
 METHODS = """
