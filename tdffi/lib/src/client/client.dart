@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, overridden_fields, annotate_overrides
 
 import 'dart:async';
 import 'dart:convert';
@@ -6,6 +6,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tdffi/src/client/errors.dart';
+import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
 
@@ -121,6 +122,7 @@ class Auth extends Base {
     return _isAuthorized;
   }
 
+  /// [tdlibParameters] - use [DefaultTdlibParameters] for default
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
