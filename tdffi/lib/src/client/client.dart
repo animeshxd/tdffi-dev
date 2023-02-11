@@ -1,47 +1,42 @@
-// ignore_for_file: non_constant_identifier_names, overridden_fields, annotate_overrides
+// ignore_for_file: non_constant_identifier_names, overridden_fields, annotate_overrides, constant_identifier_names
 
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:isolate';
 import 'package:ffi/ffi.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tdffi/src/client/errors.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
+import 'package:tdffi/src/generated/abc.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
 
 import '../utils.dart';
 
-class TdlibWrapper extends api.td_json_client {
-  int _requestId = 0;
-  DynamicLibrary? dynamicLibrary;
-  late var client = td_json_client_create();
-  final __subject = BehaviorSubject<api.TlObject>();
+abstract class LifeCycle {
+  Future<void> init();
+  Future<void> destroy();
+}
 
-  TdlibWrapper({this.dynamicLibrary})
-      : super(dynamicLibrary ?? DynamicLibrary.executable());
+class NativeTdlibWrapper extends api.td_json_client {
+  late int clientId;
+  NativeTdlibWrapper(super.dynamicLibrary, [int? clientId]) {
+    this.clientId = clientId ?? td_create_client_id();
+  }
 
-  ///Sends request to the TDLib client.
-  ///
-  /// Throws [Exception] on [api.Error]
-  Future<T> send<T extends api.TlObject>(api.Func func) async {
-    func.extra = ++_requestId;
-    var charPtr = func.toCharPtr();
-    td_json_client_send(client, charPtr);
-    // malloc.free(charPtr);
-    var event =
-        await __subject.where((event) => event.extra == _requestId).first;
-    if (event is api.Error) {
-      throw TelegramError.fromError(event);
-    }
-    return event as T;
+  ///Asynchronously Sends request to the TDLib client.
+  void sendAsync(api.Func request) async {
+    var charPtr = request.toCharPtr();
+    td_send(clientId, charPtr);
+    malloc.free(charPtr);
   }
 
   ///Receives incoming updates and request responses from the TDLib client
   ///
   ///Throws [UnknownTelegramResponseError] on unknown response
-  Future<api.TlObject?> _receive() async {
-    var result = td_json_client_receive(client, 1);
+  Future<api.TlObject?> receive([double timeout = 1]) async {
+    var result = td_receive(timeout);
     if (result.address == nullptr.address) return null;
     var object = getObject(json.decode(result.toDartString()));
     if (object == null) {
@@ -50,22 +45,12 @@ class TdlibWrapper extends api.td_json_client {
     return object;
   }
 
-  ///Receives incoming updates and request responses from the TDLib client
-  Stream<api.TlObject> receive() async* {
-    while (true) {
-      var object = await _receive();
-      if (object != null) {
-        yield object;
-      }
-    }
-  }
-
   ///Synchronously executes TDLib request
   ///
   ///Throws [TelegramError] on [api.Error]
   ///and [UnknownTelegramResponseError] on unknown response
   Future<T> execute<T extends api.TlObject>(api.Func func) async {
-    var response = td_json_client_execute(client, func.toCharPtr());
+    var response = td_execute(func.toCharPtr());
     var object = getObject(jsonDecode(response.toDartString()));
 
     if (object == null) {
@@ -75,47 +60,106 @@ class TdlibWrapper extends api.td_json_client {
     if (object is api.Error) {
       throw TelegramError.fromError(object);
     }
-
     return object as T;
-  }
-
-  ///Destroys the TDLib client instance.
-  ///
-  ///After this is called the client instance must not be used anymore.
-  void destroy() {
-    td_json_client_destroy(client);
   }
 }
 
-class Base extends TdlibWrapper {
-  bool isRunning = false;
-  StreamSubscription? _subscription;
-  late var updates = __subject.whereType<api.Update>();
-  Base({super.dynamicLibrary});
-
-  /// start listening for tdlib updates
-  Future<void> start() async {
-    if (!isRunning) {
-      _subscription = receive().listen(__subject.add);
+void receiveInIsolate(Map<String, dynamic> args) async {
+  // print(args);
+  SendPort sendPort = args['port'];
+  String path = args['path'];
+  int clientId = args['clientId'];
+  var client = TdlibEventController(dynamicLibPath: path, clientId: clientId);
+  // client.sendAsync(api.TestNetwork());
+  while (true) {
+    var object = await client.receive();
+    if (object != null) {
+      // print(object);
+      sendPort.send(object);
     }
-    isRunning = true;
+  }
+}
+
+class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
+  static const String TAG = "TdlibEventController";
+  bool isRunning = false;
+  bool _initialized = false;
+  String dynamicLibPath;
+  final _subject = BehaviorSubject<api.TlObject>();
+
+  var log = Logger(TAG);
+
+  TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
+      : super(DynamicLibrary.open(dynamicLibPath), clientId);
+
+  ReceivePort receivePort = ReceivePort("Tdlib");
+  StreamSubscription? _subscription;
+  Isolate? isolate;
+
+  Future<void> init() async {
+    if (!_initialized) {
+      isolate = await Isolate.spawn(
+        receiveInIsolate,
+        {
+          'port': receivePort.sendPort,
+          'path': dynamicLibPath,
+          'clientId': clientId
+        },
+        paused: true,
+      );
+      _initialized = true;
+      _subscription = receivePort.listen((message) => _subject.add(message));
+    }
+  }
+
+  Future<void> start() async {
+    await init();
+    if (!isRunning) {
+      isolate!.resume(isolate!.pauseCapability!);
+      isRunning = true;
+    }
   }
 
   @override
   Future<void> destroy() async {
     await _subscription?.cancel();
-    super.destroy();
+    isolate?.kill(priority: Isolate.immediate);
+    await _subject.close();
   }
 }
 
-class Auth extends Base {
+class _TdlibWrapper extends TdlibEventController {
+  int _requestId = 0;
+
+  _TdlibWrapper({super.dynamicLibPath, super.clientId});
+
+  ///Sends request to the TDLib client.
   ///
-  Auth({required this.tdlibParameters, super.dynamicLibrary});
+  /// Throws [Exception] on [api.Error]
+  Future<T> send<T extends api.TlObject>(api.Func request) async {
+    if (!isRunning) await super.start();
+    request.extra = ++_requestId;
+    sendAsync(request);
+    var event =
+        await _subject.where((event) => event.extra == _requestId).first;
+
+    if (event is api.Error) {
+      throw TelegramError.fromError(event);
+    }
+    return event as T;
+  }
+}
+
+class Auth extends _TdlibWrapper {
+  static const String TAG = "Auth";
+
+  ///
+  Auth({this.tdlibParameters, super.dynamicLibPath, super.clientId});
 
   bool _isAuthorized = false;
 
   Future<bool> get isAuthorized async {
-    if (!isRunning) return isRunning;
+    if (!isRunning) return false;
     var result =
         await send<api.AuthorizationState>(api.GetAuthorizationState());
     _isAuthorized = result is api.AuthorizationStateReady;
@@ -126,23 +170,9 @@ class Auth extends Base {
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
-  var log = Logger('Auth');
+  var log = Logger(TAG);
 
   /// login to Telegram Account
-  ///
-  /// [botToken] The bot token,
-  ///
-  /// [phoneNumber] The phone number of the user, in international format \,
-  ///
-  /// [password] The 2-step verification password to check,
-  ///
-  /// [codeCallback] A callable that will be used to retrieve the authorization code.
-  ///
-  /// [settings] The settings for phone number authentication
-  ///
-  /// [firstName] First Name for new telegram Account, 1 to 64 character
-  ///
-  /// [lastName] Last Name for new telegram Account, 0 - 64 character
   ///
   /// Returns current [api.User]
   Future<api.User> login(
@@ -154,11 +184,11 @@ class Auth extends Base {
       String? firstName,
       String lastName = ''}) async {
     // start the tdlib client if not running
-    await start();
+    await super.start();
 
     if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
-    func(api.AuthorizationState state) async => await _handleAuthState(
+    func(api.AuthorizationState state) async => await _authStateHandler(
           state,
           phoneNumber: phoneNumber,
           botToken: botToken,
@@ -174,36 +204,38 @@ class Auth extends Base {
       await func.call(state);
     }
 
-    _authSubscription = updates
+    _authSubscription = _subject
         .whereType<api.UpdateAuthorizationState>()
         .map((event) => event.authorization_state)
         .listen((state) async => await func.call(state));
 
-    _connSubscription = updates
+    _connSubscription = _subject
         .whereType<api.UpdateConnectionState>()
-        .map((event) => event.state.runtimeType)
-        .listen((event) {
-      switch (event) {
-        case api.ConnectionStateConnecting:
-          log.info('establishing a connection to the Telegram servers');
-          break;
-        case api.ConnectionStateReady:
-          log.info('Connected to Telegram servers');
-          break;
-        case api.ConnectionStateUpdating:
-          log.info(
-              'Downloading data received while the application was offline');
-          break;
-        case api.ConnectionStateWaitingForNetwork:
-          log.info('waiting for the network to become available.');
-          break;
-        default:
-      }
-    });
+        .map((event) => event.state)
+        .listen(_connectionHandler);
+
     return await send<api.User>(api.GetMe());
   }
 
-  Future<void> _handleAuthState(api.AuthorizationState state,
+  void _connectionHandler(api.ConnectionState state) {
+    switch (state.runtimeType) {
+      case api.ConnectionStateConnecting:
+        log.info('establishing a connection to the Telegram servers');
+        break;
+      case api.ConnectionStateReady:
+        log.info('Connected to Telegram servers');
+        break;
+      case api.ConnectionStateUpdating:
+        log.info('Downloading data received while the application was offline');
+        break;
+      case api.ConnectionStateWaitingForNetwork:
+        log.info('waiting for the network to become available.');
+        break;
+      default:
+    }
+  }
+
+  Future<void> _authStateHandler(api.AuthorizationState state,
       {String? botToken,
       String? phoneNumber,
       String? password,
@@ -272,10 +304,10 @@ class Auth extends Base {
   }
 
   Future<void> logout() async {
-    await send(api.LogOut());
+    sendAsync(api.LogOut());
   }
 }
 
 class TelegramClient extends Auth {
-  TelegramClient({required super.tdlibParameters, super.dynamicLibrary});
+  TelegramClient({super.tdlibParameters, super.dynamicLibPath, super.clientId});
 }
