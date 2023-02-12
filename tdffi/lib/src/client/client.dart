@@ -8,7 +8,6 @@ import 'package:ffi/ffi.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tdffi/src/client/errors.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
-import 'package:tdffi/src/generated/abc.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
 
@@ -81,13 +80,11 @@ void receiveInIsolate(Map<String, dynamic> args) async {
 }
 
 class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
-  static const String TAG = "TdlibEventController";
   bool isRunning = false;
   bool _initialized = false;
   String dynamicLibPath;
   final _subject = BehaviorSubject<api.TlObject>();
-
-  var log = Logger(TAG);
+  late var updates =  _subject.whereType<api.Update>();
 
   TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
       : super(DynamicLibrary.open(dynamicLibPath), clientId);
@@ -95,6 +92,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   ReceivePort receivePort = ReceivePort("Tdlib");
   StreamSubscription? _subscription;
   Isolate? isolate;
+  // Map<String, api.UpdateOption> updateOptions = {};
 
   Future<void> init() async {
     if (!_initialized) {
@@ -170,7 +168,7 @@ class Auth extends _TdlibWrapper {
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
-  var log = Logger(TAG);
+  final log = Logger(TAG);
 
   /// login to Telegram Account
   ///
@@ -243,6 +241,7 @@ class Auth extends _TdlibWrapper {
       api.PhoneNumberAuthenticationSettings? settings,
       String? firstName,
       String lastName = ''}) async {
+    // log.fine("[_authStateHandler] ${state.CONSTRUCTOR}");
     switch (state.runtimeType) {
       case api.AuthorizationStateWaitTdlibParameters:
         await send(tdlibParameters!);
@@ -292,7 +291,7 @@ class Auth extends _TdlibWrapper {
         await destroy();
         break;
       default:
-        log.info(state);
+        log.warning(state);
     }
   }
 

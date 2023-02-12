@@ -22,5 +22,10 @@ void main() async {
     botToken: '',
   );
   print(user.first_name);
-  await client.logout();
+  // await Future.delayed(Duration(seconds: 10));
+  // client.updateOptions.forEach((key, value) {
+  //   print("$key : ${(value.value as dynamic).value}");
+  // });
+  // print(client.updateOptions.length);
+  await client.destroy();
 }
