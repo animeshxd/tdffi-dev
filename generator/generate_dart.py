@@ -11,6 +11,8 @@ ABC = """
 ///
 ///Inherited by {child}
 abstract class {name} extends {parent} {{
+    /// [CONSTRUCTOR] - type
+    String CONSTRUCTOR = "{ID}";
 }}
 """
 
@@ -34,6 +36,7 @@ def generate_abc_dart(abstract_classes: dict):
                 description=body['description'],
                 parent="TlObject",
                 child=_,
+                ID=lowerCamelCase(name)
             )
             write(f, ABC, **_)
             body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
@@ -142,6 +145,8 @@ def generate_child_dart(classes: dict, abc: dict):
     class {name} extends {parent} {{
          /// [extra] - Request identifier. Must be non-zero. 
          int? extra;
+         /// [CONSTRUCTOR] - type
+         String CONSTRUCTOR = "{ID}";
          /// [clientId] - tdlib client id
          int? clientId;
         {body}
@@ -167,6 +172,7 @@ def generate_child_dart(classes: dict, abc: dict):
                 name=name,
                 parent=parent,
                 body=process_body(name, abc, body['parameters']),
+                ID=lowerCamelCase(name)
             )
             write(f, CLASS, **_)
             write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
@@ -183,6 +189,8 @@ def generate_func_dart(functions: dict, abc: dict):
          int? extra;
         /// [clientId] - tdlib client id
         int? clientId;
+        /// [CONSTRUCTOR] - type
+        String CONSTRUCTOR = "{ID}";
         {body}
     }}
     """.replace(SPACES, '')
@@ -196,7 +204,7 @@ def generate_func_dart(functions: dict, abc: dict):
                 return_=body['return'],
                 name=name,
                 body=process_body(name, abc, body['parameters']),
-                _id=lowerCamelCase(name)
+                ID=lowerCamelCase(name)
             )
             write(f, FUNC, **_)
 

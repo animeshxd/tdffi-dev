@@ -16,6 +16,7 @@ abstract class TlObject {
   Map<String, dynamic> toJson();
   int? extra;
   int? clientId;
+  String CONSTRUCTOR = "{ID}";
 }
 """.strip()
 
