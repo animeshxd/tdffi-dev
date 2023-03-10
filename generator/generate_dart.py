@@ -48,93 +48,92 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
     static_parameters = ["extra: extra", "clientId: clientId"]
     _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
     factory_method_body = []
+    with io.StringIO() as f:
+        if not params:
+            write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
+            write(f, METHODS, json=','.join(_json))  # toJson method body
+            write(f, STATIC_METHOD, name=_class, body="\n", args=', '.join(static_parameters))
 
-    f = io.StringIO()
-    if not params:
-        write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
+            f.seek(0)
+            return f.read()
+
+        for name, info in params.items():
+            description = info['description']
+            nullable = info['nullable']
+            _type = info['type']
+            tl = info['tl']
+            enum = Type(info['enum'])
+            name_ = name + '_' if name == _type else name
+            _json.append(f"'{name}': {name_}")
+
+            type_ = _type + '?' if nullable else _type
+            late = '' if nullable else 'late '
+            strict = '' if nullable else '!'
+
+            _ = "required" if not nullable else ''
+            constructor_parameters.append(f"{_} this.{name_}")
+            static_parameters.append(f"{name_}: {name_}")
+
+            write(f, f"/// [{name_}] {description}")  # parameter comment
+            write(f, f"{late}{type_} {name_};")  # parameter field
+
+            if enum == Type.TL:
+                abstract = abc.get(_type, None)
+                if abstract:
+
+                    temp = [
+                        f"{late} {type_} {name_};",
+                        f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"
+                    ]
+
+                    for a in abstract['child']:
+                        temp.append(f"""
+                        case '{lowerCamelCase(a)}':
+                            {name_} = {a}.fromMap(_map["{name}"]){strict};
+                            break;
+                        """)
+
+                    temp.append(f"""\
+                        case null:
+                        default:
+                            {f"{name_} = null;" if nullable else ''}
+                            break;
+                    }}
+                    """)
+                    factory_method_body.append('\n'.join(temp))
+                else:
+                    factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
+
+            elif enum == Type.VECTOR_TL:
+                _ = CamelCase(tl)
+                abstract = abc.get(_, None)
+                if abstract:
+
+                    temp = [
+                        f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
+                        f"switch (e['@type']) {{"
+                    ]
+                    for a in abstract['child']:
+                        temp.append(f"""\
+                        case '{lowerCamelCase(a)}':
+                            return {a}.fromMap(e);
+                        """
+                                    )
+                    temp.append('}}).toList();')
+                    factory_method_body.append('\n'.join(temp))
+                else:
+                    factory_method_body.append(
+                        f'var {name_} = {_type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
+            elif enum == Type.VECTOR_DART:
+                factory_method_body.append(f'var {name_} = {_type}.from((_map["{name}"] ?? []));')
+            else:
+                factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
+
+        write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
-        write(f, STATIC_METHOD, name=_class, body="\n", args=', '.join(static_parameters))
-
+        write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=','.join(static_parameters))
         f.seek(0)
         return f.read()
-
-    for name, info in params.items():
-        description = info['description']
-        nullable = info['nullable']
-        _type = info['type']
-        tl = info['tl']
-        enum = Type(info['enum'])
-        name_ = name + '_' if name == _type else name
-        _json.append(f"'{name}': {name_}")
-
-        type_ = _type + '?' if nullable else _type
-        late = '' if nullable else 'late '
-        strict = '' if nullable else '!'
-
-        _ = "required" if not nullable else ''
-        constructor_parameters.append(f"{_} this.{name_}")
-        static_parameters.append(f"{name_}: {name_}")
-
-        write(f, f"/// [{name_}] {description}")  # parameter comment
-        write(f, f"{late}{type_} {name_};")  # parameter field
-
-        if enum == Type.TL:
-            abstract = abc.get(_type, None)
-            if abstract:
-
-                temp = [
-                    f"{late} {type_} {name_};",
-                    f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"
-                ]
-
-                for a in abstract['child']:
-                    temp.append(f"""
-                    case '{lowerCamelCase(a)}':
-                        {name_} = {a}.fromMap(_map["{name}"]){strict};
-                        break;
-                    """)
-
-                temp.append(f"""\
-                    case null:
-                    default:
-                        {f"{name_} = null;" if nullable else ''}
-                        break;
-                }}
-                """)
-                factory_method_body.append('\n'.join(temp))
-            else:
-                factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
-
-        elif enum == Type.VECTOR_TL:
-            _ = CamelCase(tl)
-            abstract = abc.get(_, None)
-            if abstract:
-
-                temp = [
-                    f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
-                    f"switch (e['@type']) {{"
-                ]
-                for a in abstract['child']:
-                    temp.append(f"""\
-                    case '{lowerCamelCase(a)}':
-                        return {a}.fromMap(e);
-                    """
-                                )
-                temp.append('}}).toList();')
-                factory_method_body.append('\n'.join(temp))
-            else:
-                factory_method_body.append(
-                    f'var {name_} = {_type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
-        elif enum == Type.VECTOR_DART:
-            factory_method_body.append(f'var {name_} = {_type}.from((_map["{name}"] ?? []));')
-        else:
-            factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
-
-    write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
-    write(f, METHODS, json=','.join(_json))  # toJson method body
-    write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=','.join(static_parameters))
-    f.seek(0)
-    return f.read()
 
 
 def generate_child_dart(classes: dict, abc: dict):
