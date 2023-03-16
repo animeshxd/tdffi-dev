@@ -9,3 +9,4 @@ cd tdffi
 dart pub get
 dart run ffigen --config ../ffigen.yaml 
 ```
+output location: `tdffi/lib/src/generated/`
