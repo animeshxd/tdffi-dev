@@ -1,3 +1,4 @@
+build tdlib https://github.com/tdlib/td#building
 ```bash
 mkdir -p headers/td/telegram/
 cp td/build/td/telegram/tdjson_export.h headers/td/telegram/tdjson_export.h
