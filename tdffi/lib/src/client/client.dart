@@ -5,13 +5,13 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:isolate';
 import 'package:ffi/ffi.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:tdffi/src/client/errors.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
 
 import '../utils.dart';
+import './extension.dart';
 
 abstract class LifeCycle {
   Future<void> init();
@@ -83,8 +83,9 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   bool isRunning = false;
   bool _initialized = false;
   String dynamicLibPath;
-  final _subject = BehaviorSubject<api.TlObject>();
-  late var updates =  _subject.whereType<api.Update>();
+  final _subject = StreamController<api.TlObject>.broadcast();
+  late var _event = _subject.stream;
+  late var updates = _subject.stream.whereType<api.Update>();
 
   TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
       : super(DynamicLibrary.open(dynamicLibPath), clientId);
@@ -106,7 +107,8 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
         paused: true,
       );
       _initialized = true;
-      _subscription = receivePort.listen((message) => _subject.add(message));
+      _subscription =
+          receivePort.listen((message) => _subject.sink.add(message));
     }
   }
 
@@ -138,8 +140,9 @@ class _TdlibWrapper extends TdlibEventController {
     if (!isRunning) await super.start();
     request.extra = ++_requestId;
     sendAsync(request);
-    var event =
-        await _subject.where((event) => event.extra == _requestId).first;
+    var event = await _event
+        .where((event) => event.extra == request.extra)
+        .first;
 
     if (event is api.Error) {
       throw TelegramError.fromError(event);
@@ -196,21 +199,22 @@ class Auth extends _TdlibWrapper {
           firstName: firstName,
           lastName: lastName,
         );
+
+    _connSubscription = _event
+        .whereType<api.UpdateConnectionState>()
+        .map((event) => event.state)
+        .listen(_connectionHandler);
+
     while (!_isAuthorized) {
       var state =
           await send<api.AuthorizationState>(api.GetAuthorizationState());
       await func.call(state);
     }
 
-    _authSubscription = _subject
+    _authSubscription = _event
         .whereType<api.UpdateAuthorizationState>()
         .map((event) => event.authorization_state)
         .listen((state) async => await func.call(state));
-
-    _connSubscription = _subject
-        .whereType<api.UpdateConnectionState>()
-        .map((event) => event.state)
-        .listen(_connectionHandler);
 
     return await send<api.User>(api.GetMe());
   }
