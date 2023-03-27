@@ -14,7 +14,9 @@ import '../utils.dart';
 import './extension.dart';
 
 abstract class LifeCycle {
+  /// Initilize resources
   Future<void> init();
+  /// Destroy and clean allocated resourses
   Future<void> destroy();
 }
 
@@ -84,7 +86,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   bool _initialized = false;
   String dynamicLibPath;
   final _subject = StreamController<api.TlObject>.broadcast();
-  late var _event = _subject.stream;
+  late final _event = _subject.stream;
   late var updates = _subject.stream.whereType<api.Update>();
 
   TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
@@ -112,6 +114,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
     }
   }
 
+  /// Start tdlib event stream
   Future<void> start() async {
     await init();
     if (!isRunning) {
@@ -159,6 +162,7 @@ class Auth extends _TdlibWrapper {
 
   bool _isAuthorized = false;
 
+  ///check if The user has been successfully authorized.
   Future<bool> get isAuthorized async {
     if (!isRunning) return false;
     var result =
@@ -219,6 +223,7 @@ class Auth extends _TdlibWrapper {
     return await send<api.User>(api.GetMe());
   }
 
+  /// Handle ConnectionState
   void _connectionHandler(api.ConnectionState state) {
     switch (state.runtimeType) {
       case api.ConnectionStateConnecting:
@@ -237,6 +242,7 @@ class Auth extends _TdlibWrapper {
     }
   }
 
+  /// Handle AuthorizationState
   Future<void> _authStateHandler(api.AuthorizationState state,
       {String? botToken,
       String? phoneNumber,
@@ -306,6 +312,9 @@ class Auth extends _TdlibWrapper {
     await _authSubscription?.cancel();
   }
 
+  /// Closes the TDLib instance after a proper logout. 
+  /// Requires an available network connection. 
+  /// All local data will be destroyed.
   Future<void> logout() async {
     sendAsync(api.LogOut());
   }
