@@ -6,44 +6,8 @@ from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, w
 
 from const import *
 
-ABC = """
-///{description}
-///
-///Inherited by {child}
-abstract class {name} extends {parent} {{
-    /// [CONSTRUCTOR] - type
-    String CONSTRUCTOR = "{ID}";
-}}
-"""
-
-
-def generate_abc_dart(abstract_classes: dict):
-    with open(EXPORT_ABC_CLASS_FILE, 'w') as f, open(EXPORT_EXTENSION, 'w') as e:
-        write(f, preamble)
-        write(f, IMPORT_)
-        write(f, TlObject)
-        write(f, EXTENSION_ON_ABC_BODY)
-        write(f, Func)
-        # write(f,'abstract class TlObject {}',
-        write(e, IMPORT_CLASS_DART)
-        write(e, IMPORT_ABC_DART)
-
-        for name, body in abstract_classes.items():
-            _ = "".join(f"[{i}], " for i in body['child'])
-            # w)
-            _ = dict(
-                name=name,
-                description=body['description'],
-                parent="TlObject",
-                child=_,
-                ID=lowerCamelCase(name)
-            )
-            write(f, ABC, **_)
-            body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
-            write(e, EXTENSION_BODY, name=name, body="\n".join(body))
-
-
 def process_body(_class: str, abc: dict, params: dict) -> str:
+    """construct body"""
     constructor_parameters = []
     static_parameters = ["extra: extra", "clientId: clientId"]
     _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
@@ -136,7 +100,38 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
         return f.read()
 
 
+def generate_abc_dart(abstract_classes: dict):
+    """ Generate abstract classes"""
+    ABC = """
+///{description}
+///
+///Inherited by {child}
+abstract class {name} extends {parent} {{
+    /// [CONSTRUCTOR] - type
+    String CONSTRUCTOR = "{ID}";
+}}
+"""
+    with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
+        write(f, preamble)
+        write(f, IMPORT_)
+        write(f, TlObject)
+        write(f, EXTENSION_ON_ABC_BODY)
+        write(f, Func)
+        # write(f,'abstract class TlObject {}',
+
+        for name, body in abstract_classes.items():
+            _ = "".join(f"[{i}], " for i in body['child'])
+            _ = dict(
+                name=name,
+                description=body['description'],
+                parent="TlObject",
+                child=_,
+                ID=lowerCamelCase(name)
+            )
+            write(f, ABC, **_)
+
 def generate_child_dart(classes: dict, abc: dict):
+    """generate type class"""
     CLASS = """\
     ///{description}
     ///
@@ -177,7 +172,6 @@ def generate_child_dart(classes: dict, abc: dict):
             write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
         write(f1, "};")
 
-
 def generate_func_dart(functions: dict, abc: dict):
     FUNC = """
     ///{description}
@@ -207,6 +201,27 @@ def generate_func_dart(functions: dict, abc: dict):
             )
             write(f, FUNC, **_)
 
+def generate_extension_dart(abstract_classes: dict):
+    """ generate extension for abstract type"""
+    with open(EXPORT_EXTENSION, 'w') as e:
+        write(e, IMPORT_CLASS_DART)
+        write(e, IMPORT_ABC_DART)
+        for name, body in abstract_classes.items():
+            body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
+            write(e, EXTENSION_BODY, name=name, body="\n".join(body))
+
+def generate_map_to_class_dart(classes: dict):
+    "construct a map to class"
+    with open(EXPORT_MAP_CLASS_STR, 'w') as f1:
+
+        write(f1, IMPORT_CLASS_DART)
+        write(f1, IMPORT_ABC_DART)
+
+        write(f1, EXPORT_MAP_BODY)
+        for name in classes.keys():
+            write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
+        write(f1, "};")
+
 
 def generate():
     st = time.time()
@@ -222,11 +237,21 @@ def generate():
     generate_abc_dart(abstract_classes)
     generate_child_dart(classes, abstract_classes)
     generate_func_dart(functions, abstract_classes)
+    generate_extension_dart(abstract_classes)
+    generate_map_to_class_dart(classes)
+
+
     print("Generated 5 files in {} seconds.".format(round(time.time() - st), 2))
 
 
 if __name__ == '__main__':
     generate()
-    _ = os.popen(
-        f"dart format {EXPORT_ABC_CLASS_FILE} {EXPORT_CLASS_FILE} {EXPORT_FUNC_FILE} {EXPORT_MAP_CLASS_STR} {EXPORT_EXTENSION}").read()
+    exports = [
+        EXPORT_ABC_CLASS_FILE,
+        EXPORT_CLASS_FILE,
+        EXPORT_FUNC_FILE,
+        EXPORT_MAP_CLASS_STR,
+        EXPORT_EXTENSION
+    ]
+    _ = os.popen(f"dart format {' '.join(exports)}").read()
     print(_)
