@@ -14,7 +14,7 @@ EXPORT_EXTENSION = BASE_DIR_DART + 'extensions.dart'
 TlObject = """
 abstract class TlObject {
   /// Object to Map serializer
-  Map<String, dynamic> toMap();
+  Map<String, dynamic> toJson();
   /// [extra] - Request identifier. Must be non-zero. 
   int? extra;
   /// TDLib client instance identifier, for which the response was received. 
@@ -45,7 +45,7 @@ SPACES = '  '
 METHODS = """
   
   @override
-  Map<String, dynamic> toMap() {{
+  Map<String, dynamic> toJson() {{
     return {{{json}}};
   }}
   @override
@@ -75,10 +75,10 @@ EXPORT_MAP_BODY_END = "};"
 EXTENSION_ON_ABC_BODY = """
 extension TlObjectExt on TlObject {
   Pointer<Utf8> toCharPtr() {
-    return toJson().toNativeUtf8();
+    return toJsonEncoded().toNativeUtf8();
   }
-  String toJson() {
-    return jsonEncode(toMap());
+  String toJsonEncoded() {
+    return jsonEncode(toJson());
   }
 }
 """
