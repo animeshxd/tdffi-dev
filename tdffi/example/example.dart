@@ -1,6 +1,8 @@
 import 'package:tdffi/src/client/client.dart';
+import 'package:tdffi/src/client/extension.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:logging/logging.dart';
+import 'package:tdffi/src/generated/classes.dart';
 import 'package:tdffi/src/generated/functions.dart';
 
 void main() async {
@@ -22,10 +24,14 @@ void main() async {
     botToken: '',
   );
   print(user.first_name);
-  // await Future.delayed(Duration(seconds: 10));
-  // client.updateOptions.forEach((key, value) {
-  //   print("$key : ${(value.value as dynamic).value}");
-  // });
-  // print(client.updateOptions.length);
-  await client.destroy();
+  var newMessage = client.updates
+      .whereType<UpdateNewMessage>()
+      .where((event) => event.message.is_outgoing == false);
+  // newMessage.listen((event) => print(event.message.content));
+  
+  newMessage
+      .where((event) => event.message.content is MessageText)
+      .listen(print);
+
+  // await client.destroy();
 }
