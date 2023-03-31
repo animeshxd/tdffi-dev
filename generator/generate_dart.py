@@ -197,7 +197,7 @@ def generate_func_dart(functions: dict, abc: dict):
 
 def generate_extension_dart(abstract_classes: dict):
     """ generate extension for abstract type"""
-    with open(EXPORT_EXTENSION, 'w') as e:
+    with open(EXPORT_EXTENSION_FILE, 'w') as e:
         write(e, IMPORT_CLASS_DART)
         write(e, IMPORT_ABC_DART)
         for name, body in abstract_classes.items():
@@ -206,10 +206,11 @@ def generate_extension_dart(abstract_classes: dict):
 
 def generate_map_to_class_dart(classes: dict):
     "construct a map to class"
-    with open(EXPORT_MAP_CLASS_STR, 'w') as f1:
+    with open(EXPORT_MAP_CLASS_STR_FILE, 'w') as f1:
 
         write(f1, IMPORT_CLASS_DART)
         write(f1, IMPORT_ABC_DART)
+        write(f1, EXPORT_getObject)
 
         write(f1, EXPORT_MAP_BODY_START)
         for name in classes.keys():
@@ -234,6 +235,8 @@ def generate():
     generate_extension_dart(abstract_classes)
     generate_map_to_class_dart(classes)
 
+    with open(BASE_EXPORT_DIR, 'w') as f:
+        f.write(EXPORT_GENERATED_LIB_PATHS)
 
     print("Generated 5 files in {} seconds.".format(round(time.time() - st), 2))
 
@@ -244,8 +247,8 @@ if __name__ == '__main__':
         EXPORT_ABC_CLASS_FILE,
         EXPORT_CLASS_FILE,
         EXPORT_FUNC_FILE,
-        EXPORT_MAP_CLASS_STR,
-        EXPORT_EXTENSION
+        EXPORT_MAP_CLASS_STR_FILE,
+        EXPORT_EXTENSION_FILE
     ]
     _ = os.popen(f"dart format {' '.join(exports)}").read()
     print(_)

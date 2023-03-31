@@ -8,8 +8,8 @@ BASE_DIR_DART = "./tdffi/lib/src/generated/"
 EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
 EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
 EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"
-EXPORT_MAP_CLASS_STR = BASE_DIR_DART + "objects.dart"
-EXPORT_EXTENSION = BASE_DIR_DART + 'extensions.dart'
+EXPORT_MAP_CLASS_STR_FILE = BASE_DIR_DART + "objects.dart"
+EXPORT_EXTENSION_FILE = BASE_DIR_DART + 'extensions.dart'
 
 TlObject = """
 abstract class TlObject {
@@ -41,7 +41,6 @@ IMPORT_ABC_DART = f"import '{IMPORT_FROM}abc.dart';"
 IMPORT_FUNC_DART = f"import '{IMPORT_FROM}func.dart';"
 IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 
-SPACES = '  '
 METHODS = """
   
   @override
@@ -72,6 +71,15 @@ Map<String,TlObject? Function(Map<String, dynamic>)> tlobjects = {
 """
 EXPORT_MAP_BODY_END = "};"
 
+EXPORT_getObject = """
+TlObject? getObject(Map<String, dynamic> map) {{
+  var type = map['@type'];
+  if (type == null) return null;
+
+  return tlobjects[type]!.call(map);
+}}
+"""
+
 EXTENSION_ON_ABC_BODY = """
 extension TlObjectExt on TlObject {
   Pointer<Utf8> toCharPtr() {
@@ -97,3 +105,17 @@ EXTENSION_METHOD_BODY = """
   return null;
 }}
 """
+
+EXPORT_GENERATED_LIB_PATHS = '\n'.join(
+  f"export 'src/generated/{i.replace(BASE_DIR_DART, '')}';" for i in [
+    EXPORT_FUNC_FILE,
+    EXPORT_CLASS_FILE,
+    EXPORT_ABC_CLASS_FILE,
+    EXPORT_EXTENSION_FILE,
+    EXPORT_MAP_CLASS_STR_FILE,
+    "ffi/td_json_client.dart"
+  ]
+)
+
+BASE_EXPORT_DIR = './tdffi/lib/tdffi.dart'
+

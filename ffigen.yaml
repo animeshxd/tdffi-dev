@@ -1,6 +1,6 @@
 name: td_json_client
 description: td_json_client.h File Reference.
-output: 'tdffi/lib/src/ffi/td_json_client.dart'
+output: 'tdffi/lib/src/generated/ffi/td_json_client.dart'
 headers:
   entry-points:
     - headers/td_json_client.h

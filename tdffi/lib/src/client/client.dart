@@ -9,8 +9,8 @@ import 'package:tdffi/src/client/errors.dart';
 import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
+import 'package:tdffi/tdffi.dart';
 
-import '../utils.dart';
 import './extension.dart';
 
 abstract class LifeCycle {
