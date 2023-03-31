@@ -175,7 +175,7 @@ class Auth extends _TdlibWrapper {
   }
 
   /// Required parameters for TDLib initialization
-  /// 
+  ///
   /// [tdlibParameters] - use [DefaultTdlibParameters] for default
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
@@ -185,6 +185,26 @@ class Auth extends _TdlibWrapper {
 
   /// login to Telegram Account
   ///
+  /// [botToken] the authentication token of a bot; to log in as a bot.
+  ///
+  /// [phoneNumber] the phone number of the user and sends an authentication code to the user,
+  /// use [codeCallback] to set the received authentication code.
+  ///
+  /// [settings] Contains settings for the authentication of the user's phone number.
+  ///
+  /// [password] the 2-step verification password, 
+  /// throws [Exception] if user has 2FA enabled and [password] is `null`.
+  ///
+  /// [firstName] and [lastName] will be used for creating new account.
+  ///
+  /// use [onAuthorizationStateUpdate] for manually handling [api.AuthorizationState],
+  /// it will use provided [tdlibParameters] for handling [api.AuthorizationStateWaitTdlibParameters].
+  ///
+  /// [api.AuthorizationStateWaitEmailAddress],
+  /// [api.AuthorizationStateWaitEmailCode],
+  /// [api.AuthorizationStateWaitOtherDeviceConfirmation] are not supported,
+  /// use [onAuthorizationStateUpdate] to handle all available [api.AuthorizationState].
+  ///
   /// Returns current [api.User]
   Future<api.User> login(
       {String? botToken,
@@ -193,9 +213,44 @@ class Auth extends _TdlibWrapper {
       Future<String> Function()? codeCallback,
       api.PhoneNumberAuthenticationSettings? settings,
       String? firstName,
-      String lastName = ''}) async {
+      String lastName = '',
+      Future<void> Function(api.AuthorizationState state)?
+          onAuthorizationStateUpdate}) async {
+    assert(onAuthorizationStateUpdate != null || botToken != null || phoneNumber != null && codeCallback != null);
+
     // start the tdlib client if not running
     await super.start();
+
+    _connSubscription = _event
+        .whereType<api.UpdateConnectionState>()
+        .map((event) => event.state)
+        .listen(_connectionHandler);
+
+    if (onAuthorizationStateUpdate != null) {
+      while (!_isAuthorized) {
+        var state =
+            await send<api.AuthorizationState>(api.GetAuthorizationState());
+        _isAuthorized = state is api.AuthorizationStateReady;
+        if (state is! api.AuthorizationStateWaitTdlibParameters) {
+          await onAuthorizationStateUpdate(state);
+          continue;
+        }
+        if (tdlibParameters == null) throw Exception("set TdlibParameters");
+        await send(tdlibParameters!);
+      }
+      _authSubscription = _event
+          .whereType<api.UpdateAuthorizationState>()
+          .map((event) => event.authorization_state)
+          .listen((state) async {
+        if (state is! api.AuthorizationStateWaitTdlibParameters) {
+          await onAuthorizationStateUpdate(state);
+          return;
+        }
+        if (tdlibParameters == null) throw Exception("set TdlibParameters");
+        await send(tdlibParameters!);
+      });
+      return await send<api.User>(api.GetMe());
+    }
 
     if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
@@ -209,11 +264,6 @@ class Auth extends _TdlibWrapper {
           firstName: firstName,
           lastName: lastName,
         );
-
-    _connSubscription = _event
-        .whereType<api.UpdateConnectionState>()
-        .map((event) => event.state)
-        .listen(_connectionHandler);
 
     while (!_isAuthorized) {
       var state =
@@ -279,9 +329,11 @@ class Auth extends _TdlibWrapper {
         break;
 
       case api.AuthorizationStateWaitPassword:
-        if (password != null) {
-          await send(api.CheckAuthenticationPassword(password: password));
+        if (password == null) {
+          throw Exception(
+              "the 2-step verification password is required, use [password] to set");
         }
+        await send(api.CheckAuthenticationPassword(password: password));
         break;
 
       case api.AuthorizationStateWaitRegistration:
