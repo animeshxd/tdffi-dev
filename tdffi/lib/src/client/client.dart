@@ -5,13 +5,11 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:isolate';
 import 'package:ffi/ffi.dart';
-import 'package:tdffi/src/client/errors.dart';
-import 'package:tdffi/src/defaults/defaults.dart';
 import 'package:tdffi/tdffi.dart' as api;
 import 'package:logging/logging.dart';
-import 'package:tdffi/tdffi.dart';
 
 import './extension.dart';
+import 'errors.dart';
 
 abstract class LifeCycle {
   /// Initilize resources
@@ -41,7 +39,7 @@ class NativeTdlibWrapper extends api.td_json_client {
   Future<api.TlObject?> receive([double timeout = 1]) async {
     var result = td_receive(timeout);
     if (result.address == nullptr.address) return null;
-    var object = getObject(json.decode(result.toDartString()));
+    var object = api.getObject(json.decode(result.toDartString()));
     if (object == null) {
       throw UnknownTelegramResponseError(message: result.toDartString());
     }
@@ -56,7 +54,7 @@ class NativeTdlibWrapper extends api.td_json_client {
     var req = request.toCharPtr();
     var response = td_execute(req);
     malloc.free(req);
-    var object = getObject(jsonDecode(response.toDartString()));
+    var object = api.getObject(jsonDecode(response.toDartString()));
 
     if (object == null) {
       throw UnknownTelegramResponseError(message: response.toDartString());
