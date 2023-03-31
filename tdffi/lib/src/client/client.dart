@@ -144,7 +144,7 @@ class _TdlibWrapper extends TdlibEventController {
 
   ///Sends request to the TDLib client.
   ///
-  /// Throws [Exception] on [api.Error]
+  /// Throws [TelegramError] on [api.Error]
   Future<T> send<T extends api.TlObject>(api.Func request) async {
     if (!isRunning) await super.start();
     request.extra = ++_requestId;
@@ -174,6 +174,8 @@ class Auth extends _TdlibWrapper {
     return _isAuthorized;
   }
 
+  /// Required parameters for TDLib initialization
+  /// 
   /// [tdlibParameters] - use [DefaultTdlibParameters] for default
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
