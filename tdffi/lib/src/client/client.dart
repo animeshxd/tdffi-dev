@@ -52,8 +52,10 @@ class NativeTdlibWrapper extends api.td_json_client {
   ///
   ///Throws [TelegramError] on [api.Error]
   ///and [UnknownTelegramResponseError] on unknown response
-  Future<T> execute<T extends api.TlObject>(api.Func func) async {
-    var response = td_execute(func.toCharPtr());
+  Future<T> execute<T extends api.TlObject>(api.Func request) async {
+    var req = request.toCharPtr();
+    var response = td_execute(req);
+    malloc.free(req);
     var object = getObject(jsonDecode(response.toDartString()));
 
     if (object == null) {
