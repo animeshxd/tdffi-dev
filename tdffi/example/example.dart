@@ -1,9 +1,6 @@
-import 'package:tdffi/src/client/client.dart';
-import 'package:tdffi/src/client/extension.dart';
-import 'package:tdffi/src/defaults/defaults.dart';
+import 'package:tdffi/client.dart';
 import 'package:logging/logging.dart';
-import 'package:tdffi/src/generated/classes.dart';
-import 'package:tdffi/src/generated/functions.dart';
+import 'package:tdffi/tdffi.dart';
 
 void main() async {
   Logger.root.level = Level.ALL; // defaults to Level.INFO
