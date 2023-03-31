@@ -16,11 +16,13 @@ import './extension.dart';
 abstract class LifeCycle {
   /// Initilize resources
   Future<void> init();
+
   /// Destroy and clean allocated resourses
   Future<void> destroy();
 }
 
 class NativeTdlibWrapper extends api.td_json_client {
+  /// An opaque identifier of a new TDLib instance.
   late int clientId;
   NativeTdlibWrapper(super.dynamicLibrary, [int? clientId]) {
     this.clientId = clientId ?? td_create_client_id();
@@ -65,7 +67,7 @@ class NativeTdlibWrapper extends api.td_json_client {
   }
 }
 
-void receiveInIsolate(Map<String, dynamic> args) async {
+void eventEmmiter(Map<String, dynamic> args) async {
   // print(args);
   SendPort sendPort = args['port'];
   String path = args['path'];
@@ -87,22 +89,24 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   String dynamicLibPath;
   final _subject = StreamController<api.TlObject>.broadcast();
   late final _event = _subject.stream;
+
+  /// Contains notifications about data changes
   late var updates = _subject.stream.whereType<api.Update>();
 
   TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
       : super(DynamicLibrary.open(dynamicLibPath), clientId);
 
-  ReceivePort receivePort = ReceivePort("Tdlib");
+  final ReceivePort _receivePort = ReceivePort("Tdlib");
   StreamSubscription? _subscription;
-  Isolate? isolate;
+  Isolate? _isolate;
   // Map<String, api.UpdateOption> updateOptions = {};
 
   Future<void> init() async {
     if (!_initialized) {
-      isolate = await Isolate.spawn(
-        receiveInIsolate,
+      _isolate = await Isolate.spawn(
+        eventEmmiter,
         {
-          'port': receivePort.sendPort,
+          'port': _receivePort.sendPort,
           'path': dynamicLibPath,
           'clientId': clientId
         },
@@ -110,7 +114,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
       );
       _initialized = true;
       _subscription =
-          receivePort.listen((message) => _subject.sink.add(message));
+          _receivePort.listen((message) => _subject.sink.add(message));
     }
   }
 
@@ -118,7 +122,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   Future<void> start() async {
     await init();
     if (!isRunning) {
-      isolate!.resume(isolate!.pauseCapability!);
+      _isolate!.resume(_isolate!.pauseCapability!);
       isRunning = true;
     }
   }
@@ -126,8 +130,10 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   @override
   Future<void> destroy() async {
     await _subscription?.cancel();
-    isolate?.kill(priority: Isolate.immediate);
+    _isolate?.kill(priority: Isolate.immediate);
     await _subject.close();
+    isRunning = false;
+    _initialized = false;
   }
 }
 
@@ -143,9 +149,8 @@ class _TdlibWrapper extends TdlibEventController {
     if (!isRunning) await super.start();
     request.extra = ++_requestId;
     sendAsync(request);
-    var event = await _event
-        .where((event) => event.extra == request.extra)
-        .first;
+    var event =
+        await _event.where((event) => event.extra == request.extra).first;
 
     if (event is api.Error) {
       throw TelegramError.fromError(event);
@@ -155,8 +160,6 @@ class _TdlibWrapper extends TdlibEventController {
 }
 
 class Auth extends _TdlibWrapper {
-  static const String TAG = "Auth";
-
   ///
   Auth({this.tdlibParameters, super.dynamicLibPath, super.clientId});
 
@@ -175,7 +178,8 @@ class Auth extends _TdlibWrapper {
   api.SetTdlibParameters? tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
-  final log = Logger(TAG);
+
+  final _log = Logger("Auth");
 
   /// login to Telegram Account
   ///
@@ -227,16 +231,17 @@ class Auth extends _TdlibWrapper {
   void _connectionHandler(api.ConnectionState state) {
     switch (state.runtimeType) {
       case api.ConnectionStateConnecting:
-        log.info('establishing a connection to the Telegram servers');
+        _log.info('establishing a connection to the Telegram servers');
         break;
       case api.ConnectionStateReady:
-        log.info('Connected to Telegram servers');
+        _log.info('Connected to Telegram servers');
         break;
       case api.ConnectionStateUpdating:
-        log.info('Downloading data received while the application was offline');
+        _log.info(
+            'Downloading data received while the application was offline');
         break;
       case api.ConnectionStateWaitingForNetwork:
-        log.info('waiting for the network to become available.');
+        _log.info('waiting for the network to become available.');
         break;
       default:
     }
@@ -292,16 +297,16 @@ class Auth extends _TdlibWrapper {
 
       case api.AuthorizationStateReady:
         _isAuthorized = true;
-        log.info('The user has been successfully authorized.');
+        _log.info('The user has been successfully authorized.');
         break;
 
       case api.AuthorizationStateClosed:
       case api.AuthorizationStateLoggingOut:
-        log.info('logged out successfully');
+        _log.info('logged out successfully');
         await destroy();
         break;
       default:
-        log.warning(state);
+        _log.warning(state);
     }
   }
 
@@ -310,10 +315,11 @@ class Auth extends _TdlibWrapper {
     await super.destroy();
     await _connSubscription?.cancel();
     await _authSubscription?.cancel();
+    _isAuthorized = false;
   }
 
-  /// Closes the TDLib instance after a proper logout. 
-  /// Requires an available network connection. 
+  /// Closes the TDLib instance after a proper logout.
+  /// Requires an available network connection.
   /// All local data will be destroyed.
   Future<void> logout() async {
     sendAsync(api.LogOut());

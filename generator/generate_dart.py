@@ -147,13 +147,9 @@ def generate_child_dart(classes: dict, abc: dict):
     }}
     """
 
-    with open(EXPORT_CLASS_FILE, 'w') as f, open(EXPORT_MAP_CLASS_STR, 'w') as f1:
+    with open(EXPORT_CLASS_FILE, 'w') as f:
         write(f, preamble)
         write(f, IMPORT_ABC_DART)
-
-        write(f1, IMPORT_CLASS_DART)
-        write(f1, IMPORT_ABC_DART)
-        write(f1, EXPORT_MAP_BODY)
 
         for name, body in classes.items():
             description = body['description']
@@ -169,8 +165,6 @@ def generate_child_dart(classes: dict, abc: dict):
                 ID=lowerCamelCase(name)
             )
             write(f, CLASS, **_)
-            write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
-        write(f1, "};")
 
 def generate_func_dart(functions: dict, abc: dict):
     FUNC = """
@@ -186,7 +180,7 @@ def generate_func_dart(functions: dict, abc: dict):
         String CONSTRUCTOR = "{ID}";
         {body}
     }}
-    """.replace(SPACES, '')
+    """
     with open(EXPORT_FUNC_FILE, 'w') as f:
         write(f, preamble)
         write(f, IMPORT_ABC_DART)
@@ -217,10 +211,10 @@ def generate_map_to_class_dart(classes: dict):
         write(f1, IMPORT_CLASS_DART)
         write(f1, IMPORT_ABC_DART)
 
-        write(f1, EXPORT_MAP_BODY)
+        write(f1, EXPORT_MAP_BODY_START)
         for name in classes.keys():
             write(f1, f"'{lowerCamelCase(name)}': {name}.fromMap,")
-        write(f1, "};")
+        write(f1, EXPORT_MAP_BODY_END)
 
 
 def generate():
