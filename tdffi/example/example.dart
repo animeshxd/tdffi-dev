@@ -23,12 +23,34 @@ void main() async {
   print(user.first_name);
   var newMessage = client.updates
       .whereType<UpdateNewMessage>()
-      .where((event) => event.message.is_outgoing == false);
+      .where((event) => event.message.is_outgoing == false)
+      .map((event) => event.message);
   // newMessage.listen((event) => print(event.message.content));
-  
-  newMessage
-      .where((event) => event.message.content is MessageText)
-      .listen(print);
+
+  newMessage.where((message) => message.content is MessageText)
+  .where((event) => event.content.messageText!.text.text.startsWith("/start"))
+  .listen(
+    (message) async {
+      var text = await client.execute<FormattedText>(
+        ParseTextEntities(
+          text: "*Hello World*",
+          parse_mode: TextParseModeMarkdown(version: 2),
+        ),
+      );
+      await client.send(
+        SendMessage(
+          chat_id: message.chat_id,
+          message_thread_id: 0,
+          reply_to_message_id: 0,
+          input_message_content: InputMessageText(
+            text: text,
+            disable_web_page_preview: true,
+            clear_draft: true,
+          ),
+        ),
+      );
+    },
+  );
 
   // await client.destroy();
 }
