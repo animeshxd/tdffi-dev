@@ -1,5 +1,6 @@
 import json
 import re
+import os
 
 from const import TL_API_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE, CLASS_JSON_FILE
 from utils import CamelCase, Serializer, process_tl_parameter
@@ -107,6 +108,7 @@ def generate_json():
                 # print(class_name, class_body, sep=" : ")
                 # print()
                 reset()
+    os.makedirs('./json/')
     for name, data in zip(
             (CLASS_JSON_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE),
             (classes, abc_classes, functions)
