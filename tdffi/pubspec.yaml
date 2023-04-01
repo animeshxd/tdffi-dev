@@ -10,9 +10,10 @@ environment:
 #   path: ^1.8.0
 
 dev_dependencies:
+  ffigen:
+    git: https://github.com/animeshxd/ffigen
   lints: ^2.0.0
   test: ^1.16.0
 dependencies:
   ffi: ^2.0.1
-  ffigen: ^7.2.4
   logging: ^1.1.1
