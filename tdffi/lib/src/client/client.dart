@@ -20,6 +20,8 @@ abstract class LifeCycle {
 }
 
 class NativeTdlibWrapper extends api.td_json_client {
+  final _log = Logger("NativeTdlibWrapper");
+
   /// An opaque identifier of a new TDLib instance.
   late int clientId;
   NativeTdlibWrapper(super.dynamicLibrary, [int? clientId]) {
@@ -39,7 +41,13 @@ class NativeTdlibWrapper extends api.td_json_client {
   Future<api.TlObject?> receive([double timeout = 1]) async {
     var result = td_receive(timeout);
     if (result.address == nullptr.address) return null;
-    var object = api.getObject(json.decode(result.toDartString()));
+    api.TlObject? object;
+    try {
+      object = api.getObject(json.decode(result.toDartString()));
+    } on TypeError catch (e) {
+      _log.shout(result.toDartString(), e);
+      rethrow;
+    }
     if (object == null) {
       throw UnknownTelegramResponseError(message: result.toDartString());
     }
@@ -192,7 +200,7 @@ class Auth extends _TdlibWrapper {
   ///
   /// [settings] Contains settings for the authentication of the user's phone number.
   ///
-  /// [password] the 2-step verification password, 
+  /// [password] the 2-step verification password,
   /// throws [Exception] if user has 2FA enabled and [password] is `null`.
   ///
   /// [firstName] and [lastName] will be used for creating new account.
@@ -216,7 +224,9 @@ class Auth extends _TdlibWrapper {
       String lastName = '',
       Future<void> Function(api.AuthorizationState state)?
           onAuthorizationStateUpdate}) async {
-    assert(onAuthorizationStateUpdate != null || botToken != null || phoneNumber != null && codeCallback != null);
+    assert(onAuthorizationStateUpdate != null ||
+        botToken != null ||
+        phoneNumber != null && codeCallback != null);
 
     // start the tdlib client if not running
     await super.start();

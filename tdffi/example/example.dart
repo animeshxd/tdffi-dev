@@ -13,7 +13,7 @@ void main() async {
         api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
         api_id: 94575,
         database_directory: '/tmp/tdlib/'),
-    dynamicLibPath: '../td/build/libtdjson.so.1.8.10',
+    dynamicLibPath: '../td/build/libtdjson.so.1.8.13',
   );
   await client.start();
   await client.execute(SetLogVerbosityLevel(new_verbosity_level: 0));
