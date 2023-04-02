@@ -108,7 +108,8 @@ def generate_json():
                 # print(class_name, class_body, sep=" : ")
                 # print()
                 reset()
-    os.makedirs('./json/')
+    os.makedirs('./json/', exist_ok=True)
+
     for name, data in zip(
             (CLASS_JSON_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE),
             (classes, abc_classes, functions)
