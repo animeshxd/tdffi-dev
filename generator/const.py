@@ -117,5 +117,5 @@ EXPORT_GENERATED_LIB_PATHS = '\n'.join(
   ]
 )
 
-BASE_EXPORT_DIR = './tdffi/lib/tdffi.dart'
+BASE_EXPORT_DIR = './tdffi/lib/td.dart'
 

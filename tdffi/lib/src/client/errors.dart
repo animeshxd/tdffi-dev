@@ -1,4 +1,4 @@
-import 'package:tdffi/tdffi.dart' show Error;
+import 'package:tdffi/td.dart' show Error;
 
 class TelegramError extends Error implements Exception {
   TelegramError({

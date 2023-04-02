@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:tdffi/tdffi.dart';
+import 'package:tdffi/td.dart';
 
 class DefaultTdlibParameters extends SetTdlibParameters {
   DefaultTdlibParameters({

@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:isolate';
 import 'package:ffi/ffi.dart';
-import 'package:tdffi/tdffi.dart' as api;
+import 'package:tdffi/td.dart' as api;
 import 'package:logging/logging.dart';
 
 import './extension.dart';
