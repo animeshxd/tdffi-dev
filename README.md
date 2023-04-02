@@ -19,3 +19,6 @@ dart pub get
 dart run ffigen --config ../ffigen.yaml 
 ```
 output location: `tdffi/lib/src/generated/`
+
+example: [/tdffi/example/example.dart](https://github.com/animeshxd/tdffi-dev/blob/master/tdffi/example/example.dart)
+
