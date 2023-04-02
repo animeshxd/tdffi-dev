@@ -12,6 +12,9 @@ cp td/td/telegram/td_json_client.h headers/td_json_client.h
 python generator/generate_dart.py
 
 cd tdffi
+dart pub add --dev ffigen
+# for termux: dart pub add -d ffigen --git-url https://github.com/animeshxd/ffigen
+
 dart pub get
 dart run ffigen --config ../ffigen.yaml 
 ```
