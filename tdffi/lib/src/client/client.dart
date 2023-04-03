@@ -38,6 +38,8 @@ class NativeTdlibWrapper extends api.td_json_client {
   ///Receives incoming updates and request responses from the TDLib client
   ///
   ///Throws [UnknownTelegramResponseError] on unknown response
+  ///
+  ///Throws [TypeError] if it fails to deserialize response
   Future<api.TlObject?> receive([double timeout = 1]) async {
     var result = td_receive(timeout);
     if (result.address == nullptr.address) return null;
@@ -80,7 +82,7 @@ void eventEmmiter(Map<String, dynamic> args) async {
   SendPort sendPort = args['port'];
   String path = args['path'];
   int clientId = args['clientId'];
-  var client = TdlibEventController(dynamicLibPath: path, clientId: clientId);
+  var client = NativeTdlibWrapper(DynamicLibrary.open(path), clientId);
   // client.sendAsync(api.TestNetwork());
   while (true) {
     var object = await client.receive();
