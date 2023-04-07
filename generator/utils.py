@@ -90,12 +90,10 @@ def process_tl_parameter(source: str, lookup_dict: dict):
 
 def need_reload():
     try:
-        if not os.path.isdir(BASE_DIR_JSON):
-            os.mkdir(BASE_DIR_JSON)
-        assert os.path.isfile(ABC_CLASS_JSON_FILE)
-        assert os.path.isfile(CLASS_JSON_FILE)
-        assert os.path.isfile(FUNC_JSON_FILE)
-    except AssertionError as _:
+        for i in [ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE]:
+            with open(i) as f:
+                assert json.load(f)
+    except (AssertionError, OSError) as _:
         return True
     else:
         return False

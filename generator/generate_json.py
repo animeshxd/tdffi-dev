@@ -2,7 +2,7 @@ import json
 import re
 import os
 
-from const import TL_API_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE, CLASS_JSON_FILE
+from const import *
 from utils import CamelCase, Serializer, process_tl_parameter
 
 parameter_descriptions = {}
@@ -34,8 +34,8 @@ def process_comment(raw_comment: str):
     return _comment.strip()
 
 
-def process_body(raw_body: str):
-    class_body, parent = raw_body.strip()[:-1].split("=")  # ignore ';' and split
+def process_schema(schema: str):
+    class_body, parent = schema.strip()[:-1].split("=")  # ignore ';' and split
     class_body = class_body.split()
     # print(class_body)
 
@@ -68,8 +68,8 @@ def generate_json():
         _class_or_func = classes
         for i in iterable:
             # assert len(i.groups()) == 3, (i.groups(), len(i.groups()))
-            _, abc, abc_desc, raw_comment, _, raw_body = i.groups()
-            #   1, 2,      3,     4,     5,    6, 7
+            _, abc, abc_desc, raw_comment, _, schema = i.groups()
+        #   1,   2,     3,          4,     5,    6, 
 
             # assert not abc and not abc_desc
             if abc and abc_desc:  # abstract class
@@ -78,11 +78,11 @@ def generate_json():
                 # continue
             else:
 
-                if raw_body == "\ngetAuthorizationState = AuthorizationState;":  # now function starts
+                if schema == "\ngetAuthorizationState = AuthorizationState;":  # now function starts
                     is_function = True
                     _class_or_func = functions
                 description = process_comment(raw_comment)
-                class_name, class_body, parent = process_body(raw_body)
+                class_name, class_body, parent = process_schema(schema)
 
                 _data = {
                     "description": description,
@@ -108,7 +108,7 @@ def generate_json():
                 # print(class_name, class_body, sep=" : ")
                 # print()
                 reset()
-    os.makedirs('./json/', exist_ok=True)
+    os.makedirs(BASE_DIR_JSON, exist_ok=True)
 
     for name, data in zip(
             (CLASS_JSON_FILE, ABC_CLASS_JSON_FILE, FUNC_JSON_FILE),
