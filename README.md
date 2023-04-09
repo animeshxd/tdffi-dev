@@ -18,7 +18,8 @@ dart pub add --dev ffigen
 dart pub get
 dart run ffigen --config ../ffigen.yaml 
 ```
-output location: `tdffi/lib/src/generated/`
+output locations:  
+   - `tdffi/lib/src/generated/` 
+   - `json/` 
 
 example: [/tdffi/example/example.dart](https://github.com/animeshxd/tdffi-dev/blob/master/tdffi/example/example.dart)
-
