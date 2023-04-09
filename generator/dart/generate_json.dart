@@ -109,10 +109,12 @@ void generate_json() {
       if (isFunction) {
         _data["return"] = parent;
       }
-      if (parent.toLowerCase() != class_name.toLowerCase())
-        _data['parent'] = parent;
-      else
-        _data['parent'] = 'TlObject';
+      else {
+        if (parent.toLowerCase() != class_name.toLowerCase())
+          _data['parent'] = parent;
+        else
+          _data['parent'] = 'TlObject';
+      }
 
       _class_or_func[class_name] = _data; //add class or function to dictionary
       if (!isFunction && parent.toLowerCase() != class_name.toLowerCase())
@@ -156,13 +158,15 @@ void main() {
     test[key]!;
     assert((test[key]['parameters'] as Map).length == (value['parameters'] as Map).length);
   });
-  print(json.encode(
-    functions,
-    toEncodable: (object) {
-      if (object is Set) {
-        return object.toList();
-      }
-    },
-  ));
+  // print(json.encode(
+  //   functions,
+  //   toEncodable: (object) {
+  //     if (object is Set) {
+  //       return object.toList();
+  //     }
+  //   },
+  // ));
+
+
   
 }

@@ -92,10 +92,11 @@ def generate_json():
                 }
                 if is_function:
                     _data["return"] = parent
-                if parent.lower() != class_name.lower():
-                    _data['parent'] = parent
                 else:
-                    _data['parent'] = 'TlObject'
+                    if parent.lower() != class_name.lower():
+                        _data['parent'] = parent
+                    else:
+                        _data['parent'] = 'TlObject'
 
                 # print(_data)
                 _class_or_func[class_name] = _data  # add class or function to dictionary
