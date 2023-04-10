@@ -123,7 +123,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
         paused: true,
       );
       _initialized = true;
-      _subscription =
+      _subscription ??=
           _receivePort.listen((message) => _subject.sink.add(message));
     }
   }
@@ -134,6 +134,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
     if (!isRunning) {
       _isolate!.resume(_isolate!.pauseCapability!);
       isRunning = true;
+      _subscription = null;
     }
   }
 
@@ -233,7 +234,7 @@ class Auth extends _TdlibWrapper {
     // start the tdlib client if not running
     await super.start();
 
-    _connSubscription = _event
+    _connSubscription ??= _event
         .whereType<api.UpdateConnectionState>()
         .map((event) => event.state)
         .listen(_connectionHandler);
@@ -250,7 +251,7 @@ class Auth extends _TdlibWrapper {
         if (tdlibParameters == null) throw Exception("set TdlibParameters");
         await send(tdlibParameters!);
       }
-      _authSubscription = _event
+      _authSubscription ??= _event
           .whereType<api.UpdateAuthorizationState>()
           .map((event) => event.authorization_state)
           .listen((state) async {
@@ -283,7 +284,7 @@ class Auth extends _TdlibWrapper {
       await func.call(state);
     }
 
-    _authSubscription = _event
+    _authSubscription ??= _event
         .whereType<api.UpdateAuthorizationState>()
         .map((event) => event.authorization_state)
         .listen((state) async => await func.call(state));
@@ -381,6 +382,8 @@ class Auth extends _TdlibWrapper {
     await super.destroy();
     await _connSubscription?.cancel();
     await _authSubscription?.cancel();
+    _connSubscription = null;
+    _authSubscription = null;
     _isAuthorized = false;
   }
 
