@@ -12,7 +12,7 @@ void main() async {
         use_test_dc: false,
         api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
         api_id: 94575,
-        database_directory: '/tmp/tdlib/'),
+        database_directory: '../../../../tmp'),
     dynamicLibPath: '../td/build/libtdjson.so.1.8.13',
   );
   await client.start();

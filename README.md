@@ -19,6 +19,7 @@ dart pub get
 dart run ffigen --config ../ffigen.yaml 
 ```
 output locations:  
+   - `tdffi/lib/td.dart`
    - `tdffi/lib/src/generated/` 
    - `json/` 
 
