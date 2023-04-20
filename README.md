@@ -4,7 +4,7 @@ cd tdffi-dev/td
 ```
 build tdlib https://github.com/tdlib/td#building
 ```bash
-cd ..
+cd .. # tdffi-dev/
 mkdir -p headers/td/telegram/
 cp td/build/td/telegram/tdjson_export.h headers/td/telegram/tdjson_export.h
 cp td/td/telegram/td_json_client.h headers/td_json_client.h
