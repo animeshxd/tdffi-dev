@@ -13,7 +13,7 @@ void main() async {
         api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
         api_id: 94575,
         database_directory: '../../../../tmp'),
-    dynamicLibPath: '../td/build/libtdjson.so.1.8.13',
+    dynamicLibPath: '../td/build/$defaultDynamicLibFile',
   );
   await client.start();
   await client.execute(SetLogVerbosityLevel(new_verbosity_level: 0));
@@ -29,7 +29,7 @@ void main() async {
 
   newMessage.where((message) => message.content is MessageText)
   .where((event) => event.content.messageText!.text.text.startsWith("/start"))
-  .listen(
+      .listen(
     (message) async {
       var text = await client.execute<FormattedText>(
         ParseTextEntities(

@@ -172,7 +172,7 @@ class _TdlibWrapper extends TdlibEventController {
 
 class Auth extends _TdlibWrapper {
   ///
-  Auth({this.tdlibParameters, super.dynamicLibPath, super.clientId});
+  Auth({required this.tdlibParameters, super.dynamicLibPath, super.clientId});
 
   bool _isAuthorized = false;
 
@@ -188,7 +188,7 @@ class Auth extends _TdlibWrapper {
   /// Required parameters for TDLib initialization
   ///
   /// [tdlibParameters] - use [DefaultTdlibParameters] for default
-  api.SetTdlibParameters? tdlibParameters;
+  api.SetTdlibParameters tdlibParameters;
   StreamSubscription? _authSubscription;
   StreamSubscription? _connSubscription;
 
@@ -248,8 +248,7 @@ class Auth extends _TdlibWrapper {
           await onAuthorizationStateUpdate(state);
           continue;
         }
-        if (tdlibParameters == null) throw Exception("set TdlibParameters");
-        await send(tdlibParameters!);
+        await send(tdlibParameters);
       }
       _authSubscription ??= _event
           .whereType<api.UpdateAuthorizationState>()
@@ -259,13 +258,10 @@ class Auth extends _TdlibWrapper {
           await onAuthorizationStateUpdate(state);
           return;
         }
-        if (tdlibParameters == null) throw Exception("set TdlibParameters");
-        await send(tdlibParameters!);
+        await send(tdlibParameters);
       });
       return await send<api.User>(api.GetMe());
     }
-
-    if (tdlibParameters == null) throw Exception("set TdlibParameters");
 
     func(api.AuthorizationState state) async => await _authStateHandler(
           state,
@@ -324,7 +320,7 @@ class Auth extends _TdlibWrapper {
     // log.fine("[_authStateHandler] ${state.CONSTRUCTOR}");
     switch (state.runtimeType) {
       case api.AuthorizationStateWaitTdlibParameters:
-        await send(tdlibParameters!);
+        await send(tdlibParameters);
         break;
       case api.AuthorizationStateWaitPhoneNumber:
         if (phoneNumber != null) {
@@ -396,5 +392,15 @@ class Auth extends _TdlibWrapper {
 }
 
 class TelegramClient extends Auth {
-  TelegramClient({super.tdlibParameters, super.dynamicLibPath, super.clientId});
+  /// TelegramClient based on Tdlib
+  ///
+  /// [tdlibParameters] - Required parameters for TDLib initialization,
+  /// use [DefaultTdlibParameters] for default
+  ///
+  /// [dynamicLibPath] - Dynamic Library Path,
+  /// use [defaultDynamicLibFile] to get dynamic library filename
+  ///
+  /// [clientId] - An opaque identifier of a new TDLib instance.
+  TelegramClient(
+      {required super.tdlibParameters, super.dynamicLibPath, super.clientId});
 }

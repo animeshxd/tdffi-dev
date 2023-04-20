@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:io';
 import 'package:tdffi/td.dart';
 
 class DefaultTdlibParameters extends SetTdlibParameters {
@@ -38,3 +39,9 @@ class DefaultTdlibParameters extends SetTdlibParameters {
             enable_storage_optimizer: enable_storage_optimizer,
             ignore_file_names: ignore_file_names);
 }
+
+String get defaultDynamicLibFile => Platform.isWindows
+    ? 'tdjson.dll'
+    : Platform.isMacOS || Platform.isIOS
+        ? 'libtdjson.dylib'
+        : 'libtdjson.so';
