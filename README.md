@@ -23,4 +23,6 @@ output locations:
    - `tdffi/lib/src/generated/` 
    - `json/` 
 
-example: [/tdffi/example/example.dart](https://github.com/animeshxd/tdffi-dev/blob/master/tdffi/example/example.dart)
+example:
+ - [/tdffi/example/example.dart](https://github.com/animeshxd/tdffi-dev/blob/master/tdffi/example/example.dart)
+ - [/tdffi/lib/src/client/client.dart](https://github.com/animeshxd/tdffi-dev/blob/master/tdffi/lib/src/client/client.dart)
