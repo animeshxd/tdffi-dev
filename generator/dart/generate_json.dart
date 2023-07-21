@@ -13,15 +13,8 @@ void reset() {
   parameter_descriptions.clear();
 }
 
-class _Tuple3<A, B, C> {
-  final A first;
-  final B second;
-  final C third;
 
-  _Tuple3(this.first, this.second, this.third);
-}
-
-_Tuple3<String, Map<String, Object?>, String> process_schema(String raw_body) {
+(String, Map<String, Object?>, String) process_schema(String raw_body) {
   raw_body = raw_body.replaceAll(';', '').trim();
   var data = raw_body.split("=");
   var class_body = data[0].trim().split(' ');
@@ -32,7 +25,7 @@ _Tuple3<String, Map<String, Object?>, String> process_schema(String raw_body) {
   class_body.sublist(1).map((e) {
     processTlParameters(e, parameter_descriptions);
   }).toList();
-  return _Tuple3(class_name.trim(), parameter_descriptions, parent.trim());
+  return (class_name.trim(), parameter_descriptions, parent.trim());
 }
 
 String? process_docs(String raw_comment) {
@@ -97,15 +90,14 @@ void generate_json() {
         _class_or_func = functions;
       }
       var description = process_docs(docs!);
-      var body = process_schema(schema!);
+      var (class_name, parameter_descriptions, parent) = process_schema(schema!);
       var _data = {
         "description": description,
-        "parameters": json.decode(json.encode(body.second)),
+        "parameters": json.decode(json.encode(parameter_descriptions)),
         "return": null,
         "parent": null
       };
-      var parent = body.third;
-      var class_name = body.first;
+
       if (isFunction) {
         _data["return"] = parent;
       }
