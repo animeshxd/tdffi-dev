@@ -4,13 +4,13 @@ import 'dart:io';
 import 'const.dart';
 import 'utils.dart';
 
-Map<String, Map<String, Object?>> parameter_descriptions = {};
+Map<String, Map<String, Object?>> parameter_infos = {};
 Map<String, Map<String, Object?>> abc_classes = {};
 Map<String, Map<String, Object?>> classes = {};
 Map<String, Map<String, Object?>> functions = {};
 
 void reset() {
-  parameter_descriptions.clear();
+  parameter_infos.clear();
 }
 
 
@@ -23,9 +23,9 @@ void reset() {
   var class_name = class_body[0].toCamelCase;
 
   class_body.sublist(1).map((e) {
-    processTlParameters(e, parameter_descriptions);
+    processTlParameters(e, parameter_infos);
   }).toList();
-  return (class_name.trim(), parameter_descriptions, parent.trim());
+  return (class_name.trim(), parameter_infos, parent.trim());
 }
 
 String? process_docs(String raw_comment) {
@@ -40,7 +40,7 @@ String? process_docs(String raw_comment) {
       // print(description)
       _comment = description?.trim() ?? _comment;
     else {
-      parameter_descriptions[parameter] = {
+      parameter_infos[parameter] = {
         "description": description?.trim(),
         "nullable":
             RegExp(r"(may be null|If empty|pass null)", caseSensitive: false)
