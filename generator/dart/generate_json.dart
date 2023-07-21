@@ -90,10 +90,11 @@ void generate_json() {
         _class_or_func = functions;
       }
       var description = process_docs(docs!);
-      var (class_name, parameter_descriptions, parent) = process_schema(schema!);
+      var (class_name, parameter_infos, parent) =
+          process_schema(schema!);
       var _data = {
         "description": description,
-        "parameters": json.decode(json.encode(parameter_descriptions)),
+        "parameters": json.decode(json.encode(parameter_infos)),
         "return": null,
         "parent": null
       };
