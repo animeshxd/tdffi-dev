@@ -13,7 +13,6 @@ void reset() {
   parameter_infos.clear();
 }
 
-
 (String, Map<String, Object?>, String) process_schema(String raw_body) {
   raw_body = raw_body.replaceAll(';', '').trim();
   var data = raw_body.split("=");
@@ -90,8 +89,7 @@ void generate_json() {
         _class_or_func = functions;
       }
       var description = process_docs(docs!);
-      var (class_name, parameter_infos, parent) =
-          process_schema(schema!);
+      var (class_name, parameter_infos, parent) = process_schema(schema!);
       var _data = {
         "description": description,
         "parameters": json.decode(json.encode(parameter_infos)),
@@ -101,8 +99,7 @@ void generate_json() {
 
       if (isFunction) {
         _data["return"] = parent;
-      }
-      else {
+      } else {
         if (parent.toLowerCase() != class_name.toLowerCase())
           _data['parent'] = parent;
         else
@@ -117,49 +114,67 @@ void generate_json() {
   }
 }
 
+void writeJsons() {
+  Directory(BASE_DIR_JSON).createSync(recursive: true);
+  var encoder = JsonEncoder.withIndent(
+    "     ",
+    (nonEncodable) => nonEncodable is Set
+        ? nonEncodable.toList()
+        : throw UnsupportedError('Cannot convert to JSON: $nonEncodable'),
+  );
+  File(ABC_CLASS_JSON_FILE).writeAsStringSync(encoder.convert(abc_classes));
+  File(CLASS_JSON_FILE).writeAsStringSync(encoder.convert(classes));
+  File(FUNC_JSON_FILE).writeAsStringSync(encoder.convert(functions));
+}
+
 void main() {
   generate_json();
-  var test = json.decode(File(ABC_CLASS_JSON_FILE).readAsStringSync());
-  abc_classes.forEach((key, value) {
-    test[key]!;
-    assert((test[key]['child'] as List).length == (value['child'] as Set).length);
-  });
-  // print(json.encode(
-  //   abc_classes,
-  //   toEncodable: (object) {
-  //     if (object is Set) {
-  //       return object.toList();
-  //     }
-  //   },
-  // ));
+  // print(abc_classes);
+  // writeJsons();
+  if (!needReload()) {
+    var test = json.decode(File(ABC_CLASS_JSON_FILE).readAsStringSync());
+    abc_classes.forEach((key, value) {
+      test[key]!;
+      assert((test[key]['child'] as List).length ==
+          (value['child'] as Set).length);
+    });
+    // print(json.encode(
+    //   abc_classes,
+    //   toEncodable: (object) {
+    //     if (object is Set) {
+    //       return object.toList();
+    //     }
+    //   },
+    // ));
 
-  test = json.decode(File(CLASS_JSON_FILE).readAsStringSync());
-  classes.forEach((key, value) {
-    test[key]!;
-    assert((test[key]['parameters'] as Map).length == (value['parameters'] as Map).length);
-  });
-  //   print(json.encode(
-  //   classes,
-  //   toEncodable: (object) {
-  //     if (object is Set) {
-  //       return object.toList();
-  //     }
-  //   },
-  // ));
-  test = json.decode(File(FUNC_JSON_FILE).readAsStringSync());
-  functions.forEach((key, value) {
-    test[key]!;
-    assert((test[key]['parameters'] as Map).length == (value['parameters'] as Map).length);
-  });
-  // print(json.encode(
-  //   functions,
-  //   toEncodable: (object) {
-  //     if (object is Set) {
-  //       return object.toList();
-  //     }
-  //   },
-  // ));
-
-
-  
+    test = json.decode(File(CLASS_JSON_FILE).readAsStringSync());
+    classes.forEach((key, value) {
+      test[key]!;
+      assert((test[key]['parameters'] as Map).length ==
+          (value['parameters'] as Map).length);
+    });
+    //   print(json.encode(
+    //   classes,
+    //   toEncodable: (object) {
+    //     if (object is Set) {
+    //       return object.toList();
+    //     }
+    //   },
+    // ));
+    test = json.decode(File(FUNC_JSON_FILE).readAsStringSync());
+    functions.forEach((key, value) {
+      test[key]!;
+      assert((test[key]['parameters'] as Map).length ==
+          (value['parameters'] as Map).length);
+    });
+    // print(json.encode(
+    //   functions,
+    //   toEncodable: (object) {
+    //     if (object is Set) {
+    //       return object.toList();
+    //     }
+    //   },
+    // ));
+  }
+  writeJsons();
 }
