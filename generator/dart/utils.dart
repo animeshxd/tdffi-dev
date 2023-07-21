@@ -101,6 +101,11 @@ bool needReload() {
     assert(File(ABC_CLASS_JSON_FILE).existsSync());
     assert(File(CLASS_JSON_FILE).existsSync());
     assert(File(FUNC_JSON_FILE).existsSync());
+
+    assert(File(ABC_CLASS_JSON_FILE).readAsStringSync().isNotEmpty);
+    assert(File(CLASS_JSON_FILE).readAsStringSync().isNotEmpty);
+    assert(File(FUNC_JSON_FILE).readAsStringSync().isNotEmpty);
+    
   } catch (_) {
     return true;
   }
