@@ -21,7 +21,7 @@ class _Type {
 
   final int value;
 
-  _Type(this.value) : assert(value > 6);
+  _Type(this.value) : assert(!(value > 6 || value < 2));
 
   int toJson() {
     return value;
