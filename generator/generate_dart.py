@@ -16,7 +16,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
         if not params:
             write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
             write(f, METHODS, json=','.join(_json))  # toJson method body
-            write(f, STATIC_METHOD, name=_class, body="\n", args=', '.join(static_parameters))
+            write(f, STATIC_METHOD, name=_class, body="\n", args=(', '.join(static_parameters))+',')
 
             f.seek(0)
             return f.read()
@@ -95,7 +95,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
 
         write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
-        write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=','.join(static_parameters))
+        write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=(', '.join(static_parameters))+',')
         f.seek(0)
         return f.read()
 
