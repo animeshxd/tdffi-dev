@@ -41,7 +41,6 @@ void main() async {
         SendMessage(
           chat_id: message.chat_id,
           message_thread_id: 0,
-          reply_to_message_id: 0,
           input_message_content: InputMessageText(
             text: text,
             disable_web_page_preview: true,
