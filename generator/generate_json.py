@@ -1,9 +1,10 @@
 import json
 import re
 import os
+from typing import Optional
 
 from const import *
-from utils import CamelCase, Serializer, process_tl_parameter
+from utils import CamelCase, Serializer, get_tl_to_dart
 
 parameter_descriptions = {}
 abc_classes = {}
@@ -16,6 +17,16 @@ def reset():
     parameter_descriptions.clear()
     # input()
     ...
+
+def process_tl_parameter(source: str, lookup_dict: dict):
+    parameter, data = get_tl_to_dart(source)
+    result: Optional[dict] = lookup_dict.get(parameter, None)
+    if not result:
+        raise KeyError(f"parameter: {parameter} is not available in lookup_dict")
+    result: dict
+    result.update(data)
+    return {parameter: result}
+
 
 
 def process_comment(raw_comment: str):

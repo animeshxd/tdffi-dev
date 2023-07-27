@@ -78,15 +78,6 @@ def get_tl_to_dart(tl: str):
     return parameter, data
 
 
-def process_tl_parameter(source: str, lookup_dict: dict):
-    parameter, data = get_tl_to_dart(source)
-    result: Optional[dict] = lookup_dict.get(parameter, None)
-    if not result:
-        raise KeyError(f"parameter: {parameter} is not available in lookup_dict")
-    result: dict
-    result.update(data)
-    return {parameter: result}
-
 
 def need_reload():
     try:
