@@ -38,7 +38,7 @@ import 'dart:convert' show jsonEncode;
 IMPORT_FROM = './'
 IMPORT_CLASS_DART = f"import '{IMPORT_FROM}classes.dart';"
 IMPORT_ABC_DART = f"import '{IMPORT_FROM}abc.dart';"
-IMPORT_FUNC_DART = f"import '{IMPORT_FROM}func.dart';"
+IMPORT_FUNC_DART = f"import '{IMPORT_FROM}functions.dart';"
 IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 
 METHODS = """
