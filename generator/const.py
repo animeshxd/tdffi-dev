@@ -41,6 +41,44 @@ IMPORT_ABC_DART = f"import '{IMPORT_FROM}abc.dart';"
 IMPORT_FUNC_DART = f"import '{IMPORT_FROM}functions.dart';"
 IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 
+CLASS_BODY = """
+///{description}
+///
+{return_}
+class {name} extends {parent} {{
+      /// [extra] - Request identifier. Must be non-zero. 
+      int? extra;
+      /// [CONSTRUCTOR] - type
+      String CONSTRUCTOR = "{ID}";
+      /// [clientId] - tdlib client id
+      int? clientId;
+    {body}
+}}
+"""
+ABC_BODY = """
+///{description}
+///
+///Inherited by {child}
+abstract class {name} extends {parent} {{
+    /// [CONSTRUCTOR] - type
+    String CONSTRUCTOR = "{ID}";
+}}
+"""
+FUNC_BODY = """
+///{description}
+///
+///Returns [{return_}]
+class {name} extends Func {{
+      ///[extra] - Request identifier. Must be non-zero. 
+      int? extra;
+    /// [clientId] - tdlib client id
+    int? clientId;
+    /// [CONSTRUCTOR] - type
+    String CONSTRUCTOR = "{ID}";
+    {body}
+}}
+"""
+
 METHODS = """
   
   @override
@@ -107,15 +145,14 @@ EXTENSION_METHOD_BODY = """
 """
 
 EXPORT_GENERATED_LIB_PATHS = '\n'.join(
-  f"export 'src/generated/{i.replace(BASE_DIR_DART, '')}';" for i in [
-    EXPORT_FUNC_FILE,
-    EXPORT_CLASS_FILE,
-    EXPORT_ABC_CLASS_FILE,
-    EXPORT_EXTENSION_FILE,
-    EXPORT_MAP_CLASS_STR_FILE,
-    "ffi/td_json_client.dart"
-  ]
+    f"export 'src/generated/{i.replace(BASE_DIR_DART, '')}';" for i in [
+        EXPORT_FUNC_FILE,
+        EXPORT_CLASS_FILE,
+        EXPORT_ABC_CLASS_FILE,
+        EXPORT_EXTENSION_FILE,
+        EXPORT_MAP_CLASS_STR_FILE,
+        "ffi/td_json_client.dart"
+    ]
 )
 
 BASE_EXPORT_DIR = './tdffi/lib/td.dart'
-

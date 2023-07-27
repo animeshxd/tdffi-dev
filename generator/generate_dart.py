@@ -102,15 +102,6 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
 
 def generate_abc_dart(abstract_classes: dict):
     """ Generate abstract classes"""
-    ABC = """
-///{description}
-///
-///Inherited by {child}
-abstract class {name} extends {parent} {{
-    /// [CONSTRUCTOR] - type
-    String CONSTRUCTOR = "{ID}";
-}}
-"""
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
         write(f, preamble)
         write(f, IMPORT_)
@@ -128,24 +119,10 @@ abstract class {name} extends {parent} {{
                 child=_,
                 ID=lowerCamelCase(name)
             )
-            write(f, ABC, **_)
+            write(f, ABC_BODY, **_)
 
 def generate_child_dart(classes: dict, abc: dict):
     """generate type class"""
-    CLASS = """\
-    ///{description}
-    ///
-    {return_}
-    class {name} extends {parent} {{
-         /// [extra] - Request identifier. Must be non-zero. 
-         int? extra;
-         /// [CONSTRUCTOR] - type
-         String CONSTRUCTOR = "{ID}";
-         /// [clientId] - tdlib client id
-         int? clientId;
-        {body}
-    }}
-    """
 
     with open(EXPORT_CLASS_FILE, 'w') as f:
         write(f, preamble)
@@ -164,23 +141,9 @@ def generate_child_dart(classes: dict, abc: dict):
                 body=process_body(name, abc, body['parameters']),
                 ID=lowerCamelCase(name)
             )
-            write(f, CLASS, **_)
+            write(f, CLASS_BODY, **_)
 
 def generate_func_dart(functions: dict, abc: dict):
-    FUNC = """
-    ///{description}
-    ///
-    ///Returns [{return_}]
-    class {name} extends Func {{
-         ///[extra] - Request identifier. Must be non-zero. 
-         int? extra;
-        /// [clientId] - tdlib client id
-        int? clientId;
-        /// [CONSTRUCTOR] - type
-        String CONSTRUCTOR = "{ID}";
-        {body}
-    }}
-    """
     with open(EXPORT_FUNC_FILE, 'w') as f:
         write(f, preamble)
         write(f, IMPORT_ABC_DART)
@@ -193,7 +156,7 @@ def generate_func_dart(functions: dict, abc: dict):
                 body=process_body(name, abc, body['parameters']),
                 ID=lowerCamelCase(name)
             )
-            write(f, FUNC, **_)
+            write(f, FUNC_BODY, **_)
 
 def generate_extension_dart(abstract_classes: dict):
     """ generate extension for abstract type"""
