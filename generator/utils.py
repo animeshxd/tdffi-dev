@@ -17,10 +17,21 @@ class Serializer(json.JSONEncoder):
 
 
 class Type(enum.Enum):
-    TL = 2
+    TL = 7
     DART = 3
-    VECTOR_TL = 4
+    VECTOR_TL = 14
     VECTOR_DART = 6
+
+    @classmethod
+    def _missing_(cls, value: object) -> Any:
+        if isinstance(value, int):
+            if value in {3, 7, 6, 14}:
+                return cls(value)
+            if value % 7 == 0:
+                return cls(14)
+            elif value % 3 == 0:
+                return cls(6)
+        return super()._missing_(value)
 
 
 dart_types = {
@@ -62,7 +73,7 @@ def get_dart_type(type_: str) -> Tuple[str, str, Type]:
 
 
 def _vector_to_List(vector):
-    type_ = re.search(r"vector<(\w+)>", vector).group(1)
+    type_ = re.search(r"vector<(.*)>", vector).group(1)
     dart_type, _, _enum = get_dart_type(type_)
     return f"List<{dart_type}>", _, Type(_enum.value * 2)
 
@@ -107,3 +118,8 @@ def write(f, string: str, **kwargs):
     else:
         f.write(string)
         f.write('\n')
+
+if __name__ == '__main__':
+    print(get_dart_type('vector<vector<vector<keyboardButton>>>'));
+    print(get_dart_type('keyboardButton'));
+    print(get_dart_type('vector<keyboardButton>'));
