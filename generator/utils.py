@@ -66,7 +66,7 @@ def get_dart_type(type_: str) -> Tuple[str, str, Type]:
     dart_type = dart_types.get(type_, None)
 
     if dart_type is not None:
-        return dart_type, type_, Type.DART
+        return dart_type, dart_type, Type.DART
     else:
         type_ = CamelCase(type_)
         return type_, type_, Type.TL
@@ -80,10 +80,10 @@ def _vector_to_List(vector):
 
 def get_tl_to_dart(tl: str):
     parameter, _type = tl.split(":")
-    _type, tl, _enum = get_dart_type(_type)
+    _type, vectorElementType, _enum = get_dart_type(_type)
     data = {
         "type": _type,
-        "tl": tl,
+        "vectorElementType": vectorElementType,
         "enum": _enum
     }
     return parameter, data

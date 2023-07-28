@@ -25,7 +25,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
             description = info['description']
             nullable = info['nullable']
             _type = info['type']
-            tl = info['tl']
+            vectorElementType = info['vectorElementType']
             enum = Type(info['enum'])
             name_ = name + '_' if name == _type else name
             _json.append(f"'{name}': {name_}")
@@ -49,7 +49,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
                     factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
 
             elif enum == Type.VECTOR_TL:
-                _ = CamelCase(tl)
+                _ = vectorElementType
                 abstract = abc.get(_, None)
                 if abstract:
                     factory_method_body.append(f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) => {_}.fromMap(e){strict});")
