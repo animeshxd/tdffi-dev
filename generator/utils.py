@@ -57,8 +57,8 @@ def lowerCamelCase(x: str):
     return (x[0].lower() + x[1:]).strip()
 
 
-def get_dart_type(type_: str) -> Tuple[str, str, Type]:
-    #    d     t   enum
+def get_dart_type(type_: str) -> Tuple[str, str, Type, int]:
+    #                                  d    et   enum  depth
 
     if type_.startswith('vector'):
         return _vector_to_List(type_)
@@ -66,25 +66,26 @@ def get_dart_type(type_: str) -> Tuple[str, str, Type]:
     dart_type = dart_types.get(type_, None)
 
     if dart_type is not None:
-        return dart_type, dart_type, Type.DART
+        return dart_type, dart_type, Type.DART, 0
     else:
         type_ = CamelCase(type_)
-        return type_, type_, Type.TL
+        return type_, type_, Type.TL, 0
 
 
 def _vector_to_List(vector):
     type_ = re.search(r"vector<(.*)>", vector).group(1)
-    dart_type, _, _enum = get_dart_type(type_)
-    return f"List<{dart_type}>", _, Type(_enum.value * 2)
+    dart_type, _, _enum, depth = get_dart_type(type_)
+    return f"List<{dart_type}>", _, Type(_enum.value * 2), 1 + depth
 
 
 def get_tl_to_dart(tl: str):
     parameter, _type = tl.split(":")
-    _type, vectorElementType, _enum = get_dart_type(_type)
+    _type, vectorElementType, _enum, depth = get_dart_type(_type)
     data = {
         "type": _type,
         "vectorElementType": vectorElementType,
-        "enum": _enum
+        "enum": _enum,
+        "vector_depth": depth
     }
     return parameter, data
 

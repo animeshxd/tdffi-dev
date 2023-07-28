@@ -26,6 +26,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
             nullable = info['nullable']
             _type = info['type']
             vectorElementType = info['vectorElementType']
+            vector_depth = info["vector_depth"]
             enum = Type(info['enum'])
             name_ = name + '_' if name == _type else name
             _json.append(f"'{name}': {name_}")
@@ -48,16 +49,16 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
                 else:
                     factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
 
-            elif enum == Type.VECTOR_TL:
-                _ = vectorElementType
-                abstract = abc.get(_, None)
-                if abstract:
-                    factory_method_body.append(f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) => {_}.fromMap(e){strict});")
+            elif enum == Type.VECTOR_TL or enum == Type.VECTOR_DART:
+                resolver = '{_type}.from((_map["{name}"] ?? []).map((e) => {body},),)'
+                type_resolver = f"{vectorElementType}.fromMap(e)" if enum == Type.VECTOR_TL else f"e as {vectorElementType}"
+                for i in range(vector_depth-1):
+                    resolver = resolver.format(_type="{_type}", name="{name}", body="e.map((e) => {body},)")
+                resolved = resolver.format(_type=_type, name=name, body=type_resolver)
+                if nullable:
+                   factory_method_body.append(f'var {name_} = _map["{name}"] == null? null : {resolved};')
                 else:
-                    factory_method_body.append(
-                        f'var {name_} = {_type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
-            elif enum == Type.VECTOR_DART:
-                factory_method_body.append(f'var {name_} = {_type}.from((_map["{name}"] ?? []));')
+                    factory_method_body.append(f'var {name_} = {resolved};')
             else:
                 factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
 
