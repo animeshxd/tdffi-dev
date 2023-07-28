@@ -62,6 +62,7 @@ ABC_BODY = """
 abstract class {name} extends {parent} {{
     /// [CONSTRUCTOR] - type
     String CONSTRUCTOR = "{ID}";
+    {body}
 }}
 """
 FUNC_BODY = """
@@ -100,6 +101,20 @@ static {name}? fromMap(Map<String, dynamic>? _map){{
     var clientId = _map['@clientId'];
     {body}
     return {name}({args});
+  }}
+"""
+
+ABC_STATIC_METHOD = """
+/// Construct from [Map]
+static {name}? fromMap(Map<String, dynamic>? _map){{
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    switch(_) {{
+      {cases}
+      case null:
+      default:
+        return null;
+    }}
   }}
 """
 

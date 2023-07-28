@@ -44,27 +44,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
             if enum == Type.TL:
                 abstract = abc.get(_type, None)
                 if abstract:
-
-                    temp = [
-                        f"{late} {type_} {name_};",
-                        f"switch (_map['{name}']{'?' if nullable else ''}['@type']) {{"
-                    ]
-
-                    for a in abstract['child']:
-                        temp.append(f"""
-                        case '{lowerCamelCase(a)}':
-                            {name_} = {a}.fromMap(_map["{name}"]){strict};
-                            break;
-                        """)
-
-                    temp.append(f"""\
-                        case null:
-                        default:
-                            {f"{name_} = null;" if nullable else ''}
-                            break;
-                    }}
-                    """)
-                    factory_method_body.append('\n'.join(temp))
+                    factory_method_body.append(f"var {name_} = {_type}.fromMap(_map['{name}']){strict};")
                 else:
                     factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
 
@@ -72,19 +52,7 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
                 _ = CamelCase(tl)
                 abstract = abc.get(_, None)
                 if abstract:
-
-                    temp = [
-                        f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) {{\n"
-                        f"switch (e['@type']) {{"
-                    ]
-                    for a in abstract['child']:
-                        temp.append(f"""\
-                        case '{lowerCamelCase(a)}':
-                            return {a}.fromMap(e);
-                        """
-                                    )
-                    temp.append('}}).toList();')
-                    factory_method_body.append('\n'.join(temp))
+                    factory_method_body.append(f"var {name_} = _map['{name}']{'?' if nullable else ''}.map((e) => {_}.fromMap(e){strict});")
                 else:
                     factory_method_body.append(
                         f'var {name_} = {_type}.from((_map["{name}"] ?? []).map((e) => {_}.fromMap(e)));')
@@ -105,6 +73,7 @@ def generate_abc_dart(abstract_classes: dict):
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
         write(f, preamble)
         write(f, IMPORT_)
+        write(f, IMPORT_CLASS_DART)
         write(f, TlObject)
         write(f, EXTENSION_ON_ABC_BODY)
         write(f, Func)
@@ -117,9 +86,19 @@ def generate_abc_dart(abstract_classes: dict):
                 description=body['description'],
                 parent="TlObject",
                 child=_,
-                ID=lowerCamelCase(name)
+                ID=lowerCamelCase(name),
+                body=abc_fromMap_static_method(name, body['child'])
             )
             write(f, ABC_BODY, **_)
+def abc_fromMap_static_method(name, children: list):
+    # print(children)
+    _list = []
+    for c in children:
+        _list.append(f"""
+        case '{lowerCamelCase(c)}':
+            return {c}.fromMap(_map);
+        """.strip())
+    return ABC_STATIC_METHOD.format(name=name, cases='\n'.join(_list));
 
 def generate_child_dart(classes: dict, abc: dict):
     """generate type class"""
