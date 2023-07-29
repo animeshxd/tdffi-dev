@@ -40,7 +40,7 @@ dart_types = {
     'int32': 'int',
     'int53': 'int',
     'int64': 'String',
-    'bytes': 'String',  # 'Uint8List',
+    'bytes': 'bytes',  # 'Uint8List',
     'Bool': 'bool',
     "emojis": 'List<String>',
     'dynamic': 'dynamic',
