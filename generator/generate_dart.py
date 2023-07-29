@@ -55,11 +55,7 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
                     factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
 
             elif enum == Type.VECTOR_TL or enum == Type.VECTOR_DART:
-                resolver = '{_type}.from((_map["{name}"] ?? []).map((e) => {body},),)'
-                type_resolver = f"{vectorElementType}.fromMap(e)" if enum == Type.VECTOR_TL else f"e as {vectorElementType}"
-                for i in range(vector_depth-1):
-                    resolver = resolver.format(_type="{_type}", name="{name}", body="e.map((e) => {body},)")
-                resolved = resolver.format(_type=_type, name=name, body=type_resolver)
+                resolved = list_type_resolver(name, _type, vectorElementType, vector_depth, enum)
                 if nullable:
                    factory_method_body.append(f'var {name_} = _map["{name}"] == null? null : {resolved};')
                 else:
@@ -76,6 +72,24 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
         write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=(', '.join(static_parameters))+',')
         f.seek(0)
         return f.read()
+def _list_pattern(n, type):
+    pattern = f"List<{type}>"  
+    if n <=1:
+        return []
+    result = [pattern]
+    
+    for i in range(n - 2):
+        pattern = f"List<{pattern}>"
+        result.append(pattern)
+    return result
+
+def list_type_resolver(name, _type, vectorElementType, vector_depth, enum):
+    resolver = '{_type}.from((_map["{name}"] ?? []).map((e) => {body},),)'
+    type_resolver = f"{vectorElementType}.fromMap(e)" if enum == Type.VECTOR_TL else f"e as {vectorElementType}"
+    for i in reversed(_list_pattern(vector_depth, vectorElementType)):
+        resolver = resolver.format(_type="{_type}", name="{name}", body=f"{i}.from((e ?? []).map((e) => {{body}},),)")
+    resolved = resolver.format(_type=_type, name=name, body=type_resolver)
+    return resolved
 
 
 def generate_abc_dart(abstract_classes: dict):
