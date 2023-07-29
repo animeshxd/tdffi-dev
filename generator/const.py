@@ -44,7 +44,6 @@ IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 CLASS_BODY = """
 ///{description}
 ///
-{return_}
 class {name} extends {parent} {{
       /// [extra] - Request identifier. Must be non-zero. 
       int? extra;

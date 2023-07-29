@@ -6,7 +6,7 @@ from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, w
 
 from const import *
 
-def process_body(_class: str, abc: dict, params: dict) -> str:
+def process_body(_class: str, abc: dict, params: dict, class_description: str = '', function_returns: str = '') -> str:
     """construct body"""
     constructor_parameters = []
     static_parameters = ["extra: extra", "clientId: clientId"]
@@ -14,6 +14,11 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
     factory_method_body = []
     with io.StringIO() as f:
         if not params:
+            if class_description:
+                write(f, f"/// {class_description} ")
+            if function_returns:
+                write(f, "///")
+                write(f, f"/// Returns [{function_returns}]")
             write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
             write(f, METHODS, json=','.join(_json))  # toJson method body
             write(f, STATIC_METHOD, name=_class, body="\n", args=(', '.join(static_parameters))+',')
@@ -61,7 +66,11 @@ def process_body(_class: str, abc: dict, params: dict) -> str:
                     factory_method_body.append(f'var {name_} = {resolved};')
             else:
                 factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
-
+        if class_description:
+            write(f, f"/// {class_description} ")
+        if function_returns:
+            write(f, "///")
+            write(f, f"/// Returns [{function_returns}]")
         write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
         write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=(', '.join(static_parameters))+',')
@@ -111,14 +120,11 @@ def generate_child_dart(classes: dict, abc: dict):
         for name, body in classes.items():
             description = body['description']
             parent = body['parent']
-            _ = body.get('return', None)
-            return_ = f'///@returns {_}' if _ else ''
             _ = dict(
                 description=description,
-                return_=return_,
                 name=name,
                 parent=parent,
-                body=process_body(name, abc, body['parameters']),
+                body=process_body(name, abc, body['parameters'], description),
                 ID=lowerCamelCase(name)
             )
             write(f, CLASS_BODY, **_)
@@ -129,11 +135,15 @@ def generate_func_dart(functions: dict, abc: dict):
         write(f, IMPORT_ABC_DART)
         write(f, IMPORT_CLASS_DART)
         for name, body in functions.items():
+            description = body['description']
+            return_ = body.get('return', '')
+            parameters=body['parameters']
+            _body = process_body(name, abc, parameters, description, return_)
             _ = dict(
-                description=body['description'],
-                return_=body['return'],
+                description=description,
+                return_=return_,
                 name=name,
-                body=process_body(name, abc, body['parameters']),
+                body=_body,
                 ID=lowerCamelCase(name)
             )
             write(f, FUNC_BODY, **_)
