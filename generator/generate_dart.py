@@ -13,19 +13,6 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
     _json = [f"'@type': '{lowerCamelCase(_class)}'", "if(extra != null) '@extra': extra"]
     factory_method_body = []
     with io.StringIO() as f:
-        if not params:
-            if class_description:
-                write(f, f"/// {class_description} ")
-            if function_returns:
-                write(f, "///")
-                write(f, f"/// Returns [{function_returns}]")
-            write(f, f'{_class}({{this.extra, this.clientId}});')  # constructor
-            write(f, METHODS, json=','.join(_json))  # toJson method body
-            write(f, STATIC_METHOD, name=_class, body="\n", args=(', '.join(static_parameters))+',')
-
-            f.seek(0)
-            return f.read()
-
         for name, info in params.items():
             description = info['description']
             nullable = info['nullable']
@@ -57,12 +44,13 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
                 factory_method_body.append(f'var {name_} = {returnNullIfNull} {resolved};')
             else:
                 factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
+        constructor_parameters.extend(['this.extra', 'this.clientId'])
         if class_description:
             write(f, f"/// {class_description} ")
         if function_returns:
             write(f, "///")
             write(f, f"/// Returns [{function_returns}]")
-        write(f, f"{_class}({{ {','.join(constructor_parameters)}, this.extra, this.clientId }});")  # constructor
+        write(f, f"{_class}({{ {','.join(constructor_parameters)}}});")  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
         write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=(', '.join(static_parameters))+',')
         f.seek(0)
