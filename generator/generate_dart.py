@@ -46,7 +46,7 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
 
             write(f, f"/// [{name_}] {description}")  # parameter comment
             if _type == 'bytes':
-                write(f, '/// ; base64-encoded`List<int>`')
+                write(f, '/// ; base64-encoded bytes `List<int>`')
             write(f, f"{late}{type_} {name_};")  # parameter field
 
             if enum == Type.TL:
