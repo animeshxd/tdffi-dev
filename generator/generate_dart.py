@@ -50,18 +50,11 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
             write(f, f"{late}{type_} {name_};")  # parameter field
 
             if enum == Type.TL:
-                abstract = abc.get(_type, None)
-                if abstract:
-                    factory_method_body.append(f"var {name_} = {_type}.fromMap(_map['{name}']){strict};")
-                else:
-                    factory_method_body.append(f'var {name_} = {_type}.fromMap(_map["{name}"]){strict};')
-
+                factory_method_body.append(f"var {name_} = {_type}.fromMap(_map['{name}']){strict};")
             elif enum == Type.VECTOR_TL or enum == Type.VECTOR_DART:
                 resolved = list_type_resolver(name, _type, vectorElementType, vector_depth, enum)
-                if nullable:
-                   factory_method_body.append(f'var {name_} = _map["{name}"] == null? null : {resolved};')
-                else:
-                    factory_method_body.append(f'var {name_} = {resolved};')
+                returnNullIfNull = '_map["{name}"] == null? null : ' if nullable else ''
+                factory_method_body.append(f'var {name_} = {returnNullIfNull} {resolved};')
             else:
                 factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
         if class_description:
