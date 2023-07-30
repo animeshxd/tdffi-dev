@@ -42,7 +42,7 @@ IMPORT_FUNC_DART = f"import '{IMPORT_FROM}functions.dart';"
 IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 
 BYTES_TYPEDEF = """
-/// the bytes are base64-encoded
+/// the bytes (`List<int>`) are base64-encoded
 typedef bytes = String;
 """
 
