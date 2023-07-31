@@ -1,15 +1,18 @@
+import os
 BASE_DIR_JSON = "./json/"
 TL_API_FILE = "td/td/generate/scheme/td_api.tl"
 ABC_CLASS_JSON_FILE = BASE_DIR_JSON + "abstract-classes.json"
 CLASS_JSON_FILE = BASE_DIR_JSON + "classes.json"
 FUNC_JSON_FILE = BASE_DIR_JSON + "functions.json"
 
-BASE_DIR_DART = "./tdffi/lib/src/generated/"
+DART_PACKAGE_DIR = os.getenv('DART_PACKAGE_DIR', './tdffi')
+BASE_DIR_DART = os.path.join(DART_PACKAGE_DIR, "lib/src/generated/")
 EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
 EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
 EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"
 EXPORT_MAP_CLASS_STR_FILE = BASE_DIR_DART + "objects.dart"
 EXPORT_EXTENSION_FILE = BASE_DIR_DART + 'extensions.dart'
+BASE_EXPORT_DIR = os.path.join(DART_PACKAGE_DIR, "lib/td.dart")
 
 TlObject = """
 abstract class TlObject {
@@ -178,4 +181,3 @@ EXPORT_GENERATED_LIB_PATHS = '\n'.join(
     ]
 )
 
-BASE_EXPORT_DIR = './tdffi/lib/td.dart'

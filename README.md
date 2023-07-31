@@ -10,13 +10,20 @@ cp td/build/td/telegram/tdjson_export.h headers/td/telegram/tdjson_export.h
 cp td/td/telegram/td_json_client.h headers/td_json_client.h
 
 python generator/generate_dart.py
-
 cd tdffi
+
+# use it in your own dart/flutter package
+#
+# dart/flutter create <your/package/location>
+# DART_PACKAGE_DIR=<your/package/location> python generator/generate_dart.py
+# cd <your/package/location>
+
 dart pub add --dev ffigen
 # for termux: dart pub add -d ffigen --git-url https://github.com/animeshxd/ffigen
 
 dart pub get
 dart run ffigen --config ../ffigen.yaml 
+# dart run ffigen --config <path/to/ffigen.yaml> 
 ```
 output locations:  
    - `tdffi/lib/td.dart`
