@@ -81,6 +81,7 @@ def generate_abc_dart(abstract_classes: dict):
         write(f, preamble)
         write(f, IMPORT_)
         write(f, IMPORT_CLASS_DART)
+        write(f, IMPORT_OBJECTS_DART)
         write(f, BYTES_TYPEDEF)
         write(f, TlObject)
         write(f, EXTENSION_ON_ABC_BODY)

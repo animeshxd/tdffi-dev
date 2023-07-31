@@ -20,6 +20,8 @@ abstract class TlObject {
   /// TDLib client instance identifier, for which the response was received. 
   int? clientId;
   String CONSTRUCTOR = "TlObject";
+  static TlObject? fromMap(Map<String, dynamic> map) => getObject(map);
+
 }
 """.strip()
 
@@ -40,6 +42,8 @@ IMPORT_CLASS_DART = f"import '{IMPORT_FROM}classes.dart';"
 IMPORT_ABC_DART = f"import '{IMPORT_FROM}abc.dart';"
 IMPORT_FUNC_DART = f"import '{IMPORT_FROM}functions.dart';"
 IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
+IMPORT_OBJECTS_DART = f"import '{IMPORT_FROM}objects.dart';"
+
 
 BYTES_TYPEDEF = """
 /// the bytes (`List<int>`) are base64-encoded
@@ -129,12 +133,12 @@ Map<String,TlObject? Function(Map<String, dynamic>)> tlobjects = {
 EXPORT_MAP_BODY_END = "};"
 
 EXPORT_getObject = """
-TlObject? getObject(Map<String, dynamic> map) {{
+TlObject? getObject(Map<String, dynamic> map) {
   var type = map['@type'];
   if (type == null) return null;
 
   return tlobjects[type]!.call(map);
-}}
+}
 """
 
 EXTENSION_ON_ABC_BODY = """

@@ -45,7 +45,7 @@ class NativeTdlibWrapper extends api.td_json_client {
     if (result.address == nullptr.address) return null;
     api.TlObject? object;
     try {
-      object = api.getObject(json.decode(result.toDartString()));
+      object = api.TlObject.fromMap(json.decode(result.toDartString()));
     } on TypeError catch (e) {
       _log.shout(result.toDartString(), e);
       rethrow;
@@ -64,7 +64,7 @@ class NativeTdlibWrapper extends api.td_json_client {
     var req = request.toCharPtr();
     var response = td_execute(req);
     malloc.free(req);
-    var object = api.getObject(jsonDecode(response.toDartString()));
+    var object = api.TlObject.fromMap(jsonDecode(response.toDartString()));
 
     if (object == null) {
       throw UnknownTelegramResponseError(message: response.toDartString());
