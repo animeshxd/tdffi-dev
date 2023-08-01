@@ -17,6 +17,7 @@ cd tdffi
 # dart/flutter create <your/package/location>
 # DART_PACKAGE_DIR=<your/package/location> python generator/generate_dart.py
 # cd <your/package/location>
+# dart pub add ffi
 
 dart pub add --dev ffigen
 # for termux: dart pub add -d ffigen --git-url https://github.com/animeshxd/ffigen
