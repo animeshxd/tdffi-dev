@@ -23,6 +23,12 @@ dart pub add --dev ffigen
 # for termux: dart pub add -d ffigen --git-url https://github.com/animeshxd/ffigen
 
 dart pub get
+
+
+# change in ffigen.yaml
+# output: 'your/package/location/lib/src/generated/ffi/td_json_client.dart'
+# The output: location should be relative to ffigen.yaml or is absolute
+
 dart run ffigen --config ../ffigen.yaml 
 # dart run ffigen --config <path/to/ffigen.yaml> 
 ```
