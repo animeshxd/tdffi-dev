@@ -146,12 +146,8 @@ TlObject? getObject(Map<String, dynamic> map) {
 
 EXTENSION_ON_ABC_BODY = """
 extension TlObjectExt on TlObject {
-  Pointer<Utf8> toCharPtr() {
-    return toJsonEncoded().toNativeUtf8();
-  }
-  String toJsonEncoded() {
-    return jsonEncode(toJson());
-  }
+  Pointer<Utf8> toCharPtr() => toJsonEncoded().toNativeUtf8();
+  String toJsonEncoded() => jsonEncode(toJson());
 }
 """
 
