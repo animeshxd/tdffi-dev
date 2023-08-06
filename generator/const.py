@@ -108,6 +108,7 @@ STATIC_METHOD = """
 static {name}? fromMap(Map<String, dynamic>? _map){{
     if (_map == null) return null;
     var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     {body}
