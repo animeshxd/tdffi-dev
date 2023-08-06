@@ -22,7 +22,7 @@ abstract class TlObject {
   int? extra;
   /// TDLib client instance identifier, for which the response was received. 
   int? clientId;
-  String CONSTRUCTOR = "TlObject";
+  static const String CONSTRUCTOR = "TlObject";
   static TlObject? fromMap(Map<String, dynamic> map) => getObject(map);
 
 }
@@ -34,7 +34,7 @@ abstract class Func extends TlObject {
 """.strip()
 
 
-preamble = "// ignore_for_file: overridden_fields, annotate_overrides, camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers"
+preamble = "// ignore_for_file: overridden_fields, annotate_overrides, camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers, constant_identifier_names"
 IMPORT_ = """
 import 'dart:ffi' show Pointer;
 import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
@@ -60,7 +60,7 @@ class {name} extends {parent} {{
       /// [extra] - Request identifier. Must be non-zero. 
       int? extra;
       /// [CONSTRUCTOR] - type
-      String CONSTRUCTOR = "{ID}";
+      static const String CONSTRUCTOR = "{ID}";
       /// [clientId] - tdlib client id
       int? clientId;
     {body}
@@ -72,7 +72,7 @@ ABC_BODY = """
 ///Inherited by {child}
 abstract class {name} extends {parent} {{
     /// [CONSTRUCTOR] - type
-    String CONSTRUCTOR = "{ID}";
+    static const String CONSTRUCTOR = "{ID}";
     {body}
 }}
 """
@@ -86,7 +86,7 @@ class {name} extends Func {{
     /// [clientId] - tdlib client id
     int? clientId;
     /// [CONSTRUCTOR] - type
-    String CONSTRUCTOR = "{ID}";
+    static const String CONSTRUCTOR = "{ID}";
     {body}
 }}
 """
