@@ -3,6 +3,15 @@ git clone --recurse-submodules git@github.com:animeshxd/tdffi-dev.git
 cd tdffi-dev/td
 ```
 build tdlib https://github.com/tdlib/td#building
+
+```bash
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --target tdjson
+cd ..
+```
+
 ```bash
 cd .. # tdffi-dev/
 mkdir -p headers/td/telegram/
