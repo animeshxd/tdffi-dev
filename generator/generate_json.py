@@ -99,9 +99,11 @@ def generate_json():
                     "description": description,
                     "parameters": class_body.copy(),
                     "return": None,
-                    "parent": None
+                    "parent": None,
                 }
                 if is_function:
+                    issync = bool(re.search('Can be called synchronously', description, re.I))
+                    _data['parent'] = 'SyncFunc' if issync else 'Func'
                     _data["return"] = parent
                 else:
                     if parent.lower() != class_name.lower():

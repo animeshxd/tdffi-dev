@@ -137,12 +137,14 @@ def generate_func_dart(functions: dict, abc: dict):
             description = body['description']
             return_ = body.get('return', '')
             parameters=body['parameters']
+            parent = body['parent']
             _body = process_body(name, abc, parameters, description, return_)
             _ = dict(
                 description=description,
                 return_=return_,
                 name=name,
                 body=_body,
+                parent=parent,
                 ID=lowerCamelCase(name)
             )
             write(f, FUNC_BODY, **_)

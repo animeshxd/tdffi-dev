@@ -29,8 +29,8 @@ abstract class TlObject {
 """.strip()
 
 Func = """
-abstract class Func extends TlObject {
-}
+abstract class Func extends TlObject {}
+abstract class SyncFunc extends Func {}
 """.strip()
 
 
@@ -80,7 +80,7 @@ FUNC_BODY = """
 ///{description}
 ///
 ///Returns [{return_}]
-class {name} extends Func {{
+class {name} extends {parent} {{
       ///[extra] - Request identifier. Must be non-zero. 
       int? extra;
     /// [clientId] - tdlib client id
