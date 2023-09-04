@@ -94,6 +94,8 @@ void eventEmmiter(Map<String, dynamic> args) async {
 }
 
 class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
+  int _requestId = 0;
+
   bool isRunning = false;
   bool _initialized = false;
   String dynamicLibPath;
@@ -147,10 +149,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   }
 }
 
-class _TdlibWrapper extends TdlibEventController {
-  int _requestId = 0;
-
-  _TdlibWrapper({super.dynamicLibPath, super.clientId});
+extension TdlibEventExt on TdlibEventController {
 
   ///Sends request to the TDLib client.
   ///
@@ -169,7 +168,7 @@ class _TdlibWrapper extends TdlibEventController {
   }
 }
 
-class Auth extends _TdlibWrapper {
+class Auth extends TdlibEventController {
   ///
   Auth({required this.tdlibParameters, super.dynamicLibPath, super.clientId});
 
