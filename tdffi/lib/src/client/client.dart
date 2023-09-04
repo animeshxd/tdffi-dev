@@ -19,7 +19,14 @@ abstract class LifeCycle {
   Future<void> destroy();
 }
 
-class NativeTdlibWrapper extends api.td_json_client {
+abstract class AbstractNativeTdlibWrapper {
+  void sendAsync(api.Func request);
+  Future<api.TlObject?> receive([double timeout = 1]);
+  Future<T> execute<T extends api.TlObject>(api.SyncFunc request);
+}
+
+class NativeTdlibWrapper extends api.td_json_client
+    implements AbstractNativeTdlibWrapper {
   final _log = Logger("NativeTdlibWrapper");
 
   /// An opaque identifier of a new TDLib instance.
