@@ -22,3 +22,10 @@ class UnknownTelegramResponseError implements Exception {
     return "UnknownTelegramResponseError: got $message";
   }
 }
+
+class TelegramClientNotStarted implements Exception {
+  @override
+  String toString() {
+    return "TelegramClientNotStarted: TelegramClient is not started, start with `client.start()`";
+  }
+}

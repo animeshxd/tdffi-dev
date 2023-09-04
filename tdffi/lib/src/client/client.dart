@@ -153,9 +153,10 @@ extension TdlibEventExt on TdlibEventController {
 
   ///Sends request to the TDLib client.
   ///
-  /// Throws [TelegramError] on [api.Error]
+  /// Throws [TelegramError] on [api.Error] 
+  /// and Throws [TelegramClientNotStarted] if client is not started 
   Future<T> send<T extends api.TlObject>(api.Func request) async {
-    if (!isRunning) await super.start();
+    if (!isRunning) throw TelegramClientNotStarted();
     request.extra = ++_requestId;
     sendAsync(request);
     var event =
