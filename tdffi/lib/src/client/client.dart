@@ -97,11 +97,11 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   bool isRunning = false;
   bool _initialized = false;
   String dynamicLibPath;
-  final _subject = StreamController<api.TlObject>.broadcast();
-  late final _event = _subject.stream;
+  final StreamController<api.TlObject> _subject = StreamController<api.TlObject>.broadcast();
+  Stream<api.TlObject> get _event => _subject.stream;
 
   /// Contains notifications about data changes
-  late var updates = _subject.stream.whereType<api.Update>();
+  Stream<api.Update> get updates => _event.whereType<api.Update>();
 
   TdlibEventController({this.dynamicLibPath = "libtdjson.so", int? clientId})
       : super(DynamicLibrary.open(dynamicLibPath), clientId);
@@ -134,15 +134,14 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
     if (!isRunning) {
       _isolate!.resume(_isolate!.pauseCapability!);
       isRunning = true;
-      _subscription = null;
     }
   }
 
   @override
   Future<void> destroy() async {
     await _subscription?.cancel();
+    _subscription = null;
     _isolate?.kill(priority: Isolate.immediate);
-    await _subject.close();
     isRunning = false;
     _initialized = false;
   }
