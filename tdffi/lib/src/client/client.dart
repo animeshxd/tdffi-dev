@@ -99,7 +99,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   bool isRunning = false;
   bool _initialized = false;
   String dynamicLibPath;
-  final StreamController<api.TlObject> _subject = StreamController<api.TlObject>.broadcast();
+  final _subject = StreamController<api.TlObject>.broadcast();
   Stream<api.TlObject> get _event => _subject.stream;
 
   /// Contains notifications about data changes
@@ -150,11 +150,10 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
 }
 
 extension TdlibEventExt on TdlibEventController {
-
   ///Sends request to the TDLib client.
   ///
-  /// Throws [TelegramError] on [api.Error] 
-  /// and Throws [TelegramClientNotStarted] if client is not started 
+  /// Throws [TelegramError] on [api.Error]
+  /// and Throws [TelegramClientNotStarted] if client is not started
   Future<T> send<T extends api.TlObject>(api.Func request) async {
     if (!isRunning) throw TelegramClientNotStarted();
     request.extra = ++_requestId;
