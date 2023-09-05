@@ -14,9 +14,9 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
 
   bool _isinitilized = false;
   Future<SendPort> get sendPort async =>
-      _sendPort ??= await streamController.stream.whereType<SendPort>().first;
+      _sendPort ??= await streamController!.stream.whereType<SendPort>().first;
   ReceivePort? mainReceivePort;
-  StreamController streamController = StreamController.broadcast();
+  StreamController? streamController;
   StreamSubscription? mainReceivePortSubscription, streamSubscription;
   int _requestId = 0;
   final String dynamicLibPath;
@@ -28,7 +28,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
   Future<int> get clientId_ async {
     if (_clientId != null) return _clientId!;
     _sendToIsolate('{"@xtype": "getClientId"}');
-    _clientId ??= await streamController.stream.whereType<int>().first;
+    _clientId ??= await streamController!.stream.whereType<int>().first;
     return _clientId!;
   }
 
@@ -40,7 +40,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
     request0['@sync'] = ++_requestId;
     request0['@xtype'] = 'execute';
     _sendToIsolate(json.encode(request0));
-    var response = await streamController.stream
+    var response = await streamController!.stream
         .whereType<Map>()
         // .transform(json.decoder)
         .map((event) => event as Map<String, dynamic>)
@@ -71,16 +71,20 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
     _isolate?.kill(priority: Isolate.immediate);
     await mainReceivePortSubscription?.cancel();
     await streamSubscription?.cancel();
+    await streamController!.close();
+    streamController = null;
     mainReceivePort = null;
     _isolate = null;
     mainReceivePortSubscription = null;
     streamSubscription = null;
+    _sendPort = null;
     _isinitilized = false;
   }
 
   @override
   Future<void> init() async {
     if (!_isinitilized) {
+      streamController ??= StreamController.broadcast();
       mainReceivePort ??= ReceivePort('IsolateTdlibWrapper');
       _isolate ??= await Isolate.spawn(
         isolateFunction,
@@ -90,11 +94,14 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
           'clientId': _clientId
         },
         paused: true,
+        debugName: 'ControlIsolate',
       );
       streamSubscription ??= streamController.stream
+      streamSubscription ??= streamController!.stream
           .whereType<SendPort>()
           .listen((event) => _sendPort = event);
       mainReceivePortSubscription ??=
+          mainReceivePort?.listen(streamController!.sink.add);
           mainReceivePort?.listen(streamController.sink.add);
       _isolate!.resume(_isolate!.pauseCapability!);
       _isinitilized = true;
