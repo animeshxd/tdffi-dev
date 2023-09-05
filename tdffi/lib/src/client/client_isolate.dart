@@ -87,7 +87,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
         {
           'port': mainReceivePort!.sendPort,
           'path': dynamicLibPath,
-          'clientId': await clientId_
+          'clientId': _clientId
         },
         paused: true,
       );
