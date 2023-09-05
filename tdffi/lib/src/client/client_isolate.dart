@@ -8,12 +8,14 @@ import 'package:tdffi/td.dart';
 
 import '../../client.dart';
 
-class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
+class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
   Isolate? _isolate;
   SendPort? _sendPort;
+
+  bool _isinitilized = false;
   Future<SendPort> get sendPort async =>
       _sendPort ??= await streamController.stream.whereType<SendPort>().first;
-  final ReceivePort mainReceivePort = ReceivePort('IsolateTdlibWrapper');
+  ReceivePort? mainReceivePort;
   StreamController streamController = StreamController.broadcast();
   StreamSubscription? mainReceivePortSubscription, streamSubscription;
   int _requestId = 0;
@@ -69,28 +71,34 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
     _isolate?.kill(priority: Isolate.immediate);
     await mainReceivePortSubscription?.cancel();
     await streamSubscription?.cancel();
+    mainReceivePort = null;
     _isolate = null;
     mainReceivePortSubscription = null;
     streamSubscription = null;
+    _isinitilized = false;
   }
 
   @override
   Future<void> init() async {
-    _isolate ??= await Isolate.spawn(
-      isolateFunction,
-      {
-        'port': mainReceivePort.sendPort,
-        'path': dynamicLibPath,
-        'clientId': await clientId_
-      },
-      paused: true,
-    );
-    streamSubscription ??= streamController.stream
-        .whereType<SendPort>()
-        .listen((event) => _sendPort = event);
-    mainReceivePortSubscription ??=
-        mainReceivePort.listen(streamController.sink.add);
-    _isolate!.resume(_isolate!.pauseCapability!);
+    if (!_isinitilized) {
+      mainReceivePort ??= ReceivePort('IsolateTdlibWrapper');
+      _isolate ??= await Isolate.spawn(
+        isolateFunction,
+        {
+          'port': mainReceivePort!.sendPort,
+          'path': dynamicLibPath,
+          'clientId': await clientId_
+        },
+        paused: true,
+      );
+      streamSubscription ??= streamController.stream
+          .whereType<SendPort>()
+          .listen((event) => _sendPort = event);
+      mainReceivePortSubscription ??=
+          mainReceivePort?.listen(streamController.sink.add);
+      _isolate!.resume(_isolate!.pauseCapability!);
+      _isinitilized = true;
+    }
   }
 
   static isolateFunction(Map<String, dynamic> message) {

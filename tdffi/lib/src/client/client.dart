@@ -19,6 +19,7 @@ abstract class LifeCycle {
   Future<void> destroy();
 }
 
+abstract class AbstractNativeTdlibWrapper extends LifeCycle {
   Future<int> get clientId_;
   void sendAsync(api.Func request);
   Future<api.TlObject?> receive([double timeout = 1]);
@@ -85,6 +86,12 @@ class NativeTdlibWrapper extends api.td_json_client
 
   @override
   Future<int> get clientId_ async => clientId;
+
+  @override
+  Future<void> destroy() async {}
+
+  @override
+  Future<void> init() async {}
 }
 
 void eventEmmiter(Map<String, dynamic> args) async {
