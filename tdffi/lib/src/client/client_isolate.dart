@@ -28,6 +28,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
     request0['@xtype'] = 'execute';
     (await sendPort).send(json.encode(request0));
     var response = await streamController.stream
+        .whereType<Map>()
         // .transform(json.decoder)
         .map((event) => event as Map<String, dynamic>)
         .where((event) => (event)['@sync'] == request0['@sync'])
@@ -64,15 +65,20 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
 
   @override
   Future<void> init() async {
-    _isolate ??= await Isolate.spawn(isolateFunction,
-        {'port': mainReceivePort.sendPort, 'path': dynamicLibPath},
-        paused: false);
-    streamSubscription ??=
-        streamController.stream.whereType<SendPort>().listen((event) {
-      _sendPort = event;
-    });
+    _isolate ??= await Isolate.spawn(
+      isolateFunction,
+      {
+        'port': mainReceivePort.sendPort,
+        'path': dynamicLibPath,
+      },
+      paused: true,
+    );
+    streamSubscription ??= streamController.stream
+        .whereType<SendPort>()
+        .listen((event) => _sendPort = event);
     mainReceivePortSubscription ??=
         mainReceivePort.listen(streamController.sink.add);
+    _isolate!.resume(_isolate!.pauseCapability!);
   }
 
   static isolateFunction(Map<String, dynamic> message) {
