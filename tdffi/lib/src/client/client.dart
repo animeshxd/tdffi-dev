@@ -19,7 +19,7 @@ abstract class LifeCycle {
   Future<void> destroy();
 }
 
-abstract class AbstractNativeTdlibWrapper {
+  Future<int> get clientId_;
   void sendAsync(api.Func request);
   Future<api.TlObject?> receive([double timeout = 1]);
   Future<T> execute<T extends api.TlObject>(api.SyncFunc request);
@@ -82,6 +82,9 @@ class NativeTdlibWrapper extends api.td_json_client
     }
     return object as T;
   }
+
+  @override
+  Future<int> get clientId_ async => clientId;
 }
 
 void eventEmmiter(Map<String, dynamic> args) async {

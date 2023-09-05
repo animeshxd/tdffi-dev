@@ -18,9 +18,19 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
   StreamSubscription? mainReceivePortSubscription, streamSubscription;
   int _requestId = 0;
   final String dynamicLibPath;
+  int? _clientId;
+
   void _sendToIsolate(String json) async => (await sendPort).send(json);
 
-  IsolateTdlibWrapper(this.dynamicLibPath);
+  @override
+  Future<int> get clientId_ async {
+    if (_clientId != null) return _clientId!;
+    _sendToIsolate('{"@xtype": "getClientId"}');
+    _clientId ??= await streamController.stream.whereType<int>().first;
+    return _clientId!;
+  }
+
+  IsolateTdlibWrapper(this.dynamicLibPath, [this._clientId]);
 
   @override
   Future<T> execute<T extends TlObject>(SyncFunc request) async {
@@ -71,6 +81,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
       {
         'port': mainReceivePort.sendPort,
         'path': dynamicLibPath,
+        'clientId': await clientId_
       },
       paused: true,
     );
@@ -85,13 +96,13 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
   static isolateFunction(Map<String, dynamic> message) {
     SendPort sendPorttoMain = message['port'] as SendPort;
     String dynamicLibPath = message['path'] as String;
+    int? clientId = message['clientId'] as int?;
+
     ReceivePort receivePortFromMain = ReceivePort();
     sendPorttoMain.send(receivePortFromMain.sendPort);
 
-    ReceivePort receivePort = ReceivePort();
-    sendPort.send(receivePort.sendPort);
-    final client = NativeTdlibWrapper(DynamicLibrary.open(dynamicLibPath));
-    final clientId = client.clientId;
+    final client =
+        NativeTdlibWrapper(DynamicLibrary.open(dynamicLibPath), clientId);
 
     void send(int? sync, Pointer<Utf8> resp) {
       var map = json.decode(resp.toDartString()) as Map;
@@ -111,9 +122,12 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
           malloc.free(request);
           break;
         case 'sendAsync':
-          client.td_send(clientId, request);
+          client.td_send(client.clientId, request);
           break;
         case 'receive':
+          break;
+        case 'getClientId':
+          sendPorttoMain.send(client.clientId);
           break;
         default:
       }
