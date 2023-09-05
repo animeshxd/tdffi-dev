@@ -18,6 +18,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
   StreamSubscription? mainReceivePortSubscription, streamSubscription;
   int _requestId = 0;
   final String dynamicLibPath;
+  void _sendToIsolate(String json) async => (await sendPort).send(json);
 
   IsolateTdlibWrapper(this.dynamicLibPath);
 
@@ -26,7 +27,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
     var request0 = request.toJson();
     request0['@sync'] = ++_requestId;
     request0['@xtype'] = 'execute';
-    (await sendPort).send(json.encode(request0));
+    _sendToIsolate(json.encode(request0));
     var response = await streamController.stream
         .whereType<Map>()
         // .transform(json.decoder)
@@ -50,7 +51,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
     var request0 = request.toJson();
     request0['@sync'] = ++_requestId;
     request0['@xtype'] = 'sendAsync';
-    _sendPort!.send(json.encode(request0));
+    _sendToIsolate(json.encode(request0));
   }
 
   @override
@@ -82,8 +83,10 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
   }
 
   static isolateFunction(Map<String, dynamic> message) {
-    SendPort sendPort = message['port'] as SendPort;
+    SendPort sendPorttoMain = message['port'] as SendPort;
     String dynamicLibPath = message['path'] as String;
+    ReceivePort receivePortFromMain = ReceivePort();
+    sendPorttoMain.send(receivePortFromMain.sendPort);
 
     ReceivePort receivePort = ReceivePort();
     sendPort.send(receivePort.sendPort);
@@ -93,10 +96,10 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper, LifeCycle {
     void send(int? sync, Pointer<Utf8> resp) {
       var map = json.decode(resp.toDartString()) as Map;
       map['@sync'] = sync;
-      sendPort.send(map);
+      sendPorttoMain.send(map);
     }
 
-    receivePort.listen((message) {
+    receivePortFromMain.listen((message) {
       var map = json.decode(message);
       String xtype = map.remove('@xtype');
       int? sync = map.remove('@sync');
