@@ -149,3 +149,100 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
     });
   }
 }
+
+class TdlibEventController2 implements AbstractNativeTdlibWrapper {
+  int _requestId = 0;
+
+  bool isRunning = false;
+  bool _initialized = false;
+  final String dynamicLibPath;
+  final AbstractNativeTdlibWrapper wrapper;
+
+  final _subject = StreamController<TlObject>.broadcast();
+
+  TdlibEventController2(this.dynamicLibPath, this.wrapper);
+
+  Stream<TlObject> get _event => _subject.stream;
+
+  /// Contains notifications about data changes
+  Stream<Update> get updates => _event.whereType<Update>();
+
+  final ReceivePort _receivePort = ReceivePort("Tdlib");
+  StreamSubscription? _subscription;
+  Isolate? _isolate;
+  // Map<String, api.UpdateOption> updateOptions = {};
+
+  @override
+  Future<void> init() async {
+    await wrapper.init();
+
+    if (!_initialized) {
+      var args = {
+        'port': _receivePort.sendPort,
+        'path': dynamicLibPath,
+        'clientId': await wrapper.clientId_
+      };
+      _isolate = await Isolate.spawn(
+        eventEmmiter,
+        args,
+        paused: true,
+        debugName: 'eventEmmiter',
+      );
+      _subscription ??=
+          _receivePort.listen((message) => _subject.sink.add(message));
+      _initialized = true;
+    }
+  }
+
+  /// Start tdlib event stream
+  Future<void> start() async {
+    await init();
+    if (!isRunning) {
+      _isolate!.resume(_isolate!.pauseCapability!);
+      isRunning = true;
+    }
+  }
+
+  @override
+  Future<void> destroy() async {
+    await wrapper.destroy();
+    await _subscription?.cancel();
+    _subscription = null;
+    _isolate?.kill(priority: Isolate.immediate);
+    isRunning = false;
+    _initialized = false;
+  }
+
+  @override
+  Future<T> execute<T extends TlObject>(SyncFunc request) async =>
+      await wrapper.execute<T>(request);
+
+  @override
+  Future<TlObject?> receive([double timeout = 1]) async =>
+      await wrapper.receive(timeout);
+
+  @override
+  void sendAsync(Func request) async => wrapper.sendAsync(request);
+
+  @override
+  Future<int> get clientId_ async => await wrapper.clientId_;
+}
+
+extension TdlibEventExt2 on TdlibEventController2 {
+  ///Sends request to the TDLib client.
+  ///
+  /// Throws [TelegramError] on [api.Error]
+  /// and Throws [TelegramClientNotStarted] if client is not started
+  Future<T> send<T extends TlObject>(Func request) async {
+    if (!isRunning) throw TelegramClientNotStarted();
+    request.extra = ++_requestId;
+    sendAsync(request);
+    var event =
+        await _event.where((event) => event.extra == request.extra).first;
+
+    if (event is Error) {
+      throw TelegramError.fromError(event);
+    }
+    return event as T;
+  }
+}
