@@ -14,7 +14,7 @@ void main() async {
         use_test_dc: false,
         api_hash: 'a3406de8d171bb422bb6ddf3bbd800e2',
         api_id: 94575,
-        database_directory: '../../../../tmp'),
+        database_directory: '/tmp/tdlib'),
     dynamicLibPath: '../td/build/$defaultDynamicLibFile',
   );
   await client.start();
