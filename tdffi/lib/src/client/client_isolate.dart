@@ -96,13 +96,11 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
         paused: true,
         debugName: 'ControlIsolate',
       );
-      streamSubscription ??= streamController.stream
       streamSubscription ??= streamController!.stream
           .whereType<SendPort>()
           .listen((event) => _sendPort = event);
       mainReceivePortSubscription ??=
           mainReceivePort?.listen(streamController!.sink.add);
-          mainReceivePort?.listen(streamController.sink.add);
       _isolate!.resume(_isolate!.pauseCapability!);
       _isinitilized = true;
     }
