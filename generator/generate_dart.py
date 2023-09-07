@@ -149,13 +149,16 @@ def generate_func_dart(functions: dict, abc: dict):
             )
             write(f, FUNC_BODY, **_)
 
-def generate_extension_dart(abstract_classes: dict):
+def generate_extension_dart(abstract_classes: dict, classes: dict):
     """ generate extension for abstract type"""
+    def generate_body(name):
+        description: str = classes.get(name, {}).get('description', '')
+        return EXTENSION_METHOD_BODY.format(type=name, name=lowerCamelCase(name), comment=f'/// {description}' )
     with open(EXPORT_EXTENSION_FILE, 'w') as e:
         write(e, IMPORT_CLASS_DART)
         write(e, IMPORT_ABC_DART)
         for name, body in abstract_classes.items():
-            body = (EXTENSION_METHOD_BODY.format(type=i, name=lowerCamelCase(i)) for i in body['child'])
+            body = (generate_body(i) for i in body['child'])
             write(e, EXTENSION_BODY, name=name, body="\n".join(body))
 
 def generate_map_to_class_dart(classes: dict):
@@ -186,7 +189,7 @@ def generate():
     generate_abc_dart(abstract_classes)
     generate_child_dart(classes, abstract_classes)
     generate_func_dart(functions, abstract_classes)
-    generate_extension_dart(abstract_classes)
+    generate_extension_dart(abstract_classes, classes)
     generate_map_to_class_dart(classes)
 
     with open(BASE_EXPORT_DIR, 'w') as f:

@@ -159,6 +159,7 @@ extension {name}Ext on {name} {{
 """
 
 EXTENSION_METHOD_BODY = """
+{comment}
 {type}? get {name} {{
   if(this is {type}){{
       return this as {type};
