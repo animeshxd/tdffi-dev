@@ -17,6 +17,9 @@ void main() async {
         database_directory: '/tmp/tdlib'),
     dynamicLibPath: '../td/build/$defaultDynamicLibFile',
   );
+  // REQUIRED for flutter Hot Restart 
+  // client.sendAsync(Close());
+  // client.clientId = client.td_create_client_id();
   await client.start();
   await client.execute(SetLogVerbosityLevel(new_verbosity_level: 0));
   var user = await client.login(
