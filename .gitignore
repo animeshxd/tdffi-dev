@@ -1,2 +1,4 @@
 pubspec.lock
 .dart_tool
+.vscode/
+**/*.pyc
