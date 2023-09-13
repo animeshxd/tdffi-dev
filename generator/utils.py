@@ -1,8 +1,7 @@
 import enum
 import json
-import os
 import re
-from typing import Any, Optional, Tuple
+from typing import Any, Tuple
 
 from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE, DART_TYPES
 
