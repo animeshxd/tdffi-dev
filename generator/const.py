@@ -19,7 +19,7 @@ DART_TYPES = {
     'string': 'String',
     'int32': 'int',
     'int53': 'int',
-    'int64': 'String',
+    'int64': 'int64',
     'bytes': 'bytes',  # 'Uint8List',
     'Bool': 'bool',
     "emojis": 'List<String>',
@@ -63,10 +63,17 @@ IMPORT_EXT_DART = f"import '{IMPORT_FROM}extensions.dart';"
 IMPORT_OBJECTS_DART = f"import '{IMPORT_FROM}objects.dart';"
 
 
-BYTES_TYPEDEF = """
+TYPEDEFS = """
 /// the bytes (`List<int>`) are base64-encoded
 typedef bytes = String;
+/// string representation of int
+typedef int64 = String;
 """
+
+TYPEDEFS_DESCRIPTION = {
+    'bytes': '; base64-encoded bytes `List<int>`',
+    'int64': '; string representation of int, use `int.parse`'
+}
 
 CLASS_BODY = """
 ///{description}

@@ -32,8 +32,10 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
             static_parameters.append(f"{name_}: {name_}")
 
             write(f, f"/// [{name_}] {description}")  # parameter comment
-            if _type == 'bytes':
-                write(f, '/// ; base64-encoded bytes `List<int>`')
+            
+            has_extra_type_info = TYPEDEFS_DESCRIPTION.get(_type)
+            if has_extra_type_info:
+                write(f, '/// {has_extra_type_info}')
             write(f, f"{late}{type_} {name_};")  # parameter field
 
             if enum == Type.TL:
@@ -82,7 +84,7 @@ def generate_abc_dart(abstract_classes: dict):
         write(f, IMPORT_)
         write(f, IMPORT_CLASS_DART)
         write(f, IMPORT_OBJECTS_DART)
-        write(f, BYTES_TYPEDEF)
+        write(f, TYPEDEFS)
         write(f, TlObject)
         write(f, EXTENSION_ON_ABC_BODY)
         write(f, Func)
