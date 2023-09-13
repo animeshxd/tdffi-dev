@@ -14,6 +14,21 @@ EXPORT_MAP_CLASS_STR_FILE = BASE_DIR_DART + "objects.dart"
 EXPORT_EXTENSION_FILE = BASE_DIR_DART + 'extensions.dart'
 BASE_EXPORT_DIR = os.path.join(DART_PACKAGE_DIR, "lib/td.dart")
 
+DART_TYPES = {
+    'double': 'double',
+    'string': 'String',
+    'int32': 'int',
+    'int53': 'int',
+    'int64': 'String',
+    'bytes': 'bytes',  # 'Uint8List',
+    'Bool': 'bool',
+    "emojis": 'List<String>',
+    'dynamic': 'dynamic',
+
+    # vector {t:Type} # [ t ] = Vector t
+}
+
+
 TlObject = """
 abstract class TlObject {
   /// Object to Map serializer

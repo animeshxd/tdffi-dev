@@ -4,7 +4,7 @@ import os
 import re
 from typing import Any, Optional, Tuple
 
-from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE, BASE_DIR_JSON
+from const import ABC_CLASS_JSON_FILE, CLASS_JSON_FILE, FUNC_JSON_FILE, DART_TYPES
 
 
 class Serializer(json.JSONEncoder):
@@ -34,19 +34,6 @@ class Type(enum.Enum):
         return super()._missing_(value)
 
 
-dart_types = {
-    'double': 'double',
-    'string': 'String',
-    'int32': 'int',
-    'int53': 'int',
-    'int64': 'String',
-    'bytes': 'bytes',  # 'Uint8List',
-    'Bool': 'bool',
-    "emojis": 'List<String>',
-    'dynamic': 'dynamic',
-
-    # vector {t:Type} # [ t ] = Vector t
-}
 
 
 def CamelCase(x: str):
@@ -63,7 +50,7 @@ def get_dart_type(type_: str) -> Tuple[str, str, Type, int]:
     if type_.startswith('vector'):
         return _vector_to_List(type_)
 
-    dart_type = dart_types.get(type_, None)
+    dart_type = DART_TYPES.get(type_, None)
 
     if dart_type is not None:
         return dart_type, dart_type, Type.DART, 0
