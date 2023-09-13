@@ -2781,7 +2781,8 @@ class GetCallbackQueryMessage extends Func {
   late int message_id;
 
   /// [callback_query_id] Identifier of the callback query
-  late String callback_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 callback_query_id;
 
   /// Returns information about a message with the callback button that originated a callback query; for bots only
   ///
@@ -2818,7 +2819,7 @@ class GetCallbackQueryMessage extends Func {
     var clientId = _map['@clientId'];
     var chat_id = _map['chat_id']! as int;
     var message_id = _map['message_id']! as int;
-    var callback_query_id = _map['callback_query_id']! as String;
+    var callback_query_id = _map['callback_query_id']! as int64;
     return GetCallbackQueryMessage(
       extra: extra,
       clientId: clientId,
@@ -6608,7 +6609,8 @@ class SendInlineQueryResultMessage extends Func {
   MessageSendOptions? options;
 
   /// [query_id] Identifier of the inline query
-  late String query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 query_id;
 
   /// [result_id] Identifier of the inline result
   late String result_id;
@@ -6661,7 +6663,7 @@ class SendInlineQueryResultMessage extends Func {
     var message_thread_id = _map['message_thread_id']! as int;
     var reply_to = MessageReplyTo.fromMap(_map['reply_to']);
     var options = MessageSendOptions.fromMap(_map['options']);
-    var query_id = _map['query_id']! as String;
+    var query_id = _map['query_id']! as int64;
     var result_id = _map['result_id']! as String;
     var hide_via_bot = _map['hide_via_bot']! as bool;
     return SendInlineQueryResultMessage(
@@ -8083,7 +8085,8 @@ class EditForumTopic extends Func {
   late bool edit_icon_custom_emoji;
 
   /// [icon_custom_emoji_id] Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
-  late String icon_custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 icon_custom_emoji_id;
 
   /// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
   ///
@@ -8126,7 +8129,7 @@ class EditForumTopic extends Func {
     var message_thread_id = _map['message_thread_id']! as int;
     var name = _map['name'] as String?;
     var edit_icon_custom_emoji = _map['edit_icon_custom_emoji']! as bool;
-    var icon_custom_emoji_id = _map['icon_custom_emoji_id']! as String;
+    var icon_custom_emoji_id = _map['icon_custom_emoji_id']! as int64;
     return EditForumTopic(
       extra: extra,
       clientId: clientId,
@@ -10511,7 +10514,8 @@ class AnswerInlineQuery extends Func {
   static const String CONSTRUCTOR = "answerInlineQuery";
 
   /// [inline_query_id] Identifier of the inline query
-  late String inline_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 inline_query_id;
 
   /// [is_personal] Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
   late bool is_personal;
@@ -10567,7 +10571,7 @@ class AnswerInlineQuery extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var inline_query_id = _map['inline_query_id']! as String;
+    var inline_query_id = _map['inline_query_id']! as int64;
     var is_personal = _map['is_personal']! as bool;
     var button = InlineQueryResultsButton.fromMap(_map['button']);
     var results = List<InputInlineQueryResult>.from(
@@ -11000,7 +11004,8 @@ class CloseWebApp extends Func {
   static const String CONSTRUCTOR = "closeWebApp";
 
   /// [web_app_launch_id] Identifier of Web App launch, received from openWebApp
-  late String web_app_launch_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 web_app_launch_id;
 
   /// Informs TDLib that a previously opened Web App was closed
   ///
@@ -11028,7 +11033,7 @@ class CloseWebApp extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var web_app_launch_id = _map['web_app_launch_id']! as String;
+    var web_app_launch_id = _map['web_app_launch_id']! as int64;
     return CloseWebApp(
       extra: extra,
       clientId: clientId,
@@ -11180,7 +11185,8 @@ class AnswerCallbackQuery extends Func {
   static const String CONSTRUCTOR = "answerCallbackQuery";
 
   /// [callback_query_id] Identifier of the callback query
-  late String callback_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 callback_query_id;
 
   /// [text] Text of the answer
   late String text;
@@ -11231,7 +11237,7 @@ class AnswerCallbackQuery extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var callback_query_id = _map['callback_query_id']! as String;
+    var callback_query_id = _map['callback_query_id']! as int64;
     var text = _map['text']! as String;
     var show_alert = _map['show_alert']! as bool;
     var url = _map['url']! as String;
@@ -11262,7 +11268,8 @@ class AnswerShippingQuery extends Func {
   static const String CONSTRUCTOR = "answerShippingQuery";
 
   /// [shipping_query_id] Identifier of the shipping query
-  late String shipping_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 shipping_query_id;
 
   /// [shipping_options] Available shipping options
   late List<ShippingOption> shipping_options;
@@ -11303,7 +11310,7 @@ class AnswerShippingQuery extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var shipping_query_id = _map['shipping_query_id']! as String;
+    var shipping_query_id = _map['shipping_query_id']! as int64;
     var shipping_options = List<ShippingOption>.from(
       (_map["shipping_options"] ?? []).map(
         (e) => ShippingOption.fromMap(e),
@@ -11334,7 +11341,8 @@ class AnswerPreCheckoutQuery extends Func {
   static const String CONSTRUCTOR = "answerPreCheckoutQuery";
 
   /// [pre_checkout_query_id] Identifier of the pre-checkout query
-  late String pre_checkout_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 pre_checkout_query_id;
 
   /// [error_message] An error message, empty on success
   late String error_message;
@@ -11370,7 +11378,7 @@ class AnswerPreCheckoutQuery extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var pre_checkout_query_id = _map['pre_checkout_query_id']! as String;
+    var pre_checkout_query_id = _map['pre_checkout_query_id']! as int64;
     var error_message = _map['error_message']! as String;
     return AnswerPreCheckoutQuery(
       extra: extra,
@@ -16424,7 +16432,8 @@ class GetSavedNotificationSound extends Func {
   static const String CONSTRUCTOR = "getSavedNotificationSound";
 
   /// [notification_sound_id] Identifier of the notification sound
-  late String notification_sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 notification_sound_id;
 
   /// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
   ///
@@ -16453,7 +16462,7 @@ class GetSavedNotificationSound extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var notification_sound_id = _map['notification_sound_id']! as String;
+    var notification_sound_id = _map['notification_sound_id']! as int64;
     return GetSavedNotificationSound(
       extra: extra,
       clientId: clientId,
@@ -16573,7 +16582,8 @@ class RemoveSavedNotificationSound extends Func {
   static const String CONSTRUCTOR = "removeSavedNotificationSound";
 
   /// [notification_sound_id] Identifier of the notification sound
-  late String notification_sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 notification_sound_id;
 
   /// Removes a notification sound from the list of saved notification sounds
   ///
@@ -16602,7 +16612,7 @@ class RemoveSavedNotificationSound extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var notification_sound_id = _map['notification_sound_id']! as String;
+    var notification_sound_id = _map['notification_sound_id']! as int64;
     return RemoveSavedNotificationSound(
       extra: extra,
       clientId: clientId,
@@ -18717,7 +18727,8 @@ class WriteGeneratedFilePart extends Func {
   static const String CONSTRUCTOR = "writeGeneratedFilePart";
 
   /// [generation_id] The identifier of the generation process
-  late String generation_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 generation_id;
 
   /// [offset] The offset from which to write the data to the file
   late int offset;
@@ -18759,7 +18770,7 @@ class WriteGeneratedFilePart extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var generation_id = _map['generation_id']! as String;
+    var generation_id = _map['generation_id']! as int64;
     var offset = _map['offset']! as int;
     var data = _map['data']! as bytes;
     return WriteGeneratedFilePart(
@@ -18786,7 +18797,8 @@ class SetFileGenerationProgress extends Func {
   static const String CONSTRUCTOR = "setFileGenerationProgress";
 
   /// [generation_id] The identifier of the generation process
-  late String generation_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 generation_id;
 
   /// [expected_size] Expected size of the generated file, in bytes; 0 if unknown
   late int expected_size;
@@ -18827,7 +18839,7 @@ class SetFileGenerationProgress extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var generation_id = _map['generation_id']! as String;
+    var generation_id = _map['generation_id']! as int64;
     var expected_size = _map['expected_size']! as int;
     var local_prefix_size = _map['local_prefix_size']! as int;
     return SetFileGenerationProgress(
@@ -18854,7 +18866,8 @@ class FinishFileGeneration extends Func {
   static const String CONSTRUCTOR = "finishFileGeneration";
 
   /// [generation_id] The identifier of the generation process
-  late String generation_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 generation_id;
 
   /// [error] If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
   Error? error;
@@ -18887,7 +18900,7 @@ class FinishFileGeneration extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var generation_id = _map['generation_id']! as String;
+    var generation_id = _map['generation_id']! as int64;
     var error = Error.fromMap(_map['error']);
     return FinishFileGeneration(
       extra: extra,
@@ -20808,7 +20821,8 @@ class DiscardCall extends Func {
   late bool is_video;
 
   /// [connection_id] Identifier of the connection used during the call
-  late String connection_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 connection_id;
 
   /// Discards a call
   ///
@@ -20851,7 +20865,7 @@ class DiscardCall extends Func {
     var is_disconnected = _map['is_disconnected']! as bool;
     var duration = _map['duration']! as int;
     var is_video = _map['is_video']! as bool;
-    var connection_id = _map['connection_id']! as String;
+    var connection_id = _map['connection_id']! as int64;
     return DiscardCall(
       extra: extra,
       clientId: clientId,
@@ -24184,7 +24198,8 @@ class GetArchivedStickerSets extends Func {
   late StickerType sticker_type;
 
   /// [offset_sticker_set_id] Identifier of the sticker set from which to return the result
-  late String offset_sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 offset_sticker_set_id;
 
   /// [limit] The maximum number of sticker sets to return; up to 100
   late int limit;
@@ -24223,7 +24238,7 @@ class GetArchivedStickerSets extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var sticker_type = StickerType.fromMap(_map['sticker_type'])!;
-    var offset_sticker_set_id = _map['offset_sticker_set_id']! as String;
+    var offset_sticker_set_id = _map['offset_sticker_set_id']! as int64;
     var limit = _map['limit']! as int;
     return GetArchivedStickerSets(
       extra: extra,
@@ -24368,7 +24383,8 @@ class GetStickerSet extends Func {
   static const String CONSTRUCTOR = "getStickerSet";
 
   /// [set_id] Identifier of the sticker set
-  late String set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 set_id;
 
   /// Returns information about a sticker set by its identifier
   ///
@@ -24396,7 +24412,7 @@ class GetStickerSet extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var set_id = _map['set_id']! as String;
+    var set_id = _map['set_id']! as int64;
     return GetStickerSet(
       extra: extra,
       clientId: clientId,
@@ -24589,7 +24605,8 @@ class ChangeStickerSet extends Func {
   static const String CONSTRUCTOR = "changeStickerSet";
 
   /// [set_id] Identifier of the sticker set
-  late String set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 set_id;
 
   /// [is_installed] The new value of is_installed
   late bool is_installed;
@@ -24630,7 +24647,7 @@ class ChangeStickerSet extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var set_id = _map['set_id']! as String;
+    var set_id = _map['set_id']! as int64;
     var is_installed = _map['is_installed']! as bool;
     var is_archived = _map['is_archived']! as bool;
     return ChangeStickerSet(
@@ -24657,7 +24674,7 @@ class ViewTrendingStickerSets extends Func {
   static const String CONSTRUCTOR = "viewTrendingStickerSets";
 
   /// [sticker_set_ids] Identifiers of viewed trending sticker sets
-  late List<String> sticker_set_ids;
+  late List<int64> sticker_set_ids;
 
   /// Informs the server that some trending sticker sets have been viewed by the user
   ///
@@ -24686,9 +24703,9 @@ class ViewTrendingStickerSets extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var sticker_set_ids = List<String>.from(
+    var sticker_set_ids = List<int64>.from(
       (_map["sticker_set_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return ViewTrendingStickerSets(
@@ -24716,7 +24733,7 @@ class ReorderInstalledStickerSets extends Func {
   late StickerType sticker_type;
 
   /// [sticker_set_ids] Identifiers of installed sticker sets in the new correct order
-  late List<String> sticker_set_ids;
+  late List<int64> sticker_set_ids;
 
   /// Changes the order of installed sticker sets
   ///
@@ -24750,9 +24767,9 @@ class ReorderInstalledStickerSets extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var sticker_type = StickerType.fromMap(_map['sticker_type'])!;
-    var sticker_set_ids = List<String>.from(
+    var sticker_set_ids = List<int64>.from(
       (_map["sticker_set_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return ReorderInstalledStickerSets(
@@ -25424,7 +25441,7 @@ class GetCustomEmojiStickers extends Func {
   static const String CONSTRUCTOR = "getCustomEmojiStickers";
 
   /// [custom_emoji_ids] Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
-  late List<String> custom_emoji_ids;
+  late List<int64> custom_emoji_ids;
 
   /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
   ///
@@ -25453,9 +25470,9 @@ class GetCustomEmojiStickers extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_ids = List<String>.from(
+    var custom_emoji_ids = List<int64>.from(
       (_map["custom_emoji_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return GetCustomEmojiStickers(
@@ -26041,7 +26058,8 @@ class DeleteProfilePhoto extends Func {
   static const String CONSTRUCTOR = "deleteProfilePhoto";
 
   /// [profile_photo_id] Identifier of the profile photo to delete
-  late String profile_photo_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 profile_photo_id;
 
   /// Deletes a profile photo
   ///
@@ -26070,7 +26088,7 @@ class DeleteProfilePhoto extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var profile_photo_id = _map['profile_photo_id']! as String;
+    var profile_photo_id = _map['profile_photo_id']! as int64;
     return DeleteProfilePhoto(
       extra: extra,
       clientId: clientId,
@@ -27750,7 +27768,8 @@ class TerminateSession extends Func {
   static const String CONSTRUCTOR = "terminateSession";
 
   /// [session_id] Session identifier
-  late String session_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 session_id;
 
   /// Terminates a session of the current user
   ///
@@ -27778,7 +27797,7 @@ class TerminateSession extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var session_id = _map['session_id']! as String;
+    var session_id = _map['session_id']! as int64;
     return TerminateSession(
       extra: extra,
       clientId: clientId,
@@ -27847,7 +27866,8 @@ class ToggleSessionCanAcceptCalls extends Func {
   static const String CONSTRUCTOR = "toggleSessionCanAcceptCalls";
 
   /// [session_id] Session identifier
-  late String session_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 session_id;
 
   /// [can_accept_calls] Pass true to allow accepting incoming calls by the session; pass false otherwise
   late bool can_accept_calls;
@@ -27883,7 +27903,7 @@ class ToggleSessionCanAcceptCalls extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var session_id = _map['session_id']! as String;
+    var session_id = _map['session_id']! as int64;
     var can_accept_calls = _map['can_accept_calls']! as bool;
     return ToggleSessionCanAcceptCalls(
       extra: extra,
@@ -27908,7 +27928,8 @@ class ToggleSessionCanAcceptSecretChats extends Func {
   static const String CONSTRUCTOR = "toggleSessionCanAcceptSecretChats";
 
   /// [session_id] Session identifier
-  late String session_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 session_id;
 
   /// [can_accept_secret_chats] Pass true to allow accepting secret chats by the session; pass false otherwise
   late bool can_accept_secret_chats;
@@ -27945,7 +27966,7 @@ class ToggleSessionCanAcceptSecretChats extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var session_id = _map['session_id']! as String;
+    var session_id = _map['session_id']! as int64;
     var can_accept_secret_chats = _map['can_accept_secret_chats']! as bool;
     return ToggleSessionCanAcceptSecretChats(
       extra: extra,
@@ -28068,7 +28089,8 @@ class DisconnectWebsite extends Func {
   static const String CONSTRUCTOR = "disconnectWebsite";
 
   /// [website_id] Website identifier
-  late String website_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 website_id;
 
   /// Disconnects website from the current user's Telegram account
   ///
@@ -28096,7 +28118,7 @@ class DisconnectWebsite extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var website_id = _map['website_id']! as String;
+    var website_id = _map['website_id']! as int64;
     return DisconnectWebsite(
       extra: extra,
       clientId: clientId,
@@ -28414,7 +28436,8 @@ class SetSupergroupStickerSet extends Func {
   late int supergroup_id;
 
   /// [sticker_set_id] New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-  late String sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sticker_set_id;
 
   /// Changes the sticker set of a supergroup; requires can_change_info administrator right
   ///
@@ -28448,7 +28471,7 @@ class SetSupergroupStickerSet extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var supergroup_id = _map['supergroup_id']! as int;
-    var sticker_set_id = _map['sticker_set_id']! as String;
+    var sticker_set_id = _map['sticker_set_id']! as int64;
     return SetSupergroupStickerSet(
       extra: extra,
       clientId: clientId,
@@ -29215,7 +29238,8 @@ class GetChatEventLog extends Func {
   late String query;
 
   /// [from_event_id] Identifier of an event from which to return results. Use 0 to get results from the latest events
-  late String from_event_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 from_event_id;
 
   /// [limit] The maximum number of events to return; up to 100
   late int limit;
@@ -29267,7 +29291,7 @@ class GetChatEventLog extends Func {
     var clientId = _map['@clientId'];
     var chat_id = _map['chat_id']! as int;
     var query = _map['query']! as String;
-    var from_event_id = _map['from_event_id']! as String;
+    var from_event_id = _map['from_event_id']! as int64;
     var limit = _map['limit']! as int;
     var filters = ChatEventLogFilters.fromMap(_map['filters']);
     var user_ids = List<int>.from(
@@ -29431,7 +29455,8 @@ class SendPaymentForm extends Func {
   late InputInvoice input_invoice;
 
   /// [payment_form_id] Payment form identifier returned by getPaymentForm
-  late String payment_form_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 payment_form_id;
 
   /// [order_info_id] Identifier returned by validateOrderInfo, or an empty string
   late String order_info_id;
@@ -29485,7 +29510,7 @@ class SendPaymentForm extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var input_invoice = InputInvoice.fromMap(_map['input_invoice'])!;
-    var payment_form_id = _map['payment_form_id']! as String;
+    var payment_form_id = _map['payment_form_id']! as int64;
     var order_info_id = _map['order_info_id']! as String;
     var shipping_option_id = _map['shipping_option_id']! as String;
     var credentials = InputCredentials.fromMap(_map['credentials'])!;
@@ -30035,7 +30060,8 @@ class RemoveBackground extends Func {
   static const String CONSTRUCTOR = "removeBackground";
 
   /// [background_id] The background identifier
-  late String background_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 background_id;
 
   /// Removes background from the list of installed backgrounds
   ///
@@ -30063,7 +30089,7 @@ class RemoveBackground extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var background_id = _map['background_id']! as String;
+    var background_id = _map['background_id']! as int64;
     return RemoveBackground(
       extra: extra,
       clientId: clientId,
@@ -34047,7 +34073,8 @@ class SetCustomEmojiStickerSetThumbnail extends Func {
   late String name;
 
   /// [custom_emoji_id] Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// Sets a custom emoji sticker set thumbnail; for bots only
   ///
@@ -34082,7 +34109,7 @@ class SetCustomEmojiStickerSetThumbnail extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var name = _map['name']! as String;
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     return SetCustomEmojiStickerSetThumbnail(
       extra: extra,
       clientId: clientId,
@@ -35186,7 +35213,8 @@ class AnswerCustomQuery extends Func {
   static const String CONSTRUCTOR = "answerCustomQuery";
 
   /// [custom_query_id] Identifier of a custom query
-  late String custom_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_query_id;
 
   /// [data] JSON-serialized answer to the query
   late String data;
@@ -35222,7 +35250,7 @@ class AnswerCustomQuery extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_query_id = _map['custom_query_id']! as String;
+    var custom_query_id = _map['custom_query_id']! as int64;
     var data = _map['data']! as String;
     return AnswerCustomQuery(
       extra: extra,

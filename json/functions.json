@@ -882,8 +882,8 @@
             "callback_query_id": {
                 "description": "Identifier of the callback query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -2489,8 +2489,8 @@
             "query_id": {
                 "description": "Identifier of the inline query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -3220,8 +3220,8 @@
             "icon_custom_emoji_id": {
                 "description": "Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -4228,8 +4228,8 @@
             "inline_query_id": {
                 "description": "Identifier of the inline query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -4502,8 +4502,8 @@
             "web_app_launch_id": {
                 "description": "Identifier of Web App launch, received from openWebApp",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -4571,8 +4571,8 @@
             "callback_query_id": {
                 "description": "Identifier of the callback query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -4618,8 +4618,8 @@
             "shipping_query_id": {
                 "description": "Identifier of the shipping query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -4649,8 +4649,8 @@
             "pre_checkout_query_id": {
                 "description": "Identifier of the pre-checkout query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -6586,8 +6586,8 @@
             "notification_sound_id": {
                 "description": "Identifier of the notification sound",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -6622,8 +6622,8 @@
             "notification_sound_id": {
                 "description": "Identifier of the notification sound",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -7412,8 +7412,8 @@
             "generation_id": {
                 "description": "The identifier of the generation process",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -7443,8 +7443,8 @@
             "generation_id": {
                 "description": "The identifier of the generation process",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -7474,8 +7474,8 @@
             "generation_id": {
                 "description": "The identifier of the generation process",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -8348,8 +8348,8 @@
             "connection_id": {
                 "description": "Identifier of the connection used during the call",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -9616,8 +9616,8 @@
             "offset_sticker_set_id": {
                 "description": "Identifier of the sticker set from which to return the result",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -9685,8 +9685,8 @@
             "set_id": {
                 "description": "Identifier of the sticker set",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -9761,8 +9761,8 @@
             "set_id": {
                 "description": "Identifier of the sticker set",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -9792,8 +9792,8 @@
             "sticker_set_ids": {
                 "description": "Identifiers of viewed trending sticker sets",
                 "nullable": false,
-                "type": "List<String>",
-                "vectorElementType": "String",
+                "type": "List<int64>",
+                "vectorElementType": "int64",
                 "enum": 6,
                 "vector_depth": 1
             }
@@ -9815,8 +9815,8 @@
             "sticker_set_ids": {
                 "description": "Identifiers of installed sticker sets in the new correct order",
                 "nullable": false,
-                "type": "List<String>",
-                "vectorElementType": "String",
+                "type": "List<int64>",
+                "vectorElementType": "int64",
                 "enum": 6,
                 "vector_depth": 1
             }
@@ -10033,8 +10033,8 @@
             "custom_emoji_ids": {
                 "description": "Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously",
                 "nullable": false,
-                "type": "List<String>",
-                "vectorElementType": "String",
+                "type": "List<int64>",
+                "vectorElementType": "int64",
                 "enum": 6,
                 "vector_depth": 1
             }
@@ -10201,8 +10201,8 @@
             "profile_photo_id": {
                 "description": "Identifier of the profile photo to delete",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -10792,8 +10792,8 @@
             "session_id": {
                 "description": "Session identifier",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -10813,8 +10813,8 @@
             "session_id": {
                 "description": "Session identifier",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -10836,8 +10836,8 @@
             "session_id": {
                 "description": "Session identifier",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -10880,8 +10880,8 @@
             "website_id": {
                 "description": "Website identifier",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -11001,8 +11001,8 @@
             "sticker_set_id": {
                 "description": "New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -11308,8 +11308,8 @@
             "from_event_id": {
                 "description": "Identifier of an event from which to return results. Use 0 to get results from the latest events",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -11409,8 +11409,8 @@
             "payment_form_id": {
                 "description": "Payment form identifier returned by getPaymentForm",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },
@@ -11602,8 +11602,8 @@
             "background_id": {
                 "description": "The background identifier",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -12992,8 +12992,8 @@
             "custom_emoji_id": {
                 "description": "Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -13385,8 +13385,8 @@
             "custom_query_id": {
                 "description": "Identifier of a custom query",
                 "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
+                "type": "int64",
+                "vectorElementType": "int64",
                 "enum": 3,
                 "vector_depth": 0
             },

@@ -3521,7 +3521,8 @@ class StickerFullTypeCustomEmoji extends StickerFullType {
   int? clientId;
 
   /// [custom_emoji_id] Identifier of the custom emoji
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// [needs_repainting] True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
   late bool needs_repainting;
@@ -3555,7 +3556,7 @@ class StickerFullTypeCustomEmoji extends StickerFullType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     var needs_repainting = _map['needs_repainting']! as bool;
     return StickerFullTypeCustomEmoji(
       extra: extra,
@@ -4185,10 +4186,12 @@ class Sticker extends TlObject {
   int? clientId;
 
   /// [id] Unique sticker identifier within the set; 0 if none
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [set_id] Identifier of the sticker set to which the sticker belongs; 0 if none
-  late String set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 set_id;
 
   /// [width] Sticker width; as defined by the sender
   late int width;
@@ -4259,8 +4262,8 @@ class Sticker extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
-    var set_id = _map['set_id']! as String;
+    var id = _map['id']! as int64;
+    var set_id = _map['set_id']! as int64;
     var width = _map['width']! as int;
     var height = _map['height']! as int;
     var emoji = _map['emoji']! as String;
@@ -4902,7 +4905,8 @@ class Game extends TlObject {
   int? clientId;
 
   /// [id] Unique game identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [short_name] Game short name
   late String short_name;
@@ -4961,7 +4965,7 @@ class Game extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var short_name = _map['short_name']! as String;
     var title = _map['title']! as String;
     var text = FormattedText.fromMap(_map['text'])!;
@@ -5074,7 +5078,8 @@ class Poll extends TlObject {
   int? clientId;
 
   /// [id] Unique poll identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [question] Poll question; 1-300 characters
   late String question;
@@ -5148,7 +5153,7 @@ class Poll extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var question = _map['question']! as String;
     var options = List<PollOption>.from(
       (_map["options"] ?? []).map(
@@ -5196,7 +5201,8 @@ class Background extends TlObject {
   int? clientId;
 
   /// [id] Unique background identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [is_default] True, if this is one of default backgrounds
   late bool is_default;
@@ -5250,7 +5256,7 @@ class Background extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var is_default = _map['is_default']! as bool;
     var is_dark = _map['is_dark']! as bool;
     var name = _map['name']! as String;
@@ -5392,7 +5398,8 @@ class ProfilePhoto extends TlObject {
   int? clientId;
 
   /// [id] Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of user profile photos
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [small] A small (160x160) user profile photo. The file can be downloaded only before the photo is changed
   late File small;
@@ -5446,7 +5453,7 @@ class ProfilePhoto extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var small = File.fromMap(_map['small'])!;
     var big = File.fromMap(_map['big'])!;
     var minithumbnail = Minithumbnail.fromMap(_map['minithumbnail']);
@@ -6005,10 +6012,12 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType {
   int? clientId;
 
   /// [sticker_set_id] Sticker set identifier
-  late String sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sticker_set_id;
 
   /// [sticker_id] Identifier of the sticker in the set
-  late String sticker_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sticker_id;
 
   /// Information about the sticker, which was used to create the chat photo
   ChatPhotoStickerTypeRegularOrMask(
@@ -6040,8 +6049,8 @@ class ChatPhotoStickerTypeRegularOrMask extends ChatPhotoStickerType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var sticker_set_id = _map['sticker_set_id']! as String;
-    var sticker_id = _map['sticker_id']! as String;
+    var sticker_set_id = _map['sticker_set_id']! as int64;
+    var sticker_id = _map['sticker_id']! as int64;
     return ChatPhotoStickerTypeRegularOrMask(
       extra: extra,
       clientId: clientId,
@@ -6064,7 +6073,8 @@ class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType {
   int? clientId;
 
   /// [custom_emoji_id] Identifier of the custom emoji
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// Information about the custom emoji, which was used to create the chat photo
   ChatPhotoStickerTypeCustomEmoji(
@@ -6091,7 +6101,7 @@ class ChatPhotoStickerTypeCustomEmoji extends ChatPhotoStickerType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     return ChatPhotoStickerTypeCustomEmoji(
       extra: extra,
       clientId: clientId,
@@ -6236,7 +6246,8 @@ class ChatPhoto extends TlObject {
   int? clientId;
 
   /// [id] Unique photo identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [added_date] Point in time (Unix timestamp) when the photo has been added
   late int added_date;
@@ -6295,7 +6306,7 @@ class ChatPhoto extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var added_date = _map['added_date']! as int;
     var minithumbnail = Minithumbnail.fromMap(_map['minithumbnail']);
     var sizes = List<PhotoSize>.from(
@@ -6395,7 +6406,8 @@ class InputChatPhotoPrevious extends InputChatPhoto {
   int? clientId;
 
   /// [chat_photo_id] Identifier of the current user's profile photo to reuse
-  late String chat_photo_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 chat_photo_id;
 
   /// A previously used profile photo of the current user
   InputChatPhotoPrevious(
@@ -6422,7 +6434,7 @@ class InputChatPhotoPrevious extends InputChatPhoto {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var chat_photo_id = _map['chat_photo_id']! as String;
+    var chat_photo_id = _map['chat_photo_id']! as int64;
     return InputChatPhotoPrevious(
       extra: extra,
       clientId: clientId,
@@ -7026,7 +7038,8 @@ class EmojiStatus extends TlObject {
   int? clientId;
 
   /// [custom_emoji_id] Identifier of the custom emoji in stickerFormatTgs format
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// [expiration_date] Point in time (Unix timestamp) when the status will expire; 0 if never
   late int expiration_date;
@@ -7060,7 +7073,7 @@ class EmojiStatus extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     var expiration_date = _map['expiration_date']! as int;
     return EmojiStatus(
       extra: extra,
@@ -7084,7 +7097,7 @@ class EmojiStatuses extends TlObject {
   int? clientId;
 
   /// [custom_emoji_ids] The list of custom emoji identifiers
-  late List<String> custom_emoji_ids;
+  late List<int64> custom_emoji_ids;
 
   /// Contains a list of custom emoji identifiers, which can be set as emoji statuses
   EmojiStatuses({required this.custom_emoji_ids, this.extra, this.clientId});
@@ -7110,9 +7123,9 @@ class EmojiStatuses extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_ids = List<String>.from(
+    var custom_emoji_ids = List<int64>.from(
       (_map["custom_emoji_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return EmojiStatuses(
@@ -10209,7 +10222,8 @@ class SupergroupFullInfo extends TlObject {
   late bool has_aggressive_anti_spam_enabled;
 
   /// [sticker_set_id] Identifier of the supergroup sticker set; 0 if none
-  late String sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sticker_set_id;
 
   /// [location] Location to which the supergroup is connected; may be null
   ChatLocation? location;
@@ -10320,7 +10334,7 @@ class SupergroupFullInfo extends TlObject {
     var is_all_history_available = _map['is_all_history_available']! as bool;
     var has_aggressive_anti_spam_enabled =
         _map['has_aggressive_anti_spam_enabled']! as bool;
-    var sticker_set_id = _map['sticker_set_id']! as String;
+    var sticker_set_id = _map['sticker_set_id']! as int64;
     var location = ChatLocation.fromMap(_map['location']);
     var invite_link = ChatInviteLink.fromMap(_map['invite_link']);
     var bot_commands = List<BotCommands>.from(
@@ -11289,7 +11303,8 @@ class ReactionTypeCustomEmoji extends ReactionType {
   int? clientId;
 
   /// [custom_emoji_id] Unique identifier of the custom emoji
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// A reaction with a custom emoji
   ReactionTypeCustomEmoji(
@@ -11316,7 +11331,7 @@ class ReactionTypeCustomEmoji extends ReactionType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     return ReactionTypeCustomEmoji(
       extra: extra,
       clientId: clientId,
@@ -12065,7 +12080,8 @@ class Message extends TlObject {
   late String author_signature;
 
   /// [media_album_id] Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
-  late String media_album_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 media_album_id;
 
   /// [restriction_reason] If non-empty, contains a human-readable description of the reason why access to this message must be restricted
   late String restriction_reason;
@@ -12220,7 +12236,7 @@ class Message extends TlObject {
     var auto_delete_in = _map['auto_delete_in']! as double;
     var via_bot_user_id = _map['via_bot_user_id']! as int;
     var author_signature = _map['author_signature']! as String;
-    var media_album_id = _map['media_album_id']! as String;
+    var media_album_id = _map['media_album_id']! as int64;
     var restriction_reason = _map['restriction_reason']! as String;
     var content = MessageContent.fromMap(_map['content'])!;
     var reply_markup = ReplyMarkup.fromMap(_map['reply_markup']);
@@ -13939,7 +13955,8 @@ class ChatNotificationSettings extends TlObject {
   late bool use_default_sound;
 
   /// [sound_id] Identifier of the notification sound to be played for messages; 0 if sound is disabled
-  late String sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sound_id;
 
   /// [use_default_show_preview] If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
   late bool use_default_show_preview;
@@ -13957,7 +13974,8 @@ class ChatNotificationSettings extends TlObject {
   late bool use_default_story_sound;
 
   /// [story_sound_id] Identifier of the notification sound to be played for stories; 0 if sound is disabled
-  late String story_sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 story_sound_id;
 
   /// [use_default_show_story_sender] If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
   late bool use_default_show_story_sender;
@@ -14040,13 +14058,13 @@ class ChatNotificationSettings extends TlObject {
     var use_default_mute_for = _map['use_default_mute_for']! as bool;
     var mute_for = _map['mute_for']! as int;
     var use_default_sound = _map['use_default_sound']! as bool;
-    var sound_id = _map['sound_id']! as String;
+    var sound_id = _map['sound_id']! as int64;
     var use_default_show_preview = _map['use_default_show_preview']! as bool;
     var show_preview = _map['show_preview']! as bool;
     var use_default_mute_stories = _map['use_default_mute_stories']! as bool;
     var mute_stories = _map['mute_stories']! as bool;
     var use_default_story_sound = _map['use_default_story_sound']! as bool;
-    var story_sound_id = _map['story_sound_id']! as String;
+    var story_sound_id = _map['story_sound_id']! as int64;
     var use_default_show_story_sender =
         _map['use_default_show_story_sender']! as bool;
     var show_story_sender = _map['show_story_sender']! as bool;
@@ -14100,7 +14118,8 @@ class ScopeNotificationSettings extends TlObject {
   late int mute_for;
 
   /// [sound_id] Identifier of the notification sound to be played; 0 if sound is disabled
-  late String sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sound_id;
 
   /// [show_preview] True, if message content must be displayed in notifications
   late bool show_preview;
@@ -14112,7 +14131,8 @@ class ScopeNotificationSettings extends TlObject {
   late bool mute_stories;
 
   /// [story_sound_id] Identifier of the notification sound to be played for stories; 0 if sound is disabled
-  late String story_sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 story_sound_id;
 
   /// [show_story_sender] True, if the sender of stories must be displayed in notifications
   late bool show_story_sender;
@@ -14168,11 +14188,11 @@ class ScopeNotificationSettings extends TlObject {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var mute_for = _map['mute_for']! as int;
-    var sound_id = _map['sound_id']! as String;
+    var sound_id = _map['sound_id']! as int64;
     var show_preview = _map['show_preview']! as bool;
     var use_default_mute_stories = _map['use_default_mute_stories']! as bool;
     var mute_stories = _map['mute_stories']! as bool;
-    var story_sound_id = _map['story_sound_id']! as String;
+    var story_sound_id = _map['story_sound_id']! as int64;
     var show_story_sender = _map['show_story_sender']! as bool;
     var disable_pinned_message_notifications =
         _map['disable_pinned_message_notifications']! as bool;
@@ -15425,7 +15445,8 @@ class ChatPosition extends TlObject {
   late ChatList list;
 
   /// [order] A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
-  late String order;
+  /// ; string representation of int, use `int.parse`
+  late int64 order;
 
   /// [is_pinned] True, if the chat is pinned in the chat list
   late bool is_pinned;
@@ -15467,7 +15488,7 @@ class ChatPosition extends TlObject {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var list = ChatList.fromMap(_map['list'])!;
-    var order = _map['order']! as String;
+    var order = _map['order']! as int64;
     var is_pinned = _map['is_pinned']! as bool;
     var source = ChatSource.fromMap(_map['source']);
     return ChatPosition(
@@ -18014,7 +18035,8 @@ class WebAppInfo extends TlObject {
   int? clientId;
 
   /// [launch_id] Unique identifier for the Web App launch
-  late String launch_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 launch_id;
 
   /// [url] A Web App URL to open in a web view
   late String url;
@@ -18045,7 +18067,7 @@ class WebAppInfo extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var launch_id = _map['launch_id']! as String;
+    var launch_id = _map['launch_id']! as int64;
     var url = _map['url']! as String;
     return WebAppInfo(
       extra: extra,
@@ -18162,7 +18184,8 @@ class ForumTopicIcon extends TlObject {
   late int color;
 
   /// [custom_emoji_id] Unique identifier of the custom emoji shown on the topic icon; 0 if none
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// Describes a forum topic icon
   ForumTopicIcon(
@@ -18194,7 +18217,7 @@ class ForumTopicIcon extends TlObject {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var color = _map['color']! as int;
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     return ForumTopicIcon(
       extra: extra,
       clientId: clientId,
@@ -23330,7 +23353,8 @@ class PaymentForm extends TlObject {
   int? clientId;
 
   /// [id] The payment form identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [invoice] Full information about the invoice
   late Invoice invoice;
@@ -23419,7 +23443,7 @@ class PaymentForm extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var invoice = Invoice.fromMap(_map['invoice'])!;
     var seller_bot_user_id = _map['seller_bot_user_id']! as int;
     var payment_provider_user_id = _map['payment_provider_user_id']! as int;
@@ -30366,7 +30390,8 @@ class MessageForumTopicEdited extends MessageContent {
   late bool edit_icon_custom_emoji_id;
 
   /// [icon_custom_emoji_id] New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
-  late String icon_custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 icon_custom_emoji_id;
 
   /// A forum topic has been edited
   MessageForumTopicEdited(
@@ -30401,7 +30426,7 @@ class MessageForumTopicEdited extends MessageContent {
     var clientId = _map['@clientId'];
     var name = _map['name']! as String;
     var edit_icon_custom_emoji_id = _map['edit_icon_custom_emoji_id']! as bool;
-    var icon_custom_emoji_id = _map['icon_custom_emoji_id']! as String;
+    var icon_custom_emoji_id = _map['icon_custom_emoji_id']! as int64;
     return MessageForumTopicEdited(
       extra: extra,
       clientId: clientId,
@@ -30622,7 +30647,8 @@ class MessageGameScore extends MessageContent {
   late int game_message_id;
 
   /// [game_id] Identifier of the game; may be different from the games presented in the message with the game
-  late String game_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 game_id;
 
   /// [score] New score
   late int score;
@@ -30659,7 +30685,7 @@ class MessageGameScore extends MessageContent {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var game_message_id = _map['game_message_id']! as int;
-    var game_id = _map['game_id']! as String;
+    var game_id = _map['game_id']! as int64;
     var score = _map['score']! as int;
     return MessageGameScore(
       extra: extra,
@@ -30899,7 +30925,8 @@ class MessageGiftedPremium extends MessageContent {
   late String cryptocurrency;
 
   /// [cryptocurrency_amount] The paid amount, in the smallest units of the cryptocurrency
-  late String cryptocurrency_amount;
+  /// ; string representation of int, use `int.parse`
+  late int64 cryptocurrency_amount;
 
   /// [month_count] Number of month the Telegram Premium subscription will be active
   late int month_count;
@@ -30950,7 +30977,7 @@ class MessageGiftedPremium extends MessageContent {
     var currency = _map['currency']! as String;
     var amount = _map['amount']! as int;
     var cryptocurrency = _map['cryptocurrency']! as String;
-    var cryptocurrency_amount = _map['cryptocurrency_amount']! as String;
+    var cryptocurrency_amount = _map['cryptocurrency_amount']! as int64;
     var month_count = _map['month_count']! as int;
     var sticker = Sticker.fromMap(_map['sticker']);
     return MessageGiftedPremium(
@@ -32338,7 +32365,8 @@ class TextEntityTypeCustomEmoji extends TextEntityType {
   int? clientId;
 
   /// [custom_emoji_id] Unique identifier of the custom emoji
-  late String custom_emoji_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 custom_emoji_id;
 
   /// A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
   TextEntityTypeCustomEmoji(
@@ -32365,7 +32393,7 @@ class TextEntityTypeCustomEmoji extends TextEntityType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var custom_emoji_id = _map['custom_emoji_id']! as String;
+    var custom_emoji_id = _map['custom_emoji_id']! as int64;
     return TextEntityTypeCustomEmoji(
       extra: extra,
       clientId: clientId,
@@ -35933,7 +35961,8 @@ class StickerSet extends TlObject {
   int? clientId;
 
   /// [id] Identifier of the sticker set
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [title] Title of the sticker set
   late String title;
@@ -36022,7 +36051,7 @@ class StickerSet extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var title = _map['title']! as String;
     var name = _map['name']! as String;
     var thumbnail = Thumbnail.fromMap(_map['thumbnail']);
@@ -36080,7 +36109,8 @@ class StickerSetInfo extends TlObject {
   int? clientId;
 
   /// [id] Identifier of the sticker set
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [title] Title of the sticker set
   late String title;
@@ -36169,7 +36199,7 @@ class StickerSetInfo extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var title = _map['title']! as String;
     var name = _map['name']! as String;
     var thumbnail = Thumbnail.fromMap(_map['thumbnail']);
@@ -37033,7 +37063,8 @@ class CallServer extends TlObject {
   int? clientId;
 
   /// [id] Server identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [ip_address] Server IPv4 address
   late String ip_address;
@@ -37082,7 +37113,7 @@ class CallServer extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var ip_address = _map['ip_address']! as String;
     var ipv6_address = _map['ipv6_address']! as String;
     var port = _map['port']! as int;
@@ -42400,7 +42431,8 @@ class InlineQueryResults extends TlObject {
   int? clientId;
 
   /// [inline_query_id] Unique identifier of the inline query
-  late String inline_query_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 inline_query_id;
 
   /// [button] Button to be shown above inline query results; may be null
   InlineQueryResultsButton? button;
@@ -42444,7 +42476,7 @@ class InlineQueryResults extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var inline_query_id = _map['inline_query_id']! as String;
+    var inline_query_id = _map['inline_query_id']! as int64;
     var button = InlineQueryResultsButton.fromMap(_map['button']);
     var results = List<InlineQueryResult>.from(
       (_map["results"] ?? []).map(
@@ -43972,10 +44004,12 @@ class ChatEventStickerSetChanged extends ChatEventAction {
   int? clientId;
 
   /// [old_sticker_set_id] Previous identifier of the chat sticker set; 0 if none
-  late String old_sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 old_sticker_set_id;
 
   /// [new_sticker_set_id] New identifier of the chat sticker set; 0 if none
-  late String new_sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 new_sticker_set_id;
 
   /// The supergroup sticker set was changed
   ChatEventStickerSetChanged(
@@ -44006,8 +44040,8 @@ class ChatEventStickerSetChanged extends ChatEventAction {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var old_sticker_set_id = _map['old_sticker_set_id']! as String;
-    var new_sticker_set_id = _map['new_sticker_set_id']! as String;
+    var old_sticker_set_id = _map['old_sticker_set_id']! as int64;
+    var new_sticker_set_id = _map['new_sticker_set_id']! as int64;
     return ChatEventStickerSetChanged(
       extra: extra,
       clientId: clientId,
@@ -45248,7 +45282,8 @@ class ChatEvent extends TlObject {
   int? clientId;
 
   /// [id] Chat event identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [date] Point in time (Unix timestamp) when the event happened
   late int date;
@@ -45292,7 +45327,7 @@ class ChatEvent extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var date = _map['date']! as int;
     var member_id = MessageSender.fromMap(_map['member_id'])!;
     var action = ChatEventAction.fromMap(_map['action'])!;
@@ -48416,7 +48451,8 @@ class PushReceiverId extends TlObject {
   int? clientId;
 
   /// [id] The globally unique identifier of push notification subscription
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification
   PushReceiverId({required this.id, this.extra, this.clientId});
@@ -48442,7 +48478,7 @@ class PushReceiverId extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     return PushReceiverId(
       extra: extra,
       clientId: clientId,
@@ -48856,7 +48892,8 @@ class InputBackgroundRemote extends InputBackground {
   int? clientId;
 
   /// [background_id] The background identifier
-  late String background_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 background_id;
 
   /// A background from the server
   InputBackgroundRemote(
@@ -48883,7 +48920,7 @@ class InputBackgroundRemote extends InputBackground {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var background_id = _map['background_id']! as String;
+    var background_id = _map['background_id']! as int64;
     return InputBackgroundRemote(
       extra: extra,
       clientId: clientId,
@@ -52194,7 +52231,8 @@ class NotificationSound extends TlObject {
   int? clientId;
 
   /// [id] Unique identifier of the notification sound
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [duration] Duration of the sound, in seconds
   late int duration;
@@ -52248,7 +52286,7 @@ class NotificationSound extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var duration = _map['duration']! as int;
     var date = _map['date']! as int;
     var title = _map['title']! as String;
@@ -52576,7 +52614,8 @@ class OptionValueInteger extends OptionValue {
   int? clientId;
 
   /// [value] The value of the option
-  late String value;
+  /// ; string representation of int, use `int.parse`
+  late int64 value;
 
   /// Represents an integer option
   OptionValueInteger({required this.value, this.extra, this.clientId});
@@ -52602,7 +52641,7 @@ class OptionValueInteger extends OptionValue {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var value = _map['value']! as String;
+    var value = _map['value']! as int64;
     return OptionValueInteger(
       extra: extra,
       clientId: clientId,
@@ -54868,7 +54907,8 @@ class Session extends TlObject {
   int? clientId;
 
   /// [id] Session identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [is_current] True, if this session is the current session
   late bool is_current;
@@ -54982,7 +55022,7 @@ class Session extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var is_current = _map['is_current']! as bool;
     var is_password_pending = _map['is_password_pending']! as bool;
     var can_accept_secret_chats = _map['can_accept_secret_chats']! as bool;
@@ -55100,7 +55140,8 @@ class ConnectedWebsite extends TlObject {
   int? clientId;
 
   /// [id] Website identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [domain_name] The domain name of the website
   late String domain_name;
@@ -55169,7 +55210,7 @@ class ConnectedWebsite extends TlObject {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var domain_name = _map['domain_name']! as String;
     var bot_user_id = _map['bot_user_id']! as int;
     var browser = _map['browser']! as String;
@@ -61691,7 +61732,8 @@ class TMeUrlTypeStickerSet extends TMeUrlType {
   int? clientId;
 
   /// [sticker_set_id] Identifier of the sticker set
-  late String sticker_set_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 sticker_set_id;
 
   /// A URL linking to a sticker set
   TMeUrlTypeStickerSet(
@@ -61718,7 +61760,7 @@ class TMeUrlTypeStickerSet extends TMeUrlType {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var sticker_set_id = _map['sticker_set_id']! as String;
+    var sticker_set_id = _map['sticker_set_id']! as int64;
     return TMeUrlTypeStickerSet(
       extra: extra,
       clientId: clientId,
@@ -67081,7 +67123,8 @@ class UpdateNotificationGroup extends Update {
   late int notification_settings_chat_id;
 
   /// [notification_sound_id] Identifier of the notification sound to be played; 0 if sound is disabled
-  late String notification_sound_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 notification_sound_id;
 
   /// [total_count] Total number of unread notifications in the group, can be bigger than number of active notifications
   late int total_count;
@@ -67138,7 +67181,7 @@ class UpdateNotificationGroup extends Update {
     var chat_id = _map['chat_id']! as int;
     var notification_settings_chat_id =
         _map['notification_settings_chat_id']! as int;
-    var notification_sound_id = _map['notification_sound_id']! as String;
+    var notification_sound_id = _map['notification_sound_id']! as int64;
     var total_count = _map['total_count']! as int;
     var added_notifications = List<Notification>.from(
       (_map["added_notifications"] ?? []).map(
@@ -67964,7 +68007,8 @@ class UpdateFileGenerationStart extends Update {
   int? clientId;
 
   /// [generation_id] Unique identifier for the generation process
-  late String generation_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 generation_id;
 
   /// [original_path] The path to a file from which a new file is generated; may be empty
   late String original_path;
@@ -68008,7 +68052,7 @@ class UpdateFileGenerationStart extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var generation_id = _map['generation_id']! as String;
+    var generation_id = _map['generation_id']! as int64;
     var original_path = _map['original_path']! as String;
     var destination_path = _map['destination_path']! as String;
     var conversion = _map['conversion']! as String;
@@ -68036,7 +68080,8 @@ class UpdateFileGenerationStop extends Update {
   int? clientId;
 
   /// [generation_id] Unique identifier for the generation process
-  late String generation_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 generation_id;
 
   /// File generation is no longer needed
   UpdateFileGenerationStop(
@@ -68063,7 +68108,7 @@ class UpdateFileGenerationStop extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var generation_id = _map['generation_id']! as String;
+    var generation_id = _map['generation_id']! as int64;
     return UpdateFileGenerationStop(
       extra: extra,
       clientId: clientId,
@@ -69071,7 +69116,7 @@ class UpdateInstalledStickerSets extends Update {
   late StickerType sticker_type;
 
   /// [sticker_set_ids] The new list of installed ordinary sticker sets
-  late List<String> sticker_set_ids;
+  late List<int64> sticker_set_ids;
 
   /// The list of installed sticker sets was updated
   UpdateInstalledStickerSets(
@@ -69103,9 +69148,9 @@ class UpdateInstalledStickerSets extends Update {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var sticker_type = StickerType.fromMap(_map['sticker_type'])!;
-    var sticker_set_ids = List<String>.from(
+    var sticker_set_ids = List<int64>.from(
       (_map["sticker_set_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return UpdateInstalledStickerSets(
@@ -69356,7 +69401,7 @@ class UpdateSavedNotificationSounds extends Update {
   int? clientId;
 
   /// [notification_sound_ids] The new list of identifiers of saved notification sounds
-  late List<String> notification_sound_ids;
+  late List<int64> notification_sound_ids;
 
   /// The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
   UpdateSavedNotificationSounds(
@@ -69383,9 +69428,9 @@ class UpdateSavedNotificationSounds extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var notification_sound_ids = List<String>.from(
+    var notification_sound_ids = List<int64>.from(
       (_map["notification_sound_ids"] ?? []).map(
-        (e) => e as String,
+        (e) => e as int64,
       ),
     );
     return UpdateSavedNotificationSounds(
@@ -69798,7 +69843,8 @@ class UpdateWebAppMessageSent extends Update {
   int? clientId;
 
   /// [web_app_launch_id] Identifier of Web App launch
-  late String web_app_launch_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 web_app_launch_id;
 
   /// A message was sent by an opened Web App, so the Web App needs to be closed
   UpdateWebAppMessageSent(
@@ -69825,7 +69871,7 @@ class UpdateWebAppMessageSent extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var web_app_launch_id = _map['web_app_launch_id']! as String;
+    var web_app_launch_id = _map['web_app_launch_id']! as int64;
     return UpdateWebAppMessageSent(
       extra: extra,
       clientId: clientId,
@@ -70312,7 +70358,8 @@ class UpdateNewInlineQuery extends Update {
   int? clientId;
 
   /// [id] Unique query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [sender_user_id] Identifier of the user who sent the query
   late int sender_user_id;
@@ -70366,7 +70413,7 @@ class UpdateNewInlineQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var sender_user_id = _map['sender_user_id']! as int;
     var user_location = Location.fromMap(_map['user_location']);
     var chat_type = ChatType.fromMap(_map['chat_type']);
@@ -70477,7 +70524,8 @@ class UpdateNewCallbackQuery extends Update {
   int? clientId;
 
   /// [id] Unique query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [sender_user_id] Identifier of the user who sent the query
   late int sender_user_id;
@@ -70489,7 +70537,8 @@ class UpdateNewCallbackQuery extends Update {
   late int message_id;
 
   /// [chat_instance] Identifier that uniquely corresponds to the chat to which the message was sent
-  late String chat_instance;
+  /// ; string representation of int, use `int.parse`
+  late int64 chat_instance;
 
   /// [payload] Query payload
   late CallbackQueryPayload payload;
@@ -70531,11 +70580,11 @@ class UpdateNewCallbackQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var sender_user_id = _map['sender_user_id']! as int;
     var chat_id = _map['chat_id']! as int;
     var message_id = _map['message_id']! as int;
-    var chat_instance = _map['chat_instance']! as String;
+    var chat_instance = _map['chat_instance']! as int64;
     var payload = CallbackQueryPayload.fromMap(_map['payload'])!;
     return UpdateNewCallbackQuery(
       extra: extra,
@@ -70563,7 +70612,8 @@ class UpdateNewInlineCallbackQuery extends Update {
   int? clientId;
 
   /// [id] Unique query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [sender_user_id] Identifier of the user who sent the query
   late int sender_user_id;
@@ -70572,7 +70622,8 @@ class UpdateNewInlineCallbackQuery extends Update {
   late String inline_message_id;
 
   /// [chat_instance] An identifier uniquely corresponding to the chat a message was sent to
-  late String chat_instance;
+  /// ; string representation of int, use `int.parse`
+  late int64 chat_instance;
 
   /// [payload] Query payload
   late CallbackQueryPayload payload;
@@ -70612,10 +70663,10 @@ class UpdateNewInlineCallbackQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var sender_user_id = _map['sender_user_id']! as int;
     var inline_message_id = _map['inline_message_id']! as String;
-    var chat_instance = _map['chat_instance']! as String;
+    var chat_instance = _map['chat_instance']! as int64;
     var payload = CallbackQueryPayload.fromMap(_map['payload'])!;
     return UpdateNewInlineCallbackQuery(
       extra: extra,
@@ -70642,7 +70693,8 @@ class UpdateNewShippingQuery extends Update {
   int? clientId;
 
   /// [id] Unique query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [sender_user_id] Identifier of the user who sent the query
   late int sender_user_id;
@@ -70686,7 +70738,7 @@ class UpdateNewShippingQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var sender_user_id = _map['sender_user_id']! as int;
     var invoice_payload = _map['invoice_payload']! as String;
     var shipping_address = Address.fromMap(_map['shipping_address'])!;
@@ -70714,7 +70766,8 @@ class UpdateNewPreCheckoutQuery extends Update {
   int? clientId;
 
   /// [id] Unique query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [sender_user_id] Identifier of the user who sent the query
   late int sender_user_id;
@@ -70774,7 +70827,7 @@ class UpdateNewPreCheckoutQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var sender_user_id = _map['sender_user_id']! as int;
     var currency = _map['currency']! as String;
     var total_amount = _map['total_amount']! as int;
@@ -70856,7 +70909,8 @@ class UpdateNewCustomQuery extends Update {
   int? clientId;
 
   /// [id] The query identifier
-  late String id;
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
 
   /// [data] JSON-serialized query data
   late String data;
@@ -70895,7 +70949,7 @@ class UpdateNewCustomQuery extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var id = _map['id']! as String;
+    var id = _map['id']! as int64;
     var data = _map['data']! as String;
     var timeout = _map['timeout']! as int;
     return UpdateNewCustomQuery(
@@ -70969,7 +71023,8 @@ class UpdatePollAnswer extends Update {
   int? clientId;
 
   /// [poll_id] Unique poll identifier
-  late String poll_id;
+  /// ; string representation of int, use `int.parse`
+  late int64 poll_id;
 
   /// [voter_id] Identifier of the message sender that changed the answer to the poll
   late MessageSender voter_id;
@@ -71008,7 +71063,7 @@ class UpdatePollAnswer extends Update {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var poll_id = _map['poll_id']! as String;
+    var poll_id = _map['poll_id']! as int64;
     var voter_id = MessageSender.fromMap(_map['voter_id'])!;
     var option_ids = List<int>.from(
       (_map["option_ids"] ?? []).map(
