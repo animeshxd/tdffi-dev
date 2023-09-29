@@ -206,7 +206,7 @@ def generate_ffi_td_json_client_dart():
     st = time.time()
 
     FFIGEN_YAML_FILE = './ffigen.yaml'
-    FFIGEN_YAML_FILE_TMP = './ffigen.yaml.temp'
+    FFIGEN_YAML_FILE_TMP = f'{FFIGEN_YAML_FILE}.temp'
     SRC_GENERATED_FFI_TD_JSON_FILE = path.join(DART_SRC_GENERATED_DIR, FFI_TD_JSON_CLIENT_DART_FILE)
     regex = re.compile('^output: .*', re.M)
     output = f"output: '{EXPORT_FFI_JSON_CLIENT_FILE}'"
