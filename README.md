@@ -38,7 +38,7 @@ dart pub get
 # output: 'your/package/location/lib/src/generated/ffi/td_json_client.dart'
 # The output: location should be relative to ffigen.yaml or is absolute
 
-dart pub global run ffigen --config ../ffigen.yaml 
+# dart pub global run ffigen --config ../ffigen.yaml 
 # dart pub global run ffigen --config <path/to/ffigen.yaml> 
 ```
 output locations:  
