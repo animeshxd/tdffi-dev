@@ -18,6 +18,9 @@ mkdir -p headers/td/telegram/
 cp td/build/td/telegram/tdjson_export.h headers/td/telegram/tdjson_export.h
 cp td/td/telegram/td_json_client.h headers/td_json_client.h
 
+dart pub global activate ffigen
+# for termux: dart pub global activate ffigen -sgit https://github.com/animeshxd/ffigen
+
 python generator/generate_dart.py
 cd tdffi
 
@@ -28,9 +31,6 @@ cd tdffi
 # cd <your/package/location>
 # dart pub add ffi
 
-dart pub add --dev ffigen
-# for termux: dart pub add -d ffigen --git-url https://github.com/animeshxd/ffigen
-
 dart pub get
 
 
@@ -38,8 +38,8 @@ dart pub get
 # output: 'your/package/location/lib/src/generated/ffi/td_json_client.dart'
 # The output: location should be relative to ffigen.yaml or is absolute
 
-dart run ffigen --config ../ffigen.yaml 
-# dart run ffigen --config <path/to/ffigen.yaml> 
+dart pub global run ffigen --config ../ffigen.yaml 
+# dart pub global run ffigen --config <path/to/ffigen.yaml> 
 ```
 output locations:  
    - `tdffi/lib/td.dart`

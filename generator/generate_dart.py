@@ -1,6 +1,9 @@
 import io
 import os
+import re
 import time
+from pathlib import Path
+
 from generate_json import generate_json
 from utils import CamelCase, Type, lowerCamelCase, need_reload, read_all_json, write
 
@@ -199,8 +202,38 @@ def generate():
 
     print("Generated 5 files in {:.3f} seconds.".format(time.time() - st))
 
+def generate_ffi_td_json_client_dart():
+    st = time.time()
+
+    FFIGEN_YAML_FILE = './ffigen.yaml'
+    FFIGEN_YAML_FILE_TMP = './ffigen.yaml.temp'
+    SRC_GENERATED_FFI_TD_JSON_FILE = path.join(DART_SRC_GENERATED_DIR, FFI_TD_JSON_CLIENT_DART_FILE)
+    regex = re.compile('^output: .*', re.M)
+    output = f"output: '{EXPORT_FFI_JSON_CLIENT_FILE}'"
+    execute = f'dart pub global run ffigen --config {FFIGEN_YAML_FILE_TMP}'
+
+    try:
+        with open(FFIGEN_YAML_FILE,) as f:
+            text = f.read()
+            with open(FFIGEN_YAML_FILE_TMP, 'w') as f:
+                f.write(regex.sub(output, text))
+                
+            print()
+            print(os.popen(execute).read())
+
+            with open(BASE_EXPORT_DIR, 'r+') as f:
+                if SRC_GENERATED_FFI_TD_JSON_FILE not in f.read():
+                    f.write(f'export "{SRC_GENERATED_FFI_TD_JSON_FILE}";')
+            
+            print("Generated {} file in {:.2f} seconds.\n".format(EXPORT_FFI_JSON_CLIENT_FILE, time.time() - st))
+
+    finally:
+        Path(FFIGEN_YAML_FILE_TMP).unlink(missing_ok=True)       
+
 if __name__ == '__main__':
     generate()
+    generate_ffi_td_json_client_dart()
+
     exports = [
         EXPORT_ABC_CLASS_FILE,
         EXPORT_CLASS_FILE,
