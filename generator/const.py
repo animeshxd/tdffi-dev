@@ -1,18 +1,34 @@
 import os
+from os import path
+
 BASE_DIR_JSON = "./json/"
 TL_API_FILE = "td/td/generate/scheme/td_api.tl"
-ABC_CLASS_JSON_FILE = BASE_DIR_JSON + "abstract-classes.json"
-CLASS_JSON_FILE = BASE_DIR_JSON + "classes.json"
-FUNC_JSON_FILE = BASE_DIR_JSON + "functions.json"
+
+ABC_CLASS_JSON_FILE = path.join(BASE_DIR_JSON, "abstract-classes.json")
+CLASS_JSON_FILE = path.join(BASE_DIR_JSON, "classes.json")
+FUNC_JSON_FILE = path.join(BASE_DIR_JSON, "functions.json")
 
 DART_PACKAGE_DIR = os.getenv('DART_PACKAGE_DIR', './tdffi')
-BASE_DIR_DART = os.path.join(DART_PACKAGE_DIR, "lib/src/generated/")
-EXPORT_ABC_CLASS_FILE = BASE_DIR_DART + "abc.dart"
-EXPORT_CLASS_FILE = BASE_DIR_DART + "classes.dart"
-EXPORT_FUNC_FILE = BASE_DIR_DART + "functions.dart"
-EXPORT_MAP_CLASS_STR_FILE = BASE_DIR_DART + "objects.dart"
-EXPORT_EXTENSION_FILE = BASE_DIR_DART + 'extensions.dart'
-BASE_EXPORT_DIR = os.path.join(DART_PACKAGE_DIR, "lib/td.dart")
+DART_PACKAGE_LIB_DIR = path.join(DART_PACKAGE_DIR, 'lib/')
+DART_SRC_GENERATED_DIR = "src/generated/"
+BASE_DIR_DART = path.join(DART_PACKAGE_LIB_DIR, DART_SRC_GENERATED_DIR)
+
+ABC_CLASS_DART_FILE = "abc.dart"
+CLASS_DART_FILE = "classes.dart"
+FUNC_DART_FILE = "functions.dart"
+MAP_CLASS_STR_DART_FILE = "objects.dart"
+EXTENSION_DART_FILE = 'extensions.dart'
+FFI_TD_JSON_CLIENT_DART_FILE = 'ffi/td_json_client.dart'
+TD_DART_FILE = 'td.dart'
+
+EXPORT_ABC_CLASS_FILE = path.join(BASE_DIR_DART, ABC_CLASS_DART_FILE)
+EXPORT_CLASS_FILE = path.join(BASE_DIR_DART, CLASS_DART_FILE)
+EXPORT_FUNC_FILE = path.join(BASE_DIR_DART, FUNC_DART_FILE)
+EXPORT_MAP_CLASS_STR_FILE = path.join(BASE_DIR_DART, MAP_CLASS_STR_DART_FILE)
+EXPORT_EXTENSION_FILE = path.join(BASE_DIR_DART, EXTENSION_DART_FILE)
+EXPORT_FFI_JSON_CLIENT_FILE = path.join(BASE_DIR_DART, FFI_TD_JSON_CLIENT_DART_FILE)
+
+BASE_EXPORT_DIR = path.join(DART_PACKAGE_LIB_DIR, TD_DART_FILE)
 
 DART_TYPES = {
     'double': 'double',
@@ -191,13 +207,12 @@ EXTENSION_METHOD_BODY = """
 """
 
 EXPORT_GENERATED_LIB_PATHS = '\n'.join(
-    f"export 'src/generated/{i.replace(BASE_DIR_DART, '')}';" for i in [
-        EXPORT_FUNC_FILE,
-        EXPORT_CLASS_FILE,
-        EXPORT_ABC_CLASS_FILE,
-        EXPORT_EXTENSION_FILE,
-        EXPORT_MAP_CLASS_STR_FILE,
-        "ffi/td_json_client.dart"
+    f"export '{path.join(DART_SRC_GENERATED_DIR, i)}';" for i in [
+        FUNC_DART_FILE,
+        CLASS_DART_FILE,
+        ABC_CLASS_DART_FILE,
+        EXTENSION_DART_FILE,
+        MAP_CLASS_STR_DART_FILE,
+        FFI_TD_JSON_CLIENT_DART_FILE
     ]
 )
-
