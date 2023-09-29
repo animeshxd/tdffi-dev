@@ -207,7 +207,8 @@ if __name__ == '__main__':
         EXPORT_CLASS_FILE,
         EXPORT_FUNC_FILE,
         EXPORT_MAP_CLASS_STR_FILE,
-        EXPORT_EXTENSION_FILE
+        EXPORT_EXTENSION_FILE,
+        BASE_EXPORT_DIR,
     ]
     _ = os.popen(f"dart format {' '.join(exports)}").read()
     print(_)
