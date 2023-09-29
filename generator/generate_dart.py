@@ -183,7 +183,7 @@ def generate():
         abstract_classes, classes, functions = generate_json()
     else:
         abstract_classes, classes, functions = read_all_json()
-    print("Generated json in {} seconds.".format(round(time.time() - st), 2))
+    print("Generated json in {:.3f} seconds.".format(time.time() - st))
 
     st = time.time()
     os.makedirs(BASE_DIR_DART, exist_ok=True)
@@ -197,8 +197,7 @@ def generate():
     with open(BASE_EXPORT_DIR, 'w') as f:
         f.writelines(f'export "{i}";\n' for i in EXPORT_GENERATED_LIB_PATHS)
 
-    print("Generated 5 files in {} seconds.".format(round(time.time() - st), 2))
-
+    print("Generated 5 files in {:.3f} seconds.".format(time.time() - st))
 
 if __name__ == '__main__':
     generate()
