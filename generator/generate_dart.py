@@ -202,10 +202,9 @@ def generate():
 
     print("Generated 5 files in {:.3f} seconds.".format(time.time() - st))
 
-def generate_ffi_td_json_client_dart():
+def generate_ffi_td_json_client_dart(FFIGEN_YAML_FILE='./ffigen.yaml'):
     st = time.time()
 
-    FFIGEN_YAML_FILE = './ffigen.yaml'
     FFIGEN_YAML_FILE_TMP = f'{FFIGEN_YAML_FILE}.temp'
     SRC_GENERATED_FFI_TD_JSON_FILE = path.join(DART_SRC_GENERATED_DIR, FFI_TD_JSON_CLIENT_DART_FILE)
     regex = re.compile('^output: .*', re.M)
