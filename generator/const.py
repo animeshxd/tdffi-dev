@@ -66,7 +66,7 @@ abstract class SyncFunc extends Func {}
 
 
 preamble = "// ignore_for_file: overridden_fields, annotate_overrides, camel_case_types, non_constant_identifier_names, unnecessary_question_mark, no_leading_underscores_for_local_identifiers, constant_identifier_names"
-IMPORT_ = """
+IMPORT_DEAFULT_PREAMBLE = """
 import 'dart:ffi' show Pointer;
 import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
 import 'dart:convert' show jsonEncode;

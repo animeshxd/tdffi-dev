@@ -81,7 +81,7 @@ def generate_abc_dart(abstract_classes: dict):
     """ Generate abstract classes"""
     with open(EXPORT_ABC_CLASS_FILE, 'w') as f:
         write(f, preamble)
-        write(f, IMPORT_)
+        write(f, IMPORT_DEAFULT_PREAMBLE)
         write(f, IMPORT_CLASS_DART)
         write(f, IMPORT_OBJECTS_DART)
         write(f, TYPEDEFS)
