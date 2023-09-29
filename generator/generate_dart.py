@@ -195,7 +195,7 @@ def generate():
     generate_map_to_class_dart(classes)
 
     with open(BASE_EXPORT_DIR, 'w') as f:
-        f.write(EXPORT_GENERATED_LIB_PATHS)
+        f.writelines(f'export "{i}";\n' for i in EXPORT_GENERATED_LIB_PATHS)
 
     print("Generated 5 files in {} seconds.".format(round(time.time() - st), 2))
 

@@ -206,8 +206,8 @@ EXTENSION_METHOD_BODY = """
 }}
 """
 
-EXPORT_GENERATED_LIB_PATHS = '\n'.join(
-    f"export '{path.join(DART_SRC_GENERATED_DIR, i)}';" for i in [
+EXPORT_GENERATED_LIB_PATHS = [
+    path.join(DART_SRC_GENERATED_DIR, i) for i in [
         FUNC_DART_FILE,
         CLASS_DART_FILE,
         ABC_CLASS_DART_FILE,
@@ -215,4 +215,4 @@ EXPORT_GENERATED_LIB_PATHS = '\n'.join(
         MAP_CLASS_STR_DART_FILE,
         FFI_TD_JSON_CLIENT_DART_FILE
     ]
-)
+]
