@@ -874,7 +874,7 @@
         "parent": "TlObject"
     },
     "InputFileId": {
-        "description": "A file defined by its unique ID",
+        "description": "A file defined by its unique identifier",
         "parameters": {
             "id": {
                 "description": "Unique file identifier",
@@ -889,7 +889,7 @@
         "parent": "InputFile"
     },
     "InputFileRemote": {
-        "description": "A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.",
+        "description": "A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.",
         "parameters": {
             "id": {
                 "description": "Remote file identifier",
@@ -1034,7 +1034,7 @@
         "parent": "ThumbnailFormat"
     },
     "ThumbnailFormatGif": {
-        "description": "The thumbnail is in static GIF format. It will be used only for some bot inline results",
+        "description": "The thumbnail is in static GIF format. It will be used only for some bot inline query results",
         "parameters": {},
         "return": null,
         "parent": "ThumbnailFormat"
@@ -2516,7 +2516,7 @@
                 "vector_depth": 0
             },
             "can_be_added_to_attachment_menu": {
-                "description": "True, if the bot can be added to attachment menu",
+                "description": "True, if the bot can be added to attachment or side menu",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -2994,7 +2994,7 @@
         "description": "Describes rights of the administrator",
         "parameters": {
             "can_manage_chat": {
-                "description": "True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only",
+                "description": "True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members,",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -3075,6 +3075,30 @@
             },
             "can_manage_video_chats": {
                 "description": "True, if the administrator can manage video chats",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_post_stories": {
+                "description": "True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_edit_stories": {
+                "description": "True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_delete_stories": {
+                "description": "True, if the administrator can delete stories posted by other users; applicable to channels only",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -3577,12 +3601,12 @@
                 "enum": 7,
                 "vector_depth": 0
             },
-            "is_blocked": {
-                "description": "True, if the user is blocked by the current user",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
+            "block_list": {
+                "description": "Block list to which the user is added; may be null if none",
+                "nullable": true,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
                 "vector_depth": 0
             },
             "can_be_called": {
@@ -3666,7 +3690,7 @@
                 "vector_depth": 0
             },
             "bot_info": {
-                "description": "For bots, information about the bot; may be null",
+                "description": "For bots, information about the bot; may be null if the user isn't a bot",
                 "nullable": true,
                 "type": "BotInfo",
                 "vectorElementType": "BotInfo",
@@ -4314,6 +4338,24 @@
         "return": null,
         "parent": "TlObject"
     },
+    "InviteLinkChatTypeBasicGroup": {
+        "description": "The link is an invite link for a basic group",
+        "parameters": {},
+        "return": null,
+        "parent": "InviteLinkChatType"
+    },
+    "InviteLinkChatTypeSupergroup": {
+        "description": "The link is an invite link for a supergroup",
+        "parameters": {},
+        "return": null,
+        "parent": "InviteLinkChatType"
+    },
+    "InviteLinkChatTypeChannel": {
+        "description": "The link is an invite link for a channel",
+        "parameters": {},
+        "return": null,
+        "parent": "InviteLinkChatType"
+    },
     "ChatInviteLinkInfo": {
         "description": "Contains information about a chat invite link",
         "parameters": {
@@ -4336,8 +4378,8 @@
             "type": {
                 "description": "Type of the chat",
                 "nullable": false,
-                "type": "ChatType",
-                "vectorElementType": "ChatType",
+                "type": "InviteLinkChatType",
+                "vectorElementType": "InviteLinkChatType",
                 "enum": 7,
                 "vector_depth": 0
             },
@@ -4391,6 +4433,30 @@
             },
             "is_public": {
                 "description": "True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_verified": {
+                "description": "True, if the chat is verified",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_scam": {
+                "description": "True, if many users reported this chat as a scam",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_fake": {
+                "description": "True, if many users reported this chat as a fake account",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -4742,6 +4808,22 @@
                 "vectorElementType": "bool",
                 "enum": 3,
                 "vector_depth": 0
+            },
+            "has_active_stories": {
+                "description": "True, if the channel has non-expired stories available to the current user",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "has_unread_active_stories": {
+                "description": "True, if the channel has unread non-expired stories available to the current user",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
             }
         },
         "return": null,
@@ -4894,6 +4976,14 @@
                 "enum": 3,
                 "vector_depth": 0
             },
+            "has_pinned_stories": {
+                "description": "True, if the channel has pinned stories",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "sticker_set_id": {
                 "description": "Identifier of the supergroup sticker set; 0 if none",
                 "nullable": false,
@@ -4903,7 +4993,7 @@
                 "vector_depth": 0
             },
             "location": {
-                "description": "Location to which the supergroup is connected; may be null",
+                "description": "Location to which the supergroup is connected; may be null if none",
                 "nullable": true,
                 "type": "ChatLocation",
                 "vectorElementType": "ChatLocation",
@@ -5498,20 +5588,12 @@
     "MessageSendingStateFailed": {
         "description": "The message failed to be sent",
         "parameters": {
-            "error_code": {
-                "description": "An error code; 0 if unknown",
+            "error": {
+                "description": "The cause of the message sending failure",
                 "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "error_message": {
-                "description": "Error message",
-                "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
-                "enum": 3,
+                "type": "Error",
+                "vectorElementType": "Error",
+                "enum": 7,
                 "vector_depth": 0
             },
             "can_retry": {
@@ -5616,7 +5698,7 @@
                 "vector_depth": 0
             },
             "sending_state": {
-                "description": "The sending state of the message; may be null",
+                "description": "The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent",
                 "nullable": true,
                 "type": "MessageSendingState",
                 "vectorElementType": "MessageSendingState",
@@ -5624,7 +5706,7 @@
                 "vector_depth": 0
             },
             "scheduling_state": {
-                "description": "The scheduling state of the message; may be null",
+                "description": "The scheduling state of the message; may be null if the message isn't scheduled",
                 "nullable": true,
                 "type": "MessageSchedulingState",
                 "vectorElementType": "MessageSchedulingState",
@@ -5784,7 +5866,7 @@
                 "vector_depth": 0
             },
             "forward_info": {
-                "description": "Information about the initial message sender; may be null",
+                "description": "Information about the initial message sender; may be null if none or unknown",
                 "nullable": true,
                 "type": "MessageForwardInfo",
                 "vectorElementType": "MessageForwardInfo",
@@ -5792,7 +5874,7 @@
                 "vector_depth": 0
             },
             "interaction_info": {
-                "description": "Information about interactions with the message; may be null",
+                "description": "Information about interactions with the message; may be null if none",
                 "nullable": true,
                 "type": "MessageInteractionInfo",
                 "vectorElementType": "MessageInteractionInfo",
@@ -5823,16 +5905,16 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "self_destruct_time": {
-                "description": "The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
+            "self_destruct_type": {
+                "description": "The message's self-destruct type; may be null if none",
+                "nullable": true,
+                "type": "MessageSelfDestructType",
+                "vectorElementType": "MessageSelfDestructType",
+                "enum": 7,
                 "vector_depth": 0
             },
             "self_destruct_in": {
-                "description": "Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field",
+                "description": "Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet",
                 "nullable": false,
                 "type": "double",
                 "vectorElementType": "double",
@@ -5840,7 +5922,7 @@
                 "vector_depth": 0
             },
             "auto_delete_in": {
-                "description": "Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires",
+                "description": "Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never",
                 "nullable": false,
                 "type": "double",
                 "vectorElementType": "double",
@@ -5888,7 +5970,7 @@
                 "vector_depth": 0
             },
             "reply_markup": {
-                "description": "Reply markup for the message; may be null",
+                "description": "Reply markup for the message; may be null if none",
                 "nullable": true,
                 "type": "ReplyMarkup",
                 "vectorElementType": "ReplyMarkup",
@@ -6524,7 +6606,7 @@
                 "vector_depth": 0
             },
             "mute_stories": {
-                "description": "True, if story notifications are received without sound",
+                "description": "True, if story notifications are disabled for the chat",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -6627,7 +6709,7 @@
                 "vector_depth": 0
             },
             "use_default_mute_stories": {
-                "description": "If true, mute_stories is ignored and stories are unmuted only for the first 5 chats from topChatCategoryUsers",
+                "description": "If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -6635,7 +6717,7 @@
                 "vector_depth": 0
             },
             "mute_stories": {
-                "description": "True, if story notifications are received without sound",
+                "description": "True, if story notifications are disabled for the chat",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -7318,7 +7400,7 @@
                 "vector_depth": 0
             },
             "last_message": {
-                "description": "Last message in the chat; may be null",
+                "description": "Last message in the chat; may be null if none or unknown",
                 "nullable": true,
                 "type": "Message",
                 "vectorElementType": "Message",
@@ -7341,6 +7423,14 @@
                 "enum": 7,
                 "vector_depth": 0
             },
+            "block_list": {
+                "description": "Block list to which the chat is added; may be null if none",
+                "nullable": true,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
+                "vector_depth": 0
+            },
             "has_protected_content": {
                 "description": "True, if chat content can't be saved locally, forwarded, or copied",
                 "nullable": false,
@@ -7359,14 +7449,6 @@
             },
             "is_marked_as_unread": {
                 "description": "True, if the chat is marked as unread",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_blocked": {
-                "description": "True, if the chat is blocked by the current user and private messages from the chat can't be received",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -7494,7 +7576,7 @@
                 "vector_depth": 0
             },
             "action_bar": {
-                "description": "Information about actions which must be possible to do through the chat action bar; may be null",
+                "description": "Information about actions which must be possible to do through the chat action bar; may be null if none",
                 "nullable": true,
                 "type": "ChatActionBar",
                 "vectorElementType": "ChatActionBar",
@@ -7510,7 +7592,7 @@
                 "vector_depth": 0
             },
             "pending_join_requests": {
-                "description": "Information about pending join requests; may be null",
+                "description": "Information about pending join requests; may be null if none",
                 "nullable": true,
                 "type": "ChatJoinRequestsInfo",
                 "vectorElementType": "ChatJoinRequestsInfo",
@@ -7526,7 +7608,7 @@
                 "vector_depth": 0
             },
             "draft_message": {
-                "description": "A draft of a message in the chat; may be null",
+                "description": "A draft of a message in the chat; may be null if none",
                 "nullable": true,
                 "type": "DraftMessage",
                 "vectorElementType": "DraftMessage",
@@ -7654,7 +7736,7 @@
         "parent": "ChatActionBar"
     },
     "ChatActionBarReportAddBlock": {
-        "description": "The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked,",
+        "description": "The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList,",
         "parameters": {
             "can_unarchive": {
                 "description": "If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings",
@@ -8277,6 +8359,14 @@
                 "enum": 7,
                 "vector_depth": 0
             },
+            "supports_settings": {
+                "description": "True, if the app supports \"settings_button_pressed\" event",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "request_write_access": {
                 "description": "True, if the user must be asked for the permission to the bot to send them messages",
                 "nullable": false,
@@ -8364,7 +8454,7 @@
                 "vector_depth": 1
             },
             "draft_message": {
-                "description": "A draft of a message in the message thread; may be null",
+                "description": "A draft of a message in the message thread; may be null if none",
                 "nullable": true,
                 "type": "DraftMessage",
                 "vectorElementType": "DraftMessage",
@@ -8553,7 +8643,7 @@
                 "vector_depth": 0
             },
             "draft_message": {
-                "description": "A draft of a message in the topic; may be null",
+                "description": "A draft of a message in the topic; may be null if none",
                 "nullable": true,
                 "type": "DraftMessage",
                 "vectorElementType": "DraftMessage",
@@ -10447,6 +10537,14 @@
             },
             "recurring_payment_terms_of_service_url": {
                 "description": "An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "terms_of_service_url": {
+                "description": "An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -13804,6 +13902,14 @@
                 "vectorElementType": "WebApp",
                 "enum": 7,
                 "vector_depth": 0
+            },
+            "by_request": {
+                "description": "True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
             }
         },
         "return": null,
@@ -14139,6 +14245,27 @@
         "return": null,
         "parent": "MessageSchedulingState"
     },
+    "MessageSelfDestructTypeTimer": {
+        "description": "The message will be self-destructed in the specified time after its content was opened",
+        "parameters": {
+            "self_destruct_time": {
+                "description": "The message's self-destruct time, in seconds; must be between 0 and 60 in private chats",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "MessageSelfDestructType"
+    },
+    "MessageSelfDestructTypeImmediately": {
+        "description": "The message can be opened only once and will be self-destructed once closed",
+        "parameters": {},
+        "return": null,
+        "parent": "MessageSelfDestructType"
+    },
     "MessageSendOptions": {
         "description": "Options to be used when a message is sent",
         "parameters": {
@@ -14472,12 +14599,12 @@
                 "enum": 7,
                 "vector_depth": 0
             },
-            "self_destruct_time": {
-                "description": "Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
+            "self_destruct_type": {
+                "description": "Photo self-destruct type; pass null if none; private chats only",
+                "nullable": true,
+                "type": "MessageSelfDestructType",
+                "vectorElementType": "MessageSelfDestructType",
+                "enum": 7,
                 "vector_depth": 0
             },
             "has_spoiler": {
@@ -14606,12 +14733,12 @@
                 "enum": 7,
                 "vector_depth": 0
             },
-            "self_destruct_time": {
-                "description": "Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
+            "self_destruct_type": {
+                "description": "Video self-destruct type; pass null if none; private chats only",
+                "nullable": true,
+                "type": "MessageSelfDestructType",
+                "vectorElementType": "MessageSelfDestructType",
+                "enum": 7,
                 "vector_depth": 0
             },
             "has_spoiler": {
@@ -15716,6 +15843,982 @@
         "parameters": {},
         "return": null,
         "parent": "EmojiCategoryType"
+    },
+    "StoryViewer": {
+        "description": "Represents a viewer of a story",
+        "parameters": {
+            "user_id": {
+                "description": "User identifier of the viewer",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "view_date": {
+                "description": "Approximate point in time (Unix timestamp) when the story was viewed",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "block_list": {
+                "description": "Block list to which the user is added; may be null if none",
+                "nullable": true,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "chosen_reaction_type": {
+                "description": "Type of the reaction that was chosen by the user; may be null if none",
+                "nullable": true,
+                "type": "ReactionType",
+                "vectorElementType": "ReactionType",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryViewers": {
+        "description": "Represents a list of story viewers",
+        "parameters": {
+            "total_count": {
+                "description": "Approximate total number of story viewers found",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "total_reaction_count": {
+                "description": "Approximate total number of reactions set by found story viewers",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "viewers": {
+                "description": "List of story viewers",
+                "nullable": false,
+                "type": "List<StoryViewer>",
+                "vectorElementType": "StoryViewer",
+                "enum": 14,
+                "vector_depth": 1
+            },
+            "next_offset": {
+                "description": "The offset for the next request. If empty, there are no more results",
+                "nullable": true,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryAreaPosition": {
+        "description": "Describes position of a clickable rectangle area on a story media",
+        "parameters": {
+            "x_percentage": {
+                "description": "The abscissa of the rectangle's center, as a percentage of the media width",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "y_percentage": {
+                "description": "The ordinate of the rectangle's center, as a percentage of the media height",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "width_percentage": {
+                "description": "The width of the rectangle, as a percentage of the media width",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "height_percentage": {
+                "description": "The ordinate of the rectangle's center, as a percentage of the media height",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "rotation_angle": {
+                "description": "Clockwise rotation angle of the rectangle, in degrees; 0-360",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryAreaTypeLocation": {
+        "description": "An area pointing to a location",
+        "parameters": {
+            "location": {
+                "description": "The location",
+                "nullable": false,
+                "type": "Location",
+                "vectorElementType": "Location",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "StoryAreaType"
+    },
+    "StoryAreaTypeVenue": {
+        "description": "An area pointing to a venue",
+        "parameters": {
+            "venue": {
+                "description": "Information about the venue",
+                "nullable": false,
+                "type": "Venue",
+                "vectorElementType": "Venue",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "StoryAreaType"
+    },
+    "StoryAreaTypeSuggestedReaction": {
+        "description": "An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked",
+        "parameters": {
+            "reaction_type": {
+                "description": "Type of the reaction",
+                "nullable": false,
+                "type": "ReactionType",
+                "vectorElementType": "ReactionType",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "total_count": {
+                "description": "Number of times the reaction was added",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_dark": {
+                "description": "True, if reaction has a dark background",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_flipped": {
+                "description": "True, if reaction corner is flipped",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "StoryAreaType"
+    },
+    "StoryArea": {
+        "description": "Describes a clickable rectangle area on a story media",
+        "parameters": {
+            "position": {
+                "description": "Position of the area",
+                "nullable": false,
+                "type": "StoryAreaPosition",
+                "vectorElementType": "StoryAreaPosition",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "type": {
+                "description": "Type of the area",
+                "nullable": false,
+                "type": "StoryAreaType",
+                "vectorElementType": "StoryAreaType",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "InputStoryAreaTypeLocation": {
+        "description": "An area pointing to a location",
+        "parameters": {
+            "location": {
+                "description": "The location",
+                "nullable": false,
+                "type": "Location",
+                "vectorElementType": "Location",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InputStoryAreaType"
+    },
+    "InputStoryAreaTypeFoundVenue": {
+        "description": "An area pointing to a venue found by the bot getOption(\"venue_search_bot_username\")",
+        "parameters": {
+            "query_id": {
+                "description": "Identifier of the inline query, used to found the venue",
+                "nullable": false,
+                "type": "int64",
+                "vectorElementType": "int64",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "result_id": {
+                "description": "Identifier of the inline query result",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InputStoryAreaType"
+    },
+    "InputStoryAreaTypePreviousVenue": {
+        "description": "An area pointing to a venue already added to the story",
+        "parameters": {
+            "venue_provider": {
+                "description": "Provider of the venue",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "venue_id": {
+                "description": "Identifier of the venue in the provider database",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InputStoryAreaType"
+    },
+    "InputStoryAreaTypeSuggestedReaction": {
+        "description": "An area pointing to a suggested reaction",
+        "parameters": {
+            "reaction_type": {
+                "description": "Type of the reaction",
+                "nullable": false,
+                "type": "ReactionType",
+                "vectorElementType": "ReactionType",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "is_dark": {
+                "description": "True, if reaction has a dark background",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_flipped": {
+                "description": "True, if reaction corner is flipped",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InputStoryAreaType"
+    },
+    "InputStoryArea": {
+        "description": "Describes a clickable rectangle area on a story media to be added",
+        "parameters": {
+            "position": {
+                "description": "Position of the area",
+                "nullable": false,
+                "type": "StoryAreaPosition",
+                "vectorElementType": "StoryAreaPosition",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "type": {
+                "description": "Type of the area",
+                "nullable": false,
+                "type": "InputStoryAreaType",
+                "vectorElementType": "InputStoryAreaType",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "InputStoryAreas": {
+        "description": "Contains a list of story areas to be added",
+        "parameters": {
+            "areas": {
+                "description": "List of 0-10 input story areas",
+                "nullable": false,
+                "type": "List<InputStoryArea>",
+                "vectorElementType": "InputStoryArea",
+                "enum": 14,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryVideo": {
+        "description": "Describes a video file sent in a story",
+        "parameters": {
+            "duration": {
+                "description": "Duration of the video, in seconds",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "width": {
+                "description": "Video width",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "height": {
+                "description": "Video height",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "has_stickers": {
+                "description": "True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_animation": {
+                "description": "True, if the video has no sound",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "minithumbnail": {
+                "description": "Video minithumbnail; may be null",
+                "nullable": true,
+                "type": "Minithumbnail",
+                "vectorElementType": "Minithumbnail",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "thumbnail": {
+                "description": "Video thumbnail in JPEG or MPEG4 format; may be null",
+                "nullable": true,
+                "type": "Thumbnail",
+                "vectorElementType": "Thumbnail",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "preload_prefix_size": {
+                "description": "Size of file prefix, which is supposed to be preloaded, in bytes",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "video": {
+                "description": "File containing the video",
+                "nullable": false,
+                "type": "File",
+                "vectorElementType": "File",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryContentPhoto": {
+        "description": "A photo story",
+        "parameters": {
+            "photo": {
+                "description": "The photo",
+                "nullable": false,
+                "type": "Photo",
+                "vectorElementType": "Photo",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "StoryContent"
+    },
+    "StoryContentVideo": {
+        "description": "A video story",
+        "parameters": {
+            "video": {
+                "description": "The video in MPEG4 format",
+                "nullable": false,
+                "type": "StoryVideo",
+                "vectorElementType": "StoryVideo",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "alternative_video": {
+                "description": "Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null",
+                "nullable": true,
+                "type": "StoryVideo",
+                "vectorElementType": "StoryVideo",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "StoryContent"
+    },
+    "StoryContentUnsupported": {
+        "description": "A story content that is not supported in the current TDLib version",
+        "parameters": {},
+        "return": null,
+        "parent": "StoryContent"
+    },
+    "InputStoryContentPhoto": {
+        "description": "A photo story",
+        "parameters": {
+            "photo": {
+                "description": "Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920",
+                "nullable": false,
+                "type": "InputFile",
+                "vectorElementType": "InputFile",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "added_sticker_file_ids": {
+                "description": "File identifiers of the stickers added to the photo, if applicable",
+                "nullable": false,
+                "type": "List<int>",
+                "vectorElementType": "int",
+                "enum": 6,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "InputStoryContent"
+    },
+    "InputStoryContentVideo": {
+        "description": "A video story",
+        "parameters": {
+            "video": {
+                "description": "Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second",
+                "nullable": false,
+                "type": "InputFile",
+                "vectorElementType": "InputFile",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "added_sticker_file_ids": {
+                "description": "File identifiers of the stickers added to the video, if applicable",
+                "nullable": false,
+                "type": "List<int>",
+                "vectorElementType": "int",
+                "enum": 6,
+                "vector_depth": 1
+            },
+            "duration": {
+                "description": "Precise duration of the video, in seconds; 0-60",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_animation": {
+                "description": "True, if the video has no sound",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InputStoryContent"
+    },
+    "StoryListMain": {
+        "description": "The list of stories, shown in the main chat list and folder chat lists",
+        "parameters": {},
+        "return": null,
+        "parent": "StoryList"
+    },
+    "StoryListArchive": {
+        "description": "The list of stories, shown in the Arvhive chat list",
+        "parameters": {},
+        "return": null,
+        "parent": "StoryList"
+    },
+    "StoryInteractionInfo": {
+        "description": "Contains information about interactions with a story",
+        "parameters": {
+            "view_count": {
+                "description": "Number of times the story was viewed",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "forward_count": {
+                "description": "Number of times the story was forwarded; 0 if none or unknown",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "reaction_count": {
+                "description": "Number of reactions added to the story; 0 if none or unknown",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "recent_viewer_user_ids": {
+                "description": "Identifiers of at most 3 recent viewers of the story",
+                "nullable": false,
+                "type": "List<int>",
+                "vectorElementType": "int",
+                "enum": 6,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "Story": {
+        "description": "Represents a story",
+        "parameters": {
+            "id": {
+                "description": "Unique story identifier among stories of the given sender",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "sender_chat_id": {
+                "description": "Identifier of the chat that posted the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "date": {
+                "description": "Point in time (Unix timestamp) when the story was published",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_being_sent": {
+                "description": "True, if the story is being sent by the current user",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_being_edited": {
+                "description": "True, if the story is being edited by the current user",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_edited": {
+                "description": "True, if the story was edited",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_pinned": {
+                "description": "True, if the story is saved in the sender's profile and will be available there after expiration",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_visible_only_for_self": {
+                "description": "True, if the story is visible only for the current user",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_be_deleted": {
+                "description": "True, if the story can be deleted",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_be_edited": {
+                "description": "True, if the story can be edited",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_be_forwarded": {
+                "description": "True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_be_replied": {
+                "description": "True, if the story can be replied in the chat with the story sender",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_toggle_is_pinned": {
+                "description": "True, if the story's is_pinned value can be changed",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "can_get_viewers": {
+                "description": "True, if users viewed the story can be received through getStoryViewers",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "has_expired_viewers": {
+                "description": "True, if users viewed the story can't be received, because the story has expired more than getOption(\"story_viewers_expiration_delay\") seconds ago",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "interaction_info": {
+                "description": "Information about interactions with the story; may be null if the story isn't owned or there were no interactions",
+                "nullable": true,
+                "type": "StoryInteractionInfo",
+                "vectorElementType": "StoryInteractionInfo",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "chosen_reaction_type": {
+                "description": "Type of the chosen reaction; may be null if none",
+                "nullable": true,
+                "type": "ReactionType",
+                "vectorElementType": "ReactionType",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "privacy_settings": {
+                "description": "Privacy rules affecting story visibility; may be approximate for non-owned stories",
+                "nullable": false,
+                "type": "StoryPrivacySettings",
+                "vectorElementType": "StoryPrivacySettings",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "content": {
+                "description": "Content of the story",
+                "nullable": false,
+                "type": "StoryContent",
+                "vectorElementType": "StoryContent",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "areas": {
+                "description": "Clickable areas to be shown on the story content",
+                "nullable": false,
+                "type": "List<StoryArea>",
+                "vectorElementType": "StoryArea",
+                "enum": 14,
+                "vector_depth": 1
+            },
+            "caption": {
+                "description": "Caption of the story",
+                "nullable": false,
+                "type": "FormattedText",
+                "vectorElementType": "FormattedText",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "Stories": {
+        "description": "Represents a list of stories",
+        "parameters": {
+            "total_count": {
+                "description": "Approximate total number of stories found",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "stories": {
+                "description": "The list of stories",
+                "nullable": false,
+                "type": "List<Story>",
+                "vectorElementType": "Story",
+                "enum": 14,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "StoryInfo": {
+        "description": "Contains basic information about a story",
+        "parameters": {
+            "story_id": {
+                "description": "Unique story identifier among stories of the given sender",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "date": {
+                "description": "Point in time (Unix timestamp) when the story was published",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_for_close_friends": {
+                "description": "True, if the story is available only to close friends",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "ChatActiveStories": {
+        "description": "Describes active stories posted by a chat",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat that posted the stories",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "list": {
+                "description": "Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list",
+                "nullable": true,
+                "type": "StoryList",
+                "vectorElementType": "StoryList",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "order": {
+                "description": "A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "max_read_story_id": {
+                "description": "Identifier of the last read active story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "stories": {
+                "description": "Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)",
+                "nullable": false,
+                "type": "List<StoryInfo>",
+                "vectorElementType": "StoryInfo",
+                "enum": 14,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "ChatBoostStatus": {
+        "description": "Describes current boost status of a chat",
+        "parameters": {
+            "is_boosted": {
+                "description": "True, if the current user has already boosted the chat",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "level": {
+                "description": "Current boost level of the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "boost_count": {
+                "description": "The number of times the chat was boosted",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "current_level_boost_count": {
+                "description": "The number of boosts added to reach the current level",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "next_level_boost_count": {
+                "description": "The number of boosts needed to reach the next level; 0 if the next level isn't available",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "premium_member_count": {
+                "description": "Approximate number of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "premium_member_percentage": {
+                "description": "A percentage of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat",
+                "nullable": false,
+                "type": "double",
+                "vectorElementType": "double",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "ChatBoost": {
+        "description": "Describes a boost of a chat",
+        "parameters": {
+            "user_id": {
+                "description": "Identifier of a user that boosted the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "expiration_date": {
+                "description": "Point in time (Unix timestamp) when the boost will automatically expire if the user will not prolongate their Telegram Premium subscription",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "FoundChatBoosts": {
+        "description": "Contains a list of boosts applied to a chat",
+        "parameters": {
+            "total_count": {
+                "description": "Total number of boosts applied to the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "boosts": {
+                "description": "List of boosts",
+                "nullable": false,
+                "type": "List<ChatBoost>",
+                "vectorElementType": "ChatBoost",
+                "enum": 14,
+                "vector_depth": 1
+            },
+            "next_offset": {
+                "description": "The offset for the next request. If empty, there are no more results",
+                "nullable": true,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
     },
     "CallDiscardReasonEmpty": {
         "description": "The call wasn't discarded, or the reason is unknown",
@@ -17132,10 +18235,10 @@
         "parent": "TlObject"
     },
     "AttachmentMenuBot": {
-        "description": "Represents a bot, which can be added to attachment menu",
+        "description": "Represents a bot, which can be added to attachment or side menu",
         "parameters": {
             "bot_user_id": {
-                "description": "User identifier of the bot added to attachment menu",
+                "description": "User identifier of the bot",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
@@ -17191,7 +18294,39 @@
                 "vector_depth": 0
             },
             "request_write_access": {
-                "description": "True, if the user must be asked for the permission to the bot to send them messages",
+                "description": "True, if the user must be asked for the permission to send messages to the bot",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "is_added": {
+                "description": "True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "show_in_attachment_menu": {
+                "description": "True, if the bot must be shown in the attachment menu",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "show_in_side_menu": {
+                "description": "True, if the bot must be shown in the side menu",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "show_disclaimer_in_side_menu": {
+                "description": "True, if a disclaimer, why the bot is shown in the side menu, is needed",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -17215,7 +18350,7 @@
                 "vector_depth": 0
             },
             "default_icon": {
-                "description": "Default attachment menu icon for the bot in SVG format; may be null",
+                "description": "Default icon for the bot in SVG format; may be null",
                 "nullable": true,
                 "type": "File",
                 "vectorElementType": "File",
@@ -17223,7 +18358,7 @@
                 "vector_depth": 0
             },
             "ios_static_icon": {
-                "description": "Attachment menu icon for the bot in SVG format for the official iOS app; may be null",
+                "description": "Icon for the bot in SVG format for the official iOS app; may be null",
                 "nullable": true,
                 "type": "File",
                 "vectorElementType": "File",
@@ -17231,7 +18366,15 @@
                 "vector_depth": 0
             },
             "ios_animated_icon": {
-                "description": "Attachment menu icon for the bot in TGS format for the official iOS app; may be null",
+                "description": "Icon for the bot in TGS format for the official iOS app; may be null",
+                "nullable": true,
+                "type": "File",
+                "vectorElementType": "File",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "ios_side_menu_icon": {
+                "description": "Icon for the bot in PNG format for the official iOS app side menu; may be null",
                 "nullable": true,
                 "type": "File",
                 "vectorElementType": "File",
@@ -17239,7 +18382,15 @@
                 "vector_depth": 0
             },
             "android_icon": {
-                "description": "Attachment menu icon for the bot in TGS format for the official Android app; may be null",
+                "description": "Icon for the bot in TGS format for the official Android app; may be null",
+                "nullable": true,
+                "type": "File",
+                "vectorElementType": "File",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "android_side_menu_icon": {
+                "description": "Icon for the bot in SVG format for the official Android app side menu; may be null",
                 "nullable": true,
                 "type": "File",
                 "vectorElementType": "File",
@@ -17247,7 +18398,15 @@
                 "vector_depth": 0
             },
             "macos_icon": {
-                "description": "Attachment menu icon for the bot in TGS format for the official native macOS app; may be null",
+                "description": "Icon for the bot in TGS format for the official native macOS app; may be null",
+                "nullable": true,
+                "type": "File",
+                "vectorElementType": "File",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "macos_side_menu_icon": {
+                "description": "Icon for the bot in PNG format for the official macOS app side menu; may be null",
                 "nullable": true,
                 "type": "File",
                 "vectorElementType": "File",
@@ -20161,6 +21320,30 @@
         "return": null,
         "parent": "PremiumLimitType"
     },
+    "PremiumLimitTypeWeeklySentStoryCount": {
+        "description": "The maximum number of stories sent per week",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumLimitType"
+    },
+    "PremiumLimitTypeMonthlySentStoryCount": {
+        "description": "The maximum number of stories sent per month",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumLimitType"
+    },
+    "PremiumLimitTypeStoryCaptionLength": {
+        "description": "The maximum length of captions of sent stories",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumLimitType"
+    },
+    "PremiumLimitTypeStorySuggestedReactionAreaCount": {
+        "description": "The maximum number of suggested reaction areas on a story",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumLimitType"
+    },
     "PremiumFeatureIncreasedLimits": {
         "description": "Increased limits",
         "parameters": {},
@@ -20222,7 +21405,7 @@
         "parent": "PremiumFeature"
     },
     "PremiumFeatureEmojiStatus": {
-        "description": "A emoji status shown along with the user's name",
+        "description": "An emoji status shown along with the user's name",
         "parameters": {},
         "return": null,
         "parent": "PremiumFeature"
@@ -20250,6 +21433,54 @@
         "parameters": {},
         "return": null,
         "parent": "PremiumFeature"
+    },
+    "PremiumFeatureUpgradedStories": {
+        "description": "Allowed to use many additional features for stories",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumFeature"
+    },
+    "PremiumFeatureChatBoost": {
+        "description": "The ability to boost chats",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumFeature"
+    },
+    "PremiumStoryFeaturePriorityOrder": {
+        "description": "User stories are displayed before stories of non-premium contacts and channels",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
+    },
+    "PremiumStoryFeatureStealthMode": {
+        "description": "The ability to hide the fact that the user viewed other's stories",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
+    },
+    "PremiumStoryFeaturePermanentViewsHistory": {
+        "description": "The ability to check who opened the current user's stories after they expire",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
+    },
+    "PremiumStoryFeatureCustomExpirationDuration": {
+        "description": "The ability to set custom expiration duration for stories",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
+    },
+    "PremiumStoryFeatureSaveStories": {
+        "description": "The ability to save other's unprotected stories",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
+    },
+    "PremiumStoryFeatureLinksAndFormatting": {
+        "description": "The ability to use links and formatting in story caption",
+        "parameters": {},
+        "return": null,
+        "parent": "PremiumStoryFeature"
     },
     "PremiumLimit": {
         "description": "Contains information about a limit, increased for Premium users",
@@ -20336,6 +21567,21 @@
                 "nullable": false,
                 "type": "PremiumFeature",
                 "vectorElementType": "PremiumFeature",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "PremiumSource"
+    },
+    "PremiumSourceStoryFeature": {
+        "description": "A user tried to use a Premium story feature",
+        "parameters": {
+            "feature": {
+                "description": "The used feature",
+                "nullable": false,
+                "type": "PremiumStoryFeature",
+                "vectorElementType": "PremiumStoryFeature",
                 "enum": 7,
                 "vector_depth": 0
             }
@@ -20998,6 +22244,114 @@
         },
         "return": null,
         "parent": "TlObject"
+    },
+    "CanSendStoryResultOk": {
+        "description": "A story can be sent",
+        "parameters": {},
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanSendStoryResultPremiumNeeded": {
+        "description": "The user must subscribe to Telegram Premium to be able to post stories",
+        "parameters": {},
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanSendStoryResultBoostNeeded": {
+        "description": "The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat",
+        "parameters": {},
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanSendStoryResultActiveStoryLimitExceeded": {
+        "description": "The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire",
+        "parameters": {},
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanSendStoryResultWeeklyLimitExceeded": {
+        "description": "The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time",
+        "parameters": {
+            "retry_after": {
+                "description": "Time left before the user can send the next story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanSendStoryResultMonthlyLimitExceeded": {
+        "description": "The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time",
+        "parameters": {
+            "retry_after": {
+                "description": "Time left before the user can send the next story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "CanSendStoryResult"
+    },
+    "CanBoostChatResultOk": {
+        "description": "The chat can be boosted",
+        "parameters": {
+            "currently_boosted_chat_id": {
+                "description": "Identifier of the currently boosted chat from which boost will be removed; 0 if none",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "CanBoostChatResult"
+    },
+    "CanBoostChatResultInvalidChat": {
+        "description": "The chat can't be boosted",
+        "parameters": {},
+        "return": null,
+        "parent": "CanBoostChatResult"
+    },
+    "CanBoostChatResultAlreadyBoosted": {
+        "description": "The chat is already boosted by the user",
+        "parameters": {},
+        "return": null,
+        "parent": "CanBoostChatResult"
+    },
+    "CanBoostChatResultPremiumNeeded": {
+        "description": "The user must subscribe to Telegram Premium to be able to boost chats",
+        "parameters": {},
+        "return": null,
+        "parent": "CanBoostChatResult"
+    },
+    "CanBoostChatResultPremiumSubscriptionNeeded": {
+        "description": "The user must have Telegram Premium subscription instead of a gifted Telegram Premium",
+        "parameters": {},
+        "return": null,
+        "parent": "CanBoostChatResult"
+    },
+    "CanBoostChatResultWaitNeeded": {
+        "description": "The user must wait the specified time before the boost can be moved to another chat",
+        "parameters": {
+            "retry_after": {
+                "description": "Time left before the user can boost another chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "CanBoostChatResult"
     },
     "CanTransferOwnershipResultOk": {
         "description": "The session can be used",
@@ -21880,7 +23234,7 @@
         "description": "New message was received through a push notification",
         "parameters": {
             "message_id": {
-                "description": "The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as a message to reply",
+                "description": "The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
@@ -22260,7 +23614,16 @@
     },
     "StoryPrivacySettingsEveryone": {
         "description": "The story can be viewed by everyone",
-        "parameters": {},
+        "parameters": {
+            "except_user_ids": {
+                "description": "Identifiers of the users that can't see the story; always unknown and empty for non-owned stories",
+                "nullable": false,
+                "type": "List<int>",
+                "vectorElementType": "int",
+                "enum": 6,
+                "vector_depth": 1
+            }
+        },
         "return": null,
         "parent": "StoryPrivacySettings"
     },
@@ -22268,7 +23631,7 @@
         "description": "The story can be viewed by all contacts except chosen users",
         "parameters": {
             "except_user_ids": {
-                "description": "User identifiers of the contacts that can't see the story; always empty for non-owned stories",
+                "description": "User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories",
                 "nullable": false,
                 "type": "List<int>",
                 "vectorElementType": "int",
@@ -22285,11 +23648,11 @@
         "return": null,
         "parent": "StoryPrivacySettings"
     },
-    "StoryPrivacySettingsSelectedContacts": {
+    "StoryPrivacySettingsSelectedUsers": {
         "description": "The story can be viewed by certain specified users",
         "parameters": {
             "user_ids": {
-                "description": "Identifiers of the users; always empty for non-owned stories",
+                "description": "Identifiers of the users; always unknown and empty for non-owned stories",
                 "nullable": false,
                 "type": "List<int>",
                 "vectorElementType": "int",
@@ -22618,6 +23981,14 @@
                 "enum": 3,
                 "vector_depth": 0
             },
+            "is_unconfirmed": {
+                "description": "True, if the session wasn't confirmed from another session",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "can_accept_secret_chats": {
                 "description": "True, if incoming secret chats can be accepted by the session",
                 "nullable": false,
@@ -22714,7 +24085,7 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "ip": {
+            "ip_address": {
                 "description": "IP address from which the session was created, in human-readable format",
                 "nullable": false,
                 "type": "String",
@@ -22722,16 +24093,8 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "country": {
-                "description": "A two-letter country code for the country from which the session was created, based on the IP address",
-                "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "region": {
-                "description": "Region code from which the session was created, based on the IP address",
+            "location": {
+                "description": "A human-readable description of the location from which the session was created, based on the IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -22758,6 +24121,45 @@
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
+    "UnconfirmedSession": {
+        "description": "Contains information about an unconfirmed session",
+        "parameters": {
+            "id": {
+                "description": "Session identifier",
+                "nullable": false,
+                "type": "int64",
+                "vectorElementType": "int64",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "log_in_date": {
+                "description": "Point in time (Unix timestamp) when the user has logged in",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "device_model": {
+                "description": "Model of the device that was used for the session creation, as provided by the application",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "location": {
+                "description": "A human-readable description of the location from which the session was created, based on the IP address",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
                 "enum": 3,
                 "vector_depth": 0
             }
@@ -22824,7 +24226,7 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "ip": {
+            "ip_address": {
                 "description": "IP address from which the user was logged in, in human-readable format",
                 "nullable": false,
                 "type": "String",
@@ -23137,6 +24539,21 @@
         "return": null,
         "parent": "InternalLinkType"
     },
+    "InternalLinkTypeChatBoost": {
+        "description": "The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link.",
+        "parameters": {
+            "url": {
+                "description": "URL to be passed to getChatBoostLinkInfo",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "InternalLinkType"
+    },
     "InternalLinkTypeChatFolderInvite": {
         "description": "The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link",
         "parameters": {
@@ -23400,7 +24817,7 @@
         "description": "The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy",
         "parameters": {
             "server": {
-                "description": "Proxy server IP address",
+                "description": "Proxy server domain or IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -23457,6 +24874,29 @@
     "InternalLinkTypeSettings": {
         "description": "The link is a link to application settings",
         "parameters": {},
+        "return": null,
+        "parent": "InternalLinkType"
+    },
+    "InternalLinkTypeSideMenuBot": {
+        "description": "The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu.",
+        "parameters": {
+            "bot_username": {
+                "description": "Username of the bot",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "url": {
+                "description": "URL to be passed to getWebAppUrl",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
         "return": null,
         "parent": "InternalLinkType"
     },
@@ -23718,397 +25158,19 @@
         "return": null,
         "parent": "TlObject"
     },
-    "StoryVideo": {
-        "description": "Describes a video file sent in a story",
+    "ChatBoostLink": {
+        "description": "Contains an HTTPS link to boost a chat",
         "parameters": {
-            "duration": {
-                "description": "Duration of the video, in seconds",
+            "link": {
+                "description": "The link",
                 "nullable": false,
-                "type": "double",
-                "vectorElementType": "double",
+                "type": "String",
+                "vectorElementType": "String",
                 "enum": 3,
                 "vector_depth": 0
             },
-            "width": {
-                "description": "Video width",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "height": {
-                "description": "Video height",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "has_stickers": {
-                "description": "True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_animation": {
-                "description": "True, if the video has no sound",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "minithumbnail": {
-                "description": "Video minithumbnail; may be null",
-                "nullable": true,
-                "type": "Minithumbnail",
-                "vectorElementType": "Minithumbnail",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "thumbnail": {
-                "description": "Video thumbnail in JPEG or MPEG4 format; may be null",
-                "nullable": true,
-                "type": "Thumbnail",
-                "vectorElementType": "Thumbnail",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "preload_prefix_size": {
-                "description": "Size of file prefix, which is supposed to be preloaded, in bytes",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "video": {
-                "description": "File containing the video",
-                "nullable": false,
-                "type": "File",
-                "vectorElementType": "File",
-                "enum": 7,
-                "vector_depth": 0
-            }
-        },
-        "return": null,
-        "parent": "TlObject"
-    },
-    "StoryContentPhoto": {
-        "description": "A photo story",
-        "parameters": {
-            "photo": {
-                "description": "The photo",
-                "nullable": false,
-                "type": "Photo",
-                "vectorElementType": "Photo",
-                "enum": 7,
-                "vector_depth": 0
-            }
-        },
-        "return": null,
-        "parent": "StoryContent"
-    },
-    "StoryContentVideo": {
-        "description": "A video story",
-        "parameters": {
-            "video": {
-                "description": "The video in MPEG4 format",
-                "nullable": false,
-                "type": "StoryVideo",
-                "vectorElementType": "StoryVideo",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "alternative_video": {
-                "description": "Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null",
-                "nullable": true,
-                "type": "StoryVideo",
-                "vectorElementType": "StoryVideo",
-                "enum": 7,
-                "vector_depth": 0
-            }
-        },
-        "return": null,
-        "parent": "StoryContent"
-    },
-    "StoryContentUnsupported": {
-        "description": "A story content that is not supported in the current TDLib version",
-        "parameters": {},
-        "return": null,
-        "parent": "StoryContent"
-    },
-    "InputStoryContentPhoto": {
-        "description": "A photo story",
-        "parameters": {
-            "photo": {
-                "description": "Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920",
-                "nullable": false,
-                "type": "InputFile",
-                "vectorElementType": "InputFile",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "added_sticker_file_ids": {
-                "description": "File identifiers of the stickers added to the photo, if applicable",
-                "nullable": false,
-                "type": "List<int>",
-                "vectorElementType": "int",
-                "enum": 6,
-                "vector_depth": 1
-            }
-        },
-        "return": null,
-        "parent": "InputStoryContent"
-    },
-    "InputStoryContentVideo": {
-        "description": "A video story",
-        "parameters": {
-            "video": {
-                "description": "Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second",
-                "nullable": false,
-                "type": "InputFile",
-                "vectorElementType": "InputFile",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "added_sticker_file_ids": {
-                "description": "File identifiers of the stickers added to the video, if applicable",
-                "nullable": false,
-                "type": "List<int>",
-                "vectorElementType": "int",
-                "enum": 6,
-                "vector_depth": 1
-            },
-            "duration": {
-                "description": "Precise duration of the video, in seconds; 0-60",
-                "nullable": false,
-                "type": "double",
-                "vectorElementType": "double",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_animation": {
-                "description": "True, if the video has no sound",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            }
-        },
-        "return": null,
-        "parent": "InputStoryContent"
-    },
-    "StoryListMain": {
-        "description": "The list of stories, shown in the main chat list and folder chat lists",
-        "parameters": {},
-        "return": null,
-        "parent": "StoryList"
-    },
-    "StoryListArchive": {
-        "description": "The list of stories, shown in the Arvhive chat list",
-        "parameters": {},
-        "return": null,
-        "parent": "StoryList"
-    },
-    "StoryInteractionInfo": {
-        "description": "Contains information about interactions with a story",
-        "parameters": {
-            "view_count": {
-                "description": "Number of times the story was viewed",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "recent_viewer_user_ids": {
-                "description": "Identifiers of at most 3 recent viewers of the story",
-                "nullable": false,
-                "type": "List<int>",
-                "vectorElementType": "int",
-                "enum": 6,
-                "vector_depth": 1
-            }
-        },
-        "return": null,
-        "parent": "TlObject"
-    },
-    "Story": {
-        "description": "Represents a story",
-        "parameters": {
-            "id": {
-                "description": "Unique story identifier among stories of the given sender",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "sender_chat_id": {
-                "description": "Identifier of the chat that posted the story",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "date": {
-                "description": "Point in time (Unix timestamp) when the story was published",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_being_edited": {
-                "description": "True, if the story is being edited by the current user",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_edited": {
-                "description": "True, if the story was edited",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_pinned": {
-                "description": "True, if the story is saved in the sender's profile and will be available there after expiration",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_visible_only_for_self": {
-                "description": "True, if the story is visible only for the current user",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "can_be_forwarded": {
-                "description": "True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "can_be_replied": {
-                "description": "True, if the story can be replied in the chat with the story sender",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "can_get_viewers": {
-                "description": "True, if users viewed the story can be received through getStoryViewers",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "has_expired_viewers": {
-                "description": "True, if users viewed the story can't be received, because the story has expired more than getOption(\"story_viewers_expiration_delay\") seconds ago",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "interaction_info": {
-                "description": "Information about interactions with the story; may be null if the story isn't owned or there were no interactions",
-                "nullable": true,
-                "type": "StoryInteractionInfo",
-                "vectorElementType": "StoryInteractionInfo",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "privacy_settings": {
-                "description": "Privacy rules affecting story visibility; may be approximate for non-owned stories",
-                "nullable": false,
-                "type": "StoryPrivacySettings",
-                "vectorElementType": "StoryPrivacySettings",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "content": {
-                "description": "Content of the story",
-                "nullable": false,
-                "type": "StoryContent",
-                "vectorElementType": "StoryContent",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "caption": {
-                "description": "Caption of the story",
-                "nullable": false,
-                "type": "FormattedText",
-                "vectorElementType": "FormattedText",
-                "enum": 7,
-                "vector_depth": 0
-            }
-        },
-        "return": null,
-        "parent": "TlObject"
-    },
-    "Stories": {
-        "description": "Represents a list of stories",
-        "parameters": {
-            "total_count": {
-                "description": "Approximate total number of stories found",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "stories": {
-                "description": "The list of stories",
-                "nullable": false,
-                "type": "List<Story>",
-                "vectorElementType": "Story",
-                "enum": 14,
-                "vector_depth": 1
-            }
-        },
-        "return": null,
-        "parent": "TlObject"
-    },
-    "StoryInfo": {
-        "description": "Contains basic information about a story",
-        "parameters": {
-            "story_id": {
-                "description": "Unique story identifier among stories of the given sender",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "date": {
-                "description": "Point in time (Unix timestamp) when the story was published",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "is_for_close_friends": {
-                "description": "True, if the story is available only to close friends",
+            "is_public": {
+                "description": "True, if the link will work for non-members of the chat",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -24119,52 +25181,40 @@
         "return": null,
         "parent": "TlObject"
     },
-    "ChatActiveStories": {
-        "description": "Describes active stories posted by a chat",
+    "ChatBoostLinkInfo": {
+        "description": "Contains information about a link to boost a a chat",
         "parameters": {
+            "is_public": {
+                "description": "True, if the link will work for non-members of the chat",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "chat_id": {
-                "description": "Identifier of the chat that posted the stories",
+                "description": "Identifier of the chat to which the link points; 0 if the chat isn't found",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
                 "enum": 3,
                 "vector_depth": 0
-            },
-            "list": {
-                "description": "Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list",
-                "nullable": true,
-                "type": "StoryList",
-                "vectorElementType": "StoryList",
-                "enum": 7,
-                "vector_depth": 0
-            },
-            "order": {
-                "description": "A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "max_read_story_id": {
-                "description": "Identifier of the last read active story",
-                "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "stories": {
-                "description": "Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)",
-                "nullable": false,
-                "type": "List<StoryInfo>",
-                "vectorElementType": "StoryInfo",
-                "enum": 14,
-                "vector_depth": 1
             }
         },
         "return": null,
         "parent": "TlObject"
+    },
+    "BlockListMain": {
+        "description": "The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions",
+        "parameters": {},
+        "return": null,
+        "parent": "BlockList"
+    },
+    "BlockListStories": {
+        "description": "The block list that disallows viewing of stories of the current user",
+        "parameters": {},
+        "return": null,
+        "parent": "BlockList"
     },
     "FilePart": {
         "description": "Contains a part of a file",
@@ -24897,6 +25947,29 @@
         "return": null,
         "parent": "TopChatCategory"
     },
+    "FoundPositions": {
+        "description": "Contains 0-based positions of matched objects",
+        "parameters": {
+            "total_count": {
+                "description": "Total number of matched objects",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "positions": {
+                "description": "The positions of the matched objects",
+                "nullable": false,
+                "type": "List<int>",
+                "vectorElementType": "int",
+                "enum": 6,
+                "vector_depth": 1
+            }
+        },
+        "return": null,
+        "parent": "TlObject"
+    },
     "TMeUrlTypeUser": {
         "description": "A URL linking to a user",
         "parameters": {
@@ -25252,7 +26325,7 @@
                 "vector_depth": 0
             },
             "server": {
-                "description": "Proxy server IP address",
+                "description": "Proxy server domain or IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -26098,20 +27171,12 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "error_code": {
-                "description": "An error code",
+            "error": {
+                "description": "The cause of the message sending failure",
                 "nullable": false,
-                "type": "int",
-                "vectorElementType": "int",
-                "enum": 3,
-                "vector_depth": 0
-            },
-            "error_message": {
-                "description": "Error message",
-                "nullable": false,
-                "type": "String",
-                "vectorElementType": "String",
-                "enum": 3,
+                "type": "Error",
+                "vectorElementType": "Error",
+                "enum": 7,
                 "vector_depth": 0
             }
         },
@@ -26957,7 +28022,7 @@
         "return": null,
         "parent": "Update"
     },
-    "UpdateChatIsBlocked": {
+    "UpdateChatBlockList": {
         "description": "A chat was blocked or unblocked",
         "parameters": {
             "chat_id": {
@@ -26968,12 +28033,12 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "is_blocked": {
-                "description": "New value of is_blocked",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
+            "block_list": {
+                "description": "Block list to which the chat is added; may be null if none",
+                "nullable": true,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
                 "vector_depth": 0
             }
         },
@@ -27170,7 +28235,7 @@
                 "vector_depth": 0
             },
             "added_notifications": {
-                "description": "List of added group notifications, sorted by notification ID",
+                "description": "List of added group notifications, sorted by notification identifier",
                 "nullable": false,
                 "type": "List<Notification>",
                 "vectorElementType": "Notification",
@@ -27178,7 +28243,7 @@
                 "vector_depth": 1
             },
             "removed_notification_ids": {
-                "description": "Identifiers of removed group notifications, sorted by notification ID",
+                "description": "Identifiers of removed group notifications, sorted by notification identifier",
                 "nullable": false,
                 "type": "List<int>",
                 "vectorElementType": "int",
@@ -27888,6 +28953,60 @@
         "return": null,
         "parent": "Update"
     },
+    "UpdateStorySendSucceeded": {
+        "description": "A story has been successfully sent",
+        "parameters": {
+            "story": {
+                "description": "The sent story",
+                "nullable": false,
+                "type": "Story",
+                "vectorElementType": "Story",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "old_story_id": {
+                "description": "The previous temporary story identifier",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "Update"
+    },
+    "UpdateStorySendFailed": {
+        "description": "A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update",
+        "parameters": {
+            "story": {
+                "description": "The failed to send story",
+                "nullable": false,
+                "type": "Story",
+                "vectorElementType": "Story",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "error": {
+                "description": "The cause of the story sending failure",
+                "nullable": false,
+                "type": "Error",
+                "vectorElementType": "Error",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "error_type": {
+                "description": "Type of the error; may be null if unknown",
+                "nullable": true,
+                "type": "CanSendStoryResult",
+                "vectorElementType": "CanSendStoryResult",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "Update"
+    },
     "UpdateChatActiveStories": {
         "description": "The list of active stories posted by a specific chat has changed",
         "parameters": {
@@ -27916,6 +29035,29 @@
             },
             "chat_count": {
                 "description": "Approximate total number of chats with active stories in the list",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "Update"
+    },
+    "UpdateStoryStealthMode": {
+        "description": "Story stealth mode settings have changed",
+        "parameters": {
+            "active_until_date": {
+                "description": "Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "cooldown_until_date": {
+                "description": "Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
@@ -28200,11 +29342,26 @@
         "return": null,
         "parent": "Update"
     },
+    "UpdateUnconfirmedSession": {
+        "description": "The first unconfirmed session has changed",
+        "parameters": {
+            "session": {
+                "description": "The unconfirmed session; may be null if none",
+                "nullable": true,
+                "type": "UnconfirmedSession",
+                "vectorElementType": "UnconfirmedSession",
+                "enum": 7,
+                "vector_depth": 0
+            }
+        },
+        "return": null,
+        "parent": "Update"
+    },
     "UpdateAttachmentMenuBots": {
-        "description": "The list of bots added to attachment menu has changed",
+        "description": "The list of bots added to attachment or side menu has changed",
         "parameters": {
             "bots": {
-                "description": "The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen",
+                "description": "The new list of bots. The bots must not be shown on scheduled messages screen",
                 "nullable": false,
                 "type": "List<AttachmentMenuBot>",
                 "vectorElementType": "AttachmentMenuBot",

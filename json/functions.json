@@ -976,7 +976,7 @@
         "parent": "Func"
     },
     "GetRemoteFile": {
-        "description": "Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.",
+        "description": "Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.",
         "parameters": {
             "remote_file_id": {
                 "description": "Remote identifier of the file to get",
@@ -1136,7 +1136,7 @@
         "parent": "Func"
     },
     "GetTopChats": {
-        "description": "Returns a list of frequently used chats. Supported only if the chat info database is enabled",
+        "description": "Returns a list of frequently used chats",
         "parameters": {
             "category": {
                 "description": "Category of chats to be returned",
@@ -1259,7 +1259,7 @@
         "description": "Checks whether a username can be set for a chat",
         "parameters": {
             "chat_id": {
-                "description": "Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created",
+                "description": "Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
@@ -2495,7 +2495,7 @@
                 "vector_depth": 0
             },
             "result_id": {
-                "description": "Identifier of the inline result",
+                "description": "Identifier of the inline query result",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -3966,7 +3966,7 @@
         "parent": "Func"
     },
     "StopPoll": {
-        "description": "Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set",
+        "description": "Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set",
         "parameters": {
             "chat_id": {
                 "description": "Identifier of the chat to which the poll belongs",
@@ -4211,7 +4211,7 @@
                 "vector_depth": 0
             },
             "offset": {
-                "description": "Offset of the first entry to return",
+                "description": "Offset of the first entry to return; use empty string to get the first chunk of results",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -4364,7 +4364,7 @@
         "parent": "Func"
     },
     "GetWebAppUrl": {
-        "description": "Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed",
+        "description": "Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link",
         "parameters": {
             "bot_user_id": {
                 "description": "Identifier of the target bot",
@@ -4375,7 +4375,7 @@
                 "vector_depth": 0
             },
             "url": {
-                "description": "The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button",
+                "description": "The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -4434,7 +4434,7 @@
         "parent": "Func"
     },
     "OpenWebApp": {
-        "description": "Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.",
+        "description": "Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.",
         "parameters": {
             "chat_id": {
                 "description": "Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats",
@@ -4453,7 +4453,7 @@
                 "vector_depth": 0
             },
             "url": {
-                "description": "The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise",
+                "description": "The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -5310,7 +5310,7 @@
                 "vector_depth": 0
             },
             "for_import": {
-                "description": "Pass true to create a supergroup for importing messages using importMessage",
+                "description": "Pass true to create a supergroup for importing messages using importMessages",
                 "nullable": false,
                 "type": "bool",
                 "vectorElementType": "bool",
@@ -6798,14 +6798,51 @@
         "return": "Story",
         "parent": "Func"
     },
-    "SendStory": {
-        "description": "Sends a new story. Returns a temporary story with identifier 0",
+    "GetChatsToSendStories": {
+        "description": "Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there",
+        "parameters": {},
+        "return": "Chats",
+        "parent": "Func"
+    },
+    "CanSendStory": {
+        "description": "Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats",
         "parameters": {
+            "chat_id": {
+                "description": "Chat identifier",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "CanSendStoryResult",
+        "parent": "Func"
+    },
+    "SendStory": {
+        "description": "Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat that will post the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "content": {
                 "description": "Content of the story",
                 "nullable": false,
                 "type": "InputStoryContent",
                 "vectorElementType": "InputStoryContent",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "areas": {
+                "description": "Clickable rectangle areas to be shown on the story media; pass null if none",
+                "nullable": true,
+                "type": "InputStoryAreas",
+                "vectorElementType": "InputStoryAreas",
                 "enum": 7,
                 "vector_depth": 0
             },
@@ -6826,7 +6863,7 @@
                 "vector_depth": 0
             },
             "active_period": {
-                "description": "Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise",
+                "description": "Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise",
                 "nullable": false,
                 "type": "int",
                 "vectorElementType": "int",
@@ -6854,8 +6891,16 @@
         "parent": "Func"
     },
     "EditStory": {
-        "description": "Changes content and caption of a previously sent story",
+        "description": "Changes content and caption of a story. Can be called only if story.can_be_edited == true",
         "parameters": {
+            "story_sender_chat_id": {
+                "description": "Identifier of the chat that posted the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "story_id": {
                 "description": "Identifier of the story to edit",
                 "nullable": false,
@@ -6872,6 +6917,14 @@
                 "enum": 7,
                 "vector_depth": 0
             },
+            "areas": {
+                "description": "New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed",
+                "nullable": true,
+                "type": "InputStoryAreas",
+                "vectorElementType": "InputStoryAreas",
+                "enum": 7,
+                "vector_depth": 0
+            },
             "caption": {
                 "description": "New story caption; pass null to keep the current caption",
                 "nullable": true,
@@ -6885,8 +6938,16 @@
         "parent": "Func"
     },
     "SetStoryPrivacySettings": {
-        "description": "Changes privacy settings of a previously sent story",
+        "description": "Changes privacy settings of a story. Can be called only if story.can_be_edited == true",
         "parameters": {
+            "story_sender_chat_id": {
+                "description": "Identifier of the chat that posted the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "story_id": {
                 "description": "Identifier of the story",
                 "nullable": false,
@@ -6908,8 +6969,16 @@
         "parent": "Func"
     },
     "ToggleStoryIsPinned": {
-        "description": "Toggles whether a story is accessible after expiration",
+        "description": "Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true",
         "parameters": {
+            "story_sender_chat_id": {
+                "description": "Identifier of the chat that posted the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "story_id": {
                 "description": "Identifier of the story",
                 "nullable": false,
@@ -6931,8 +7000,16 @@
         "parent": "Func"
     },
     "DeleteStory": {
-        "description": "Deletes a previously sent story",
+        "description": "Deletes a previously sent story. Can be called only if story.can_be_deleted == true",
         "parameters": {
+            "story_sender_chat_id": {
+                "description": "Identifier of the chat that posted the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "story_id": {
                 "description": "Identifier of the story to delete",
                 "nullable": false,
@@ -7035,9 +7112,17 @@
         "return": "Stories",
         "parent": "Func"
     },
-    "GetArchivedStories": {
-        "description": "Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id).",
+    "GetChatArchivedStories": {
+        "description": "Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats.",
         "parameters": {
+            "chat_id": {
+                "description": "Chat identifier",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
             "from_story_id": {
                 "description": "Identifier of the story starting from which stories must be returned; use 0 to get results from the last story",
                 "nullable": false,
@@ -7104,8 +7189,62 @@
         "return": "Ok",
         "parent": "Func"
     },
+    "GetStoryAvailableReactions": {
+        "description": "Returns reactions, which can be chosen for a story",
+        "parameters": {
+            "row_size": {
+                "description": "Number of reaction per row, 5-25",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "AvailableReactions",
+        "parent": "Func"
+    },
+    "SetStoryReaction": {
+        "description": "Changes chosen reaction on a story",
+        "parameters": {
+            "story_sender_chat_id": {
+                "description": "The identifier of the sender of the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "story_id": {
+                "description": "The identifier of the story",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "reaction_type": {
+                "description": "Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users",
+                "nullable": true,
+                "type": "ReactionType",
+                "vectorElementType": "ReactionType",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "update_recent_reactions": {
+                "description": "Pass true if the reaction needs to be added to recent reactions",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "Ok",
+        "parent": "Func"
+    },
     "GetStoryViewers": {
-        "description": "Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date)",
+        "description": "Returns viewers of a story. The method can be called only for stories posted on behalf of the current user",
         "parameters": {
             "story_id": {
                 "description": "Story identifier",
@@ -7115,12 +7254,36 @@
                 "enum": 3,
                 "vector_depth": 0
             },
-            "offset_viewer": {
-                "description": "A viewer from which to return next viewers; pass null to get results from the beginning",
-                "nullable": true,
-                "type": "MessageViewer",
-                "vectorElementType": "MessageViewer",
-                "enum": 7,
+            "query": {
+                "description": "Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "only_contacts": {
+                "description": "Pass true to get only contacts; pass false to get all relevant viewers",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "prefer_with_reaction": {
+                "description": "Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "offset": {
+                "description": "Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
                 "vector_depth": 0
             },
             "limit": {
@@ -7132,7 +7295,7 @@
                 "vector_depth": 0
             }
         },
-        "return": "MessageViewers",
+        "return": "StoryViewers",
         "parent": "Func"
     },
     "ReportStory": {
@@ -7174,8 +7337,120 @@
         "return": "Ok",
         "parent": "Func"
     },
+    "ActivateStoryStealthMode": {
+        "description": "Activates stealth mode for stories, which hides all views of stories from the current user in the last \"story_stealth_mode_past_period\" seconds",
+        "parameters": {},
+        "return": "Ok",
+        "parent": "Func"
+    },
+    "GetChatBoostStatus": {
+        "description": "Returns the current boost status for a channel chat",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the channel chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "ChatBoostStatus",
+        "parent": "Func"
+    },
+    "CanBoostChat": {
+        "description": "Checks whether the current user can boost a chat",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "CanBoostChatResult",
+        "parent": "Func"
+    },
+    "BoostChat": {
+        "description": "Boosts a chat",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "Ok",
+        "parent": "Func"
+    },
+    "GetChatBoostLink": {
+        "description": "Returns an HTTPS link to boost the specified channel chat",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "ChatBoostLink",
+        "parent": "Func"
+    },
+    "GetChatBoostLinkInfo": {
+        "description": "Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost",
+        "parameters": {
+            "url": {
+                "description": "The link to boost a chat",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "ChatBoostLinkInfo",
+        "parent": "Func"
+    },
+    "GetChatBoosts": {
+        "description": "Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts",
+        "parameters": {
+            "chat_id": {
+                "description": "Identifier of the chat",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "offset": {
+                "description": "Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "limit": {
+                "description": "The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "FoundChatBoosts",
+        "parent": "Func"
+    },
     "GetAttachmentMenuBot": {
-        "description": "Returns information about a bot that can be added to attachment menu",
+        "description": "Returns information about a bot that can be added to attachment or side menu",
         "parameters": {
             "bot_user_id": {
                 "description": "Bot's user identifier",
@@ -7190,7 +7465,7 @@
         "parent": "Func"
     },
     "ToggleBotIsAddedToAttachmentMenu": {
-        "description": "Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true",
+        "description": "Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true",
         "parameters": {
             "bot_user_id": {
                 "description": "Bot's user identifier",
@@ -8781,7 +9056,7 @@
         "parent": "Func"
     },
     "InviteGroupCallParticipants": {
-        "description": "Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats",
+        "description": "Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats",
         "parameters": {
             "group_call_id": {
                 "description": "Group call identifier",
@@ -9180,8 +9455,8 @@
         "return": "FilePart",
         "parent": "Func"
     },
-    "ToggleMessageSenderIsBlocked": {
-        "description": "Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked",
+    "SetMessageSenderBlockList": {
+        "description": "Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked",
         "parameters": {
             "sender_id": {
                 "description": "Identifier of a message sender to block/unblock",
@@ -9191,12 +9466,12 @@
                 "enum": 7,
                 "vector_depth": 0
             },
-            "is_blocked": {
-                "description": "New value of is_blocked",
-                "nullable": false,
-                "type": "bool",
-                "vectorElementType": "bool",
-                "enum": 3,
+            "block_list": {
+                "description": "New block list for the message sender; pass null to unblock the message sender",
+                "nullable": true,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
                 "vector_depth": 0
             }
         },
@@ -9245,6 +9520,14 @@
     "GetBlockedMessageSenders": {
         "description": "Returns users and chats that were blocked by the current user",
         "parameters": {
+            "block_list": {
+                "description": "Block list from which to return users",
+                "nullable": false,
+                "type": "BlockList",
+                "vectorElementType": "BlockList",
+                "enum": 7,
+                "vector_depth": 0
+            },
             "offset": {
                 "description": "Number of users and chats to skip in the result; must be non-negative",
                 "nullable": false,
@@ -9539,6 +9822,45 @@
             }
         },
         "return": "Stickers",
+        "parent": "Func"
+    },
+    "GetAllStickerEmojis": {
+        "description": "Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)",
+        "parameters": {
+            "sticker_type": {
+                "description": "Type of the stickers to search for",
+                "nullable": false,
+                "type": "StickerType",
+                "vectorElementType": "StickerType",
+                "enum": 7,
+                "vector_depth": 0
+            },
+            "query": {
+                "description": "Search query",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "chat_id": {
+                "description": "Chat identifier for which to find stickers",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "return_only_main_emoji": {
+                "description": "Pass true if only main emoji for each found sticker must be included in the result",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "Emojis",
         "parent": "Func"
     },
     "SearchStickers": {
@@ -10515,7 +10837,7 @@
         "description": "Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only",
         "parameters": {
             "default_group_administrator_rights": {
-                "description": "Default administrator rights for adding the bot to basic group and supergroup chats; may be null",
+                "description": "Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights",
                 "nullable": true,
                 "type": "ChatAdministratorRights",
                 "vectorElementType": "ChatAdministratorRights",
@@ -10530,7 +10852,7 @@
         "description": "Sets default administrator rights for adding the bot to channel chats; for bots only",
         "parameters": {
             "default_channel_administrator_rights": {
-                "description": "Default administrator rights for adding the bot to channels; may be null",
+                "description": "Default administrator rights for adding the bot to channels; pass null to remove default rights",
                 "nullable": true,
                 "type": "ChatAdministratorRights",
                 "vectorElementType": "ChatAdministratorRights",
@@ -10539,6 +10861,67 @@
             }
         },
         "return": "Ok",
+        "parent": "Func"
+    },
+    "CanBotSendMessages": {
+        "description": "Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages",
+        "parameters": {
+            "bot_user_id": {
+                "description": "Identifier of the target bot",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "Ok",
+        "parent": "Func"
+    },
+    "AllowBotToSendMessages": {
+        "description": "Allows the specified bot to send messages to the user",
+        "parameters": {
+            "bot_user_id": {
+                "description": "Identifier of the target bot",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "Ok",
+        "parent": "Func"
+    },
+    "SendWebAppCustomRequest": {
+        "description": "Sends a custom request from a Web App",
+        "parameters": {
+            "bot_user_id": {
+                "description": "Identifier of the bot",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "method": {
+                "description": "The method name",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "parameters": {
+                "description": "JSON-serialized method parameters",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "CustomRequestResult",
         "parent": "Func"
     },
     "SetBotName": {
@@ -10804,6 +11187,21 @@
     "TerminateAllOtherSessions": {
         "description": "Terminates all other sessions of the current user",
         "parameters": {},
+        "return": "Ok",
+        "parent": "Func"
+    },
+    "ConfirmSession": {
+        "description": "Confirms an unconfirmed session of the current user from another device",
+        "parameters": {
+            "session_id": {
+                "description": "Session identifier",
+                "nullable": false,
+                "type": "int64",
+                "vectorElementType": "int64",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
         "return": "Ok",
         "parent": "Func"
     },
@@ -11342,7 +11740,7 @@
         "parent": "Func"
     },
     "GetPaymentForm": {
-        "description": "Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy",
+        "description": "Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy",
         "parameters": {
             "input_invoice": {
                 "description": "The invoice",
@@ -11704,7 +12102,7 @@
         "description": "Adds or changes a custom local language pack to the current localization target",
         "parameters": {
             "info": {
-                "description": "Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization",
+                "description": "Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization",
                 "nullable": false,
                 "type": "LanguagePackInfo",
                 "vectorElementType": "LanguagePackInfo",
@@ -13356,6 +13754,45 @@
         "return": "Ok",
         "parent": "Func"
     },
+    "SearchStringsByPrefix": {
+        "description": "Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously",
+        "parameters": {
+            "strings": {
+                "description": "The strings to search in for the query",
+                "nullable": false,
+                "type": "List<String>",
+                "vectorElementType": "String",
+                "enum": 6,
+                "vector_depth": 1
+            },
+            "query": {
+                "description": "Query to search for",
+                "nullable": false,
+                "type": "String",
+                "vectorElementType": "String",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "limit": {
+                "description": "The maximum number of objects to return",
+                "nullable": false,
+                "type": "int",
+                "vectorElementType": "int",
+                "enum": 3,
+                "vector_depth": 0
+            },
+            "return_none_for_empty_query": {
+                "description": "Pass true to receive no results for an empty query",
+                "nullable": false,
+                "type": "bool",
+                "vectorElementType": "bool",
+                "enum": 3,
+                "vector_depth": 0
+            }
+        },
+        "return": "FoundPositions",
+        "parent": "SyncFunc"
+    },
     "SendCustomRequest": {
         "description": "Sends a custom request; for bots only",
         "parameters": {
@@ -13544,7 +13981,7 @@
         "description": "Adds a proxy server for network requests. Can be called before authorization",
         "parameters": {
             "server": {
-                "description": "Proxy server IP address",
+                "description": "Proxy server domain or IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -13591,7 +14028,7 @@
                 "vector_depth": 0
             },
             "server": {
-                "description": "Proxy server IP address",
+                "description": "Proxy server domain or IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",
@@ -13972,7 +14409,7 @@
         "description": "Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization",
         "parameters": {
             "server": {
-                "description": "Proxy server IP address",
+                "description": "Proxy server domain or IP address",
                 "nullable": false,
                 "type": "String",
                 "vectorElementType": "String",

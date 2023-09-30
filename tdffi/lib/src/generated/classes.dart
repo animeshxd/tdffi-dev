@@ -2224,7 +2224,7 @@ class File extends TlObject {
   }
 }
 
-///A file defined by its unique ID
+///A file defined by its unique identifier
 ///
 class InputFileId extends InputFile {
   /// [extra] - Request identifier. Must be non-zero.
@@ -2239,7 +2239,7 @@ class InputFileId extends InputFile {
   /// [id] Unique file identifier
   late int id;
 
-  /// A file defined by its unique ID
+  /// A file defined by its unique identifier
   InputFileId({required this.id, this.extra, this.clientId});
 
   @override
@@ -2272,7 +2272,7 @@ class InputFileId extends InputFile {
   }
 }
 
-///A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
+///A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
 ///
 class InputFileRemote extends InputFile {
   /// [extra] - Request identifier. Must be non-zero.
@@ -2287,7 +2287,7 @@ class InputFileRemote extends InputFile {
   /// [id] Remote file identifier
   late String id;
 
-  /// A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
+  /// A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib.
   InputFileRemote({required this.id, this.extra, this.clientId});
 
   @override
@@ -2622,7 +2622,7 @@ class ThumbnailFormatJpeg extends ThumbnailFormat {
   }
 }
 
-///The thumbnail is in static GIF format. It will be used only for some bot inline results
+///The thumbnail is in static GIF format. It will be used only for some bot inline query results
 ///
 class ThumbnailFormatGif extends ThumbnailFormat {
   /// [extra] - Request identifier. Must be non-zero.
@@ -2634,7 +2634,7 @@ class ThumbnailFormatGif extends ThumbnailFormat {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// The thumbnail is in static GIF format. It will be used only for some bot inline results
+  /// The thumbnail is in static GIF format. It will be used only for some bot inline query results
   ThumbnailFormatGif({this.extra, this.clientId});
 
   @override
@@ -5661,7 +5661,7 @@ class UserTypeBot extends UserType {
   /// [need_location] True, if the location of the user is expected to be sent with every inline query to this bot
   late bool need_location;
 
-  /// [can_be_added_to_attachment_menu] True, if the bot can be added to attachment menu
+  /// [can_be_added_to_attachment_menu] True, if the bot can be added to attachment or side menu
   late bool can_be_added_to_attachment_menu;
 
   /// A bot (see https://core.telegram.org/bots)
@@ -6751,7 +6751,7 @@ class ChatAdministratorRights extends TlObject {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [can_manage_chat] True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+  /// [can_manage_chat] True, if the administrator can get chat event log, get chat statistics, get chat boosts in channels, get message statistics in channels, get channel members,
   late bool can_manage_chat;
 
   /// [can_change_info] True, if the administrator can change the chat title, photo, and other settings
@@ -6784,6 +6784,15 @@ class ChatAdministratorRights extends TlObject {
   /// [can_manage_video_chats] True, if the administrator can manage video chats
   late bool can_manage_video_chats;
 
+  /// [can_post_stories] True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+  late bool can_post_stories;
+
+  /// [can_edit_stories] True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+  late bool can_edit_stories;
+
+  /// [can_delete_stories] True, if the administrator can delete stories posted by other users; applicable to channels only
+  late bool can_delete_stories;
+
   /// [is_anonymous] True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
   late bool is_anonymous;
 
@@ -6800,6 +6809,9 @@ class ChatAdministratorRights extends TlObject {
       required this.can_manage_topics,
       required this.can_promote_members,
       required this.can_manage_video_chats,
+      required this.can_post_stories,
+      required this.can_edit_stories,
+      required this.can_delete_stories,
       required this.is_anonymous,
       this.extra,
       this.clientId});
@@ -6820,6 +6832,9 @@ class ChatAdministratorRights extends TlObject {
       'can_manage_topics': can_manage_topics,
       'can_promote_members': can_promote_members,
       'can_manage_video_chats': can_manage_video_chats,
+      'can_post_stories': can_post_stories,
+      'can_edit_stories': can_edit_stories,
+      'can_delete_stories': can_delete_stories,
       'is_anonymous': is_anonymous
     };
   }
@@ -6847,6 +6862,9 @@ class ChatAdministratorRights extends TlObject {
     var can_manage_topics = _map['can_manage_topics']! as bool;
     var can_promote_members = _map['can_promote_members']! as bool;
     var can_manage_video_chats = _map['can_manage_video_chats']! as bool;
+    var can_post_stories = _map['can_post_stories']! as bool;
+    var can_edit_stories = _map['can_edit_stories']! as bool;
+    var can_delete_stories = _map['can_delete_stories']! as bool;
     var is_anonymous = _map['is_anonymous']! as bool;
     return ChatAdministratorRights(
       extra: extra,
@@ -6862,6 +6880,9 @@ class ChatAdministratorRights extends TlObject {
       can_manage_topics: can_manage_topics,
       can_promote_members: can_promote_members,
       can_manage_video_chats: can_manage_video_chats,
+      can_post_stories: can_post_stories,
+      can_edit_stories: can_edit_stories,
+      can_delete_stories: can_delete_stories,
       is_anonymous: is_anonymous,
     );
   }
@@ -7575,8 +7596,8 @@ class UserFullInfo extends TlObject {
   /// [public_photo] User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown.
   ChatPhoto? public_photo;
 
-  /// [is_blocked] True, if the user is blocked by the current user
-  late bool is_blocked;
+  /// [block_list] Block list to which the user is added; may be null if none
+  BlockList? block_list;
 
   /// [can_be_called] True, if the user can be called
   late bool can_be_called;
@@ -7608,7 +7629,7 @@ class UserFullInfo extends TlObject {
   /// [group_in_common_count] Number of group chats where both the other user and the current user are a member; 0 for the current user
   late int group_in_common_count;
 
-  /// [bot_info] For bots, information about the bot; may be null
+  /// [bot_info] For bots, information about the bot; may be null if the user isn't a bot
   BotInfo? bot_info;
 
   /// Contains full information about a user
@@ -7616,7 +7637,7 @@ class UserFullInfo extends TlObject {
       {this.personal_photo,
       this.photo,
       this.public_photo,
-      required this.is_blocked,
+      this.block_list,
       required this.can_be_called,
       required this.supports_video_calls,
       required this.has_private_calls,
@@ -7639,7 +7660,7 @@ class UserFullInfo extends TlObject {
       'personal_photo': personal_photo,
       'photo': photo,
       'public_photo': public_photo,
-      'is_blocked': is_blocked,
+      'block_list': block_list,
       'can_be_called': can_be_called,
       'supports_video_calls': supports_video_calls,
       'has_private_calls': has_private_calls,
@@ -7671,7 +7692,7 @@ class UserFullInfo extends TlObject {
     var personal_photo = ChatPhoto.fromMap(_map['personal_photo']);
     var photo = ChatPhoto.fromMap(_map['photo']);
     var public_photo = ChatPhoto.fromMap(_map['public_photo']);
-    var is_blocked = _map['is_blocked']! as bool;
+    var block_list = BlockList.fromMap(_map['block_list']);
     var can_be_called = _map['can_be_called']! as bool;
     var supports_video_calls = _map['supports_video_calls']! as bool;
     var has_private_calls = _map['has_private_calls']! as bool;
@@ -7695,7 +7716,7 @@ class UserFullInfo extends TlObject {
       personal_photo: personal_photo,
       photo: photo,
       public_photo: public_photo,
-      is_blocked: is_blocked,
+      block_list: block_list,
       can_be_called: can_be_called,
       supports_video_calls: supports_video_calls,
       has_private_calls: has_private_calls,
@@ -9490,6 +9511,135 @@ class ChatInviteLinkMembers extends TlObject {
   }
 }
 
+///The link is an invite link for a basic group
+///
+class InviteLinkChatTypeBasicGroup extends InviteLinkChatType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inviteLinkChatTypeBasicGroup";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The link is an invite link for a basic group
+  InviteLinkChatTypeBasicGroup({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inviteLinkChatTypeBasicGroup',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InviteLinkChatTypeBasicGroup? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return InviteLinkChatTypeBasicGroup(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The link is an invite link for a supergroup
+///
+class InviteLinkChatTypeSupergroup extends InviteLinkChatType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inviteLinkChatTypeSupergroup";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The link is an invite link for a supergroup
+  InviteLinkChatTypeSupergroup({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inviteLinkChatTypeSupergroup',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InviteLinkChatTypeSupergroup? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return InviteLinkChatTypeSupergroup(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The link is an invite link for a channel
+///
+class InviteLinkChatTypeChannel extends InviteLinkChatType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inviteLinkChatTypeChannel";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The link is an invite link for a channel
+  InviteLinkChatTypeChannel({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inviteLinkChatTypeChannel',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InviteLinkChatTypeChannel? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return InviteLinkChatTypeChannel(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
 ///Contains information about a chat invite link
 ///
 class ChatInviteLinkInfo extends TlObject {
@@ -9509,7 +9659,7 @@ class ChatInviteLinkInfo extends TlObject {
   late int accessible_for;
 
   /// [type] Type of the chat
-  late ChatType type;
+  late InviteLinkChatType type;
 
   /// [title] Title of the chat
   late String title;
@@ -9532,6 +9682,15 @@ class ChatInviteLinkInfo extends TlObject {
   /// [is_public] True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
   late bool is_public;
 
+  /// [is_verified] True, if the chat is verified
+  late bool is_verified;
+
+  /// [is_scam] True, if many users reported this chat as a scam
+  late bool is_scam;
+
+  /// [is_fake] True, if many users reported this chat as a fake account
+  late bool is_fake;
+
   /// Contains information about a chat invite link
   ChatInviteLinkInfo(
       {required this.chat_id,
@@ -9544,6 +9703,9 @@ class ChatInviteLinkInfo extends TlObject {
       required this.member_user_ids,
       required this.creates_join_request,
       required this.is_public,
+      required this.is_verified,
+      required this.is_scam,
+      required this.is_fake,
       this.extra,
       this.clientId});
 
@@ -9561,7 +9723,10 @@ class ChatInviteLinkInfo extends TlObject {
       'member_count': member_count,
       'member_user_ids': member_user_ids,
       'creates_join_request': creates_join_request,
-      'is_public': is_public
+      'is_public': is_public,
+      'is_verified': is_verified,
+      'is_scam': is_scam,
+      'is_fake': is_fake
     };
   }
 
@@ -9579,7 +9744,7 @@ class ChatInviteLinkInfo extends TlObject {
     var clientId = _map['@clientId'];
     var chat_id = _map['chat_id']! as int;
     var accessible_for = _map['accessible_for']! as int;
-    var type = ChatType.fromMap(_map['type'])!;
+    var type = InviteLinkChatType.fromMap(_map['type'])!;
     var title = _map['title']! as String;
     var photo = ChatPhotoInfo.fromMap(_map['photo']);
     var description = _map['description']! as String;
@@ -9591,6 +9756,9 @@ class ChatInviteLinkInfo extends TlObject {
     );
     var creates_join_request = _map['creates_join_request']! as bool;
     var is_public = _map['is_public']! as bool;
+    var is_verified = _map['is_verified']! as bool;
+    var is_scam = _map['is_scam']! as bool;
+    var is_fake = _map['is_fake']! as bool;
     return ChatInviteLinkInfo(
       extra: extra,
       clientId: clientId,
@@ -9604,6 +9772,9 @@ class ChatInviteLinkInfo extends TlObject {
       member_user_ids: member_user_ids,
       creates_join_request: creates_join_request,
       is_public: is_public,
+      is_verified: is_verified,
+      is_scam: is_scam,
+      is_fake: is_fake,
     );
   }
 }
@@ -10051,6 +10222,12 @@ class Supergroup extends TlObject {
   /// [is_fake] True, if many users reported this supergroup or channel as a fake account
   late bool is_fake;
 
+  /// [has_active_stories] True, if the channel has non-expired stories available to the current user
+  late bool has_active_stories;
+
+  /// [has_unread_active_stories] True, if the channel has unread non-expired stories available to the current user
+  late bool has_unread_active_stories;
+
   /// Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup:
   Supergroup(
       {required this.id,
@@ -10071,6 +10248,8 @@ class Supergroup extends TlObject {
       required this.restriction_reason,
       required this.is_scam,
       required this.is_fake,
+      required this.has_active_stories,
+      required this.has_unread_active_stories,
       this.extra,
       this.clientId});
 
@@ -10096,7 +10275,9 @@ class Supergroup extends TlObject {
       'is_verified': is_verified,
       'restriction_reason': restriction_reason,
       'is_scam': is_scam,
-      'is_fake': is_fake
+      'is_fake': is_fake,
+      'has_active_stories': has_active_stories,
+      'has_unread_active_stories': has_unread_active_stories
     };
   }
 
@@ -10130,6 +10311,8 @@ class Supergroup extends TlObject {
     var restriction_reason = _map['restriction_reason']! as String;
     var is_scam = _map['is_scam']! as bool;
     var is_fake = _map['is_fake']! as bool;
+    var has_active_stories = _map['has_active_stories']! as bool;
+    var has_unread_active_stories = _map['has_unread_active_stories']! as bool;
     return Supergroup(
       extra: extra,
       clientId: clientId,
@@ -10151,6 +10334,8 @@ class Supergroup extends TlObject {
       restriction_reason: restriction_reason,
       is_scam: is_scam,
       is_fake: is_fake,
+      has_active_stories: has_active_stories,
+      has_unread_active_stories: has_unread_active_stories,
     );
   }
 }
@@ -10221,11 +10406,14 @@ class SupergroupFullInfo extends TlObject {
   /// [has_aggressive_anti_spam_enabled] True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
   late bool has_aggressive_anti_spam_enabled;
 
+  /// [has_pinned_stories] True, if the channel has pinned stories
+  late bool has_pinned_stories;
+
   /// [sticker_set_id] Identifier of the supergroup sticker set; 0 if none
   /// ; string representation of int, use `int.parse`
   late int64 sticker_set_id;
 
-  /// [location] Location to which the supergroup is connected; may be null
+  /// [location] Location to which the supergroup is connected; may be null if none
   ChatLocation? location;
 
   /// [invite_link] Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
@@ -10260,6 +10448,7 @@ class SupergroupFullInfo extends TlObject {
       required this.can_toggle_aggressive_anti_spam,
       required this.is_all_history_available,
       required this.has_aggressive_anti_spam_enabled,
+      required this.has_pinned_stories,
       required this.sticker_set_id,
       this.location,
       this.invite_link,
@@ -10292,6 +10481,7 @@ class SupergroupFullInfo extends TlObject {
       'can_toggle_aggressive_anti_spam': can_toggle_aggressive_anti_spam,
       'is_all_history_available': is_all_history_available,
       'has_aggressive_anti_spam_enabled': has_aggressive_anti_spam_enabled,
+      'has_pinned_stories': has_pinned_stories,
       'sticker_set_id': sticker_set_id,
       'location': location,
       'invite_link': invite_link,
@@ -10334,6 +10524,7 @@ class SupergroupFullInfo extends TlObject {
     var is_all_history_available = _map['is_all_history_available']! as bool;
     var has_aggressive_anti_spam_enabled =
         _map['has_aggressive_anti_spam_enabled']! as bool;
+    var has_pinned_stories = _map['has_pinned_stories']! as bool;
     var sticker_set_id = _map['sticker_set_id']! as int64;
     var location = ChatLocation.fromMap(_map['location']);
     var invite_link = ChatInviteLink.fromMap(_map['invite_link']);
@@ -10367,6 +10558,7 @@ class SupergroupFullInfo extends TlObject {
       can_toggle_aggressive_anti_spam: can_toggle_aggressive_anti_spam,
       is_all_history_available: is_all_history_available,
       has_aggressive_anti_spam_enabled: has_aggressive_anti_spam_enabled,
+      has_pinned_stories: has_pinned_stories,
       sticker_set_id: sticker_set_id,
       location: location,
       invite_link: invite_link,
@@ -11782,11 +11974,8 @@ class MessageSendingStateFailed extends MessageSendingState {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [error_code] An error code; 0 if unknown
-  late int error_code;
-
-  /// [error_message] Error message
-  late String error_message;
+  /// [error] The cause of the message sending failure
+  late Error error;
 
   /// [can_retry] True, if the message can be re-sent
   late bool can_retry;
@@ -11799,8 +11988,7 @@ class MessageSendingStateFailed extends MessageSendingState {
 
   /// The message failed to be sent
   MessageSendingStateFailed(
-      {required this.error_code,
-      required this.error_message,
+      {required this.error,
       required this.can_retry,
       required this.need_another_sender,
       required this.retry_after,
@@ -11812,8 +12000,7 @@ class MessageSendingStateFailed extends MessageSendingState {
     return {
       '@type': 'messageSendingStateFailed',
       if (extra != null) '@extra': extra,
-      'error_code': error_code,
-      'error_message': error_message,
+      'error': error,
       'can_retry': can_retry,
       'need_another_sender': need_another_sender,
       'retry_after': retry_after
@@ -11832,16 +12019,14 @@ class MessageSendingStateFailed extends MessageSendingState {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var error_code = _map['error_code']! as int;
-    var error_message = _map['error_message']! as String;
+    var error = Error.fromMap(_map['error'])!;
     var can_retry = _map['can_retry']! as bool;
     var need_another_sender = _map['need_another_sender']! as bool;
     var retry_after = _map['retry_after']! as double;
     return MessageSendingStateFailed(
       extra: extra,
       clientId: clientId,
-      error_code: error_code,
-      error_message: error_message,
+      error: error,
       can_retry: can_retry,
       need_another_sender: need_another_sender,
       retry_after: retry_after,
@@ -11986,10 +12171,10 @@ class Message extends TlObject {
   /// [chat_id] Chat identifier
   late int chat_id;
 
-  /// [sending_state] The sending state of the message; may be null
+  /// [sending_state] The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
   MessageSendingState? sending_state;
 
-  /// [scheduling_state] The scheduling state of the message; may be null
+  /// [scheduling_state] The scheduling state of the message; may be null if the message isn't scheduled
   MessageSchedulingState? scheduling_state;
 
   /// [is_outgoing] True, if the message is outgoing
@@ -12049,10 +12234,10 @@ class Message extends TlObject {
   /// [edit_date] Point in time (Unix timestamp) when the message was last edited
   late int edit_date;
 
-  /// [forward_info] Information about the initial message sender; may be null
+  /// [forward_info] Information about the initial message sender; may be null if none or unknown
   MessageForwardInfo? forward_info;
 
-  /// [interaction_info] Information about interactions with the message; may be null
+  /// [interaction_info] Information about interactions with the message; may be null if none
   MessageInteractionInfo? interaction_info;
 
   /// [unread_reactions] Information about unread reactions added to the message
@@ -12064,13 +12249,13 @@ class Message extends TlObject {
   /// [message_thread_id] If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
   late int message_thread_id;
 
-  /// [self_destruct_time] The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
-  late int self_destruct_time;
+  /// [self_destruct_type] The message's self-destruct type; may be null if none
+  MessageSelfDestructType? self_destruct_type;
 
-  /// [self_destruct_in] Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
+  /// [self_destruct_in] Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
   late double self_destruct_in;
 
-  /// [auto_delete_in] Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
+  /// [auto_delete_in] Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
   late double auto_delete_in;
 
   /// [via_bot_user_id] If non-zero, the user identifier of the bot through which this message was sent
@@ -12089,7 +12274,7 @@ class Message extends TlObject {
   /// [content] Content of the message
   late MessageContent content;
 
-  /// [reply_markup] Reply markup for the message; may be null
+  /// [reply_markup] Reply markup for the message; may be null if none
   ReplyMarkup? reply_markup;
 
   /// Describes a message
@@ -12123,7 +12308,7 @@ class Message extends TlObject {
       required this.unread_reactions,
       this.reply_to,
       required this.message_thread_id,
-      required this.self_destruct_time,
+      this.self_destruct_type,
       required this.self_destruct_in,
       required this.auto_delete_in,
       required this.via_bot_user_id,
@@ -12169,7 +12354,7 @@ class Message extends TlObject {
       'unread_reactions': unread_reactions,
       'reply_to': reply_to,
       'message_thread_id': message_thread_id,
-      'self_destruct_time': self_destruct_time,
+      'self_destruct_type': self_destruct_type,
       'self_destruct_in': self_destruct_in,
       'auto_delete_in': auto_delete_in,
       'via_bot_user_id': via_bot_user_id,
@@ -12231,7 +12416,8 @@ class Message extends TlObject {
     );
     var reply_to = MessageReplyTo.fromMap(_map['reply_to']);
     var message_thread_id = _map['message_thread_id']! as int;
-    var self_destruct_time = _map['self_destruct_time']! as int;
+    var self_destruct_type =
+        MessageSelfDestructType.fromMap(_map['self_destruct_type']);
     var self_destruct_in = _map['self_destruct_in']! as double;
     var auto_delete_in = _map['auto_delete_in']! as double;
     var via_bot_user_id = _map['via_bot_user_id']! as int;
@@ -12272,7 +12458,7 @@ class Message extends TlObject {
       unread_reactions: unread_reactions,
       reply_to: reply_to,
       message_thread_id: message_thread_id,
-      self_destruct_time: self_destruct_time,
+      self_destruct_type: self_destruct_type,
       self_destruct_in: self_destruct_in,
       auto_delete_in: auto_delete_in,
       via_bot_user_id: via_bot_user_id,
@@ -13967,7 +14153,7 @@ class ChatNotificationSettings extends TlObject {
   /// [use_default_mute_stories] If true, mute_stories is ignored and the value for the relevant type of chat is used instead
   late bool use_default_mute_stories;
 
-  /// [mute_stories] True, if story notifications are received without sound
+  /// [mute_stories] True, if story notifications are disabled for the chat
   late bool mute_stories;
 
   /// [use_default_story_sound] If true, the value for the relevant type of chat is used instead of story_sound_id
@@ -14124,10 +14310,10 @@ class ScopeNotificationSettings extends TlObject {
   /// [show_preview] True, if message content must be displayed in notifications
   late bool show_preview;
 
-  /// [use_default_mute_stories] If true, mute_stories is ignored and stories are unmuted only for the first 5 chats from topChatCategoryUsers
+  /// [use_default_mute_stories] If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
   late bool use_default_mute_stories;
 
-  /// [mute_stories] True, if story notifications are received without sound
+  /// [mute_stories] True, if story notifications are disabled for the chat
   late bool mute_stories;
 
   /// [story_sound_id] Identifier of the notification sound to be played for stories; 0 if sound is disabled
@@ -15691,7 +15877,7 @@ class Chat extends TlObject {
   /// [permissions] Actions that non-administrator chat members are allowed to take in the chat
   late ChatPermissions permissions;
 
-  /// [last_message] Last message in the chat; may be null
+  /// [last_message] Last message in the chat; may be null if none or unknown
   Message? last_message;
 
   /// [positions] Positions of the chat in chat lists
@@ -15699,6 +15885,9 @@ class Chat extends TlObject {
 
   /// [message_sender_id] Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
   MessageSender? message_sender_id;
+
+  /// [block_list] Block list to which the chat is added; may be null if none
+  BlockList? block_list;
 
   /// [has_protected_content] True, if chat content can't be saved locally, forwarded, or copied
   late bool has_protected_content;
@@ -15708,9 +15897,6 @@ class Chat extends TlObject {
 
   /// [is_marked_as_unread] True, if the chat is marked as unread
   late bool is_marked_as_unread;
-
-  /// [is_blocked] True, if the chat is blocked by the current user and private messages from the chat can't be received
-  late bool is_blocked;
 
   /// [has_scheduled_messages] True, if the chat has scheduled messages
   late bool has_scheduled_messages;
@@ -15757,19 +15943,19 @@ class Chat extends TlObject {
   /// [theme_name] If non-empty, name of a theme, set for the chat
   late String theme_name;
 
-  /// [action_bar] Information about actions which must be possible to do through the chat action bar; may be null
+  /// [action_bar] Information about actions which must be possible to do through the chat action bar; may be null if none
   ChatActionBar? action_bar;
 
   /// [video_chat] Information about video chat of the chat
   late VideoChat video_chat;
 
-  /// [pending_join_requests] Information about pending join requests; may be null
+  /// [pending_join_requests] Information about pending join requests; may be null if none
   ChatJoinRequestsInfo? pending_join_requests;
 
   /// [reply_markup_message_id] Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
   late int reply_markup_message_id;
 
-  /// [draft_message] A draft of a message in the chat; may be null
+  /// [draft_message] A draft of a message in the chat; may be null if none
   DraftMessage? draft_message;
 
   /// [client_data] Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
@@ -15785,10 +15971,10 @@ class Chat extends TlObject {
       this.last_message,
       required this.positions,
       this.message_sender_id,
+      this.block_list,
       required this.has_protected_content,
       required this.is_translatable,
       required this.is_marked_as_unread,
-      required this.is_blocked,
       required this.has_scheduled_messages,
       required this.can_be_deleted_only_for_self,
       required this.can_be_deleted_for_all_users,
@@ -15826,10 +16012,10 @@ class Chat extends TlObject {
       'last_message': last_message,
       'positions': positions,
       'message_sender_id': message_sender_id,
+      'block_list': block_list,
       'has_protected_content': has_protected_content,
       'is_translatable': is_translatable,
       'is_marked_as_unread': is_marked_as_unread,
-      'is_blocked': is_blocked,
       'has_scheduled_messages': has_scheduled_messages,
       'can_be_deleted_only_for_self': can_be_deleted_only_for_self,
       'can_be_deleted_for_all_users': can_be_deleted_for_all_users,
@@ -15878,10 +16064,10 @@ class Chat extends TlObject {
       ),
     );
     var message_sender_id = MessageSender.fromMap(_map['message_sender_id']);
+    var block_list = BlockList.fromMap(_map['block_list']);
     var has_protected_content = _map['has_protected_content']! as bool;
     var is_translatable = _map['is_translatable']! as bool;
     var is_marked_as_unread = _map['is_marked_as_unread']! as bool;
-    var is_blocked = _map['is_blocked']! as bool;
     var has_scheduled_messages = _map['has_scheduled_messages']! as bool;
     var can_be_deleted_only_for_self =
         _map['can_be_deleted_only_for_self']! as bool;
@@ -15921,10 +16107,10 @@ class Chat extends TlObject {
       last_message: last_message,
       positions: positions,
       message_sender_id: message_sender_id,
+      block_list: block_list,
       has_protected_content: has_protected_content,
       is_translatable: is_translatable,
       is_marked_as_unread: is_marked_as_unread,
-      is_blocked: is_blocked,
       has_scheduled_messages: has_scheduled_messages,
       can_be_deleted_only_for_self: can_be_deleted_only_for_self,
       can_be_deleted_for_all_users: can_be_deleted_for_all_users,
@@ -16358,7 +16544,7 @@ class ChatActionBarInviteMembers extends ChatActionBar {
   }
 }
 
-///The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked,
+///The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList,
 ///
 class ChatActionBarReportAddBlock extends ChatActionBar {
   /// [extra] - Request identifier. Must be non-zero.
@@ -16376,7 +16562,7 @@ class ChatActionBarReportAddBlock extends ChatActionBar {
   /// [distance] If non-negative, the current user was found by the peer through searchChatsNearby and this is the distance between the users
   late int distance;
 
-  /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked,
+  /// The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList,
   ChatActionBarReportAddBlock(
       {required this.can_unarchive,
       required this.distance,
@@ -17972,6 +18158,9 @@ class FoundWebApp extends TlObject {
   /// [web_app] The Web App
   late WebApp web_app;
 
+  /// [supports_settings] True, if the app supports "settings_button_pressed" event
+  late bool supports_settings;
+
   /// [request_write_access] True, if the user must be asked for the permission to the bot to send them messages
   late bool request_write_access;
 
@@ -17981,6 +18170,7 @@ class FoundWebApp extends TlObject {
   /// Contains information about a Web App found by its short name
   FoundWebApp(
       {required this.web_app,
+      required this.supports_settings,
       required this.request_write_access,
       required this.skip_confirmation,
       this.extra,
@@ -17992,6 +18182,7 @@ class FoundWebApp extends TlObject {
       '@type': 'foundWebApp',
       if (extra != null) '@extra': extra,
       'web_app': web_app,
+      'supports_settings': supports_settings,
       'request_write_access': request_write_access,
       'skip_confirmation': skip_confirmation
     };
@@ -18010,12 +18201,14 @@ class FoundWebApp extends TlObject {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var web_app = WebApp.fromMap(_map['web_app'])!;
+    var supports_settings = _map['supports_settings']! as bool;
     var request_write_access = _map['request_write_access']! as bool;
     var skip_confirmation = _map['skip_confirmation']! as bool;
     return FoundWebApp(
       extra: extra,
       clientId: clientId,
       web_app: web_app,
+      supports_settings: supports_settings,
       request_write_access: request_write_access,
       skip_confirmation: skip_confirmation,
     );
@@ -18105,7 +18298,7 @@ class MessageThreadInfo extends TlObject {
   /// [messages] The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
   late List<Message> messages;
 
-  /// [draft_message] A draft of a message in the message thread; may be null
+  /// [draft_message] A draft of a message in the message thread; may be null if none
   DraftMessage? draft_message;
 
   /// Contains information about a message thread
@@ -18373,7 +18566,7 @@ class ForumTopic extends TlObject {
   /// [notification_settings] Notification settings for the topic
   late ChatNotificationSettings notification_settings;
 
-  /// [draft_message] A draft of a message in the topic; may be null
+  /// [draft_message] A draft of a message in the topic; may be null if none
   DraftMessage? draft_message;
 
   /// Describes a forum topic
@@ -22596,6 +22789,9 @@ class Invoice extends TlObject {
   /// [recurring_payment_terms_of_service_url] An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
   late String recurring_payment_terms_of_service_url;
 
+  /// [terms_of_service_url] An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
+  late String terms_of_service_url;
+
   /// [is_test] True, if the payment is a test payment
   late bool is_test;
 
@@ -22627,6 +22823,7 @@ class Invoice extends TlObject {
       required this.max_tip_amount,
       required this.suggested_tip_amounts,
       required this.recurring_payment_terms_of_service_url,
+      required this.terms_of_service_url,
       required this.is_test,
       required this.need_name,
       required this.need_phone_number,
@@ -22649,6 +22846,7 @@ class Invoice extends TlObject {
       'suggested_tip_amounts': suggested_tip_amounts,
       'recurring_payment_terms_of_service_url':
           recurring_payment_terms_of_service_url,
+      'terms_of_service_url': terms_of_service_url,
       'is_test': is_test,
       'need_name': need_name,
       'need_phone_number': need_phone_number,
@@ -22686,6 +22884,7 @@ class Invoice extends TlObject {
     );
     var recurring_payment_terms_of_service_url =
         _map['recurring_payment_terms_of_service_url']! as String;
+    var terms_of_service_url = _map['terms_of_service_url']! as String;
     var is_test = _map['is_test']! as bool;
     var need_name = _map['need_name']! as bool;
     var need_phone_number = _map['need_phone_number']! as bool;
@@ -22705,6 +22904,7 @@ class Invoice extends TlObject {
       suggested_tip_amounts: suggested_tip_amounts,
       recurring_payment_terms_of_service_url:
           recurring_payment_terms_of_service_url,
+      terms_of_service_url: terms_of_service_url,
       is_test: is_test,
       need_name: need_name,
       need_phone_number: need_phone_number,
@@ -31217,15 +31417,20 @@ class MessageBotWriteAccessAllowed extends MessageContent {
   /// [web_app] Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
   WebApp? web_app;
 
+  /// [by_request] True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
+  late bool by_request;
+
   /// The user allowed the bot to send messages
-  MessageBotWriteAccessAllowed({this.web_app, this.extra, this.clientId});
+  MessageBotWriteAccessAllowed(
+      {this.web_app, required this.by_request, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
       '@type': 'messageBotWriteAccessAllowed',
       if (extra != null) '@extra': extra,
-      'web_app': web_app
+      'web_app': web_app,
+      'by_request': by_request
     };
   }
 
@@ -31242,10 +31447,12 @@ class MessageBotWriteAccessAllowed extends MessageContent {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var web_app = WebApp.fromMap(_map['web_app']);
+    var by_request = _map['by_request']! as bool;
     return MessageBotWriteAccessAllowed(
       extra: extra,
       clientId: clientId,
       web_app: web_app,
+      by_request: by_request,
     );
   }
 }
@@ -32609,6 +32816,99 @@ class MessageSchedulingStateSendWhenOnline extends MessageSchedulingState {
   }
 }
 
+///The message will be self-destructed in the specified time after its content was opened
+///
+class MessageSelfDestructTypeTimer extends MessageSelfDestructType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "messageSelfDestructTypeTimer";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [self_destruct_time] The message's self-destruct time, in seconds; must be between 0 and 60 in private chats
+  late int self_destruct_time;
+
+  /// The message will be self-destructed in the specified time after its content was opened
+  MessageSelfDestructTypeTimer(
+      {required this.self_destruct_time, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'messageSelfDestructTypeTimer',
+      if (extra != null) '@extra': extra,
+      'self_destruct_time': self_destruct_time
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static MessageSelfDestructTypeTimer? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var self_destruct_time = _map['self_destruct_time']! as int;
+    return MessageSelfDestructTypeTimer(
+      extra: extra,
+      clientId: clientId,
+      self_destruct_time: self_destruct_time,
+    );
+  }
+}
+
+///The message can be opened only once and will be self-destructed once closed
+///
+class MessageSelfDestructTypeImmediately extends MessageSelfDestructType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "messageSelfDestructTypeImmediately";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The message can be opened only once and will be self-destructed once closed
+  MessageSelfDestructTypeImmediately({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'messageSelfDestructTypeImmediately',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static MessageSelfDestructTypeImmediately? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return MessageSelfDestructTypeImmediately(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
 ///Options to be used when a message is sent
 ///
 class MessageSendOptions extends TlObject {
@@ -33123,8 +33423,8 @@ class InputMessagePhoto extends InputMessageContent {
   /// [caption] Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
   FormattedText? caption;
 
-  /// [self_destruct_time] Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-  late int self_destruct_time;
+  /// [self_destruct_type] Photo self-destruct type; pass null if none; private chats only
+  MessageSelfDestructType? self_destruct_type;
 
   /// [has_spoiler] True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
   late bool has_spoiler;
@@ -33137,7 +33437,7 @@ class InputMessagePhoto extends InputMessageContent {
       required this.width,
       required this.height,
       this.caption,
-      required this.self_destruct_time,
+      this.self_destruct_type,
       required this.has_spoiler,
       this.extra,
       this.clientId});
@@ -33153,7 +33453,7 @@ class InputMessagePhoto extends InputMessageContent {
       'width': width,
       'height': height,
       'caption': caption,
-      'self_destruct_time': self_destruct_time,
+      'self_destruct_type': self_destruct_type,
       'has_spoiler': has_spoiler
     };
   }
@@ -33180,7 +33480,8 @@ class InputMessagePhoto extends InputMessageContent {
     var width = _map['width']! as int;
     var height = _map['height']! as int;
     var caption = FormattedText.fromMap(_map['caption']);
-    var self_destruct_time = _map['self_destruct_time']! as int;
+    var self_destruct_type =
+        MessageSelfDestructType.fromMap(_map['self_destruct_type']);
     var has_spoiler = _map['has_spoiler']! as bool;
     return InputMessagePhoto(
       extra: extra,
@@ -33191,7 +33492,7 @@ class InputMessagePhoto extends InputMessageContent {
       width: width,
       height: height,
       caption: caption,
-      self_destruct_time: self_destruct_time,
+      self_destruct_type: self_destruct_type,
       has_spoiler: has_spoiler,
     );
   }
@@ -33312,8 +33613,8 @@ class InputMessageVideo extends InputMessageContent {
   /// [caption] Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
   FormattedText? caption;
 
-  /// [self_destruct_time] Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-  late int self_destruct_time;
+  /// [self_destruct_type] Video self-destruct type; pass null if none; private chats only
+  MessageSelfDestructType? self_destruct_type;
 
   /// [has_spoiler] True, if the video preview must be covered by a spoiler animation; not supported in secret chats
   late bool has_spoiler;
@@ -33328,7 +33629,7 @@ class InputMessageVideo extends InputMessageContent {
       required this.height,
       required this.supports_streaming,
       this.caption,
-      required this.self_destruct_time,
+      this.self_destruct_type,
       required this.has_spoiler,
       this.extra,
       this.clientId});
@@ -33346,7 +33647,7 @@ class InputMessageVideo extends InputMessageContent {
       'height': height,
       'supports_streaming': supports_streaming,
       'caption': caption,
-      'self_destruct_time': self_destruct_time,
+      'self_destruct_type': self_destruct_type,
       'has_spoiler': has_spoiler
     };
   }
@@ -33375,7 +33676,8 @@ class InputMessageVideo extends InputMessageContent {
     var height = _map['height']! as int;
     var supports_streaming = _map['supports_streaming']! as bool;
     var caption = FormattedText.fromMap(_map['caption']);
-    var self_destruct_time = _map['self_destruct_time']! as int;
+    var self_destruct_type =
+        MessageSelfDestructType.fromMap(_map['self_destruct_type']);
     var has_spoiler = _map['has_spoiler']! as bool;
     return InputMessageVideo(
       extra: extra,
@@ -33388,7 +33690,7 @@ class InputMessageVideo extends InputMessageContent {
       height: height,
       supports_streaming: supports_streaming,
       caption: caption,
-      self_destruct_time: self_destruct_time,
+      self_destruct_type: self_destruct_type,
       has_spoiler: has_spoiler,
     );
   }
@@ -36617,6 +36919,1972 @@ class EmojiCategoryTypeChatPhoto extends EmojiCategoryType {
     return EmojiCategoryTypeChatPhoto(
       extra: extra,
       clientId: clientId,
+    );
+  }
+}
+
+///Represents a viewer of a story
+///
+class StoryViewer extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyViewer";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [user_id] User identifier of the viewer
+  late int user_id;
+
+  /// [view_date] Approximate point in time (Unix timestamp) when the story was viewed
+  late int view_date;
+
+  /// [block_list] Block list to which the user is added; may be null if none
+  BlockList? block_list;
+
+  /// [chosen_reaction_type] Type of the reaction that was chosen by the user; may be null if none
+  ReactionType? chosen_reaction_type;
+
+  /// Represents a viewer of a story
+  StoryViewer(
+      {required this.user_id,
+      required this.view_date,
+      this.block_list,
+      this.chosen_reaction_type,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyViewer',
+      if (extra != null) '@extra': extra,
+      'user_id': user_id,
+      'view_date': view_date,
+      'block_list': block_list,
+      'chosen_reaction_type': chosen_reaction_type
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryViewer? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var user_id = _map['user_id']! as int;
+    var view_date = _map['view_date']! as int;
+    var block_list = BlockList.fromMap(_map['block_list']);
+    var chosen_reaction_type =
+        ReactionType.fromMap(_map['chosen_reaction_type']);
+    return StoryViewer(
+      extra: extra,
+      clientId: clientId,
+      user_id: user_id,
+      view_date: view_date,
+      block_list: block_list,
+      chosen_reaction_type: chosen_reaction_type,
+    );
+  }
+}
+
+///Represents a list of story viewers
+///
+class StoryViewers extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyViewers";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [total_count] Approximate total number of story viewers found
+  late int total_count;
+
+  /// [total_reaction_count] Approximate total number of reactions set by found story viewers
+  late int total_reaction_count;
+
+  /// [viewers] List of story viewers
+  late List<StoryViewer> viewers;
+
+  /// [next_offset] The offset for the next request. If empty, there are no more results
+  String? next_offset;
+
+  /// Represents a list of story viewers
+  StoryViewers(
+      {required this.total_count,
+      required this.total_reaction_count,
+      required this.viewers,
+      this.next_offset,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyViewers',
+      if (extra != null) '@extra': extra,
+      'total_count': total_count,
+      'total_reaction_count': total_reaction_count,
+      'viewers': viewers,
+      'next_offset': next_offset
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryViewers? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var total_count = _map['total_count']! as int;
+    var total_reaction_count = _map['total_reaction_count']! as int;
+    var viewers = List<StoryViewer>.from(
+      (_map["viewers"] ?? []).map(
+        (e) => StoryViewer.fromMap(e),
+      ),
+    );
+    var next_offset = _map['next_offset'] as String?;
+    return StoryViewers(
+      extra: extra,
+      clientId: clientId,
+      total_count: total_count,
+      total_reaction_count: total_reaction_count,
+      viewers: viewers,
+      next_offset: next_offset,
+    );
+  }
+}
+
+///Describes position of a clickable rectangle area on a story media
+///
+class StoryAreaPosition extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyAreaPosition";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [x_percentage] The abscissa of the rectangle's center, as a percentage of the media width
+  late double x_percentage;
+
+  /// [y_percentage] The ordinate of the rectangle's center, as a percentage of the media height
+  late double y_percentage;
+
+  /// [width_percentage] The width of the rectangle, as a percentage of the media width
+  late double width_percentage;
+
+  /// [height_percentage] The ordinate of the rectangle's center, as a percentage of the media height
+  late double height_percentage;
+
+  /// [rotation_angle] Clockwise rotation angle of the rectangle, in degrees; 0-360
+  late double rotation_angle;
+
+  /// Describes position of a clickable rectangle area on a story media
+  StoryAreaPosition(
+      {required this.x_percentage,
+      required this.y_percentage,
+      required this.width_percentage,
+      required this.height_percentage,
+      required this.rotation_angle,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyAreaPosition',
+      if (extra != null) '@extra': extra,
+      'x_percentage': x_percentage,
+      'y_percentage': y_percentage,
+      'width_percentage': width_percentage,
+      'height_percentage': height_percentage,
+      'rotation_angle': rotation_angle
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryAreaPosition? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var x_percentage = _map['x_percentage']! as double;
+    var y_percentage = _map['y_percentage']! as double;
+    var width_percentage = _map['width_percentage']! as double;
+    var height_percentage = _map['height_percentage']! as double;
+    var rotation_angle = _map['rotation_angle']! as double;
+    return StoryAreaPosition(
+      extra: extra,
+      clientId: clientId,
+      x_percentage: x_percentage,
+      y_percentage: y_percentage,
+      width_percentage: width_percentage,
+      height_percentage: height_percentage,
+      rotation_angle: rotation_angle,
+    );
+  }
+}
+
+///An area pointing to a location
+///
+class StoryAreaTypeLocation extends StoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyAreaTypeLocation";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [location] The location
+  late Location location;
+
+  /// An area pointing to a location
+  StoryAreaTypeLocation({required this.location, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyAreaTypeLocation',
+      if (extra != null) '@extra': extra,
+      'location': location
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryAreaTypeLocation? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var location = Location.fromMap(_map['location'])!;
+    return StoryAreaTypeLocation(
+      extra: extra,
+      clientId: clientId,
+      location: location,
+    );
+  }
+}
+
+///An area pointing to a venue
+///
+class StoryAreaTypeVenue extends StoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyAreaTypeVenue";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [venue] Information about the venue
+  late Venue venue;
+
+  /// An area pointing to a venue
+  StoryAreaTypeVenue({required this.venue, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyAreaTypeVenue',
+      if (extra != null) '@extra': extra,
+      'venue': venue
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryAreaTypeVenue? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var venue = Venue.fromMap(_map['venue'])!;
+    return StoryAreaTypeVenue(
+      extra: extra,
+      clientId: clientId,
+      venue: venue,
+    );
+  }
+}
+
+///An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+///
+class StoryAreaTypeSuggestedReaction extends StoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyAreaTypeSuggestedReaction";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [reaction_type] Type of the reaction
+  late ReactionType reaction_type;
+
+  /// [total_count] Number of times the reaction was added
+  late int total_count;
+
+  /// [is_dark] True, if reaction has a dark background
+  late bool is_dark;
+
+  /// [is_flipped] True, if reaction corner is flipped
+  late bool is_flipped;
+
+  /// An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+  StoryAreaTypeSuggestedReaction(
+      {required this.reaction_type,
+      required this.total_count,
+      required this.is_dark,
+      required this.is_flipped,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyAreaTypeSuggestedReaction',
+      if (extra != null) '@extra': extra,
+      'reaction_type': reaction_type,
+      'total_count': total_count,
+      'is_dark': is_dark,
+      'is_flipped': is_flipped
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryAreaTypeSuggestedReaction? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var reaction_type = ReactionType.fromMap(_map['reaction_type'])!;
+    var total_count = _map['total_count']! as int;
+    var is_dark = _map['is_dark']! as bool;
+    var is_flipped = _map['is_flipped']! as bool;
+    return StoryAreaTypeSuggestedReaction(
+      extra: extra,
+      clientId: clientId,
+      reaction_type: reaction_type,
+      total_count: total_count,
+      is_dark: is_dark,
+      is_flipped: is_flipped,
+    );
+  }
+}
+
+///Describes a clickable rectangle area on a story media
+///
+class StoryArea extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyArea";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [position] Position of the area
+  late StoryAreaPosition position;
+
+  /// [type] Type of the area
+  late StoryAreaType type;
+
+  /// Describes a clickable rectangle area on a story media
+  StoryArea(
+      {required this.position, required this.type, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyArea',
+      if (extra != null) '@extra': extra,
+      'position': position,
+      'type': type
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryArea? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var position = StoryAreaPosition.fromMap(_map['position'])!;
+    var type = StoryAreaType.fromMap(_map['type'])!;
+    return StoryArea(
+      extra: extra,
+      clientId: clientId,
+      position: position,
+      type: type,
+    );
+  }
+}
+
+///An area pointing to a location
+///
+class InputStoryAreaTypeLocation extends InputStoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryAreaTypeLocation";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [location] The location
+  late Location location;
+
+  /// An area pointing to a location
+  InputStoryAreaTypeLocation(
+      {required this.location, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryAreaTypeLocation',
+      if (extra != null) '@extra': extra,
+      'location': location
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryAreaTypeLocation? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var location = Location.fromMap(_map['location'])!;
+    return InputStoryAreaTypeLocation(
+      extra: extra,
+      clientId: clientId,
+      location: location,
+    );
+  }
+}
+
+///An area pointing to a venue found by the bot getOption("venue_search_bot_username")
+///
+class InputStoryAreaTypeFoundVenue extends InputStoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryAreaTypeFoundVenue";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [query_id] Identifier of the inline query, used to found the venue
+  /// ; string representation of int, use `int.parse`
+  late int64 query_id;
+
+  /// [result_id] Identifier of the inline query result
+  late String result_id;
+
+  /// An area pointing to a venue found by the bot getOption("venue_search_bot_username")
+  InputStoryAreaTypeFoundVenue(
+      {required this.query_id,
+      required this.result_id,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryAreaTypeFoundVenue',
+      if (extra != null) '@extra': extra,
+      'query_id': query_id,
+      'result_id': result_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryAreaTypeFoundVenue? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var query_id = _map['query_id']! as int64;
+    var result_id = _map['result_id']! as String;
+    return InputStoryAreaTypeFoundVenue(
+      extra: extra,
+      clientId: clientId,
+      query_id: query_id,
+      result_id: result_id,
+    );
+  }
+}
+
+///An area pointing to a venue already added to the story
+///
+class InputStoryAreaTypePreviousVenue extends InputStoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryAreaTypePreviousVenue";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [venue_provider] Provider of the venue
+  late String venue_provider;
+
+  /// [venue_id] Identifier of the venue in the provider database
+  late String venue_id;
+
+  /// An area pointing to a venue already added to the story
+  InputStoryAreaTypePreviousVenue(
+      {required this.venue_provider,
+      required this.venue_id,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryAreaTypePreviousVenue',
+      if (extra != null) '@extra': extra,
+      'venue_provider': venue_provider,
+      'venue_id': venue_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryAreaTypePreviousVenue? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var venue_provider = _map['venue_provider']! as String;
+    var venue_id = _map['venue_id']! as String;
+    return InputStoryAreaTypePreviousVenue(
+      extra: extra,
+      clientId: clientId,
+      venue_provider: venue_provider,
+      venue_id: venue_id,
+    );
+  }
+}
+
+///An area pointing to a suggested reaction
+///
+class InputStoryAreaTypeSuggestedReaction extends InputStoryAreaType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryAreaTypeSuggestedReaction";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [reaction_type] Type of the reaction
+  late ReactionType reaction_type;
+
+  /// [is_dark] True, if reaction has a dark background
+  late bool is_dark;
+
+  /// [is_flipped] True, if reaction corner is flipped
+  late bool is_flipped;
+
+  /// An area pointing to a suggested reaction
+  InputStoryAreaTypeSuggestedReaction(
+      {required this.reaction_type,
+      required this.is_dark,
+      required this.is_flipped,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryAreaTypeSuggestedReaction',
+      if (extra != null) '@extra': extra,
+      'reaction_type': reaction_type,
+      'is_dark': is_dark,
+      'is_flipped': is_flipped
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryAreaTypeSuggestedReaction? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var reaction_type = ReactionType.fromMap(_map['reaction_type'])!;
+    var is_dark = _map['is_dark']! as bool;
+    var is_flipped = _map['is_flipped']! as bool;
+    return InputStoryAreaTypeSuggestedReaction(
+      extra: extra,
+      clientId: clientId,
+      reaction_type: reaction_type,
+      is_dark: is_dark,
+      is_flipped: is_flipped,
+    );
+  }
+}
+
+///Describes a clickable rectangle area on a story media to be added
+///
+class InputStoryArea extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryArea";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [position] Position of the area
+  late StoryAreaPosition position;
+
+  /// [type] Type of the area
+  late InputStoryAreaType type;
+
+  /// Describes a clickable rectangle area on a story media to be added
+  InputStoryArea(
+      {required this.position, required this.type, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryArea',
+      if (extra != null) '@extra': extra,
+      'position': position,
+      'type': type
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryArea? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var position = StoryAreaPosition.fromMap(_map['position'])!;
+    var type = InputStoryAreaType.fromMap(_map['type'])!;
+    return InputStoryArea(
+      extra: extra,
+      clientId: clientId,
+      position: position,
+      type: type,
+    );
+  }
+}
+
+///Contains a list of story areas to be added
+///
+class InputStoryAreas extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryAreas";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [areas] List of 0-10 input story areas
+  late List<InputStoryArea> areas;
+
+  /// Contains a list of story areas to be added
+  InputStoryAreas({required this.areas, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryAreas',
+      if (extra != null) '@extra': extra,
+      'areas': areas
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryAreas? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var areas = List<InputStoryArea>.from(
+      (_map["areas"] ?? []).map(
+        (e) => InputStoryArea.fromMap(e),
+      ),
+    );
+    return InputStoryAreas(
+      extra: extra,
+      clientId: clientId,
+      areas: areas,
+    );
+  }
+}
+
+///Describes a video file sent in a story
+///
+class StoryVideo extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyVideo";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [duration] Duration of the video, in seconds
+  late double duration;
+
+  /// [width] Video width
+  late int width;
+
+  /// [height] Video height
+  late int height;
+
+  /// [has_stickers] True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
+  late bool has_stickers;
+
+  /// [is_animation] True, if the video has no sound
+  late bool is_animation;
+
+  /// [minithumbnail] Video minithumbnail; may be null
+  Minithumbnail? minithumbnail;
+
+  /// [thumbnail] Video thumbnail in JPEG or MPEG4 format; may be null
+  Thumbnail? thumbnail;
+
+  /// [preload_prefix_size] Size of file prefix, which is supposed to be preloaded, in bytes
+  late int preload_prefix_size;
+
+  /// [video] File containing the video
+  late File video;
+
+  /// Describes a video file sent in a story
+  StoryVideo(
+      {required this.duration,
+      required this.width,
+      required this.height,
+      required this.has_stickers,
+      required this.is_animation,
+      this.minithumbnail,
+      this.thumbnail,
+      required this.preload_prefix_size,
+      required this.video,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyVideo',
+      if (extra != null) '@extra': extra,
+      'duration': duration,
+      'width': width,
+      'height': height,
+      'has_stickers': has_stickers,
+      'is_animation': is_animation,
+      'minithumbnail': minithumbnail,
+      'thumbnail': thumbnail,
+      'preload_prefix_size': preload_prefix_size,
+      'video': video
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryVideo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var duration = _map['duration']! as double;
+    var width = _map['width']! as int;
+    var height = _map['height']! as int;
+    var has_stickers = _map['has_stickers']! as bool;
+    var is_animation = _map['is_animation']! as bool;
+    var minithumbnail = Minithumbnail.fromMap(_map['minithumbnail']);
+    var thumbnail = Thumbnail.fromMap(_map['thumbnail']);
+    var preload_prefix_size = _map['preload_prefix_size']! as int;
+    var video = File.fromMap(_map['video'])!;
+    return StoryVideo(
+      extra: extra,
+      clientId: clientId,
+      duration: duration,
+      width: width,
+      height: height,
+      has_stickers: has_stickers,
+      is_animation: is_animation,
+      minithumbnail: minithumbnail,
+      thumbnail: thumbnail,
+      preload_prefix_size: preload_prefix_size,
+      video: video,
+    );
+  }
+}
+
+///A photo story
+///
+class StoryContentPhoto extends StoryContent {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyContentPhoto";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [photo] The photo
+  late Photo photo;
+
+  /// A photo story
+  StoryContentPhoto({required this.photo, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyContentPhoto',
+      if (extra != null) '@extra': extra,
+      'photo': photo
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryContentPhoto? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var photo = Photo.fromMap(_map['photo'])!;
+    return StoryContentPhoto(
+      extra: extra,
+      clientId: clientId,
+      photo: photo,
+    );
+  }
+}
+
+///A video story
+///
+class StoryContentVideo extends StoryContent {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyContentVideo";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [video] The video in MPEG4 format
+  late StoryVideo video;
+
+  /// [alternative_video] Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
+  StoryVideo? alternative_video;
+
+  /// A video story
+  StoryContentVideo(
+      {required this.video, this.alternative_video, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyContentVideo',
+      if (extra != null) '@extra': extra,
+      'video': video,
+      'alternative_video': alternative_video
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryContentVideo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var video = StoryVideo.fromMap(_map['video'])!;
+    var alternative_video = StoryVideo.fromMap(_map['alternative_video']);
+    return StoryContentVideo(
+      extra: extra,
+      clientId: clientId,
+      video: video,
+      alternative_video: alternative_video,
+    );
+  }
+}
+
+///A story content that is not supported in the current TDLib version
+///
+class StoryContentUnsupported extends StoryContent {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyContentUnsupported";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// A story content that is not supported in the current TDLib version
+  StoryContentUnsupported({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyContentUnsupported',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryContentUnsupported? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return StoryContentUnsupported(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///A photo story
+///
+class InputStoryContentPhoto extends InputStoryContent {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryContentPhoto";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [photo] Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
+  late InputFile photo;
+
+  /// [added_sticker_file_ids] File identifiers of the stickers added to the photo, if applicable
+  late List<int> added_sticker_file_ids;
+
+  /// A photo story
+  InputStoryContentPhoto(
+      {required this.photo,
+      required this.added_sticker_file_ids,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryContentPhoto',
+      if (extra != null) '@extra': extra,
+      'photo': photo,
+      'added_sticker_file_ids': added_sticker_file_ids
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryContentPhoto? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var photo = InputFile.fromMap(_map['photo'])!;
+    var added_sticker_file_ids = List<int>.from(
+      (_map["added_sticker_file_ids"] ?? []).map(
+        (e) => e as int,
+      ),
+    );
+    return InputStoryContentPhoto(
+      extra: extra,
+      clientId: clientId,
+      photo: photo,
+      added_sticker_file_ids: added_sticker_file_ids,
+    );
+  }
+}
+
+///A video story
+///
+class InputStoryContentVideo extends InputStoryContent {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "inputStoryContentVideo";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [video] Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
+  late InputFile video;
+
+  /// [added_sticker_file_ids] File identifiers of the stickers added to the video, if applicable
+  late List<int> added_sticker_file_ids;
+
+  /// [duration] Precise duration of the video, in seconds; 0-60
+  late double duration;
+
+  /// [is_animation] True, if the video has no sound
+  late bool is_animation;
+
+  /// A video story
+  InputStoryContentVideo(
+      {required this.video,
+      required this.added_sticker_file_ids,
+      required this.duration,
+      required this.is_animation,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'inputStoryContentVideo',
+      if (extra != null) '@extra': extra,
+      'video': video,
+      'added_sticker_file_ids': added_sticker_file_ids,
+      'duration': duration,
+      'is_animation': is_animation
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InputStoryContentVideo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var video = InputFile.fromMap(_map['video'])!;
+    var added_sticker_file_ids = List<int>.from(
+      (_map["added_sticker_file_ids"] ?? []).map(
+        (e) => e as int,
+      ),
+    );
+    var duration = _map['duration']! as double;
+    var is_animation = _map['is_animation']! as bool;
+    return InputStoryContentVideo(
+      extra: extra,
+      clientId: clientId,
+      video: video,
+      added_sticker_file_ids: added_sticker_file_ids,
+      duration: duration,
+      is_animation: is_animation,
+    );
+  }
+}
+
+///The list of stories, shown in the main chat list and folder chat lists
+///
+class StoryListMain extends StoryList {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyListMain";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The list of stories, shown in the main chat list and folder chat lists
+  StoryListMain({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {'@type': 'storyListMain', if (extra != null) '@extra': extra};
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryListMain? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return StoryListMain(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The list of stories, shown in the Arvhive chat list
+///
+class StoryListArchive extends StoryList {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyListArchive";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The list of stories, shown in the Arvhive chat list
+  StoryListArchive({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {'@type': 'storyListArchive', if (extra != null) '@extra': extra};
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryListArchive? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return StoryListArchive(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///Contains information about interactions with a story
+///
+class StoryInteractionInfo extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyInteractionInfo";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [view_count] Number of times the story was viewed
+  late int view_count;
+
+  /// [forward_count] Number of times the story was forwarded; 0 if none or unknown
+  late int forward_count;
+
+  /// [reaction_count] Number of reactions added to the story; 0 if none or unknown
+  late int reaction_count;
+
+  /// [recent_viewer_user_ids] Identifiers of at most 3 recent viewers of the story
+  late List<int> recent_viewer_user_ids;
+
+  /// Contains information about interactions with a story
+  StoryInteractionInfo(
+      {required this.view_count,
+      required this.forward_count,
+      required this.reaction_count,
+      required this.recent_viewer_user_ids,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyInteractionInfo',
+      if (extra != null) '@extra': extra,
+      'view_count': view_count,
+      'forward_count': forward_count,
+      'reaction_count': reaction_count,
+      'recent_viewer_user_ids': recent_viewer_user_ids
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryInteractionInfo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var view_count = _map['view_count']! as int;
+    var forward_count = _map['forward_count']! as int;
+    var reaction_count = _map['reaction_count']! as int;
+    var recent_viewer_user_ids = List<int>.from(
+      (_map["recent_viewer_user_ids"] ?? []).map(
+        (e) => e as int,
+      ),
+    );
+    return StoryInteractionInfo(
+      extra: extra,
+      clientId: clientId,
+      view_count: view_count,
+      forward_count: forward_count,
+      reaction_count: reaction_count,
+      recent_viewer_user_ids: recent_viewer_user_ids,
+    );
+  }
+}
+
+///Represents a story
+///
+class Story extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "story";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [id] Unique story identifier among stories of the given sender
+  late int id;
+
+  /// [sender_chat_id] Identifier of the chat that posted the story
+  late int sender_chat_id;
+
+  /// [date] Point in time (Unix timestamp) when the story was published
+  late int date;
+
+  /// [is_being_sent] True, if the story is being sent by the current user
+  late bool is_being_sent;
+
+  /// [is_being_edited] True, if the story is being edited by the current user
+  late bool is_being_edited;
+
+  /// [is_edited] True, if the story was edited
+  late bool is_edited;
+
+  /// [is_pinned] True, if the story is saved in the sender's profile and will be available there after expiration
+  late bool is_pinned;
+
+  /// [is_visible_only_for_self] True, if the story is visible only for the current user
+  late bool is_visible_only_for_self;
+
+  /// [can_be_deleted] True, if the story can be deleted
+  late bool can_be_deleted;
+
+  /// [can_be_edited] True, if the story can be edited
+  late bool can_be_edited;
+
+  /// [can_be_forwarded] True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
+  late bool can_be_forwarded;
+
+  /// [can_be_replied] True, if the story can be replied in the chat with the story sender
+  late bool can_be_replied;
+
+  /// [can_toggle_is_pinned] True, if the story's is_pinned value can be changed
+  late bool can_toggle_is_pinned;
+
+  /// [can_get_viewers] True, if users viewed the story can be received through getStoryViewers
+  late bool can_get_viewers;
+
+  /// [has_expired_viewers] True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+  late bool has_expired_viewers;
+
+  /// [interaction_info] Information about interactions with the story; may be null if the story isn't owned or there were no interactions
+  StoryInteractionInfo? interaction_info;
+
+  /// [chosen_reaction_type] Type of the chosen reaction; may be null if none
+  ReactionType? chosen_reaction_type;
+
+  /// [privacy_settings] Privacy rules affecting story visibility; may be approximate for non-owned stories
+  late StoryPrivacySettings privacy_settings;
+
+  /// [content] Content of the story
+  late StoryContent content;
+
+  /// [areas] Clickable areas to be shown on the story content
+  late List<StoryArea> areas;
+
+  /// [caption] Caption of the story
+  late FormattedText caption;
+
+  /// Represents a story
+  Story(
+      {required this.id,
+      required this.sender_chat_id,
+      required this.date,
+      required this.is_being_sent,
+      required this.is_being_edited,
+      required this.is_edited,
+      required this.is_pinned,
+      required this.is_visible_only_for_self,
+      required this.can_be_deleted,
+      required this.can_be_edited,
+      required this.can_be_forwarded,
+      required this.can_be_replied,
+      required this.can_toggle_is_pinned,
+      required this.can_get_viewers,
+      required this.has_expired_viewers,
+      this.interaction_info,
+      this.chosen_reaction_type,
+      required this.privacy_settings,
+      required this.content,
+      required this.areas,
+      required this.caption,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'story',
+      if (extra != null) '@extra': extra,
+      'id': id,
+      'sender_chat_id': sender_chat_id,
+      'date': date,
+      'is_being_sent': is_being_sent,
+      'is_being_edited': is_being_edited,
+      'is_edited': is_edited,
+      'is_pinned': is_pinned,
+      'is_visible_only_for_self': is_visible_only_for_self,
+      'can_be_deleted': can_be_deleted,
+      'can_be_edited': can_be_edited,
+      'can_be_forwarded': can_be_forwarded,
+      'can_be_replied': can_be_replied,
+      'can_toggle_is_pinned': can_toggle_is_pinned,
+      'can_get_viewers': can_get_viewers,
+      'has_expired_viewers': has_expired_viewers,
+      'interaction_info': interaction_info,
+      'chosen_reaction_type': chosen_reaction_type,
+      'privacy_settings': privacy_settings,
+      'content': content,
+      'areas': areas,
+      'caption': caption
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static Story? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var id = _map['id']! as int;
+    var sender_chat_id = _map['sender_chat_id']! as int;
+    var date = _map['date']! as int;
+    var is_being_sent = _map['is_being_sent']! as bool;
+    var is_being_edited = _map['is_being_edited']! as bool;
+    var is_edited = _map['is_edited']! as bool;
+    var is_pinned = _map['is_pinned']! as bool;
+    var is_visible_only_for_self = _map['is_visible_only_for_self']! as bool;
+    var can_be_deleted = _map['can_be_deleted']! as bool;
+    var can_be_edited = _map['can_be_edited']! as bool;
+    var can_be_forwarded = _map['can_be_forwarded']! as bool;
+    var can_be_replied = _map['can_be_replied']! as bool;
+    var can_toggle_is_pinned = _map['can_toggle_is_pinned']! as bool;
+    var can_get_viewers = _map['can_get_viewers']! as bool;
+    var has_expired_viewers = _map['has_expired_viewers']! as bool;
+    var interaction_info =
+        StoryInteractionInfo.fromMap(_map['interaction_info']);
+    var chosen_reaction_type =
+        ReactionType.fromMap(_map['chosen_reaction_type']);
+    var privacy_settings =
+        StoryPrivacySettings.fromMap(_map['privacy_settings'])!;
+    var content = StoryContent.fromMap(_map['content'])!;
+    var areas = List<StoryArea>.from(
+      (_map["areas"] ?? []).map(
+        (e) => StoryArea.fromMap(e),
+      ),
+    );
+    var caption = FormattedText.fromMap(_map['caption'])!;
+    return Story(
+      extra: extra,
+      clientId: clientId,
+      id: id,
+      sender_chat_id: sender_chat_id,
+      date: date,
+      is_being_sent: is_being_sent,
+      is_being_edited: is_being_edited,
+      is_edited: is_edited,
+      is_pinned: is_pinned,
+      is_visible_only_for_self: is_visible_only_for_self,
+      can_be_deleted: can_be_deleted,
+      can_be_edited: can_be_edited,
+      can_be_forwarded: can_be_forwarded,
+      can_be_replied: can_be_replied,
+      can_toggle_is_pinned: can_toggle_is_pinned,
+      can_get_viewers: can_get_viewers,
+      has_expired_viewers: has_expired_viewers,
+      interaction_info: interaction_info,
+      chosen_reaction_type: chosen_reaction_type,
+      privacy_settings: privacy_settings,
+      content: content,
+      areas: areas,
+      caption: caption,
+    );
+  }
+}
+
+///Represents a list of stories
+///
+class Stories extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "stories";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [total_count] Approximate total number of stories found
+  late int total_count;
+
+  /// [stories] The list of stories
+  late List<Story> stories;
+
+  /// Represents a list of stories
+  Stories(
+      {required this.total_count,
+      required this.stories,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'stories',
+      if (extra != null) '@extra': extra,
+      'total_count': total_count,
+      'stories': stories
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static Stories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var total_count = _map['total_count']! as int;
+    var stories = List<Story>.from(
+      (_map["stories"] ?? []).map(
+        (e) => Story.fromMap(e),
+      ),
+    );
+    return Stories(
+      extra: extra,
+      clientId: clientId,
+      total_count: total_count,
+      stories: stories,
+    );
+  }
+}
+
+///Contains basic information about a story
+///
+class StoryInfo extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "storyInfo";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [story_id] Unique story identifier among stories of the given sender
+  late int story_id;
+
+  /// [date] Point in time (Unix timestamp) when the story was published
+  late int date;
+
+  /// [is_for_close_friends] True, if the story is available only to close friends
+  late bool is_for_close_friends;
+
+  /// Contains basic information about a story
+  StoryInfo(
+      {required this.story_id,
+      required this.date,
+      required this.is_for_close_friends,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'storyInfo',
+      if (extra != null) '@extra': extra,
+      'story_id': story_id,
+      'date': date,
+      'is_for_close_friends': is_for_close_friends
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static StoryInfo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var story_id = _map['story_id']! as int;
+    var date = _map['date']! as int;
+    var is_for_close_friends = _map['is_for_close_friends']! as bool;
+    return StoryInfo(
+      extra: extra,
+      clientId: clientId,
+      story_id: story_id,
+      date: date,
+      is_for_close_friends: is_for_close_friends,
+    );
+  }
+}
+
+///Describes active stories posted by a chat
+///
+class ChatActiveStories extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "chatActiveStories";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [chat_id] Identifier of the chat that posted the stories
+  late int chat_id;
+
+  /// [list] Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list
+  StoryList? list;
+
+  /// [order] A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order
+  late int order;
+
+  /// [max_read_story_id] Identifier of the last read active story
+  late int max_read_story_id;
+
+  /// [stories] Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)
+  late List<StoryInfo> stories;
+
+  /// Describes active stories posted by a chat
+  ChatActiveStories(
+      {required this.chat_id,
+      this.list,
+      required this.order,
+      required this.max_read_story_id,
+      required this.stories,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'chatActiveStories',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id,
+      'list': list,
+      'order': order,
+      'max_read_story_id': max_read_story_id,
+      'stories': stories
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static ChatActiveStories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    var list = StoryList.fromMap(_map['list']);
+    var order = _map['order']! as int;
+    var max_read_story_id = _map['max_read_story_id']! as int;
+    var stories = List<StoryInfo>.from(
+      (_map["stories"] ?? []).map(
+        (e) => StoryInfo.fromMap(e),
+      ),
+    );
+    return ChatActiveStories(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+      list: list,
+      order: order,
+      max_read_story_id: max_read_story_id,
+      stories: stories,
+    );
+  }
+}
+
+///Describes current boost status of a chat
+///
+class ChatBoostStatus extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "chatBoostStatus";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [is_boosted] True, if the current user has already boosted the chat
+  late bool is_boosted;
+
+  /// [level] Current boost level of the chat
+  late int level;
+
+  /// [boost_count] The number of times the chat was boosted
+  late int boost_count;
+
+  /// [current_level_boost_count] The number of boosts added to reach the current level
+  late int current_level_boost_count;
+
+  /// [next_level_boost_count] The number of boosts needed to reach the next level; 0 if the next level isn't available
+  late int next_level_boost_count;
+
+  /// [premium_member_count] Approximate number of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat
+  late int premium_member_count;
+
+  /// [premium_member_percentage] A percentage of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat
+  late double premium_member_percentage;
+
+  /// Describes current boost status of a chat
+  ChatBoostStatus(
+      {required this.is_boosted,
+      required this.level,
+      required this.boost_count,
+      required this.current_level_boost_count,
+      required this.next_level_boost_count,
+      required this.premium_member_count,
+      required this.premium_member_percentage,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'chatBoostStatus',
+      if (extra != null) '@extra': extra,
+      'is_boosted': is_boosted,
+      'level': level,
+      'boost_count': boost_count,
+      'current_level_boost_count': current_level_boost_count,
+      'next_level_boost_count': next_level_boost_count,
+      'premium_member_count': premium_member_count,
+      'premium_member_percentage': premium_member_percentage
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static ChatBoostStatus? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var is_boosted = _map['is_boosted']! as bool;
+    var level = _map['level']! as int;
+    var boost_count = _map['boost_count']! as int;
+    var current_level_boost_count = _map['current_level_boost_count']! as int;
+    var next_level_boost_count = _map['next_level_boost_count']! as int;
+    var premium_member_count = _map['premium_member_count']! as int;
+    var premium_member_percentage =
+        _map['premium_member_percentage']! as double;
+    return ChatBoostStatus(
+      extra: extra,
+      clientId: clientId,
+      is_boosted: is_boosted,
+      level: level,
+      boost_count: boost_count,
+      current_level_boost_count: current_level_boost_count,
+      next_level_boost_count: next_level_boost_count,
+      premium_member_count: premium_member_count,
+      premium_member_percentage: premium_member_percentage,
+    );
+  }
+}
+
+///Describes a boost of a chat
+///
+class ChatBoost extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "chatBoost";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [user_id] Identifier of a user that boosted the chat
+  late int user_id;
+
+  /// [expiration_date] Point in time (Unix timestamp) when the boost will automatically expire if the user will not prolongate their Telegram Premium subscription
+  late int expiration_date;
+
+  /// Describes a boost of a chat
+  ChatBoost(
+      {required this.user_id,
+      required this.expiration_date,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'chatBoost',
+      if (extra != null) '@extra': extra,
+      'user_id': user_id,
+      'expiration_date': expiration_date
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static ChatBoost? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var user_id = _map['user_id']! as int;
+    var expiration_date = _map['expiration_date']! as int;
+    return ChatBoost(
+      extra: extra,
+      clientId: clientId,
+      user_id: user_id,
+      expiration_date: expiration_date,
+    );
+  }
+}
+
+///Contains a list of boosts applied to a chat
+///
+class FoundChatBoosts extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "foundChatBoosts";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [total_count] Total number of boosts applied to the chat
+  late int total_count;
+
+  /// [boosts] List of boosts
+  late List<ChatBoost> boosts;
+
+  /// [next_offset] The offset for the next request. If empty, there are no more results
+  String? next_offset;
+
+  /// Contains a list of boosts applied to a chat
+  FoundChatBoosts(
+      {required this.total_count,
+      required this.boosts,
+      this.next_offset,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'foundChatBoosts',
+      if (extra != null) '@extra': extra,
+      'total_count': total_count,
+      'boosts': boosts,
+      'next_offset': next_offset
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static FoundChatBoosts? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var total_count = _map['total_count']! as int;
+    var boosts = List<ChatBoost>.from(
+      (_map["boosts"] ?? []).map(
+        (e) => ChatBoost.fromMap(e),
+      ),
+    );
+    var next_offset = _map['next_offset'] as String?;
+    return FoundChatBoosts(
+      extra: extra,
+      clientId: clientId,
+      total_count: total_count,
+      boosts: boosts,
+      next_offset: next_offset,
     );
   }
 }
@@ -39934,7 +42202,7 @@ class AttachmentMenuBotColor extends TlObject {
   }
 }
 
-///Represents a bot, which can be added to attachment menu
+///Represents a bot, which can be added to attachment or side menu
 ///
 class AttachmentMenuBot extends TlObject {
   /// [extra] - Request identifier. Must be non-zero.
@@ -39946,7 +42214,7 @@ class AttachmentMenuBot extends TlObject {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [bot_user_id] User identifier of the bot added to attachment menu
+  /// [bot_user_id] User identifier of the bot
   late int bot_user_id;
 
   /// [supports_self_chat] True, if the bot supports opening from attachment menu in the chat with the bot
@@ -39967,8 +42235,20 @@ class AttachmentMenuBot extends TlObject {
   /// [supports_settings] True, if the bot supports "settings_button_pressed" event
   late bool supports_settings;
 
-  /// [request_write_access] True, if the user must be asked for the permission to the bot to send them messages
+  /// [request_write_access] True, if the user must be asked for the permission to send messages to the bot
   late bool request_write_access;
+
+  /// [is_added] True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
+  late bool is_added;
+
+  /// [show_in_attachment_menu] True, if the bot must be shown in the attachment menu
+  late bool show_in_attachment_menu;
+
+  /// [show_in_side_menu] True, if the bot must be shown in the side menu
+  late bool show_in_side_menu;
+
+  /// [show_disclaimer_in_side_menu] True, if a disclaimer, why the bot is shown in the side menu, is needed
+  late bool show_disclaimer_in_side_menu;
 
   /// [name] Name for the bot in attachment menu
   late String name;
@@ -39976,20 +42256,29 @@ class AttachmentMenuBot extends TlObject {
   /// [name_color] Color to highlight selected name of the bot if appropriate; may be null
   AttachmentMenuBotColor? name_color;
 
-  /// [default_icon] Default attachment menu icon for the bot in SVG format; may be null
+  /// [default_icon] Default icon for the bot in SVG format; may be null
   File? default_icon;
 
-  /// [ios_static_icon] Attachment menu icon for the bot in SVG format for the official iOS app; may be null
+  /// [ios_static_icon] Icon for the bot in SVG format for the official iOS app; may be null
   File? ios_static_icon;
 
-  /// [ios_animated_icon] Attachment menu icon for the bot in TGS format for the official iOS app; may be null
+  /// [ios_animated_icon] Icon for the bot in TGS format for the official iOS app; may be null
   File? ios_animated_icon;
 
-  /// [android_icon] Attachment menu icon for the bot in TGS format for the official Android app; may be null
+  /// [ios_side_menu_icon] Icon for the bot in PNG format for the official iOS app side menu; may be null
+  File? ios_side_menu_icon;
+
+  /// [android_icon] Icon for the bot in TGS format for the official Android app; may be null
   File? android_icon;
 
-  /// [macos_icon] Attachment menu icon for the bot in TGS format for the official native macOS app; may be null
+  /// [android_side_menu_icon] Icon for the bot in SVG format for the official Android app side menu; may be null
+  File? android_side_menu_icon;
+
+  /// [macos_icon] Icon for the bot in TGS format for the official native macOS app; may be null
   File? macos_icon;
+
+  /// [macos_side_menu_icon] Icon for the bot in PNG format for the official macOS app side menu; may be null
+  File? macos_side_menu_icon;
 
   /// [icon_color] Color to highlight selected icon of the bot if appropriate; may be null
   AttachmentMenuBotColor? icon_color;
@@ -39997,7 +42286,7 @@ class AttachmentMenuBot extends TlObject {
   /// [web_app_placeholder] Default placeholder for opened Web Apps in SVG format; may be null
   File? web_app_placeholder;
 
-  /// Represents a bot, which can be added to attachment menu
+  /// Represents a bot, which can be added to attachment or side menu
   AttachmentMenuBot(
       {required this.bot_user_id,
       required this.supports_self_chat,
@@ -40007,13 +42296,20 @@ class AttachmentMenuBot extends TlObject {
       required this.supports_channel_chats,
       required this.supports_settings,
       required this.request_write_access,
+      required this.is_added,
+      required this.show_in_attachment_menu,
+      required this.show_in_side_menu,
+      required this.show_disclaimer_in_side_menu,
       required this.name,
       this.name_color,
       this.default_icon,
       this.ios_static_icon,
       this.ios_animated_icon,
+      this.ios_side_menu_icon,
       this.android_icon,
+      this.android_side_menu_icon,
       this.macos_icon,
+      this.macos_side_menu_icon,
       this.icon_color,
       this.web_app_placeholder,
       this.extra,
@@ -40032,13 +42328,20 @@ class AttachmentMenuBot extends TlObject {
       'supports_channel_chats': supports_channel_chats,
       'supports_settings': supports_settings,
       'request_write_access': request_write_access,
+      'is_added': is_added,
+      'show_in_attachment_menu': show_in_attachment_menu,
+      'show_in_side_menu': show_in_side_menu,
+      'show_disclaimer_in_side_menu': show_disclaimer_in_side_menu,
       'name': name,
       'name_color': name_color,
       'default_icon': default_icon,
       'ios_static_icon': ios_static_icon,
       'ios_animated_icon': ios_animated_icon,
+      'ios_side_menu_icon': ios_side_menu_icon,
       'android_icon': android_icon,
+      'android_side_menu_icon': android_side_menu_icon,
       'macos_icon': macos_icon,
+      'macos_side_menu_icon': macos_side_menu_icon,
       'icon_color': icon_color,
       'web_app_placeholder': web_app_placeholder
     };
@@ -40064,13 +42367,21 @@ class AttachmentMenuBot extends TlObject {
     var supports_channel_chats = _map['supports_channel_chats']! as bool;
     var supports_settings = _map['supports_settings']! as bool;
     var request_write_access = _map['request_write_access']! as bool;
+    var is_added = _map['is_added']! as bool;
+    var show_in_attachment_menu = _map['show_in_attachment_menu']! as bool;
+    var show_in_side_menu = _map['show_in_side_menu']! as bool;
+    var show_disclaimer_in_side_menu =
+        _map['show_disclaimer_in_side_menu']! as bool;
     var name = _map['name']! as String;
     var name_color = AttachmentMenuBotColor.fromMap(_map['name_color']);
     var default_icon = File.fromMap(_map['default_icon']);
     var ios_static_icon = File.fromMap(_map['ios_static_icon']);
     var ios_animated_icon = File.fromMap(_map['ios_animated_icon']);
+    var ios_side_menu_icon = File.fromMap(_map['ios_side_menu_icon']);
     var android_icon = File.fromMap(_map['android_icon']);
+    var android_side_menu_icon = File.fromMap(_map['android_side_menu_icon']);
     var macos_icon = File.fromMap(_map['macos_icon']);
+    var macos_side_menu_icon = File.fromMap(_map['macos_side_menu_icon']);
     var icon_color = AttachmentMenuBotColor.fromMap(_map['icon_color']);
     var web_app_placeholder = File.fromMap(_map['web_app_placeholder']);
     return AttachmentMenuBot(
@@ -40084,13 +42395,20 @@ class AttachmentMenuBot extends TlObject {
       supports_channel_chats: supports_channel_chats,
       supports_settings: supports_settings,
       request_write_access: request_write_access,
+      is_added: is_added,
+      show_in_attachment_menu: show_in_attachment_menu,
+      show_in_side_menu: show_in_side_menu,
+      show_disclaimer_in_side_menu: show_disclaimer_in_side_menu,
       name: name,
       name_color: name_color,
       default_icon: default_icon,
       ios_static_icon: ios_static_icon,
       ios_animated_icon: ios_animated_icon,
+      ios_side_menu_icon: ios_side_menu_icon,
       android_icon: android_icon,
+      android_side_menu_icon: android_side_menu_icon,
       macos_icon: macos_icon,
+      macos_side_menu_icon: macos_side_menu_icon,
       icon_color: icon_color,
       web_app_placeholder: web_app_placeholder,
     );
@@ -46569,6 +48887,183 @@ class PremiumLimitTypeActiveStoryCount extends PremiumLimitType {
   }
 }
 
+///The maximum number of stories sent per week
+///
+class PremiumLimitTypeWeeklySentStoryCount extends PremiumLimitType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumLimitTypeWeeklySentStoryCount";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The maximum number of stories sent per week
+  PremiumLimitTypeWeeklySentStoryCount({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumLimitTypeWeeklySentStoryCount',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumLimitTypeWeeklySentStoryCount? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumLimitTypeWeeklySentStoryCount(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The maximum number of stories sent per month
+///
+class PremiumLimitTypeMonthlySentStoryCount extends PremiumLimitType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumLimitTypeMonthlySentStoryCount";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The maximum number of stories sent per month
+  PremiumLimitTypeMonthlySentStoryCount({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumLimitTypeMonthlySentStoryCount',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumLimitTypeMonthlySentStoryCount? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumLimitTypeMonthlySentStoryCount(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The maximum length of captions of sent stories
+///
+class PremiumLimitTypeStoryCaptionLength extends PremiumLimitType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumLimitTypeStoryCaptionLength";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The maximum length of captions of sent stories
+  PremiumLimitTypeStoryCaptionLength({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumLimitTypeStoryCaptionLength',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumLimitTypeStoryCaptionLength? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumLimitTypeStoryCaptionLength(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The maximum number of suggested reaction areas on a story
+///
+class PremiumLimitTypeStorySuggestedReactionAreaCount extends PremiumLimitType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR =
+      "premiumLimitTypeStorySuggestedReactionAreaCount";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The maximum number of suggested reaction areas on a story
+  PremiumLimitTypeStorySuggestedReactionAreaCount({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumLimitTypeStorySuggestedReactionAreaCount',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumLimitTypeStorySuggestedReactionAreaCount? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumLimitTypeStorySuggestedReactionAreaCount(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
 ///Increased limits
 ///
 class PremiumFeatureIncreasedLimits extends PremiumFeature {
@@ -47002,7 +49497,7 @@ class PremiumFeatureProfileBadge extends PremiumFeature {
   }
 }
 
-///A emoji status shown along with the user's name
+///An emoji status shown along with the user's name
 ///
 class PremiumFeatureEmojiStatus extends PremiumFeature {
   /// [extra] - Request identifier. Must be non-zero.
@@ -47014,7 +49509,7 @@ class PremiumFeatureEmojiStatus extends PremiumFeature {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// A emoji status shown along with the user's name
+  /// An emoji status shown along with the user's name
   PremiumFeatureEmojiStatus({this.extra, this.clientId});
 
   @override
@@ -47213,6 +49708,354 @@ class PremiumFeatureRealTimeChatTranslation extends PremiumFeature {
     var clientId = _map['@clientId'];
 
     return PremiumFeatureRealTimeChatTranslation(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///Allowed to use many additional features for stories
+///
+class PremiumFeatureUpgradedStories extends PremiumFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumFeatureUpgradedStories";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// Allowed to use many additional features for stories
+  PremiumFeatureUpgradedStories({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumFeatureUpgradedStories',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumFeatureUpgradedStories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumFeatureUpgradedStories(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to boost chats
+///
+class PremiumFeatureChatBoost extends PremiumFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumFeatureChatBoost";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to boost chats
+  PremiumFeatureChatBoost({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumFeatureChatBoost',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumFeatureChatBoost? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumFeatureChatBoost(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///User stories are displayed before stories of non-premium contacts and channels
+///
+class PremiumStoryFeaturePriorityOrder extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumStoryFeaturePriorityOrder";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// User stories are displayed before stories of non-premium contacts and channels
+  PremiumStoryFeaturePriorityOrder({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeaturePriorityOrder',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeaturePriorityOrder? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeaturePriorityOrder(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to hide the fact that the user viewed other's stories
+///
+class PremiumStoryFeatureStealthMode extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumStoryFeatureStealthMode";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to hide the fact that the user viewed other's stories
+  PremiumStoryFeatureStealthMode({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeatureStealthMode',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeatureStealthMode? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeatureStealthMode(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to check who opened the current user's stories after they expire
+///
+class PremiumStoryFeaturePermanentViewsHistory extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumStoryFeaturePermanentViewsHistory";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to check who opened the current user's stories after they expire
+  PremiumStoryFeaturePermanentViewsHistory({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeaturePermanentViewsHistory',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeaturePermanentViewsHistory? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeaturePermanentViewsHistory(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to set custom expiration duration for stories
+///
+class PremiumStoryFeatureCustomExpirationDuration extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR =
+      "premiumStoryFeatureCustomExpirationDuration";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to set custom expiration duration for stories
+  PremiumStoryFeatureCustomExpirationDuration({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeatureCustomExpirationDuration',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeatureCustomExpirationDuration? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeatureCustomExpirationDuration(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to save other's unprotected stories
+///
+class PremiumStoryFeatureSaveStories extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumStoryFeatureSaveStories";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to save other's unprotected stories
+  PremiumStoryFeatureSaveStories({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeatureSaveStories',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeatureSaveStories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeatureSaveStories(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The ability to use links and formatting in story caption
+///
+class PremiumStoryFeatureLinksAndFormatting extends PremiumStoryFeature {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumStoryFeatureLinksAndFormatting";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The ability to use links and formatting in story caption
+  PremiumStoryFeatureLinksAndFormatting({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumStoryFeatureLinksAndFormatting',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumStoryFeatureLinksAndFormatting? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return PremiumStoryFeatureLinksAndFormatting(
       extra: extra,
       clientId: clientId,
     );
@@ -47447,6 +50290,54 @@ class PremiumSourceFeature extends PremiumSource {
     var clientId = _map['@clientId'];
     var feature = PremiumFeature.fromMap(_map['feature'])!;
     return PremiumSourceFeature(
+      extra: extra,
+      clientId: clientId,
+      feature: feature,
+    );
+  }
+}
+
+///A user tried to use a Premium story feature
+///
+class PremiumSourceStoryFeature extends PremiumSource {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "premiumSourceStoryFeature";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [feature] The used feature
+  late PremiumStoryFeature feature;
+
+  /// A user tried to use a Premium story feature
+  PremiumSourceStoryFeature({required this.feature, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'premiumSourceStoryFeature',
+      if (extra != null) '@extra': extra,
+      'feature': feature
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static PremiumSourceStoryFeature? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var feature = PremiumStoryFeature.fromMap(_map['feature'])!;
+    return PremiumSourceStoryFeature(
       extra: extra,
       clientId: clientId,
       feature: feature,
@@ -49173,6 +52064,552 @@ class Hashtags extends TlObject {
       extra: extra,
       clientId: clientId,
       hashtags: hashtags,
+    );
+  }
+}
+
+///A story can be sent
+///
+class CanSendStoryResultOk extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStoryResultOk";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// A story can be sent
+  CanSendStoryResultOk({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultOk',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultOk? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanSendStoryResultOk(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The user must subscribe to Telegram Premium to be able to post stories
+///
+class CanSendStoryResultPremiumNeeded extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStoryResultPremiumNeeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The user must subscribe to Telegram Premium to be able to post stories
+  CanSendStoryResultPremiumNeeded({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultPremiumNeeded',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultPremiumNeeded? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanSendStoryResultPremiumNeeded(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+///
+class CanSendStoryResultBoostNeeded extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStoryResultBoostNeeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+  CanSendStoryResultBoostNeeded({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultBoostNeeded',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultBoostNeeded? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanSendStoryResultBoostNeeded(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
+///
+class CanSendStoryResultActiveStoryLimitExceeded extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR =
+      "canSendStoryResultActiveStoryLimitExceeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
+  CanSendStoryResultActiveStoryLimitExceeded({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultActiveStoryLimitExceeded',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultActiveStoryLimitExceeded? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanSendStoryResultActiveStoryLimitExceeded(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+///
+class CanSendStoryResultWeeklyLimitExceeded extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStoryResultWeeklyLimitExceeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [retry_after] Time left before the user can send the next story
+  late int retry_after;
+
+  /// The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+  CanSendStoryResultWeeklyLimitExceeded(
+      {required this.retry_after, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultWeeklyLimitExceeded',
+      if (extra != null) '@extra': extra,
+      'retry_after': retry_after
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultWeeklyLimitExceeded? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var retry_after = _map['retry_after']! as int;
+    return CanSendStoryResultWeeklyLimitExceeded(
+      extra: extra,
+      clientId: clientId,
+      retry_after: retry_after,
+    );
+  }
+}
+
+///The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+///
+class CanSendStoryResultMonthlyLimitExceeded extends CanSendStoryResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStoryResultMonthlyLimitExceeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [retry_after] Time left before the user can send the next story
+  late int retry_after;
+
+  /// The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+  CanSendStoryResultMonthlyLimitExceeded(
+      {required this.retry_after, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStoryResultMonthlyLimitExceeded',
+      if (extra != null) '@extra': extra,
+      'retry_after': retry_after
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStoryResultMonthlyLimitExceeded? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var retry_after = _map['retry_after']! as int;
+    return CanSendStoryResultMonthlyLimitExceeded(
+      extra: extra,
+      clientId: clientId,
+      retry_after: retry_after,
+    );
+  }
+}
+
+///The chat can be boosted
+///
+class CanBoostChatResultOk extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChatResultOk";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [currently_boosted_chat_id] Identifier of the currently boosted chat from which boost will be removed; 0 if none
+  late int currently_boosted_chat_id;
+
+  /// The chat can be boosted
+  CanBoostChatResultOk(
+      {required this.currently_boosted_chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultOk',
+      if (extra != null) '@extra': extra,
+      'currently_boosted_chat_id': currently_boosted_chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultOk? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var currently_boosted_chat_id = _map['currently_boosted_chat_id']! as int;
+    return CanBoostChatResultOk(
+      extra: extra,
+      clientId: clientId,
+      currently_boosted_chat_id: currently_boosted_chat_id,
+    );
+  }
+}
+
+///The chat can't be boosted
+///
+class CanBoostChatResultInvalidChat extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChatResultInvalidChat";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The chat can't be boosted
+  CanBoostChatResultInvalidChat({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultInvalidChat',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultInvalidChat? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanBoostChatResultInvalidChat(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The chat is already boosted by the user
+///
+class CanBoostChatResultAlreadyBoosted extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChatResultAlreadyBoosted";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The chat is already boosted by the user
+  CanBoostChatResultAlreadyBoosted({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultAlreadyBoosted',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultAlreadyBoosted? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanBoostChatResultAlreadyBoosted(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The user must subscribe to Telegram Premium to be able to boost chats
+///
+class CanBoostChatResultPremiumNeeded extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChatResultPremiumNeeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The user must subscribe to Telegram Premium to be able to boost chats
+  CanBoostChatResultPremiumNeeded({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultPremiumNeeded',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultPremiumNeeded? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanBoostChatResultPremiumNeeded(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The user must have Telegram Premium subscription instead of a gifted Telegram Premium
+///
+class CanBoostChatResultPremiumSubscriptionNeeded extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR =
+      "canBoostChatResultPremiumSubscriptionNeeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The user must have Telegram Premium subscription instead of a gifted Telegram Premium
+  CanBoostChatResultPremiumSubscriptionNeeded({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultPremiumSubscriptionNeeded',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultPremiumSubscriptionNeeded? fromMap(
+      Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return CanBoostChatResultPremiumSubscriptionNeeded(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The user must wait the specified time before the boost can be moved to another chat
+///
+class CanBoostChatResultWaitNeeded extends CanBoostChatResult {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChatResultWaitNeeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [retry_after] Time left before the user can boost another chat
+  late int retry_after;
+
+  /// The user must wait the specified time before the boost can be moved to another chat
+  CanBoostChatResultWaitNeeded(
+      {required this.retry_after, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChatResultWaitNeeded',
+      if (extra != null) '@extra': extra,
+      'retry_after': retry_after
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChatResultWaitNeeded? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var retry_after = _map['retry_after']! as int;
+    return CanBoostChatResultWaitNeeded(
+      extra: extra,
+      clientId: clientId,
+      retry_after: retry_after,
     );
   }
 }
@@ -51979,7 +55416,7 @@ class NotificationTypeNewPushMessage extends NotificationType {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [message_id] The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as a message to reply
+  /// [message_id] The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
   late int message_id;
 
   /// [sender_id] Identifier of the sender of the message. Corresponding user or chat may be inaccessible
@@ -53053,14 +56490,19 @@ class StoryPrivacySettingsEveryone extends StoryPrivacySettings {
   /// [clientId] - tdlib client id
   int? clientId;
 
+  /// [except_user_ids] Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
+  late List<int> except_user_ids;
+
   /// The story can be viewed by everyone
-  StoryPrivacySettingsEveryone({this.extra, this.clientId});
+  StoryPrivacySettingsEveryone(
+      {required this.except_user_ids, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
       '@type': 'storyPrivacySettingsEveryone',
-      if (extra != null) '@extra': extra
+      if (extra != null) '@extra': extra,
+      'except_user_ids': except_user_ids
     };
   }
 
@@ -53076,10 +56518,15 @@ class StoryPrivacySettingsEveryone extends StoryPrivacySettings {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-
+    var except_user_ids = List<int>.from(
+      (_map["except_user_ids"] ?? []).map(
+        (e) => e as int,
+      ),
+    );
     return StoryPrivacySettingsEveryone(
       extra: extra,
       clientId: clientId,
+      except_user_ids: except_user_ids,
     );
   }
 }
@@ -53096,7 +56543,7 @@ class StoryPrivacySettingsContacts extends StoryPrivacySettings {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [except_user_ids] User identifiers of the contacts that can't see the story; always empty for non-owned stories
+  /// [except_user_ids] User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
   late List<int> except_user_ids;
 
   /// The story can be viewed by all contacts except chosen users
@@ -53182,27 +56629,27 @@ class StoryPrivacySettingsCloseFriends extends StoryPrivacySettings {
 
 ///The story can be viewed by certain specified users
 ///
-class StoryPrivacySettingsSelectedContacts extends StoryPrivacySettings {
+class StoryPrivacySettingsSelectedUsers extends StoryPrivacySettings {
   /// [extra] - Request identifier. Must be non-zero.
   int? extra;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyPrivacySettingsSelectedContacts";
+  static const String CONSTRUCTOR = "storyPrivacySettingsSelectedUsers";
 
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [user_ids] Identifiers of the users; always empty for non-owned stories
+  /// [user_ids] Identifiers of the users; always unknown and empty for non-owned stories
   late List<int> user_ids;
 
   /// The story can be viewed by certain specified users
-  StoryPrivacySettingsSelectedContacts(
+  StoryPrivacySettingsSelectedUsers(
       {required this.user_ids, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'storyPrivacySettingsSelectedContacts',
+      '@type': 'storyPrivacySettingsSelectedUsers',
       if (extra != null) '@extra': extra,
       'user_ids': user_ids
     };
@@ -53214,7 +56661,7 @@ class StoryPrivacySettingsSelectedContacts extends StoryPrivacySettings {
   }
 
   /// Construct from [Map]
-  static StoryPrivacySettingsSelectedContacts? fromMap(
+  static StoryPrivacySettingsSelectedUsers? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -53226,7 +56673,7 @@ class StoryPrivacySettingsSelectedContacts extends StoryPrivacySettings {
         (e) => e as int,
       ),
     );
-    return StoryPrivacySettingsSelectedContacts(
+    return StoryPrivacySettingsSelectedUsers(
       extra: extra,
       clientId: clientId,
       user_ids: user_ids,
@@ -54916,6 +58363,9 @@ class Session extends TlObject {
   /// [is_password_pending] True, if a 2-step verification password is needed to complete authorization of the session
   late bool is_password_pending;
 
+  /// [is_unconfirmed] True, if the session wasn't confirmed from another session
+  late bool is_unconfirmed;
+
   /// [can_accept_secret_chats] True, if incoming secret chats can be accepted by the session
   late bool can_accept_secret_chats;
 
@@ -54952,20 +58402,18 @@ class Session extends TlObject {
   /// [last_active_date] Point in time (Unix timestamp) when the session was last used
   late int last_active_date;
 
-  /// [ip] IP address from which the session was created, in human-readable format
-  late String ip;
+  /// [ip_address] IP address from which the session was created, in human-readable format
+  late String ip_address;
 
-  /// [country] A two-letter country code for the country from which the session was created, based on the IP address
-  late String country;
-
-  /// [region] Region code from which the session was created, based on the IP address
-  late String region;
+  /// [location] A human-readable description of the location from which the session was created, based on the IP address
+  late String location;
 
   /// Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
   Session(
       {required this.id,
       required this.is_current,
       required this.is_password_pending,
+      required this.is_unconfirmed,
       required this.can_accept_secret_chats,
       required this.can_accept_calls,
       required this.type,
@@ -54978,9 +58426,8 @@ class Session extends TlObject {
       required this.system_version,
       required this.log_in_date,
       required this.last_active_date,
-      required this.ip,
-      required this.country,
-      required this.region,
+      required this.ip_address,
+      required this.location,
       this.extra,
       this.clientId});
 
@@ -54992,6 +58439,7 @@ class Session extends TlObject {
       'id': id,
       'is_current': is_current,
       'is_password_pending': is_password_pending,
+      'is_unconfirmed': is_unconfirmed,
       'can_accept_secret_chats': can_accept_secret_chats,
       'can_accept_calls': can_accept_calls,
       'type': type,
@@ -55004,9 +58452,8 @@ class Session extends TlObject {
       'system_version': system_version,
       'log_in_date': log_in_date,
       'last_active_date': last_active_date,
-      'ip': ip,
-      'country': country,
-      'region': region
+      'ip_address': ip_address,
+      'location': location
     };
   }
 
@@ -55025,6 +58472,7 @@ class Session extends TlObject {
     var id = _map['id']! as int64;
     var is_current = _map['is_current']! as bool;
     var is_password_pending = _map['is_password_pending']! as bool;
+    var is_unconfirmed = _map['is_unconfirmed']! as bool;
     var can_accept_secret_chats = _map['can_accept_secret_chats']! as bool;
     var can_accept_calls = _map['can_accept_calls']! as bool;
     var type = SessionType.fromMap(_map['type'])!;
@@ -55037,15 +58485,15 @@ class Session extends TlObject {
     var system_version = _map['system_version']! as String;
     var log_in_date = _map['log_in_date']! as int;
     var last_active_date = _map['last_active_date']! as int;
-    var ip = _map['ip']! as String;
-    var country = _map['country']! as String;
-    var region = _map['region']! as String;
+    var ip_address = _map['ip_address']! as String;
+    var location = _map['location']! as String;
     return Session(
       extra: extra,
       clientId: clientId,
       id: id,
       is_current: is_current,
       is_password_pending: is_password_pending,
+      is_unconfirmed: is_unconfirmed,
       can_accept_secret_chats: can_accept_secret_chats,
       can_accept_calls: can_accept_calls,
       type: type,
@@ -55058,9 +58506,8 @@ class Session extends TlObject {
       system_version: system_version,
       log_in_date: log_in_date,
       last_active_date: last_active_date,
-      ip: ip,
-      country: country,
-      region: region,
+      ip_address: ip_address,
+      location: location,
     );
   }
 }
@@ -55127,6 +58574,79 @@ class Sessions extends TlObject {
   }
 }
 
+///Contains information about an unconfirmed session
+///
+class UnconfirmedSession extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "unconfirmedSession";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [id] Session identifier
+  /// ; string representation of int, use `int.parse`
+  late int64 id;
+
+  /// [log_in_date] Point in time (Unix timestamp) when the user has logged in
+  late int log_in_date;
+
+  /// [device_model] Model of the device that was used for the session creation, as provided by the application
+  late String device_model;
+
+  /// [location] A human-readable description of the location from which the session was created, based on the IP address
+  late String location;
+
+  /// Contains information about an unconfirmed session
+  UnconfirmedSession(
+      {required this.id,
+      required this.log_in_date,
+      required this.device_model,
+      required this.location,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'unconfirmedSession',
+      if (extra != null) '@extra': extra,
+      'id': id,
+      'log_in_date': log_in_date,
+      'device_model': device_model,
+      'location': location
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static UnconfirmedSession? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var id = _map['id']! as int64;
+    var log_in_date = _map['log_in_date']! as int;
+    var device_model = _map['device_model']! as String;
+    var location = _map['location']! as String;
+    return UnconfirmedSession(
+      extra: extra,
+      clientId: clientId,
+      id: id,
+      log_in_date: log_in_date,
+      device_model: device_model,
+      location: location,
+    );
+  }
+}
+
 ///Contains information about one website the current user is logged in with Telegram
 ///
 class ConnectedWebsite extends TlObject {
@@ -55161,8 +58681,8 @@ class ConnectedWebsite extends TlObject {
   /// [last_active_date] Point in time (Unix timestamp) when obtained authorization was last used
   late int last_active_date;
 
-  /// [ip] IP address from which the user was logged in, in human-readable format
-  late String ip;
+  /// [ip_address] IP address from which the user was logged in, in human-readable format
+  late String ip_address;
 
   /// [location] Human-readable description of a country and a region from which the user was logged in, based on the IP address
   late String location;
@@ -55176,7 +58696,7 @@ class ConnectedWebsite extends TlObject {
       required this.platform,
       required this.log_in_date,
       required this.last_active_date,
-      required this.ip,
+      required this.ip_address,
       required this.location,
       this.extra,
       this.clientId});
@@ -55193,7 +58713,7 @@ class ConnectedWebsite extends TlObject {
       'platform': platform,
       'log_in_date': log_in_date,
       'last_active_date': last_active_date,
-      'ip': ip,
+      'ip_address': ip_address,
       'location': location
     };
   }
@@ -55217,7 +58737,7 @@ class ConnectedWebsite extends TlObject {
     var platform = _map['platform']! as String;
     var log_in_date = _map['log_in_date']! as int;
     var last_active_date = _map['last_active_date']! as int;
-    var ip = _map['ip']! as String;
+    var ip_address = _map['ip_address']! as String;
     var location = _map['location']! as String;
     return ConnectedWebsite(
       extra: extra,
@@ -55229,7 +58749,7 @@ class ConnectedWebsite extends TlObject {
       platform: platform,
       log_in_date: log_in_date,
       last_active_date: last_active_date,
-      ip: ip,
+      ip_address: ip_address,
       location: location,
     );
   }
@@ -56310,6 +59830,54 @@ class InternalLinkTypeChangePhoneNumber extends InternalLinkType {
   }
 }
 
+///The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link.
+///
+class InternalLinkTypeChatBoost extends InternalLinkType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "internalLinkTypeChatBoost";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [url] URL to be passed to getChatBoostLinkInfo
+  late String url;
+
+  /// The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link.
+  InternalLinkTypeChatBoost({required this.url, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'internalLinkTypeChatBoost',
+      if (extra != null) '@extra': extra,
+      'url': url
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InternalLinkTypeChatBoost? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var url = _map['url']! as String;
+    return InternalLinkTypeChatBoost(
+      extra: extra,
+      clientId: clientId,
+      url: url,
+    );
+  }
+}
+
 ///The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
 ///
 class InternalLinkTypeChatFolderInvite extends InternalLinkType {
@@ -57151,7 +60719,7 @@ class InternalLinkTypeProxy extends InternalLinkType {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [server] Proxy server IP address
+  /// [server] Proxy server domain or IP address
   late String server;
 
   /// [port] Proxy server port
@@ -57379,6 +60947,64 @@ class InternalLinkTypeSettings extends InternalLinkType {
     return InternalLinkTypeSettings(
       extra: extra,
       clientId: clientId,
+    );
+  }
+}
+
+///The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu.
+///
+class InternalLinkTypeSideMenuBot extends InternalLinkType {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "internalLinkTypeSideMenuBot";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [bot_username] Username of the bot
+  late String bot_username;
+
+  /// [url] URL to be passed to getWebAppUrl
+  late String url;
+
+  /// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu.
+  InternalLinkTypeSideMenuBot(
+      {required this.bot_username,
+      required this.url,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'internalLinkTypeSideMenuBot',
+      if (extra != null) '@extra': extra,
+      'bot_username': bot_username,
+      'url': url
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static InternalLinkTypeSideMenuBot? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var bot_username = _map['bot_username']! as String;
+    var url = _map['url']! as String;
+    return InternalLinkTypeSideMenuBot(
+      extra: extra,
+      clientId: clientId,
+      bot_username: bot_username,
+      url: url,
     );
   }
 }
@@ -58050,73 +61676,35 @@ class MessageLinkInfo extends TlObject {
   }
 }
 
-///Describes a video file sent in a story
+///Contains an HTTPS link to boost a chat
 ///
-class StoryVideo extends TlObject {
+class ChatBoostLink extends TlObject {
   /// [extra] - Request identifier. Must be non-zero.
   int? extra;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyVideo";
+  static const String CONSTRUCTOR = "chatBoostLink";
 
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [duration] Duration of the video, in seconds
-  late double duration;
+  /// [link] The link
+  late String link;
 
-  /// [width] Video width
-  late int width;
+  /// [is_public] True, if the link will work for non-members of the chat
+  late bool is_public;
 
-  /// [height] Video height
-  late int height;
-
-  /// [has_stickers] True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
-  late bool has_stickers;
-
-  /// [is_animation] True, if the video has no sound
-  late bool is_animation;
-
-  /// [minithumbnail] Video minithumbnail; may be null
-  Minithumbnail? minithumbnail;
-
-  /// [thumbnail] Video thumbnail in JPEG or MPEG4 format; may be null
-  Thumbnail? thumbnail;
-
-  /// [preload_prefix_size] Size of file prefix, which is supposed to be preloaded, in bytes
-  late int preload_prefix_size;
-
-  /// [video] File containing the video
-  late File video;
-
-  /// Describes a video file sent in a story
-  StoryVideo(
-      {required this.duration,
-      required this.width,
-      required this.height,
-      required this.has_stickers,
-      required this.is_animation,
-      this.minithumbnail,
-      this.thumbnail,
-      required this.preload_prefix_size,
-      required this.video,
-      this.extra,
-      this.clientId});
+  /// Contains an HTTPS link to boost a chat
+  ChatBoostLink(
+      {required this.link, required this.is_public, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'storyVideo',
+      '@type': 'chatBoostLink',
       if (extra != null) '@extra': extra,
-      'duration': duration,
-      'width': width,
-      'height': height,
-      'has_stickers': has_stickers,
-      'is_animation': is_animation,
-      'minithumbnail': minithumbnail,
-      'thumbnail': thumbnail,
-      'preload_prefix_size': preload_prefix_size,
-      'video': video
+      'link': link,
+      'is_public': is_public
     };
   }
 
@@ -58126,788 +61714,55 @@ class StoryVideo extends TlObject {
   }
 
   /// Construct from [Map]
-  static StoryVideo? fromMap(Map<String, dynamic>? _map) {
+  static ChatBoostLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
-    var duration = _map['duration']! as double;
-    var width = _map['width']! as int;
-    var height = _map['height']! as int;
-    var has_stickers = _map['has_stickers']! as bool;
-    var is_animation = _map['is_animation']! as bool;
-    var minithumbnail = Minithumbnail.fromMap(_map['minithumbnail']);
-    var thumbnail = Thumbnail.fromMap(_map['thumbnail']);
-    var preload_prefix_size = _map['preload_prefix_size']! as int;
-    var video = File.fromMap(_map['video'])!;
-    return StoryVideo(
+    var link = _map['link']! as String;
+    var is_public = _map['is_public']! as bool;
+    return ChatBoostLink(
       extra: extra,
       clientId: clientId,
-      duration: duration,
-      width: width,
-      height: height,
-      has_stickers: has_stickers,
-      is_animation: is_animation,
-      minithumbnail: minithumbnail,
-      thumbnail: thumbnail,
-      preload_prefix_size: preload_prefix_size,
-      video: video,
+      link: link,
+      is_public: is_public,
     );
   }
 }
 
-///A photo story
+///Contains information about a link to boost a a chat
 ///
-class StoryContentPhoto extends StoryContent {
+class ChatBoostLinkInfo extends TlObject {
   /// [extra] - Request identifier. Must be non-zero.
   int? extra;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyContentPhoto";
+  static const String CONSTRUCTOR = "chatBoostLinkInfo";
 
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [photo] The photo
-  late Photo photo;
+  /// [is_public] True, if the link will work for non-members of the chat
+  late bool is_public;
 
-  /// A photo story
-  StoryContentPhoto({required this.photo, this.extra, this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'storyContentPhoto',
-      if (extra != null) '@extra': extra,
-      'photo': photo
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryContentPhoto? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var photo = Photo.fromMap(_map['photo'])!;
-    return StoryContentPhoto(
-      extra: extra,
-      clientId: clientId,
-      photo: photo,
-    );
-  }
-}
-
-///A video story
-///
-class StoryContentVideo extends StoryContent {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyContentVideo";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [video] The video in MPEG4 format
-  late StoryVideo video;
-
-  /// [alternative_video] Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
-  StoryVideo? alternative_video;
-
-  /// A video story
-  StoryContentVideo(
-      {required this.video, this.alternative_video, this.extra, this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'storyContentVideo',
-      if (extra != null) '@extra': extra,
-      'video': video,
-      'alternative_video': alternative_video
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryContentVideo? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var video = StoryVideo.fromMap(_map['video'])!;
-    var alternative_video = StoryVideo.fromMap(_map['alternative_video']);
-    return StoryContentVideo(
-      extra: extra,
-      clientId: clientId,
-      video: video,
-      alternative_video: alternative_video,
-    );
-  }
-}
-
-///A story content that is not supported in the current TDLib version
-///
-class StoryContentUnsupported extends StoryContent {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyContentUnsupported";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// A story content that is not supported in the current TDLib version
-  StoryContentUnsupported({this.extra, this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'storyContentUnsupported',
-      if (extra != null) '@extra': extra
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryContentUnsupported? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-
-    return StoryContentUnsupported(
-      extra: extra,
-      clientId: clientId,
-    );
-  }
-}
-
-///A photo story
-///
-class InputStoryContentPhoto extends InputStoryContent {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "inputStoryContentPhoto";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [photo] Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
-  late InputFile photo;
-
-  /// [added_sticker_file_ids] File identifiers of the stickers added to the photo, if applicable
-  late List<int> added_sticker_file_ids;
-
-  /// A photo story
-  InputStoryContentPhoto(
-      {required this.photo,
-      required this.added_sticker_file_ids,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'inputStoryContentPhoto',
-      if (extra != null) '@extra': extra,
-      'photo': photo,
-      'added_sticker_file_ids': added_sticker_file_ids
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static InputStoryContentPhoto? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var photo = InputFile.fromMap(_map['photo'])!;
-    var added_sticker_file_ids = List<int>.from(
-      (_map["added_sticker_file_ids"] ?? []).map(
-        (e) => e as int,
-      ),
-    );
-    return InputStoryContentPhoto(
-      extra: extra,
-      clientId: clientId,
-      photo: photo,
-      added_sticker_file_ids: added_sticker_file_ids,
-    );
-  }
-}
-
-///A video story
-///
-class InputStoryContentVideo extends InputStoryContent {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "inputStoryContentVideo";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [video] Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
-  late InputFile video;
-
-  /// [added_sticker_file_ids] File identifiers of the stickers added to the video, if applicable
-  late List<int> added_sticker_file_ids;
-
-  /// [duration] Precise duration of the video, in seconds; 0-60
-  late double duration;
-
-  /// [is_animation] True, if the video has no sound
-  late bool is_animation;
-
-  /// A video story
-  InputStoryContentVideo(
-      {required this.video,
-      required this.added_sticker_file_ids,
-      required this.duration,
-      required this.is_animation,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'inputStoryContentVideo',
-      if (extra != null) '@extra': extra,
-      'video': video,
-      'added_sticker_file_ids': added_sticker_file_ids,
-      'duration': duration,
-      'is_animation': is_animation
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static InputStoryContentVideo? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var video = InputFile.fromMap(_map['video'])!;
-    var added_sticker_file_ids = List<int>.from(
-      (_map["added_sticker_file_ids"] ?? []).map(
-        (e) => e as int,
-      ),
-    );
-    var duration = _map['duration']! as double;
-    var is_animation = _map['is_animation']! as bool;
-    return InputStoryContentVideo(
-      extra: extra,
-      clientId: clientId,
-      video: video,
-      added_sticker_file_ids: added_sticker_file_ids,
-      duration: duration,
-      is_animation: is_animation,
-    );
-  }
-}
-
-///The list of stories, shown in the main chat list and folder chat lists
-///
-class StoryListMain extends StoryList {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyListMain";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// The list of stories, shown in the main chat list and folder chat lists
-  StoryListMain({this.extra, this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {'@type': 'storyListMain', if (extra != null) '@extra': extra};
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryListMain? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-
-    return StoryListMain(
-      extra: extra,
-      clientId: clientId,
-    );
-  }
-}
-
-///The list of stories, shown in the Arvhive chat list
-///
-class StoryListArchive extends StoryList {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyListArchive";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// The list of stories, shown in the Arvhive chat list
-  StoryListArchive({this.extra, this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {'@type': 'storyListArchive', if (extra != null) '@extra': extra};
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryListArchive? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-
-    return StoryListArchive(
-      extra: extra,
-      clientId: clientId,
-    );
-  }
-}
-
-///Contains information about interactions with a story
-///
-class StoryInteractionInfo extends TlObject {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyInteractionInfo";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [view_count] Number of times the story was viewed
-  late int view_count;
-
-  /// [recent_viewer_user_ids] Identifiers of at most 3 recent viewers of the story
-  late List<int> recent_viewer_user_ids;
-
-  /// Contains information about interactions with a story
-  StoryInteractionInfo(
-      {required this.view_count,
-      required this.recent_viewer_user_ids,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'storyInteractionInfo',
-      if (extra != null) '@extra': extra,
-      'view_count': view_count,
-      'recent_viewer_user_ids': recent_viewer_user_ids
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryInteractionInfo? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var view_count = _map['view_count']! as int;
-    var recent_viewer_user_ids = List<int>.from(
-      (_map["recent_viewer_user_ids"] ?? []).map(
-        (e) => e as int,
-      ),
-    );
-    return StoryInteractionInfo(
-      extra: extra,
-      clientId: clientId,
-      view_count: view_count,
-      recent_viewer_user_ids: recent_viewer_user_ids,
-    );
-  }
-}
-
-///Represents a story
-///
-class Story extends TlObject {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "story";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [id] Unique story identifier among stories of the given sender
-  late int id;
-
-  /// [sender_chat_id] Identifier of the chat that posted the story
-  late int sender_chat_id;
-
-  /// [date] Point in time (Unix timestamp) when the story was published
-  late int date;
-
-  /// [is_being_edited] True, if the story is being edited by the current user
-  late bool is_being_edited;
-
-  /// [is_edited] True, if the story was edited
-  late bool is_edited;
-
-  /// [is_pinned] True, if the story is saved in the sender's profile and will be available there after expiration
-  late bool is_pinned;
-
-  /// [is_visible_only_for_self] True, if the story is visible only for the current user
-  late bool is_visible_only_for_self;
-
-  /// [can_be_forwarded] True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
-  late bool can_be_forwarded;
-
-  /// [can_be_replied] True, if the story can be replied in the chat with the story sender
-  late bool can_be_replied;
-
-  /// [can_get_viewers] True, if users viewed the story can be received through getStoryViewers
-  late bool can_get_viewers;
-
-  /// [has_expired_viewers] True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
-  late bool has_expired_viewers;
-
-  /// [interaction_info] Information about interactions with the story; may be null if the story isn't owned or there were no interactions
-  StoryInteractionInfo? interaction_info;
-
-  /// [privacy_settings] Privacy rules affecting story visibility; may be approximate for non-owned stories
-  late StoryPrivacySettings privacy_settings;
-
-  /// [content] Content of the story
-  late StoryContent content;
-
-  /// [caption] Caption of the story
-  late FormattedText caption;
-
-  /// Represents a story
-  Story(
-      {required this.id,
-      required this.sender_chat_id,
-      required this.date,
-      required this.is_being_edited,
-      required this.is_edited,
-      required this.is_pinned,
-      required this.is_visible_only_for_self,
-      required this.can_be_forwarded,
-      required this.can_be_replied,
-      required this.can_get_viewers,
-      required this.has_expired_viewers,
-      this.interaction_info,
-      required this.privacy_settings,
-      required this.content,
-      required this.caption,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'story',
-      if (extra != null) '@extra': extra,
-      'id': id,
-      'sender_chat_id': sender_chat_id,
-      'date': date,
-      'is_being_edited': is_being_edited,
-      'is_edited': is_edited,
-      'is_pinned': is_pinned,
-      'is_visible_only_for_self': is_visible_only_for_self,
-      'can_be_forwarded': can_be_forwarded,
-      'can_be_replied': can_be_replied,
-      'can_get_viewers': can_get_viewers,
-      'has_expired_viewers': has_expired_viewers,
-      'interaction_info': interaction_info,
-      'privacy_settings': privacy_settings,
-      'content': content,
-      'caption': caption
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static Story? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var id = _map['id']! as int;
-    var sender_chat_id = _map['sender_chat_id']! as int;
-    var date = _map['date']! as int;
-    var is_being_edited = _map['is_being_edited']! as bool;
-    var is_edited = _map['is_edited']! as bool;
-    var is_pinned = _map['is_pinned']! as bool;
-    var is_visible_only_for_self = _map['is_visible_only_for_self']! as bool;
-    var can_be_forwarded = _map['can_be_forwarded']! as bool;
-    var can_be_replied = _map['can_be_replied']! as bool;
-    var can_get_viewers = _map['can_get_viewers']! as bool;
-    var has_expired_viewers = _map['has_expired_viewers']! as bool;
-    var interaction_info =
-        StoryInteractionInfo.fromMap(_map['interaction_info']);
-    var privacy_settings =
-        StoryPrivacySettings.fromMap(_map['privacy_settings'])!;
-    var content = StoryContent.fromMap(_map['content'])!;
-    var caption = FormattedText.fromMap(_map['caption'])!;
-    return Story(
-      extra: extra,
-      clientId: clientId,
-      id: id,
-      sender_chat_id: sender_chat_id,
-      date: date,
-      is_being_edited: is_being_edited,
-      is_edited: is_edited,
-      is_pinned: is_pinned,
-      is_visible_only_for_self: is_visible_only_for_self,
-      can_be_forwarded: can_be_forwarded,
-      can_be_replied: can_be_replied,
-      can_get_viewers: can_get_viewers,
-      has_expired_viewers: has_expired_viewers,
-      interaction_info: interaction_info,
-      privacy_settings: privacy_settings,
-      content: content,
-      caption: caption,
-    );
-  }
-}
-
-///Represents a list of stories
-///
-class Stories extends TlObject {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "stories";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [total_count] Approximate total number of stories found
-  late int total_count;
-
-  /// [stories] The list of stories
-  late List<Story> stories;
-
-  /// Represents a list of stories
-  Stories(
-      {required this.total_count,
-      required this.stories,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'stories',
-      if (extra != null) '@extra': extra,
-      'total_count': total_count,
-      'stories': stories
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static Stories? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var total_count = _map['total_count']! as int;
-    var stories = List<Story>.from(
-      (_map["stories"] ?? []).map(
-        (e) => Story.fromMap(e),
-      ),
-    );
-    return Stories(
-      extra: extra,
-      clientId: clientId,
-      total_count: total_count,
-      stories: stories,
-    );
-  }
-}
-
-///Contains basic information about a story
-///
-class StoryInfo extends TlObject {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "storyInfo";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [story_id] Unique story identifier among stories of the given sender
-  late int story_id;
-
-  /// [date] Point in time (Unix timestamp) when the story was published
-  late int date;
-
-  /// [is_for_close_friends] True, if the story is available only to close friends
-  late bool is_for_close_friends;
-
-  /// Contains basic information about a story
-  StoryInfo(
-      {required this.story_id,
-      required this.date,
-      required this.is_for_close_friends,
-      this.extra,
-      this.clientId});
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      '@type': 'storyInfo',
-      if (extra != null) '@extra': extra,
-      'story_id': story_id,
-      'date': date,
-      'is_for_close_friends': is_for_close_friends
-    };
-  }
-
-  @override
-  String toString() {
-    return toJson().toString();
-  }
-
-  /// Construct from [Map]
-  static StoryInfo? fromMap(Map<String, dynamic>? _map) {
-    if (_map == null) return null;
-    var _ = _map["@type"];
-    if (_ != CONSTRUCTOR) return null;
-    var extra = _map['@extra'];
-    var clientId = _map['@clientId'];
-    var story_id = _map['story_id']! as int;
-    var date = _map['date']! as int;
-    var is_for_close_friends = _map['is_for_close_friends']! as bool;
-    return StoryInfo(
-      extra: extra,
-      clientId: clientId,
-      story_id: story_id,
-      date: date,
-      is_for_close_friends: is_for_close_friends,
-    );
-  }
-}
-
-///Describes active stories posted by a chat
-///
-class ChatActiveStories extends TlObject {
-  /// [extra] - Request identifier. Must be non-zero.
-  int? extra;
-
-  /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "chatActiveStories";
-
-  /// [clientId] - tdlib client id
-  int? clientId;
-
-  /// [chat_id] Identifier of the chat that posted the stories
+  /// [chat_id] Identifier of the chat to which the link points; 0 if the chat isn't found
   late int chat_id;
 
-  /// [list] Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list
-  StoryList? list;
-
-  /// [order] A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order
-  late int order;
-
-  /// [max_read_story_id] Identifier of the last read active story
-  late int max_read_story_id;
-
-  /// [stories] Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)
-  late List<StoryInfo> stories;
-
-  /// Describes active stories posted by a chat
-  ChatActiveStories(
-      {required this.chat_id,
-      this.list,
-      required this.order,
-      required this.max_read_story_id,
-      required this.stories,
+  /// Contains information about a link to boost a a chat
+  ChatBoostLinkInfo(
+      {required this.is_public,
+      required this.chat_id,
       this.extra,
       this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'chatActiveStories',
+      '@type': 'chatBoostLinkInfo',
       if (extra != null) '@extra': extra,
-      'chat_id': chat_id,
-      'list': list,
-      'order': order,
-      'max_read_story_id': max_read_story_id,
-      'stories': stories
+      'is_public': is_public,
+      'chat_id': chat_id
     };
   }
 
@@ -58917,29 +61772,99 @@ class ChatActiveStories extends TlObject {
   }
 
   /// Construct from [Map]
-  static ChatActiveStories? fromMap(Map<String, dynamic>? _map) {
+  static ChatBoostLinkInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var is_public = _map['is_public']! as bool;
     var chat_id = _map['chat_id']! as int;
-    var list = StoryList.fromMap(_map['list']);
-    var order = _map['order']! as int;
-    var max_read_story_id = _map['max_read_story_id']! as int;
-    var stories = List<StoryInfo>.from(
-      (_map["stories"] ?? []).map(
-        (e) => StoryInfo.fromMap(e),
-      ),
-    );
-    return ChatActiveStories(
+    return ChatBoostLinkInfo(
       extra: extra,
       clientId: clientId,
+      is_public: is_public,
       chat_id: chat_id,
-      list: list,
-      order: order,
-      max_read_story_id: max_read_story_id,
-      stories: stories,
+    );
+  }
+}
+
+///The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
+///
+class BlockListMain extends BlockList {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "blockListMain";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
+  BlockListMain({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {'@type': 'blockListMain', if (extra != null) '@extra': extra};
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static BlockListMain? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return BlockListMain(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///The block list that disallows viewing of stories of the current user
+///
+class BlockListStories extends BlockList {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "blockListStories";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// The block list that disallows viewing of stories of the current user
+  BlockListStories({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {'@type': 'blockListStories', if (extra != null) '@extra': extra};
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static BlockListStories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return BlockListStories(
+      extra: extra,
+      clientId: clientId,
     );
   }
 }
@@ -61574,6 +64499,68 @@ class TopChatCategoryForwardChats extends TopChatCategory {
   }
 }
 
+///Contains 0-based positions of matched objects
+///
+class FoundPositions extends TlObject {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "foundPositions";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [total_count] Total number of matched objects
+  late int total_count;
+
+  /// [positions] The positions of the matched objects
+  late List<int> positions;
+
+  /// Contains 0-based positions of matched objects
+  FoundPositions(
+      {required this.total_count,
+      required this.positions,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'foundPositions',
+      if (extra != null) '@extra': extra,
+      'total_count': total_count,
+      'positions': positions
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static FoundPositions? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var total_count = _map['total_count']! as int;
+    var positions = List<int>.from(
+      (_map["positions"] ?? []).map(
+        (e) => e as int,
+      ),
+    );
+    return FoundPositions(
+      extra: extra,
+      clientId: clientId,
+      total_count: total_count,
+      positions: positions,
+    );
+  }
+}
+
 ///A URL linking to a user
 ///
 class TMeUrlTypeUser extends TMeUrlType {
@@ -62798,7 +65785,7 @@ class Proxy extends TlObject {
   /// [id] Unique identifier of the proxy
   late int id;
 
-  /// [server] Proxy server IP address
+  /// [server] Proxy server domain or IP address
   late String server;
 
   /// [port] Proxy server port
@@ -64648,18 +67635,14 @@ class UpdateMessageSendFailed extends Update {
   /// [old_message_id] The previous temporary message identifier
   late int old_message_id;
 
-  /// [error_code] An error code
-  late int error_code;
-
-  /// [error_message] Error message
-  late String error_message;
+  /// [error] The cause of the message sending failure
+  late Error error;
 
   /// A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
   UpdateMessageSendFailed(
       {required this.message,
       required this.old_message_id,
-      required this.error_code,
-      required this.error_message,
+      required this.error,
       this.extra,
       this.clientId});
 
@@ -64670,8 +67653,7 @@ class UpdateMessageSendFailed extends Update {
       if (extra != null) '@extra': extra,
       'message': message,
       'old_message_id': old_message_id,
-      'error_code': error_code,
-      'error_message': error_message
+      'error': error
     };
   }
 
@@ -64689,15 +67671,13 @@ class UpdateMessageSendFailed extends Update {
     var clientId = _map['@clientId'];
     var message = Message.fromMap(_map['message'])!;
     var old_message_id = _map['old_message_id']! as int;
-    var error_code = _map['error_code']! as int;
-    var error_message = _map['error_message']! as String;
+    var error = Error.fromMap(_map['error'])!;
     return UpdateMessageSendFailed(
       extra: extra,
       clientId: clientId,
       message: message,
       old_message_id: old_message_id,
-      error_code: error_code,
-      error_message: error_message,
+      error: error,
     );
   }
 }
@@ -66692,12 +69672,12 @@ class UpdateChatIsMarkedAsUnread extends Update {
 
 ///A chat was blocked or unblocked
 ///
-class UpdateChatIsBlocked extends Update {
+class UpdateChatBlockList extends Update {
   /// [extra] - Request identifier. Must be non-zero.
   int? extra;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "updateChatIsBlocked";
+  static const String CONSTRUCTOR = "updateChatBlockList";
 
   /// [clientId] - tdlib client id
   int? clientId;
@@ -66705,23 +69685,20 @@ class UpdateChatIsBlocked extends Update {
   /// [chat_id] Chat identifier
   late int chat_id;
 
-  /// [is_blocked] New value of is_blocked
-  late bool is_blocked;
+  /// [block_list] Block list to which the chat is added; may be null if none
+  BlockList? block_list;
 
   /// A chat was blocked or unblocked
-  UpdateChatIsBlocked(
-      {required this.chat_id,
-      required this.is_blocked,
-      this.extra,
-      this.clientId});
+  UpdateChatBlockList(
+      {required this.chat_id, this.block_list, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'updateChatIsBlocked',
+      '@type': 'updateChatBlockList',
       if (extra != null) '@extra': extra,
       'chat_id': chat_id,
-      'is_blocked': is_blocked
+      'block_list': block_list
     };
   }
 
@@ -66731,19 +69708,19 @@ class UpdateChatIsBlocked extends Update {
   }
 
   /// Construct from [Map]
-  static UpdateChatIsBlocked? fromMap(Map<String, dynamic>? _map) {
+  static UpdateChatBlockList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var chat_id = _map['chat_id']! as int;
-    var is_blocked = _map['is_blocked']! as bool;
-    return UpdateChatIsBlocked(
+    var block_list = BlockList.fromMap(_map['block_list']);
+    return UpdateChatBlockList(
       extra: extra,
       clientId: clientId,
       chat_id: chat_id,
-      is_blocked: is_blocked,
+      block_list: block_list,
     );
   }
 }
@@ -67129,10 +70106,10 @@ class UpdateNotificationGroup extends Update {
   /// [total_count] Total number of unread notifications in the group, can be bigger than number of active notifications
   late int total_count;
 
-  /// [added_notifications] List of added group notifications, sorted by notification ID
+  /// [added_notifications] List of added group notifications, sorted by notification identifier
   late List<Notification> added_notifications;
 
-  /// [removed_notification_ids] Identifiers of removed group notifications, sorted by notification ID
+  /// [removed_notification_ids] Identifiers of removed group notifications, sorted by notification identifier
   late List<int> removed_notification_ids;
 
   /// A list of active notifications in a notification group has changed
@@ -68890,6 +71867,129 @@ class UpdateStoryDeleted extends Update {
   }
 }
 
+///A story has been successfully sent
+///
+class UpdateStorySendSucceeded extends Update {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "updateStorySendSucceeded";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [story] The sent story
+  late Story story;
+
+  /// [old_story_id] The previous temporary story identifier
+  late int old_story_id;
+
+  /// A story has been successfully sent
+  UpdateStorySendSucceeded(
+      {required this.story,
+      required this.old_story_id,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'updateStorySendSucceeded',
+      if (extra != null) '@extra': extra,
+      'story': story,
+      'old_story_id': old_story_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static UpdateStorySendSucceeded? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var story = Story.fromMap(_map['story'])!;
+    var old_story_id = _map['old_story_id']! as int;
+    return UpdateStorySendSucceeded(
+      extra: extra,
+      clientId: clientId,
+      story: story,
+      old_story_id: old_story_id,
+    );
+  }
+}
+
+///A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+///
+class UpdateStorySendFailed extends Update {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "updateStorySendFailed";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [story] The failed to send story
+  late Story story;
+
+  /// [error] The cause of the story sending failure
+  late Error error;
+
+  /// [error_type] Type of the error; may be null if unknown
+  CanSendStoryResult? error_type;
+
+  /// A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+  UpdateStorySendFailed(
+      {required this.story,
+      required this.error,
+      this.error_type,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'updateStorySendFailed',
+      if (extra != null) '@extra': extra,
+      'story': story,
+      'error': error,
+      'error_type': error_type
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static UpdateStorySendFailed? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var story = Story.fromMap(_map['story'])!;
+    var error = Error.fromMap(_map['error'])!;
+    var error_type = CanSendStoryResult.fromMap(_map['error_type']);
+    return UpdateStorySendFailed(
+      extra: extra,
+      clientId: clientId,
+      story: story,
+      error: error,
+      error_type: error_type,
+    );
+  }
+}
+
 ///The list of active stories posted by a specific chat has changed
 ///
 class UpdateChatActiveStories extends Update {
@@ -68993,6 +72093,64 @@ class UpdateStoryListChatCount extends Update {
       clientId: clientId,
       story_list: story_list,
       chat_count: chat_count,
+    );
+  }
+}
+
+///Story stealth mode settings have changed
+///
+class UpdateStoryStealthMode extends Update {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "updateStoryStealthMode";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [active_until_date] Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
+  late int active_until_date;
+
+  /// [cooldown_until_date] Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
+  late int cooldown_until_date;
+
+  /// Story stealth mode settings have changed
+  UpdateStoryStealthMode(
+      {required this.active_until_date,
+      required this.cooldown_until_date,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'updateStoryStealthMode',
+      if (extra != null) '@extra': extra,
+      'active_until_date': active_until_date,
+      'cooldown_until_date': cooldown_until_date
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static UpdateStoryStealthMode? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var active_until_date = _map['active_until_date']! as int;
+    var cooldown_until_date = _map['cooldown_until_date']! as int;
+    return UpdateStoryStealthMode(
+      extra: extra,
+      clientId: clientId,
+      active_until_date: active_until_date,
+      cooldown_until_date: cooldown_until_date,
     );
   }
 }
@@ -69778,7 +72936,55 @@ class UpdateUsersNearby extends Update {
   }
 }
 
-///The list of bots added to attachment menu has changed
+///The first unconfirmed session has changed
+///
+class UpdateUnconfirmedSession extends Update {
+  /// [extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "updateUnconfirmedSession";
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [session] The unconfirmed session; may be null if none
+  UnconfirmedSession? session;
+
+  /// The first unconfirmed session has changed
+  UpdateUnconfirmedSession({this.session, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'updateUnconfirmedSession',
+      if (extra != null) '@extra': extra,
+      'session': session
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static UpdateUnconfirmedSession? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var session = UnconfirmedSession.fromMap(_map['session']);
+    return UpdateUnconfirmedSession(
+      extra: extra,
+      clientId: clientId,
+      session: session,
+    );
+  }
+}
+
+///The list of bots added to attachment or side menu has changed
 ///
 class UpdateAttachmentMenuBots extends Update {
   /// [extra] - Request identifier. Must be non-zero.
@@ -69790,10 +72996,10 @@ class UpdateAttachmentMenuBots extends Update {
   /// [clientId] - tdlib client id
   int? clientId;
 
-  /// [bots] The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
+  /// [bots] The new list of bots. The bots must not be shown on scheduled messages screen
   late List<AttachmentMenuBot> bots;
 
-  /// The list of bots added to attachment menu has changed
+  /// The list of bots added to attachment or side menu has changed
   UpdateAttachmentMenuBots({required this.bots, this.extra, this.clientId});
 
   @override

@@ -3068,7 +3068,7 @@ class GetFile extends Func {
   }
 }
 
-///Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+///Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
 ///
 ///Returns [File]
 class GetRemoteFile extends Func {
@@ -3087,7 +3087,7 @@ class GetRemoteFile extends Func {
   /// [file_type] File type; pass null if unknown
   FileType? file_type;
 
-  /// Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+  /// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
   ///
   /// Returns [File]
   GetRemoteFile(
@@ -3512,7 +3512,7 @@ class SearchChatsNearby extends Func {
   }
 }
 
-///Returns a list of frequently used chats. Supported only if the chat info database is enabled
+///Returns a list of frequently used chats
 ///
 ///Returns [Chats]
 class GetTopChats extends Func {
@@ -3531,7 +3531,7 @@ class GetTopChats extends Func {
   /// [limit] The maximum number of chats to be returned; up to 30
   late int limit;
 
-  /// Returns a list of frequently used chats. Supported only if the chat info database is enabled
+  /// Returns a list of frequently used chats
   ///
   /// Returns [Chats]
   GetTopChats(
@@ -3901,7 +3901,7 @@ class CheckChatUsername extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "checkChatUsername";
 
-  /// [chat_id] Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+  /// [chat_id] Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
   late int chat_id;
 
   /// [username] Username to be checked
@@ -6612,7 +6612,7 @@ class SendInlineQueryResultMessage extends Func {
   /// ; string representation of int, use `int.parse`
   late int64 query_id;
 
-  /// [result_id] Identifier of the inline result
+  /// [result_id] Identifier of the inline query result
   late String result_id;
 
   /// [hide_via_bot] Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
@@ -9992,7 +9992,7 @@ class GetPollVoters extends Func {
   }
 }
 
-///Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+///Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
 ///
 ///Returns [Ok]
 class StopPoll extends Func {
@@ -10014,7 +10014,7 @@ class StopPoll extends Func {
   /// [reply_markup] The new message reply markup; pass null if none; for bots only
   ReplyMarkup? reply_markup;
 
-  /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+  /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
   ///
   /// Returns [Ok]
   StopPoll(
@@ -10443,7 +10443,7 @@ class GetInlineQueryResults extends Func {
   /// [query] Text of the query
   late String query;
 
-  /// [offset] Offset of the first entry to return
+  /// [offset] Offset of the first entry to return; use empty string to get the first chunk of results
   late String offset;
 
   /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -10751,7 +10751,7 @@ class GetWebAppLinkUrl extends Func {
   }
 }
 
-///Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+///Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
 ///
 ///Returns [HttpUrl]
 class GetWebAppUrl extends Func {
@@ -10767,7 +10767,7 @@ class GetWebAppUrl extends Func {
   /// [bot_user_id] Identifier of the target bot
   late int bot_user_id;
 
-  /// [url] The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+  /// [url] The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
   late String url;
 
   /// [theme] Preferred Web App theme; pass null to use the default theme
@@ -10776,7 +10776,7 @@ class GetWebAppUrl extends Func {
   /// [application_name] Short name of the application; 0-64 English letters, digits, and underscores
   late String application_name;
 
-  /// Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+  /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
   ///
   /// Returns [HttpUrl]
   GetWebAppUrl(
@@ -10894,7 +10894,7 @@ class SendWebAppData extends Func {
   }
 }
 
-///Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+///Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
 ///
 ///Returns [WebAppInfo]
 class OpenWebApp extends Func {
@@ -10913,7 +10913,7 @@ class OpenWebApp extends Func {
   /// [bot_user_id] Identifier of the bot, providing the Web App
   late int bot_user_id;
 
-  /// [url] The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+  /// [url] The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
   late String url;
 
   /// [theme] Preferred Web App theme; pass null to use the default theme
@@ -10928,7 +10928,7 @@ class OpenWebApp extends Func {
   /// [reply_to] Identifier of the replied message or story for the message sent by the Web App; pass null if none
   MessageReplyTo? reply_to;
 
-  /// Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+  /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
   ///
   /// Returns [WebAppInfo]
   OpenWebApp(
@@ -12900,7 +12900,7 @@ class CreateNewSupergroupChat extends Func {
   /// [message_auto_delete_time] Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
   late int message_auto_delete_time;
 
-  /// [for_import] Pass true to create a supergroup for importing messages using importMessage
+  /// [for_import] Pass true to create a supergroup for importing messages using importMessages
   late bool for_import;
 
   /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -17092,7 +17092,104 @@ class GetStory extends Func {
   }
 }
 
-///Sends a new story. Returns a temporary story with identifier 0
+///Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+///
+///Returns [Chats]
+class GetChatsToSendStories extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getChatsToSendStories";
+
+  /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+  ///
+  /// Returns [Chats]
+  GetChatsToSendStories({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getChatsToSendStories',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetChatsToSendStories? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return GetChatsToSendStories(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+///
+///Returns [CanSendStoryResult]
+class CanSendStory extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canSendStory";
+
+  /// [chat_id] Chat identifier
+  late int chat_id;
+
+  /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+  ///
+  /// Returns [CanSendStoryResult]
+  CanSendStory({required this.chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canSendStory',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanSendStory? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    return CanSendStory(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+    );
+  }
+}
+
+///Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
 ///
 ///Returns [Story]
 class SendStory extends Func {
@@ -17105,8 +17202,14 @@ class SendStory extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "sendStory";
 
+  /// [chat_id] Identifier of the chat that will post the story
+  late int chat_id;
+
   /// [content] Content of the story
   late InputStoryContent content;
+
+  /// [areas] Clickable rectangle areas to be shown on the story media; pass null if none
+  InputStoryAreas? areas;
 
   /// [caption] Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
   FormattedText? caption;
@@ -17114,7 +17217,7 @@ class SendStory extends Func {
   /// [privacy_settings] The privacy settings for the story
   late StoryPrivacySettings privacy_settings;
 
-  /// [active_period] Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+  /// [active_period] Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
   late int active_period;
 
   /// [is_pinned] Pass true to keep the story accessible after expiration
@@ -17123,11 +17226,13 @@ class SendStory extends Func {
   /// [protect_content] Pass true if the content of the story must be protected from forwarding and screenshotting
   late bool protect_content;
 
-  /// Sends a new story. Returns a temporary story with identifier 0
+  /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
   ///
   /// Returns [Story]
   SendStory(
-      {required this.content,
+      {required this.chat_id,
+      required this.content,
+      this.areas,
       this.caption,
       required this.privacy_settings,
       required this.active_period,
@@ -17141,7 +17246,9 @@ class SendStory extends Func {
     return {
       '@type': 'sendStory',
       if (extra != null) '@extra': extra,
+      'chat_id': chat_id,
       'content': content,
+      'areas': areas,
       'caption': caption,
       'privacy_settings': privacy_settings,
       'active_period': active_period,
@@ -17162,7 +17269,9 @@ class SendStory extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
     var content = InputStoryContent.fromMap(_map['content'])!;
+    var areas = InputStoryAreas.fromMap(_map['areas']);
     var caption = FormattedText.fromMap(_map['caption']);
     var privacy_settings =
         StoryPrivacySettings.fromMap(_map['privacy_settings'])!;
@@ -17172,7 +17281,9 @@ class SendStory extends Func {
     return SendStory(
       extra: extra,
       clientId: clientId,
+      chat_id: chat_id,
       content: content,
+      areas: areas,
       caption: caption,
       privacy_settings: privacy_settings,
       active_period: active_period,
@@ -17182,7 +17293,7 @@ class SendStory extends Func {
   }
 }
 
-///Changes content and caption of a previously sent story
+///Changes content and caption of a story. Can be called only if story.can_be_edited == true
 ///
 ///Returns [Ok]
 class EditStory extends Func {
@@ -17195,21 +17306,29 @@ class EditStory extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "editStory";
 
+  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  late int story_sender_chat_id;
+
   /// [story_id] Identifier of the story to edit
   late int story_id;
 
   /// [content] New content of the story; pass null to keep the current content
   InputStoryContent? content;
 
+  /// [areas] New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
+  InputStoryAreas? areas;
+
   /// [caption] New story caption; pass null to keep the current caption
   FormattedText? caption;
 
-  /// Changes content and caption of a previously sent story
+  /// Changes content and caption of a story. Can be called only if story.can_be_edited == true
   ///
   /// Returns [Ok]
   EditStory(
-      {required this.story_id,
+      {required this.story_sender_chat_id,
+      required this.story_id,
       this.content,
+      this.areas,
       this.caption,
       this.extra,
       this.clientId});
@@ -17219,8 +17338,10 @@ class EditStory extends Func {
     return {
       '@type': 'editStory',
       if (extra != null) '@extra': extra,
+      'story_sender_chat_id': story_sender_chat_id,
       'story_id': story_id,
       'content': content,
+      'areas': areas,
       'caption': caption
     };
   }
@@ -17237,20 +17358,24 @@ class EditStory extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var story_sender_chat_id = _map['story_sender_chat_id']! as int;
     var story_id = _map['story_id']! as int;
     var content = InputStoryContent.fromMap(_map['content']);
+    var areas = InputStoryAreas.fromMap(_map['areas']);
     var caption = FormattedText.fromMap(_map['caption']);
     return EditStory(
       extra: extra,
       clientId: clientId,
+      story_sender_chat_id: story_sender_chat_id,
       story_id: story_id,
       content: content,
+      areas: areas,
       caption: caption,
     );
   }
 }
 
-///Changes privacy settings of a previously sent story
+///Changes privacy settings of a story. Can be called only if story.can_be_edited == true
 ///
 ///Returns [Ok]
 class SetStoryPrivacySettings extends Func {
@@ -17263,17 +17388,21 @@ class SetStoryPrivacySettings extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "setStoryPrivacySettings";
 
+  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  late int story_sender_chat_id;
+
   /// [story_id] Identifier of the story
   late int story_id;
 
   /// [privacy_settings] The new privacy settigs for the story
   late StoryPrivacySettings privacy_settings;
 
-  /// Changes privacy settings of a previously sent story
+  /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
   ///
   /// Returns [Ok]
   SetStoryPrivacySettings(
-      {required this.story_id,
+      {required this.story_sender_chat_id,
+      required this.story_id,
       required this.privacy_settings,
       this.extra,
       this.clientId});
@@ -17283,6 +17412,7 @@ class SetStoryPrivacySettings extends Func {
     return {
       '@type': 'setStoryPrivacySettings',
       if (extra != null) '@extra': extra,
+      'story_sender_chat_id': story_sender_chat_id,
       'story_id': story_id,
       'privacy_settings': privacy_settings
     };
@@ -17300,19 +17430,21 @@ class SetStoryPrivacySettings extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var story_sender_chat_id = _map['story_sender_chat_id']! as int;
     var story_id = _map['story_id']! as int;
     var privacy_settings =
         StoryPrivacySettings.fromMap(_map['privacy_settings'])!;
     return SetStoryPrivacySettings(
       extra: extra,
       clientId: clientId,
+      story_sender_chat_id: story_sender_chat_id,
       story_id: story_id,
       privacy_settings: privacy_settings,
     );
   }
 }
 
-///Toggles whether a story is accessible after expiration
+///Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
 ///
 ///Returns [Ok]
 class ToggleStoryIsPinned extends Func {
@@ -17325,17 +17457,21 @@ class ToggleStoryIsPinned extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "toggleStoryIsPinned";
 
+  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  late int story_sender_chat_id;
+
   /// [story_id] Identifier of the story
   late int story_id;
 
   /// [is_pinned] Pass true to make the story accessible after expiration; pass false to make it private
   late bool is_pinned;
 
-  /// Toggles whether a story is accessible after expiration
+  /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
   ///
   /// Returns [Ok]
   ToggleStoryIsPinned(
-      {required this.story_id,
+      {required this.story_sender_chat_id,
+      required this.story_id,
       required this.is_pinned,
       this.extra,
       this.clientId});
@@ -17345,6 +17481,7 @@ class ToggleStoryIsPinned extends Func {
     return {
       '@type': 'toggleStoryIsPinned',
       if (extra != null) '@extra': extra,
+      'story_sender_chat_id': story_sender_chat_id,
       'story_id': story_id,
       'is_pinned': is_pinned
     };
@@ -17362,18 +17499,20 @@ class ToggleStoryIsPinned extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var story_sender_chat_id = _map['story_sender_chat_id']! as int;
     var story_id = _map['story_id']! as int;
     var is_pinned = _map['is_pinned']! as bool;
     return ToggleStoryIsPinned(
       extra: extra,
       clientId: clientId,
+      story_sender_chat_id: story_sender_chat_id,
       story_id: story_id,
       is_pinned: is_pinned,
     );
   }
 }
 
-///Deletes a previously sent story
+///Deletes a previously sent story. Can be called only if story.can_be_deleted == true
 ///
 ///Returns [Ok]
 class DeleteStory extends Func {
@@ -17386,19 +17525,27 @@ class DeleteStory extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "deleteStory";
 
+  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  late int story_sender_chat_id;
+
   /// [story_id] Identifier of the story to delete
   late int story_id;
 
-  /// Deletes a previously sent story
+  /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
   ///
   /// Returns [Ok]
-  DeleteStory({required this.story_id, this.extra, this.clientId});
+  DeleteStory(
+      {required this.story_sender_chat_id,
+      required this.story_id,
+      this.extra,
+      this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
       '@type': 'deleteStory',
       if (extra != null) '@extra': extra,
+      'story_sender_chat_id': story_sender_chat_id,
       'story_id': story_id
     };
   }
@@ -17415,10 +17562,12 @@ class DeleteStory extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var story_sender_chat_id = _map['story_sender_chat_id']! as int;
     var story_id = _map['story_id']! as int;
     return DeleteStory(
       extra: extra,
       clientId: clientId,
+      story_sender_chat_id: story_sender_chat_id,
       story_id: story_id,
     );
   }
@@ -17702,10 +17851,10 @@ class GetChatPinnedStories extends Func {
   }
 }
 
-///Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id).
+///Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats.
 ///
 ///Returns [Stories]
-class GetArchivedStories extends Func {
+class GetChatArchivedStories extends Func {
   ///[extra] - Request identifier. Must be non-zero.
   int? extra;
 
@@ -17713,7 +17862,10 @@ class GetArchivedStories extends Func {
   int? clientId;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "getArchivedStories";
+  static const String CONSTRUCTOR = "getChatArchivedStories";
+
+  /// [chat_id] Chat identifier
+  late int chat_id;
 
   /// [from_story_id] Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
   late int from_story_id;
@@ -17721,11 +17873,12 @@ class GetArchivedStories extends Func {
   /// [limit] The maximum number of stories to be returned
   late int limit;
 
-  /// Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id).
+  /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats.
   ///
   /// Returns [Stories]
-  GetArchivedStories(
-      {required this.from_story_id,
+  GetChatArchivedStories(
+      {required this.chat_id,
+      required this.from_story_id,
       required this.limit,
       this.extra,
       this.clientId});
@@ -17733,8 +17886,9 @@ class GetArchivedStories extends Func {
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'getArchivedStories',
+      '@type': 'getChatArchivedStories',
       if (extra != null) '@extra': extra,
+      'chat_id': chat_id,
       'from_story_id': from_story_id,
       'limit': limit
     };
@@ -17746,17 +17900,19 @@ class GetArchivedStories extends Func {
   }
 
   /// Construct from [Map]
-  static GetArchivedStories? fromMap(Map<String, dynamic>? _map) {
+  static GetChatArchivedStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
     var from_story_id = _map['from_story_id']! as int;
     var limit = _map['limit']! as int;
-    return GetArchivedStories(
+    return GetChatArchivedStories(
       extra: extra,
       clientId: clientId,
+      chat_id: chat_id,
       from_story_id: from_story_id,
       limit: limit,
     );
@@ -17885,9 +18041,136 @@ class CloseStory extends Func {
   }
 }
 
-///Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date)
+///Returns reactions, which can be chosen for a story
 ///
-///Returns [MessageViewers]
+///Returns [AvailableReactions]
+class GetStoryAvailableReactions extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getStoryAvailableReactions";
+
+  /// [row_size] Number of reaction per row, 5-25
+  late int row_size;
+
+  /// Returns reactions, which can be chosen for a story
+  ///
+  /// Returns [AvailableReactions]
+  GetStoryAvailableReactions(
+      {required this.row_size, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getStoryAvailableReactions',
+      if (extra != null) '@extra': extra,
+      'row_size': row_size
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetStoryAvailableReactions? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var row_size = _map['row_size']! as int;
+    return GetStoryAvailableReactions(
+      extra: extra,
+      clientId: clientId,
+      row_size: row_size,
+    );
+  }
+}
+
+///Changes chosen reaction on a story
+///
+///Returns [Ok]
+class SetStoryReaction extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "setStoryReaction";
+
+  /// [story_sender_chat_id] The identifier of the sender of the story
+  late int story_sender_chat_id;
+
+  /// [story_id] The identifier of the story
+  late int story_id;
+
+  /// [reaction_type] Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+  ReactionType? reaction_type;
+
+  /// [update_recent_reactions] Pass true if the reaction needs to be added to recent reactions
+  late bool update_recent_reactions;
+
+  /// Changes chosen reaction on a story
+  ///
+  /// Returns [Ok]
+  SetStoryReaction(
+      {required this.story_sender_chat_id,
+      required this.story_id,
+      this.reaction_type,
+      required this.update_recent_reactions,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'setStoryReaction',
+      if (extra != null) '@extra': extra,
+      'story_sender_chat_id': story_sender_chat_id,
+      'story_id': story_id,
+      'reaction_type': reaction_type,
+      'update_recent_reactions': update_recent_reactions
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static SetStoryReaction? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var story_sender_chat_id = _map['story_sender_chat_id']! as int;
+    var story_id = _map['story_id']! as int;
+    var reaction_type = ReactionType.fromMap(_map['reaction_type']);
+    var update_recent_reactions = _map['update_recent_reactions']! as bool;
+    return SetStoryReaction(
+      extra: extra,
+      clientId: clientId,
+      story_sender_chat_id: story_sender_chat_id,
+      story_id: story_id,
+      reaction_type: reaction_type,
+      update_recent_reactions: update_recent_reactions,
+    );
+  }
+}
+
+///Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
+///
+///Returns [StoryViewers]
 class GetStoryViewers extends Func {
   ///[extra] - Request identifier. Must be non-zero.
   int? extra;
@@ -17901,18 +18184,30 @@ class GetStoryViewers extends Func {
   /// [story_id] Story identifier
   late int story_id;
 
-  /// [offset_viewer] A viewer from which to return next viewers; pass null to get results from the beginning
-  MessageViewer? offset_viewer;
+  /// [query] Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+  late String query;
+
+  /// [only_contacts] Pass true to get only contacts; pass false to get all relevant viewers
+  late bool only_contacts;
+
+  /// [prefer_with_reaction] Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+  late bool prefer_with_reaction;
+
+  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  late String offset;
 
   /// [limit] The maximum number of story viewers to return
   late int limit;
 
-  /// Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date)
+  /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
   ///
-  /// Returns [MessageViewers]
+  /// Returns [StoryViewers]
   GetStoryViewers(
       {required this.story_id,
-      this.offset_viewer,
+      required this.query,
+      required this.only_contacts,
+      required this.prefer_with_reaction,
+      required this.offset,
       required this.limit,
       this.extra,
       this.clientId});
@@ -17923,7 +18218,10 @@ class GetStoryViewers extends Func {
       '@type': 'getStoryViewers',
       if (extra != null) '@extra': extra,
       'story_id': story_id,
-      'offset_viewer': offset_viewer,
+      'query': query,
+      'only_contacts': only_contacts,
+      'prefer_with_reaction': prefer_with_reaction,
+      'offset': offset,
       'limit': limit
     };
   }
@@ -17941,13 +18239,19 @@ class GetStoryViewers extends Func {
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var story_id = _map['story_id']! as int;
-    var offset_viewer = MessageViewer.fromMap(_map['offset_viewer']);
+    var query = _map['query']! as String;
+    var only_contacts = _map['only_contacts']! as bool;
+    var prefer_with_reaction = _map['prefer_with_reaction']! as bool;
+    var offset = _map['offset']! as String;
     var limit = _map['limit']! as int;
     return GetStoryViewers(
       extra: extra,
       clientId: clientId,
       story_id: story_id,
-      offset_viewer: offset_viewer,
+      query: query,
+      only_contacts: only_contacts,
+      prefer_with_reaction: prefer_with_reaction,
+      offset: offset,
       limit: limit,
     );
   }
@@ -18028,7 +18332,376 @@ class ReportStory extends Func {
   }
 }
 
-///Returns information about a bot that can be added to attachment menu
+///Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
+///
+///Returns [Ok]
+class ActivateStoryStealthMode extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "activateStoryStealthMode";
+
+  /// Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
+  ///
+  /// Returns [Ok]
+  ActivateStoryStealthMode({this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'activateStoryStealthMode',
+      if (extra != null) '@extra': extra
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static ActivateStoryStealthMode? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+
+    return ActivateStoryStealthMode(
+      extra: extra,
+      clientId: clientId,
+    );
+  }
+}
+
+///Returns the current boost status for a channel chat
+///
+///Returns [ChatBoostStatus]
+class GetChatBoostStatus extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getChatBoostStatus";
+
+  /// [chat_id] Identifier of the channel chat
+  late int chat_id;
+
+  /// Returns the current boost status for a channel chat
+  ///
+  /// Returns [ChatBoostStatus]
+  GetChatBoostStatus({required this.chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getChatBoostStatus',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetChatBoostStatus? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    return GetChatBoostStatus(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+    );
+  }
+}
+
+///Checks whether the current user can boost a chat
+///
+///Returns [CanBoostChatResult]
+class CanBoostChat extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBoostChat";
+
+  /// [chat_id] Identifier of the chat
+  late int chat_id;
+
+  /// Checks whether the current user can boost a chat
+  ///
+  /// Returns [CanBoostChatResult]
+  CanBoostChat({required this.chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBoostChat',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBoostChat? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    return CanBoostChat(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+    );
+  }
+}
+
+///Boosts a chat
+///
+///Returns [Ok]
+class BoostChat extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "boostChat";
+
+  /// [chat_id] Identifier of the chat
+  late int chat_id;
+
+  /// Boosts a chat
+  ///
+  /// Returns [Ok]
+  BoostChat({required this.chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'boostChat',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static BoostChat? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    return BoostChat(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+    );
+  }
+}
+
+///Returns an HTTPS link to boost the specified channel chat
+///
+///Returns [ChatBoostLink]
+class GetChatBoostLink extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getChatBoostLink";
+
+  /// [chat_id] Identifier of the chat
+  late int chat_id;
+
+  /// Returns an HTTPS link to boost the specified channel chat
+  ///
+  /// Returns [ChatBoostLink]
+  GetChatBoostLink({required this.chat_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getChatBoostLink',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetChatBoostLink? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    return GetChatBoostLink(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+    );
+  }
+}
+
+///Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+///
+///Returns [ChatBoostLinkInfo]
+class GetChatBoostLinkInfo extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getChatBoostLinkInfo";
+
+  /// [url] The link to boost a chat
+  late String url;
+
+  /// Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+  ///
+  /// Returns [ChatBoostLinkInfo]
+  GetChatBoostLinkInfo({required this.url, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getChatBoostLinkInfo',
+      if (extra != null) '@extra': extra,
+      'url': url
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetChatBoostLinkInfo? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var url = _map['url']! as String;
+    return GetChatBoostLinkInfo(
+      extra: extra,
+      clientId: clientId,
+      url: url,
+    );
+  }
+}
+
+///Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+///
+///Returns [FoundChatBoosts]
+class GetChatBoosts extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getChatBoosts";
+
+  /// [chat_id] Identifier of the chat
+  late int chat_id;
+
+  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  late String offset;
+
+  /// [limit] The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+  late int limit;
+
+  /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+  ///
+  /// Returns [FoundChatBoosts]
+  GetChatBoosts(
+      {required this.chat_id,
+      required this.offset,
+      required this.limit,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getChatBoosts',
+      if (extra != null) '@extra': extra,
+      'chat_id': chat_id,
+      'offset': offset,
+      'limit': limit
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetChatBoosts? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var chat_id = _map['chat_id']! as int;
+    var offset = _map['offset']! as String;
+    var limit = _map['limit']! as int;
+    return GetChatBoosts(
+      extra: extra,
+      clientId: clientId,
+      chat_id: chat_id,
+      offset: offset,
+      limit: limit,
+    );
+  }
+}
+
+///Returns information about a bot that can be added to attachment or side menu
 ///
 ///Returns [AttachmentMenuBot]
 class GetAttachmentMenuBot extends Func {
@@ -18044,7 +18717,7 @@ class GetAttachmentMenuBot extends Func {
   /// [bot_user_id] Bot's user identifier
   late int bot_user_id;
 
-  /// Returns information about a bot that can be added to attachment menu
+  /// Returns information about a bot that can be added to attachment or side menu
   ///
   /// Returns [AttachmentMenuBot]
   GetAttachmentMenuBot({required this.bot_user_id, this.extra, this.clientId});
@@ -18079,7 +18752,7 @@ class GetAttachmentMenuBot extends Func {
   }
 }
 
-///Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+///Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
 ///
 ///Returns [Ok]
 class ToggleBotIsAddedToAttachmentMenu extends Func {
@@ -18101,7 +18774,7 @@ class ToggleBotIsAddedToAttachmentMenu extends Func {
   /// [allow_write_access] Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
   late bool allow_write_access;
 
-  /// Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+  /// Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
   ///
   /// Returns [Ok]
   ToggleBotIsAddedToAttachmentMenu(
@@ -21938,7 +22611,7 @@ class ToggleGroupCallMuteNewParticipants extends Func {
   }
 }
 
-///Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+///Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
 ///
 ///Returns [Ok]
 class InviteGroupCallParticipants extends Func {
@@ -21957,7 +22630,7 @@ class InviteGroupCallParticipants extends Func {
   /// [user_ids] User identifiers. At most 10 users can be invited simultaneously
   late List<int> user_ids;
 
-  /// Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+  /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
   ///
   /// Returns [Ok]
   InviteGroupCallParticipants(
@@ -22937,10 +23610,10 @@ class GetGroupCallStreamSegment extends Func {
   }
 }
 
-///Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
+///Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
 ///
 ///Returns [Ok]
-class ToggleMessageSenderIsBlocked extends Func {
+class SetMessageSenderBlockList extends Func {
   ///[extra] - Request identifier. Must be non-zero.
   int? extra;
 
@@ -22948,30 +23621,27 @@ class ToggleMessageSenderIsBlocked extends Func {
   int? clientId;
 
   /// [CONSTRUCTOR] - type
-  static const String CONSTRUCTOR = "toggleMessageSenderIsBlocked";
+  static const String CONSTRUCTOR = "setMessageSenderBlockList";
 
   /// [sender_id] Identifier of a message sender to block/unblock
   late MessageSender sender_id;
 
-  /// [is_blocked] New value of is_blocked
-  late bool is_blocked;
+  /// [block_list] New block list for the message sender; pass null to unblock the message sender
+  BlockList? block_list;
 
-  /// Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
+  /// Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
   ///
   /// Returns [Ok]
-  ToggleMessageSenderIsBlocked(
-      {required this.sender_id,
-      required this.is_blocked,
-      this.extra,
-      this.clientId});
+  SetMessageSenderBlockList(
+      {required this.sender_id, this.block_list, this.extra, this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      '@type': 'toggleMessageSenderIsBlocked',
+      '@type': 'setMessageSenderBlockList',
       if (extra != null) '@extra': extra,
       'sender_id': sender_id,
-      'is_blocked': is_blocked
+      'block_list': block_list
     };
   }
 
@@ -22981,19 +23651,19 @@ class ToggleMessageSenderIsBlocked extends Func {
   }
 
   /// Construct from [Map]
-  static ToggleMessageSenderIsBlocked? fromMap(Map<String, dynamic>? _map) {
+  static SetMessageSenderBlockList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
     var sender_id = MessageSender.fromMap(_map['sender_id'])!;
-    var is_blocked = _map['is_blocked']! as bool;
-    return ToggleMessageSenderIsBlocked(
+    var block_list = BlockList.fromMap(_map['block_list']);
+    return SetMessageSenderBlockList(
       extra: extra,
       clientId: clientId,
       sender_id: sender_id,
-      is_blocked: is_blocked,
+      block_list: block_list,
     );
   }
 }
@@ -23086,6 +23756,9 @@ class GetBlockedMessageSenders extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "getBlockedMessageSenders";
 
+  /// [block_list] Block list from which to return users
+  late BlockList block_list;
+
   /// [offset] Number of users and chats to skip in the result; must be non-negative
   late int offset;
 
@@ -23096,13 +23769,18 @@ class GetBlockedMessageSenders extends Func {
   ///
   /// Returns [MessageSenders]
   GetBlockedMessageSenders(
-      {required this.offset, required this.limit, this.extra, this.clientId});
+      {required this.block_list,
+      required this.offset,
+      required this.limit,
+      this.extra,
+      this.clientId});
 
   @override
   Map<String, dynamic> toJson() {
     return {
       '@type': 'getBlockedMessageSenders',
       if (extra != null) '@extra': extra,
+      'block_list': block_list,
       'offset': offset,
       'limit': limit
     };
@@ -23120,11 +23798,13 @@ class GetBlockedMessageSenders extends Func {
     if (_ != CONSTRUCTOR) return null;
     var extra = _map['@extra'];
     var clientId = _map['@clientId'];
+    var block_list = BlockList.fromMap(_map['block_list'])!;
     var offset = _map['offset']! as int;
     var limit = _map['limit']! as int;
     return GetBlockedMessageSenders(
       extra: extra,
       clientId: clientId,
+      block_list: block_list,
       offset: offset,
       limit: limit,
     );
@@ -24006,6 +24686,81 @@ class GetStickers extends Func {
       query: query,
       limit: limit,
       chat_id: chat_id,
+    );
+  }
+}
+
+///Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+///
+///Returns [Emojis]
+class GetAllStickerEmojis extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "getAllStickerEmojis";
+
+  /// [sticker_type] Type of the stickers to search for
+  late StickerType sticker_type;
+
+  /// [query] Search query
+  late String query;
+
+  /// [chat_id] Chat identifier for which to find stickers
+  late int chat_id;
+
+  /// [return_only_main_emoji] Pass true if only main emoji for each found sticker must be included in the result
+  late bool return_only_main_emoji;
+
+  /// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+  ///
+  /// Returns [Emojis]
+  GetAllStickerEmojis(
+      {required this.sticker_type,
+      required this.query,
+      required this.chat_id,
+      required this.return_only_main_emoji,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'getAllStickerEmojis',
+      if (extra != null) '@extra': extra,
+      'sticker_type': sticker_type,
+      'query': query,
+      'chat_id': chat_id,
+      'return_only_main_emoji': return_only_main_emoji
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static GetAllStickerEmojis? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var sticker_type = StickerType.fromMap(_map['sticker_type'])!;
+    var query = _map['query']! as String;
+    var chat_id = _map['chat_id']! as int;
+    var return_only_main_emoji = _map['return_only_main_emoji']! as bool;
+    return GetAllStickerEmojis(
+      extra: extra,
+      clientId: clientId,
+      sticker_type: sticker_type,
+      query: query,
+      chat_id: chat_id,
+      return_only_main_emoji: return_only_main_emoji,
     );
   }
 }
@@ -27036,7 +27791,7 @@ class SetDefaultGroupAdministratorRights extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "setDefaultGroupAdministratorRights";
 
-  /// [default_group_administrator_rights] Default administrator rights for adding the bot to basic group and supergroup chats; may be null
+  /// [default_group_administrator_rights] Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
   ChatAdministratorRights? default_group_administrator_rights;
 
   /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
@@ -27090,7 +27845,7 @@ class SetDefaultChannelAdministratorRights extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "setDefaultChannelAdministratorRights";
 
-  /// [default_channel_administrator_rights] Default administrator rights for adding the bot to channels; may be null
+  /// [default_channel_administrator_rights] Default administrator rights for adding the bot to channels; pass null to remove default rights
   ChatAdministratorRights? default_channel_administrator_rights;
 
   /// Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -27129,6 +27884,177 @@ class SetDefaultChannelAdministratorRights extends Func {
       clientId: clientId,
       default_channel_administrator_rights:
           default_channel_administrator_rights,
+    );
+  }
+}
+
+///Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+///
+///Returns [Ok]
+class CanBotSendMessages extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "canBotSendMessages";
+
+  /// [bot_user_id] Identifier of the target bot
+  late int bot_user_id;
+
+  /// Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+  ///
+  /// Returns [Ok]
+  CanBotSendMessages({required this.bot_user_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'canBotSendMessages',
+      if (extra != null) '@extra': extra,
+      'bot_user_id': bot_user_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static CanBotSendMessages? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var bot_user_id = _map['bot_user_id']! as int;
+    return CanBotSendMessages(
+      extra: extra,
+      clientId: clientId,
+      bot_user_id: bot_user_id,
+    );
+  }
+}
+
+///Allows the specified bot to send messages to the user
+///
+///Returns [Ok]
+class AllowBotToSendMessages extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "allowBotToSendMessages";
+
+  /// [bot_user_id] Identifier of the target bot
+  late int bot_user_id;
+
+  /// Allows the specified bot to send messages to the user
+  ///
+  /// Returns [Ok]
+  AllowBotToSendMessages(
+      {required this.bot_user_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'allowBotToSendMessages',
+      if (extra != null) '@extra': extra,
+      'bot_user_id': bot_user_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static AllowBotToSendMessages? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var bot_user_id = _map['bot_user_id']! as int;
+    return AllowBotToSendMessages(
+      extra: extra,
+      clientId: clientId,
+      bot_user_id: bot_user_id,
+    );
+  }
+}
+
+///Sends a custom request from a Web App
+///
+///Returns [CustomRequestResult]
+class SendWebAppCustomRequest extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "sendWebAppCustomRequest";
+
+  /// [bot_user_id] Identifier of the bot
+  late int bot_user_id;
+
+  /// [method] The method name
+  late String method;
+
+  /// [parameters] JSON-serialized method parameters
+  late String parameters;
+
+  /// Sends a custom request from a Web App
+  ///
+  /// Returns [CustomRequestResult]
+  SendWebAppCustomRequest(
+      {required this.bot_user_id,
+      required this.method,
+      required this.parameters,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'sendWebAppCustomRequest',
+      if (extra != null) '@extra': extra,
+      'bot_user_id': bot_user_id,
+      'method': method,
+      'parameters': parameters
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static SendWebAppCustomRequest? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var bot_user_id = _map['bot_user_id']! as int;
+    var method = _map['method']! as String;
+    var parameters = _map['parameters']! as String;
+    return SendWebAppCustomRequest(
+      extra: extra,
+      clientId: clientId,
+      bot_user_id: bot_user_id,
+      method: method,
+      parameters: parameters,
     );
   }
 }
@@ -27848,6 +28774,58 @@ class TerminateAllOtherSessions extends Func {
     return TerminateAllOtherSessions(
       extra: extra,
       clientId: clientId,
+    );
+  }
+}
+
+///Confirms an unconfirmed session of the current user from another device
+///
+///Returns [Ok]
+class ConfirmSession extends Func {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "confirmSession";
+
+  /// [session_id] Session identifier
+  /// ; string representation of int, use `int.parse`
+  late int64 session_id;
+
+  /// Confirms an unconfirmed session of the current user from another device
+  ///
+  /// Returns [Ok]
+  ConfirmSession({required this.session_id, this.extra, this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'confirmSession',
+      if (extra != null) '@extra': extra,
+      'session_id': session_id
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static ConfirmSession? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var session_id = _map['session_id']! as int64;
+    return ConfirmSession(
+      extra: extra,
+      clientId: clientId,
+      session_id: session_id,
     );
   }
 }
@@ -29312,7 +30290,7 @@ class GetChatEventLog extends Func {
   }
 }
 
-///Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+///Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
 ///
 ///Returns [PaymentForm]
 class GetPaymentForm extends Func {
@@ -29331,7 +30309,7 @@ class GetPaymentForm extends Func {
   /// [theme] Preferred payment form theme; pass null to use the default theme
   ThemeParameters? theme;
 
-  /// Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+  /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
   ///
   /// Returns [PaymentForm]
   GetPaymentForm(
@@ -30427,7 +31405,7 @@ class SetCustomLanguagePack extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "setCustomLanguagePack";
 
-  /// [info] Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+  /// [info] Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
   late LanguagePackInfo info;
 
   /// [strings] Strings of the new language pack
@@ -35138,6 +36116,86 @@ class AcceptTermsOfService extends Func {
   }
 }
 
+///Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+///
+///Returns [FoundPositions]
+class SearchStringsByPrefix extends SyncFunc {
+  ///[extra] - Request identifier. Must be non-zero.
+  int? extra;
+
+  /// [clientId] - tdlib client id
+  int? clientId;
+
+  /// [CONSTRUCTOR] - type
+  static const String CONSTRUCTOR = "searchStringsByPrefix";
+
+  /// [strings] The strings to search in for the query
+  late List<String> strings;
+
+  /// [query] Query to search for
+  late String query;
+
+  /// [limit] The maximum number of objects to return
+  late int limit;
+
+  /// [return_none_for_empty_query] Pass true to receive no results for an empty query
+  late bool return_none_for_empty_query;
+
+  /// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+  ///
+  /// Returns [FoundPositions]
+  SearchStringsByPrefix(
+      {required this.strings,
+      required this.query,
+      required this.limit,
+      required this.return_none_for_empty_query,
+      this.extra,
+      this.clientId});
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      '@type': 'searchStringsByPrefix',
+      if (extra != null) '@extra': extra,
+      'strings': strings,
+      'query': query,
+      'limit': limit,
+      'return_none_for_empty_query': return_none_for_empty_query
+    };
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  /// Construct from [Map]
+  static SearchStringsByPrefix? fromMap(Map<String, dynamic>? _map) {
+    if (_map == null) return null;
+    var _ = _map["@type"];
+    if (_ != CONSTRUCTOR) return null;
+    var extra = _map['@extra'];
+    var clientId = _map['@clientId'];
+    var strings = List<String>.from(
+      (_map["strings"] ?? []).map(
+        (e) => e as String,
+      ),
+    );
+    var query = _map['query']! as String;
+    var limit = _map['limit']! as int;
+    var return_none_for_empty_query =
+        _map['return_none_for_empty_query']! as bool;
+    return SearchStringsByPrefix(
+      extra: extra,
+      clientId: clientId,
+      strings: strings,
+      query: query,
+      limit: limit,
+      return_none_for_empty_query: return_none_for_empty_query,
+    );
+  }
+}
+
 ///Sends a custom request; for bots only
 ///
 ///Returns [CustomRequestResult]
@@ -35788,7 +36846,7 @@ class AddProxy extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "addProxy";
 
-  /// [server] Proxy server IP address
+  /// [server] Proxy server domain or IP address
   late String server;
 
   /// [port] Proxy server port
@@ -35866,7 +36924,7 @@ class EditProxy extends Func {
   /// [proxy_id] Proxy identifier
   late int proxy_id;
 
-  /// [server] Proxy server IP address
+  /// [server] Proxy server domain or IP address
   late String server;
 
   /// [port] Proxy server port
@@ -37258,7 +38316,7 @@ class TestProxy extends Func {
   /// [CONSTRUCTOR] - type
   static const String CONSTRUCTOR = "testProxy";
 
-  /// [server] Proxy server IP address
+  /// [server] Proxy server domain or IP address
   late String server;
 
   /// [port] Proxy server port
