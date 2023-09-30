@@ -197,7 +197,7 @@ def generate():
     generate_extension_dart(abstract_classes, classes)
     generate_map_to_class_dart(classes)
 
-    with open(BASE_EXPORT_DIR, 'w') as f:
+    with open(TD_LIBARY_DART_FILE_FOR_EXPORTS, 'w') as f:
         f.writelines(f'export "{i}";\n' for i in EXPORT_GENERATED_LIB_PATHS)
 
     print("Generated 5 files in {:.3f} seconds.".format(time.time() - st))
@@ -220,7 +220,7 @@ def generate_ffi_td_json_client_dart(FFIGEN_YAML_FILE='./ffigen.yaml'):
             print()
             print(os.popen(execute).read())
 
-            with open(BASE_EXPORT_DIR, 'r+') as f:
+            with open(TD_LIBARY_DART_FILE_FOR_EXPORTS, 'r+') as f:
                 if SRC_GENERATED_FFI_TD_JSON_FILE not in f.read():
                     f.write(f'export "{SRC_GENERATED_FFI_TD_JSON_FILE}";')
             
@@ -239,7 +239,7 @@ if __name__ == '__main__':
         EXPORT_FUNC_FILE,
         EXPORT_MAP_CLASS_STR_FILE,
         EXPORT_EXTENSION_FILE,
-        BASE_EXPORT_DIR,
+        TD_LIBARY_DART_FILE_FOR_EXPORTS,
     ]
     _ = os.popen(f"dart format {' '.join(exports)}").read()
     print(_)
