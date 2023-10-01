@@ -7,22 +7,24 @@ import 'dart:convert' show jsonEncode;
 import './classes.dart';
 import './objects.dart';
 
-/// the bytes (`List<int>`) are base64-encoded
+/// The bytes (`List<int>`) are base64-encoded
 typedef bytes = String;
 
-/// string representation of int
+/// String representation of int
 typedef int64 = String;
 
 abstract class TlObject {
   /// Object to Map serializer
   Map<String, dynamic> toJson();
 
-  /// [extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
   /// TDLib client instance identifier, for which the response was received.
   int? clientId;
+
   static const String CONSTRUCTOR = "TlObject";
+  // Construct from [Map].
   static TlObject? fromMap(Map<String, dynamic> map) => getObject(map);
 }
 
@@ -35,14 +37,14 @@ abstract class Func extends TlObject {}
 
 abstract class SyncFunc extends Func {}
 
-///Provides information about the method by which an authentication code is delivered to the user
+/// Provides information about the method by which an authentication code is delivered to the user.
 ///
-///Inherited by [AuthenticationCodeTypeFirebaseAndroid], [AuthenticationCodeTypeSms], [AuthenticationCodeTypeFragment], [AuthenticationCodeTypeTelegramMessage], [AuthenticationCodeTypeFirebaseIos], [AuthenticationCodeTypeCall], [AuthenticationCodeTypeFlashCall], [AuthenticationCodeTypeMissedCall],
+/// Inherited by [AuthenticationCodeTypeFirebaseAndroid], [AuthenticationCodeTypeSms], [AuthenticationCodeTypeFragment], [AuthenticationCodeTypeTelegramMessage], [AuthenticationCodeTypeFirebaseIos], [AuthenticationCodeTypeCall], [AuthenticationCodeTypeFlashCall], [AuthenticationCodeTypeMissedCall].
 abstract class AuthenticationCodeType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "authenticationCodeType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AuthenticationCodeType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -70,14 +72,14 @@ abstract class AuthenticationCodeType extends TlObject {
   }
 }
 
-///Contains authentication data for a email address
+/// Contains authentication data for a email address.
 ///
-///Inherited by [EmailAddressAuthenticationAppleId], [EmailAddressAuthenticationGoogleId], [EmailAddressAuthenticationCode],
+/// Inherited by [EmailAddressAuthenticationAppleId], [EmailAddressAuthenticationGoogleId], [EmailAddressAuthenticationCode].
 abstract class EmailAddressAuthentication extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "emailAddressAuthentication";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EmailAddressAuthentication? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -95,14 +97,14 @@ abstract class EmailAddressAuthentication extends TlObject {
   }
 }
 
-///Describes reset state of a email address
+/// Describes reset state of a email address.
 ///
-///Inherited by [EmailAddressResetStateAvailable], [EmailAddressResetStatePending],
+/// Inherited by [EmailAddressResetStateAvailable], [EmailAddressResetStatePending].
 abstract class EmailAddressResetState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "emailAddressResetState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EmailAddressResetState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -118,14 +120,14 @@ abstract class EmailAddressResetState extends TlObject {
   }
 }
 
-///Represents the current authorization state of the TDLib client
+/// Represents the current authorization state of the TDLib client.
 ///
-///Inherited by [AuthorizationStateWaitPassword], [AuthorizationStateReady], [AuthorizationStateWaitPhoneNumber], [AuthorizationStateWaitOtherDeviceConfirmation], [AuthorizationStateClosed], [AuthorizationStateWaitEmailCode], [AuthorizationStateWaitRegistration], [AuthorizationStateLoggingOut], [AuthorizationStateClosing], [AuthorizationStateWaitTdlibParameters], [AuthorizationStateWaitCode], [AuthorizationStateWaitEmailAddress],
+/// Inherited by [AuthorizationStateWaitPassword], [AuthorizationStateReady], [AuthorizationStateWaitPhoneNumber], [AuthorizationStateWaitOtherDeviceConfirmation], [AuthorizationStateClosed], [AuthorizationStateWaitEmailCode], [AuthorizationStateWaitRegistration], [AuthorizationStateLoggingOut], [AuthorizationStateClosing], [AuthorizationStateWaitTdlibParameters], [AuthorizationStateWaitCode], [AuthorizationStateWaitEmailAddress].
 abstract class AuthorizationState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "authorizationState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AuthorizationState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -161,14 +163,14 @@ abstract class AuthorizationState extends TlObject {
   }
 }
 
-///Points to a file
+/// Points to a file.
 ///
-///Inherited by [InputFileId], [InputFileGenerated], [InputFileLocal], [InputFileRemote],
+/// Inherited by [InputFileId], [InputFileGenerated], [InputFileLocal], [InputFileRemote].
 abstract class InputFile extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputFile";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -188,14 +190,14 @@ abstract class InputFile extends TlObject {
   }
 }
 
-///Describes format of a thumbnail
+/// Describes format of a thumbnail.
 ///
-///Inherited by [ThumbnailFormatWebp], [ThumbnailFormatMpeg4], [ThumbnailFormatGif], [ThumbnailFormatPng], [ThumbnailFormatJpeg], [ThumbnailFormatWebm], [ThumbnailFormatTgs],
+/// Inherited by [ThumbnailFormatWebp], [ThumbnailFormatMpeg4], [ThumbnailFormatGif], [ThumbnailFormatPng], [ThumbnailFormatJpeg], [ThumbnailFormatWebm], [ThumbnailFormatTgs].
 abstract class ThumbnailFormat extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "thumbnailFormat";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ThumbnailFormat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -221,14 +223,14 @@ abstract class ThumbnailFormat extends TlObject {
   }
 }
 
-///Part of the face, relative to which a mask is placed
+/// Part of the face, relative to which a mask is placed.
 ///
-///Inherited by [MaskPointEyes], [MaskPointChin], [MaskPointMouth], [MaskPointForehead],
+/// Inherited by [MaskPointEyes], [MaskPointChin], [MaskPointMouth], [MaskPointForehead].
 abstract class MaskPoint extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "maskPoint";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MaskPoint? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -248,14 +250,14 @@ abstract class MaskPoint extends TlObject {
   }
 }
 
-///Describes format of a sticker
+/// Describes format of a sticker.
 ///
-///Inherited by [StickerFormatWebp], [StickerFormatWebm], [StickerFormatTgs],
+/// Inherited by [StickerFormatWebp], [StickerFormatWebm], [StickerFormatTgs].
 abstract class StickerFormat extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "stickerFormat";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StickerFormat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -273,14 +275,14 @@ abstract class StickerFormat extends TlObject {
   }
 }
 
-///Describes type of a sticker
+/// Describes type of a sticker.
 ///
-///Inherited by [StickerTypeRegular], [StickerTypeMask], [StickerTypeCustomEmoji],
+/// Inherited by [StickerTypeRegular], [StickerTypeMask], [StickerTypeCustomEmoji].
 abstract class StickerType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "stickerType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StickerType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -298,14 +300,14 @@ abstract class StickerType extends TlObject {
   }
 }
 
-///Contains full information about sticker type
+/// Contains full information about sticker type.
 ///
-///Inherited by [StickerFullTypeRegular], [StickerFullTypeCustomEmoji], [StickerFullTypeMask],
+/// Inherited by [StickerFullTypeRegular], [StickerFullTypeCustomEmoji], [StickerFullTypeMask].
 abstract class StickerFullType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "stickerFullType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StickerFullType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -323,14 +325,14 @@ abstract class StickerFullType extends TlObject {
   }
 }
 
-///Describes the type of a poll
+/// Describes the type of a poll.
 ///
-///Inherited by [PollTypeRegular], [PollTypeQuiz],
+/// Inherited by [PollTypeRegular], [PollTypeQuiz].
 abstract class PollType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pollType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PollType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -346,14 +348,14 @@ abstract class PollType extends TlObject {
   }
 }
 
-///Represents the type of a user. The following types are possible: regular users, deleted users and bots
+/// Represents the type of a user. The following types are possible: regular users, deleted users and bots.
 ///
-///Inherited by [UserTypeRegular], [UserTypeBot], [UserTypeUnknown], [UserTypeDeleted],
+/// Inherited by [UserTypeRegular], [UserTypeBot], [UserTypeUnknown], [UserTypeDeleted].
 abstract class UserType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "userType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UserType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -373,14 +375,14 @@ abstract class UserType extends TlObject {
   }
 }
 
-///Describes type of a sticker, which was used to create a chat photo
+/// Describes type of a sticker, which was used to create a chat photo.
 ///
-///Inherited by [ChatPhotoStickerTypeCustomEmoji], [ChatPhotoStickerTypeRegularOrMask],
+/// Inherited by [ChatPhotoStickerTypeCustomEmoji], [ChatPhotoStickerTypeRegularOrMask].
 abstract class ChatPhotoStickerType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatPhotoStickerType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatPhotoStickerType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -396,14 +398,14 @@ abstract class ChatPhotoStickerType extends TlObject {
   }
 }
 
-///Describes a photo to be set as a user profile or chat photo
+/// Describes a photo to be set as a user profile or chat photo.
 ///
-///Inherited by [InputChatPhotoSticker], [InputChatPhotoStatic], [InputChatPhotoPrevious], [InputChatPhotoAnimation],
+/// Inherited by [InputChatPhotoSticker], [InputChatPhotoStatic], [InputChatPhotoPrevious], [InputChatPhotoAnimation].
 abstract class InputChatPhoto extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputChatPhoto";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputChatPhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -423,14 +425,14 @@ abstract class InputChatPhoto extends TlObject {
   }
 }
 
-///Provides information about the status of a member in a chat
+/// Provides information about the status of a member in a chat.
 ///
-///Inherited by [ChatMemberStatusCreator], [ChatMemberStatusBanned], [ChatMemberStatusAdministrator], [ChatMemberStatusMember], [ChatMemberStatusLeft], [ChatMemberStatusRestricted],
+/// Inherited by [ChatMemberStatusCreator], [ChatMemberStatusBanned], [ChatMemberStatusAdministrator], [ChatMemberStatusMember], [ChatMemberStatusLeft], [ChatMemberStatusRestricted].
 abstract class ChatMemberStatus extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatMemberStatus";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatMemberStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -454,14 +456,14 @@ abstract class ChatMemberStatus extends TlObject {
   }
 }
 
-///Specifies the kind of chat members to return in searchChatMembers
+/// Specifies the kind of chat members to return in searchChatMembers.
 ///
-///Inherited by [ChatMembersFilterBots], [ChatMembersFilterMembers], [ChatMembersFilterRestricted], [ChatMembersFilterBanned], [ChatMembersFilterAdministrators], [ChatMembersFilterContacts], [ChatMembersFilterMention],
+/// Inherited by [ChatMembersFilterBots], [ChatMembersFilterMembers], [ChatMembersFilterRestricted], [ChatMembersFilterBanned], [ChatMembersFilterAdministrators], [ChatMembersFilterContacts], [ChatMembersFilterMention].
 abstract class ChatMembersFilter extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatMembersFilter";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatMembersFilter? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -487,14 +489,14 @@ abstract class ChatMembersFilter extends TlObject {
   }
 }
 
-///Specifies the kind of chat members to return in getSupergroupMembers
+/// Specifies the kind of chat members to return in getSupergroupMembers.
 ///
-///Inherited by [SupergroupMembersFilterSearch], [SupergroupMembersFilterMention], [SupergroupMembersFilterRestricted], [SupergroupMembersFilterBots], [SupergroupMembersFilterBanned], [SupergroupMembersFilterContacts], [SupergroupMembersFilterAdministrators], [SupergroupMembersFilterRecent],
+/// Inherited by [SupergroupMembersFilterSearch], [SupergroupMembersFilterMention], [SupergroupMembersFilterRestricted], [SupergroupMembersFilterBots], [SupergroupMembersFilterBanned], [SupergroupMembersFilterContacts], [SupergroupMembersFilterAdministrators], [SupergroupMembersFilterRecent].
 abstract class SupergroupMembersFilter extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "supergroupMembersFilter";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SupergroupMembersFilter? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -522,14 +524,14 @@ abstract class SupergroupMembersFilter extends TlObject {
   }
 }
 
-///Describes the type of a chat to which points an invite link
+/// Describes the type of a chat to which points an invite link.
 ///
-///Inherited by [InviteLinkChatTypeChannel], [InviteLinkChatTypeBasicGroup], [InviteLinkChatTypeSupergroup],
+/// Inherited by [InviteLinkChatTypeChannel], [InviteLinkChatTypeBasicGroup], [InviteLinkChatTypeSupergroup].
 abstract class InviteLinkChatType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inviteLinkChatType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InviteLinkChatType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -547,14 +549,14 @@ abstract class InviteLinkChatType extends TlObject {
   }
 }
 
-///Describes the current secret chat state
+/// Describes the current secret chat state.
 ///
-///Inherited by [SecretChatStatePending], [SecretChatStateReady], [SecretChatStateClosed],
+/// Inherited by [SecretChatStatePending], [SecretChatStateReady], [SecretChatStateClosed].
 abstract class SecretChatState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "secretChatState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SecretChatState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -572,14 +574,14 @@ abstract class SecretChatState extends TlObject {
   }
 }
 
-///Contains information about the sender of a message
+/// Contains information about the sender of a message.
 ///
-///Inherited by [MessageSenderUser], [MessageSenderChat],
+/// Inherited by [MessageSenderUser], [MessageSenderChat].
 abstract class MessageSender extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSender";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSender? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -595,14 +597,14 @@ abstract class MessageSender extends TlObject {
   }
 }
 
-///Contains information about the origin of a forwarded message
+/// Contains information about the origin of a forwarded message.
 ///
-///Inherited by [MessageForwardOriginChannel], [MessageForwardOriginChat], [MessageForwardOriginMessageImport], [MessageForwardOriginUser], [MessageForwardOriginHiddenUser],
+/// Inherited by [MessageForwardOriginChannel], [MessageForwardOriginChat], [MessageForwardOriginMessageImport], [MessageForwardOriginUser], [MessageForwardOriginHiddenUser].
 abstract class MessageForwardOrigin extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageForwardOrigin";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageForwardOrigin? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -624,14 +626,14 @@ abstract class MessageForwardOrigin extends TlObject {
   }
 }
 
-///Describes type of message reaction
+/// Describes type of message reaction.
 ///
-///Inherited by [ReactionTypeCustomEmoji], [ReactionTypeEmoji],
+/// Inherited by [ReactionTypeCustomEmoji], [ReactionTypeEmoji].
 abstract class ReactionType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reactionType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReactionType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -647,14 +649,14 @@ abstract class ReactionType extends TlObject {
   }
 }
 
-///Contains information about the sending state of the message
+/// Contains information about the sending state of the message.
 ///
-///Inherited by [MessageSendingStateFailed], [MessageSendingStatePending],
+/// Inherited by [MessageSendingStateFailed], [MessageSendingStatePending].
 abstract class MessageSendingState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSendingState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSendingState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -670,14 +672,14 @@ abstract class MessageSendingState extends TlObject {
   }
 }
 
-///Contains information about the message or the story a message is replying to
+/// Contains information about the message or the story a message is replying to.
 ///
-///Inherited by [MessageReplyToMessage], [MessageReplyToStory],
+/// Inherited by [MessageReplyToMessage], [MessageReplyToStory].
 abstract class MessageReplyTo extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageReplyTo";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageReplyTo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -693,14 +695,14 @@ abstract class MessageReplyTo extends TlObject {
   }
 }
 
-///Describes source of a message
+/// Describes source of a message.
 ///
-///Inherited by [MessageSourceChatHistory], [MessageSourceMessageThreadHistory], [MessageSourceChatList], [MessageSourceNotification], [MessageSourceHistoryPreview], [MessageSourceScreenshot], [MessageSourceChatEventLog], [MessageSourceSearch], [MessageSourceOther], [MessageSourceForumTopicHistory],
+/// Inherited by [MessageSourceChatHistory], [MessageSourceMessageThreadHistory], [MessageSourceChatList], [MessageSourceNotification], [MessageSourceHistoryPreview], [MessageSourceScreenshot], [MessageSourceChatEventLog], [MessageSourceSearch], [MessageSourceOther], [MessageSourceForumTopicHistory].
 abstract class MessageSource extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSource";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSource? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -732,14 +734,14 @@ abstract class MessageSource extends TlObject {
   }
 }
 
-///Describes type of a message sponsor
+/// Describes type of a message sponsor.
 ///
-///Inherited by [MessageSponsorTypeWebsite], [MessageSponsorTypePublicChannel], [MessageSponsorTypePrivateChannel], [MessageSponsorTypeBot],
+/// Inherited by [MessageSponsorTypeWebsite], [MessageSponsorTypePublicChannel], [MessageSponsorTypePrivateChannel], [MessageSponsorTypeBot].
 abstract class MessageSponsorType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSponsorType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSponsorType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -759,14 +761,14 @@ abstract class MessageSponsorType extends TlObject {
   }
 }
 
-///Describes the types of chats to which notification settings are relevant
+/// Describes the types of chats to which notification settings are relevant.
 ///
-///Inherited by [NotificationSettingsScopeChannelChats], [NotificationSettingsScopePrivateChats], [NotificationSettingsScopeGroupChats],
+/// Inherited by [NotificationSettingsScopeChannelChats], [NotificationSettingsScopePrivateChats], [NotificationSettingsScopeGroupChats].
 abstract class NotificationSettingsScope extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "notificationSettingsScope";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static NotificationSettingsScope? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -784,14 +786,14 @@ abstract class NotificationSettingsScope extends TlObject {
   }
 }
 
-///Describes the type of a chat
+/// Describes the type of a chat.
 ///
-///Inherited by [ChatTypeSupergroup], [ChatTypeBasicGroup], [ChatTypeSecret], [ChatTypePrivate],
+/// Inherited by [ChatTypeSupergroup], [ChatTypeBasicGroup], [ChatTypeSecret], [ChatTypePrivate].
 abstract class ChatType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -811,14 +813,14 @@ abstract class ChatType extends TlObject {
   }
 }
 
-///Describes a list of chats
+/// Describes a list of chats.
 ///
-///Inherited by [ChatListMain], [ChatListArchive], [ChatListFolder],
+/// Inherited by [ChatListMain], [ChatListArchive], [ChatListFolder].
 abstract class ChatList extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatList";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -836,14 +838,14 @@ abstract class ChatList extends TlObject {
   }
 }
 
-///Describes a reason why an external chat is shown in a chat list
+/// Describes a reason why an external chat is shown in a chat list.
 ///
-///Inherited by [ChatSourcePublicServiceAnnouncement], [ChatSourceMtprotoProxy],
+/// Inherited by [ChatSourcePublicServiceAnnouncement], [ChatSourceMtprotoProxy].
 abstract class ChatSource extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatSource";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatSource? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -859,14 +861,14 @@ abstract class ChatSource extends TlObject {
   }
 }
 
-///Describes reactions available in the chat
+/// Describes reactions available in the chat.
 ///
-///Inherited by [ChatAvailableReactionsAll], [ChatAvailableReactionsSome],
+/// Inherited by [ChatAvailableReactionsAll], [ChatAvailableReactionsSome].
 abstract class ChatAvailableReactions extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatAvailableReactions";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatAvailableReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -882,14 +884,14 @@ abstract class ChatAvailableReactions extends TlObject {
   }
 }
 
-///Describes a type of public chats
+/// Describes a type of public chats.
 ///
-///Inherited by [PublicChatTypeIsLocationBased], [PublicChatTypeHasUsername],
+/// Inherited by [PublicChatTypeIsLocationBased], [PublicChatTypeHasUsername].
 abstract class PublicChatType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "publicChatType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PublicChatType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -905,14 +907,14 @@ abstract class PublicChatType extends TlObject {
   }
 }
 
-///Describes actions which must be possible to do through a chat action bar
+/// Describes actions which must be possible to do through a chat action bar.
 ///
-///Inherited by [ChatActionBarInviteMembers], [ChatActionBarReportSpam], [ChatActionBarSharePhoneNumber], [ChatActionBarReportAddBlock], [ChatActionBarReportUnrelatedLocation], [ChatActionBarJoinRequest], [ChatActionBarAddContact],
+/// Inherited by [ChatActionBarInviteMembers], [ChatActionBarReportSpam], [ChatActionBarSharePhoneNumber], [ChatActionBarReportAddBlock], [ChatActionBarReportUnrelatedLocation], [ChatActionBarJoinRequest], [ChatActionBarAddContact].
 abstract class ChatActionBar extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatActionBar";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatActionBar? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -938,14 +940,14 @@ abstract class ChatActionBar extends TlObject {
   }
 }
 
-///Describes a keyboard button type
+/// Describes a keyboard button type.
 ///
-///Inherited by [KeyboardButtonTypeText], [KeyboardButtonTypeRequestUser], [KeyboardButtonTypeWebApp], [KeyboardButtonTypeRequestChat], [KeyboardButtonTypeRequestPhoneNumber], [KeyboardButtonTypeRequestLocation], [KeyboardButtonTypeRequestPoll],
+/// Inherited by [KeyboardButtonTypeText], [KeyboardButtonTypeRequestUser], [KeyboardButtonTypeWebApp], [KeyboardButtonTypeRequestChat], [KeyboardButtonTypeRequestPhoneNumber], [KeyboardButtonTypeRequestLocation], [KeyboardButtonTypeRequestPoll].
 abstract class KeyboardButtonType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "keyboardButtonType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static KeyboardButtonType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -971,14 +973,14 @@ abstract class KeyboardButtonType extends TlObject {
   }
 }
 
-///Describes the type of an inline keyboard button
+/// Describes the type of an inline keyboard button.
 ///
-///Inherited by [InlineKeyboardButtonTypeCallback], [InlineKeyboardButtonTypeUser], [InlineKeyboardButtonTypeSwitchInline], [InlineKeyboardButtonTypeLoginUrl], [InlineKeyboardButtonTypeCallbackGame], [InlineKeyboardButtonTypeBuy], [InlineKeyboardButtonTypeCallbackWithPassword], [InlineKeyboardButtonTypeWebApp], [InlineKeyboardButtonTypeUrl],
+/// Inherited by [InlineKeyboardButtonTypeCallback], [InlineKeyboardButtonTypeUser], [InlineKeyboardButtonTypeSwitchInline], [InlineKeyboardButtonTypeLoginUrl], [InlineKeyboardButtonTypeCallbackGame], [InlineKeyboardButtonTypeBuy], [InlineKeyboardButtonTypeCallbackWithPassword], [InlineKeyboardButtonTypeWebApp], [InlineKeyboardButtonTypeUrl].
 abstract class InlineKeyboardButtonType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inlineKeyboardButtonType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InlineKeyboardButtonType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1008,14 +1010,14 @@ abstract class InlineKeyboardButtonType extends TlObject {
   }
 }
 
-///Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
+/// Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots.
 ///
-///Inherited by [ReplyMarkupShowKeyboard], [ReplyMarkupRemoveKeyboard], [ReplyMarkupInlineKeyboard], [ReplyMarkupForceReply],
+/// Inherited by [ReplyMarkupShowKeyboard], [ReplyMarkupRemoveKeyboard], [ReplyMarkupInlineKeyboard], [ReplyMarkupForceReply].
 abstract class ReplyMarkup extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "replyMarkup";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReplyMarkup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1035,14 +1037,14 @@ abstract class ReplyMarkup extends TlObject {
   }
 }
 
-///Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
+/// Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl.
 ///
-///Inherited by [LoginUrlInfoRequestConfirmation], [LoginUrlInfoOpen],
+/// Inherited by [LoginUrlInfoRequestConfirmation], [LoginUrlInfoOpen].
 abstract class LoginUrlInfo extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "loginUrlInfo";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LoginUrlInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1058,14 +1060,14 @@ abstract class LoginUrlInfo extends TlObject {
   }
 }
 
-///Describes a text object inside an instant-view web page
+/// Describes a text object inside an instant-view web page.
 ///
-///Inherited by [RichTextIcon], [RichTextReference], [RichTextUnderline], [RichTexts], [RichTextStrikethrough], [RichTextSuperscript], [RichTextPhoneNumber], [RichTextPlain], [RichTextSubscript], [RichTextUrl], [RichTextAnchor], [RichTextAnchorLink], [RichTextEmailAddress], [RichTextItalic], [RichTextMarked], [RichTextFixed], [RichTextBold],
+/// Inherited by [RichTextIcon], [RichTextReference], [RichTextUnderline], [RichTexts], [RichTextStrikethrough], [RichTextSuperscript], [RichTextPhoneNumber], [RichTextPlain], [RichTextSubscript], [RichTextUrl], [RichTextAnchor], [RichTextAnchorLink], [RichTextEmailAddress], [RichTextItalic], [RichTextMarked], [RichTextFixed], [RichTextBold].
 abstract class RichText extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "richText";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RichText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1111,14 +1113,14 @@ abstract class RichText extends TlObject {
   }
 }
 
-///Describes a horizontal alignment of a table cell content
+/// Describes a horizontal alignment of a table cell content.
 ///
-///Inherited by [PageBlockHorizontalAlignmentLeft], [PageBlockHorizontalAlignmentRight], [PageBlockHorizontalAlignmentCenter],
+/// Inherited by [PageBlockHorizontalAlignmentLeft], [PageBlockHorizontalAlignmentRight], [PageBlockHorizontalAlignmentCenter].
 abstract class PageBlockHorizontalAlignment extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pageBlockHorizontalAlignment";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PageBlockHorizontalAlignment? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1136,14 +1138,14 @@ abstract class PageBlockHorizontalAlignment extends TlObject {
   }
 }
 
-///Describes a Vertical alignment of a table cell content
+/// Describes a Vertical alignment of a table cell content.
 ///
-///Inherited by [PageBlockVerticalAlignmentMiddle], [PageBlockVerticalAlignmentBottom], [PageBlockVerticalAlignmentTop],
+/// Inherited by [PageBlockVerticalAlignmentMiddle], [PageBlockVerticalAlignmentBottom], [PageBlockVerticalAlignmentTop].
 abstract class PageBlockVerticalAlignment extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pageBlockVerticalAlignment";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PageBlockVerticalAlignment? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1161,14 +1163,14 @@ abstract class PageBlockVerticalAlignment extends TlObject {
   }
 }
 
-///Describes a block of an instant view web page
+/// Describes a block of an instant view web page.
 ///
-///Inherited by [PageBlockList], [PageBlockVideo], [PageBlockAnimation], [PageBlockRelatedArticles], [PageBlockAnchor], [PageBlockAudio], [PageBlockSlideshow], [PageBlockAuthorDate], [PageBlockFooter], [PageBlockEmbeddedPost], [PageBlockCollage], [PageBlockVoiceNote], [PageBlockKicker], [PageBlockChatLink], [PageBlockSubheader], [PageBlockTitle], [PageBlockPreformatted], [PageBlockMap], [PageBlockDetails], [PageBlockHeader], [PageBlockDivider], [PageBlockEmbedded], [PageBlockTable], [PageBlockPhoto], [PageBlockCover], [PageBlockPullQuote], [PageBlockParagraph], [PageBlockBlockQuote], [PageBlockSubtitle],
+/// Inherited by [PageBlockList], [PageBlockVideo], [PageBlockAnimation], [PageBlockRelatedArticles], [PageBlockAnchor], [PageBlockAudio], [PageBlockSlideshow], [PageBlockAuthorDate], [PageBlockFooter], [PageBlockEmbeddedPost], [PageBlockCollage], [PageBlockVoiceNote], [PageBlockKicker], [PageBlockChatLink], [PageBlockSubheader], [PageBlockTitle], [PageBlockPreformatted], [PageBlockMap], [PageBlockDetails], [PageBlockHeader], [PageBlockDivider], [PageBlockEmbedded], [PageBlockTable], [PageBlockPhoto], [PageBlockCover], [PageBlockPullQuote], [PageBlockParagraph], [PageBlockBlockQuote], [PageBlockSubtitle].
 abstract class PageBlock extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pageBlock";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PageBlock? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1238,14 +1240,14 @@ abstract class PageBlock extends TlObject {
   }
 }
 
-///Contains information about the payment method chosen by the user
+/// Contains information about the payment method chosen by the user.
 ///
-///Inherited by [InputCredentialsGooglePay], [InputCredentialsApplePay], [InputCredentialsSaved], [InputCredentialsNew],
+/// Inherited by [InputCredentialsGooglePay], [InputCredentialsApplePay], [InputCredentialsSaved], [InputCredentialsNew].
 abstract class InputCredentials extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputCredentials";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputCredentials? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1265,14 +1267,14 @@ abstract class InputCredentials extends TlObject {
   }
 }
 
-///Contains information about a payment provider
+/// Contains information about a payment provider.
 ///
-///Inherited by [PaymentProviderSmartGlocal], [PaymentProviderStripe], [PaymentProviderOther],
+/// Inherited by [PaymentProviderSmartGlocal], [PaymentProviderStripe], [PaymentProviderOther].
 abstract class PaymentProvider extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "paymentProvider";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PaymentProvider? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1290,14 +1292,14 @@ abstract class PaymentProvider extends TlObject {
   }
 }
 
-///Describes an invoice to process
+/// Describes an invoice to process.
 ///
-///Inherited by [InputInvoiceName], [InputInvoiceMessage],
+/// Inherited by [InputInvoiceName], [InputInvoiceMessage].
 abstract class InputInvoice extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputInvoice";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputInvoice? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1313,14 +1315,14 @@ abstract class InputInvoice extends TlObject {
   }
 }
 
-///Describes a media, which is attached to an invoice
+/// Describes a media, which is attached to an invoice.
 ///
-///Inherited by [MessageExtendedMediaPreview], [MessageExtendedMediaUnsupported], [MessageExtendedMediaVideo], [MessageExtendedMediaPhoto],
+/// Inherited by [MessageExtendedMediaPreview], [MessageExtendedMediaUnsupported], [MessageExtendedMediaVideo], [MessageExtendedMediaPhoto].
 abstract class MessageExtendedMedia extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageExtendedMedia";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageExtendedMedia? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1340,14 +1342,14 @@ abstract class MessageExtendedMedia extends TlObject {
   }
 }
 
-///Contains the type of a Telegram Passport element
+/// Contains the type of a Telegram Passport element.
 ///
-///Inherited by [PassportElementTypePhoneNumber], [PassportElementTypeUtilityBill], [PassportElementTypeAddress], [PassportElementTypePassportRegistration], [PassportElementTypeRentalAgreement], [PassportElementTypeEmailAddress], [PassportElementTypeBankStatement], [PassportElementTypeDriverLicense], [PassportElementTypeInternalPassport], [PassportElementTypePassport], [PassportElementTypePersonalDetails], [PassportElementTypeTemporaryRegistration], [PassportElementTypeIdentityCard],
+/// Inherited by [PassportElementTypePhoneNumber], [PassportElementTypeUtilityBill], [PassportElementTypeAddress], [PassportElementTypePassportRegistration], [PassportElementTypeRentalAgreement], [PassportElementTypeEmailAddress], [PassportElementTypeBankStatement], [PassportElementTypeDriverLicense], [PassportElementTypeInternalPassport], [PassportElementTypePassport], [PassportElementTypePersonalDetails], [PassportElementTypeTemporaryRegistration], [PassportElementTypeIdentityCard].
 abstract class PassportElementType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "passportElementType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PassportElementType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1385,14 +1387,14 @@ abstract class PassportElementType extends TlObject {
   }
 }
 
-///Contains information about a Telegram Passport element
+/// Contains information about a Telegram Passport element.
 ///
-///Inherited by [PassportElementTemporaryRegistration], [PassportElementRentalAgreement], [PassportElementUtilityBill], [PassportElementPassportRegistration], [PassportElementPassport], [PassportElementIdentityCard], [PassportElementDriverLicense], [PassportElementInternalPassport], [PassportElementEmailAddress], [PassportElementPersonalDetails], [PassportElementPhoneNumber], [PassportElementAddress], [PassportElementBankStatement],
+/// Inherited by [PassportElementTemporaryRegistration], [PassportElementRentalAgreement], [PassportElementUtilityBill], [PassportElementPassportRegistration], [PassportElementPassport], [PassportElementIdentityCard], [PassportElementDriverLicense], [PassportElementInternalPassport], [PassportElementEmailAddress], [PassportElementPersonalDetails], [PassportElementPhoneNumber], [PassportElementAddress], [PassportElementBankStatement].
 abstract class PassportElement extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "passportElement";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PassportElement? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1430,14 +1432,14 @@ abstract class PassportElement extends TlObject {
   }
 }
 
-///Contains information about a Telegram Passport element to be saved
+/// Contains information about a Telegram Passport element to be saved.
 ///
-///Inherited by [InputPassportElementInternalPassport], [InputPassportElementPersonalDetails], [InputPassportElementEmailAddress], [InputPassportElementIdentityCard], [InputPassportElementPassportRegistration], [InputPassportElementPassport], [InputPassportElementUtilityBill], [InputPassportElementPhoneNumber], [InputPassportElementBankStatement], [InputPassportElementRentalAgreement], [InputPassportElementDriverLicense], [InputPassportElementTemporaryRegistration], [InputPassportElementAddress],
+/// Inherited by [InputPassportElementInternalPassport], [InputPassportElementPersonalDetails], [InputPassportElementEmailAddress], [InputPassportElementIdentityCard], [InputPassportElementPassportRegistration], [InputPassportElementPassport], [InputPassportElementUtilityBill], [InputPassportElementPhoneNumber], [InputPassportElementBankStatement], [InputPassportElementRentalAgreement], [InputPassportElementDriverLicense], [InputPassportElementTemporaryRegistration], [InputPassportElementAddress].
 abstract class InputPassportElement extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputPassportElement";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputPassportElement? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1475,14 +1477,14 @@ abstract class InputPassportElement extends TlObject {
   }
 }
 
-///Contains the description of an error in a Telegram Passport element
+/// Contains the description of an error in a Telegram Passport element.
 ///
-///Inherited by [PassportElementErrorSourceDataField], [PassportElementErrorSourceFile], [PassportElementErrorSourceReverseSide], [PassportElementErrorSourceUnspecified], [PassportElementErrorSourceTranslationFiles], [PassportElementErrorSourceFiles], [PassportElementErrorSourceTranslationFile], [PassportElementErrorSourceFrontSide], [PassportElementErrorSourceSelfie],
+/// Inherited by [PassportElementErrorSourceDataField], [PassportElementErrorSourceFile], [PassportElementErrorSourceReverseSide], [PassportElementErrorSourceUnspecified], [PassportElementErrorSourceTranslationFiles], [PassportElementErrorSourceFiles], [PassportElementErrorSourceTranslationFile], [PassportElementErrorSourceFrontSide], [PassportElementErrorSourceSelfie].
 abstract class PassportElementErrorSource extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "passportElementErrorSource";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PassportElementErrorSource? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1512,14 +1514,14 @@ abstract class PassportElementErrorSource extends TlObject {
   }
 }
 
-///Contains the description of an error in a Telegram Passport element; for bots only
+/// Contains the description of an error in a Telegram Passport element; for bots only.
 ///
-///Inherited by [InputPassportElementErrorSourceSelfie], [InputPassportElementErrorSourceFiles], [InputPassportElementErrorSourceUnspecified], [InputPassportElementErrorSourceReverseSide], [InputPassportElementErrorSourceFrontSide], [InputPassportElementErrorSourceTranslationFiles], [InputPassportElementErrorSourceDataField], [InputPassportElementErrorSourceTranslationFile], [InputPassportElementErrorSourceFile],
+/// Inherited by [InputPassportElementErrorSourceSelfie], [InputPassportElementErrorSourceFiles], [InputPassportElementErrorSourceUnspecified], [InputPassportElementErrorSourceReverseSide], [InputPassportElementErrorSourceFrontSide], [InputPassportElementErrorSourceTranslationFiles], [InputPassportElementErrorSourceDataField], [InputPassportElementErrorSourceTranslationFile], [InputPassportElementErrorSourceFile].
 abstract class InputPassportElementErrorSource extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputPassportElementErrorSource";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputPassportElementErrorSource? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1549,14 +1551,14 @@ abstract class InputPassportElementErrorSource extends TlObject {
   }
 }
 
-///Contains the content of a message
+/// Contains the content of a message.
 ///
-///Inherited by [MessageVideoNote], [MessageCustomServiceAction], [MessageScreenshotTaken], [MessageUserShared], [MessageContactRegistered], [MessageGame], [MessageGameScore], [MessageVideo], [MessageForumTopicCreated], [MessageWebAppDataSent], [MessageForumTopicEdited], [MessageUnsupported], [MessageGiftedPremium], [MessageVideoChatScheduled], [MessageDice], [MessageDocument], [MessageChatChangeTitle], [MessageWebAppDataReceived], [MessageChatDeletePhoto], [MessageSuggestProfilePhoto], [MessageChatJoinByLink], [MessageExpiredPhoto], [MessagePassportDataSent], [MessageProximityAlertTriggered], [MessageForumTopicIsHiddenToggled], [MessageLocation], [MessageVoiceNote], [MessageVideoChatEnded], [MessageBasicGroupChatCreate], [MessageVenue], [MessageStory], [MessagePinMessage], [MessageForumTopicIsClosedToggled], [MessageContact], [MessageVideoChatStarted], [MessageSupergroupChatCreate], [MessageExpiredVideo], [MessageInvoice], [MessageChatJoinByRequest], [MessageChatSetMessageAutoDeleteTime], [MessagePaymentSuccessfulBot], [MessageChatSetBackground], [MessageChatUpgradeFrom], [MessageChatChangePhoto], [MessageChatAddMembers], [MessageSticker], [MessageChatSetTheme], [MessageChatShared], [MessagePassportDataReceived], [MessageAudio], [MessagePaymentSuccessful], [MessageInviteVideoChatParticipants], [MessagePhoto], [MessageText], [MessageAnimatedEmoji], [MessageAnimation], [MessageCall], [MessageChatDeleteMember], [MessageChatUpgradeTo], [MessageBotWriteAccessAllowed], [MessageWebsiteConnected], [MessagePoll],
+/// Inherited by [MessageVideoNote], [MessageCustomServiceAction], [MessageScreenshotTaken], [MessageUserShared], [MessageContactRegistered], [MessageGame], [MessageGameScore], [MessageVideo], [MessageForumTopicCreated], [MessageWebAppDataSent], [MessageForumTopicEdited], [MessageUnsupported], [MessageGiftedPremium], [MessageVideoChatScheduled], [MessageDice], [MessageDocument], [MessageChatChangeTitle], [MessageWebAppDataReceived], [MessageChatDeletePhoto], [MessageSuggestProfilePhoto], [MessageChatJoinByLink], [MessageExpiredPhoto], [MessagePassportDataSent], [MessageProximityAlertTriggered], [MessageForumTopicIsHiddenToggled], [MessageLocation], [MessageVoiceNote], [MessageVideoChatEnded], [MessageBasicGroupChatCreate], [MessageVenue], [MessageStory], [MessagePinMessage], [MessageForumTopicIsClosedToggled], [MessageContact], [MessageVideoChatStarted], [MessageSupergroupChatCreate], [MessageExpiredVideo], [MessageInvoice], [MessageChatJoinByRequest], [MessageChatSetMessageAutoDeleteTime], [MessagePaymentSuccessfulBot], [MessageChatSetBackground], [MessageChatUpgradeFrom], [MessageChatChangePhoto], [MessageChatAddMembers], [MessageSticker], [MessageChatSetTheme], [MessageChatShared], [MessagePassportDataReceived], [MessageAudio], [MessagePaymentSuccessful], [MessageInviteVideoChatParticipants], [MessagePhoto], [MessageText], [MessageAnimatedEmoji], [MessageAnimation], [MessageCall], [MessageChatDeleteMember], [MessageChatUpgradeTo], [MessageBotWriteAccessAllowed], [MessageWebsiteConnected], [MessagePoll].
 abstract class MessageContent extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageContent";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1692,14 +1694,14 @@ abstract class MessageContent extends TlObject {
   }
 }
 
-///Represents a part of the text which must be formatted differently
+/// Represents a part of the text which must be formatted differently.
 ///
-///Inherited by [TextEntityTypeBold], [TextEntityTypeCustomEmoji], [TextEntityTypeSpoiler], [TextEntityTypeUnderline], [TextEntityTypeItalic], [TextEntityTypeBotCommand], [TextEntityTypeMention], [TextEntityTypeUrl], [TextEntityTypePre], [TextEntityTypeHashtag], [TextEntityTypeStrikethrough], [TextEntityTypePhoneNumber], [TextEntityTypeTextUrl], [TextEntityTypeEmailAddress], [TextEntityTypeBankCardNumber], [TextEntityTypeMediaTimestamp], [TextEntityTypeCashtag], [TextEntityTypeMentionName], [TextEntityTypeCode], [TextEntityTypePreCode],
+/// Inherited by [TextEntityTypeBold], [TextEntityTypeCustomEmoji], [TextEntityTypeSpoiler], [TextEntityTypeUnderline], [TextEntityTypeItalic], [TextEntityTypeBotCommand], [TextEntityTypeMention], [TextEntityTypeUrl], [TextEntityTypePre], [TextEntityTypeHashtag], [TextEntityTypeStrikethrough], [TextEntityTypePhoneNumber], [TextEntityTypeTextUrl], [TextEntityTypeEmailAddress], [TextEntityTypeBankCardNumber], [TextEntityTypeMediaTimestamp], [TextEntityTypeCashtag], [TextEntityTypeMentionName], [TextEntityTypeCode], [TextEntityTypePreCode].
 abstract class TextEntityType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "textEntityType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TextEntityType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1751,14 +1753,14 @@ abstract class TextEntityType extends TlObject {
   }
 }
 
-///Contains information about the time when a scheduled message will be sent
+/// Contains information about the time when a scheduled message will be sent.
 ///
-///Inherited by [MessageSchedulingStateSendAtDate], [MessageSchedulingStateSendWhenOnline],
+/// Inherited by [MessageSchedulingStateSendAtDate], [MessageSchedulingStateSendWhenOnline].
 abstract class MessageSchedulingState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSchedulingState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSchedulingState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1774,14 +1776,14 @@ abstract class MessageSchedulingState extends TlObject {
   }
 }
 
-///Describes when a message will be self-destructed
+/// Describes when a message will be self-destructed.
 ///
-///Inherited by [MessageSelfDestructTypeTimer], [MessageSelfDestructTypeImmediately],
+/// Inherited by [MessageSelfDestructTypeTimer], [MessageSelfDestructTypeImmediately].
 abstract class MessageSelfDestructType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageSelfDestructType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageSelfDestructType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1797,14 +1799,14 @@ abstract class MessageSelfDestructType extends TlObject {
   }
 }
 
-///The content of a message to send
+/// The content of a message to send.
 ///
-///Inherited by [InputMessageDice], [InputMessageAudio], [InputMessageText], [InputMessageAnimation], [InputMessageSticker], [InputMessageStory], [InputMessageInvoice], [InputMessagePhoto], [InputMessageLocation], [InputMessageForwarded], [InputMessageVoiceNote], [InputMessageVideo], [InputMessageVenue], [InputMessageDocument], [InputMessageVideoNote], [InputMessagePoll], [InputMessageContact], [InputMessageGame],
+/// Inherited by [InputMessageDice], [InputMessageAudio], [InputMessageText], [InputMessageAnimation], [InputMessageSticker], [InputMessageStory], [InputMessageInvoice], [InputMessagePhoto], [InputMessageLocation], [InputMessageForwarded], [InputMessageVoiceNote], [InputMessageVideo], [InputMessageVenue], [InputMessageDocument], [InputMessageVideoNote], [InputMessagePoll], [InputMessageContact], [InputMessageGame].
 abstract class InputMessageContent extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputMessageContent";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputMessageContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1852,14 +1854,14 @@ abstract class InputMessageContent extends TlObject {
   }
 }
 
-///Represents a filter for message search results
+/// Represents a filter for message search results.
 ///
-///Inherited by [SearchMessagesFilterUnreadReaction], [SearchMessagesFilterAudio], [SearchMessagesFilterFailedToSend], [SearchMessagesFilterVoiceAndVideoNote], [SearchMessagesFilterChatPhoto], [SearchMessagesFilterAnimation], [SearchMessagesFilterVoiceNote], [SearchMessagesFilterDocument], [SearchMessagesFilterPhotoAndVideo], [SearchMessagesFilterUnreadMention], [SearchMessagesFilterPinned], [SearchMessagesFilterMention], [SearchMessagesFilterEmpty], [SearchMessagesFilterVideoNote], [SearchMessagesFilterUrl], [SearchMessagesFilterVideo], [SearchMessagesFilterPhoto],
+/// Inherited by [SearchMessagesFilterUnreadReaction], [SearchMessagesFilterAudio], [SearchMessagesFilterFailedToSend], [SearchMessagesFilterVoiceAndVideoNote], [SearchMessagesFilterChatPhoto], [SearchMessagesFilterAnimation], [SearchMessagesFilterVoiceNote], [SearchMessagesFilterDocument], [SearchMessagesFilterPhotoAndVideo], [SearchMessagesFilterUnreadMention], [SearchMessagesFilterPinned], [SearchMessagesFilterMention], [SearchMessagesFilterEmpty], [SearchMessagesFilterVideoNote], [SearchMessagesFilterUrl], [SearchMessagesFilterVideo], [SearchMessagesFilterPhoto].
 abstract class SearchMessagesFilter extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchMessagesFilter";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchMessagesFilter? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1905,14 +1907,14 @@ abstract class SearchMessagesFilter extends TlObject {
   }
 }
 
-///Describes the different types of activity in a chat
+/// Describes the different types of activity in a chat.
 ///
-///Inherited by [ChatActionRecordingVideo], [ChatActionUploadingDocument], [ChatActionStartPlayingGame], [ChatActionChoosingContact], [ChatActionRecordingVideoNote], [ChatActionWatchingAnimations], [ChatActionChoosingSticker], [ChatActionUploadingVideo], [ChatActionChoosingLocation], [ChatActionCancel], [ChatActionTyping], [ChatActionUploadingPhoto], [ChatActionUploadingVoiceNote], [ChatActionUploadingVideoNote], [ChatActionRecordingVoiceNote],
+/// Inherited by [ChatActionRecordingVideo], [ChatActionUploadingDocument], [ChatActionStartPlayingGame], [ChatActionChoosingContact], [ChatActionRecordingVideoNote], [ChatActionWatchingAnimations], [ChatActionChoosingSticker], [ChatActionUploadingVideo], [ChatActionChoosingLocation], [ChatActionCancel], [ChatActionTyping], [ChatActionUploadingPhoto], [ChatActionUploadingVoiceNote], [ChatActionUploadingVideoNote], [ChatActionRecordingVoiceNote].
 abstract class ChatAction extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatAction";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatAction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1954,14 +1956,14 @@ abstract class ChatAction extends TlObject {
   }
 }
 
-///Describes the last time the user was online
+/// Describes the last time the user was online.
 ///
-///Inherited by [UserStatusOnline], [UserStatusEmpty], [UserStatusOffline], [UserStatusLastMonth], [UserStatusRecently], [UserStatusLastWeek],
+/// Inherited by [UserStatusOnline], [UserStatusEmpty], [UserStatusOffline], [UserStatusLastMonth], [UserStatusRecently], [UserStatusLastWeek].
 abstract class UserStatus extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "userStatus";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UserStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1985,14 +1987,14 @@ abstract class UserStatus extends TlObject {
   }
 }
 
-///Describes type of an emoji category
+/// Describes type of an emoji category.
 ///
-///Inherited by [EmojiCategoryTypeChatPhoto], [EmojiCategoryTypeDefault], [EmojiCategoryTypeEmojiStatus],
+/// Inherited by [EmojiCategoryTypeChatPhoto], [EmojiCategoryTypeDefault], [EmojiCategoryTypeEmojiStatus].
 abstract class EmojiCategoryType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "emojiCategoryType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EmojiCategoryType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2010,14 +2012,14 @@ abstract class EmojiCategoryType extends TlObject {
   }
 }
 
-///Describes type of a clickable rectangle area on a story media
+/// Describes type of a clickable rectangle area on a story media.
 ///
-///Inherited by [StoryAreaTypeSuggestedReaction], [StoryAreaTypeVenue], [StoryAreaTypeLocation],
+/// Inherited by [StoryAreaTypeSuggestedReaction], [StoryAreaTypeVenue], [StoryAreaTypeLocation].
 abstract class StoryAreaType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "storyAreaType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StoryAreaType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2035,14 +2037,14 @@ abstract class StoryAreaType extends TlObject {
   }
 }
 
-///Describes type of a clickable rectangle area on a story media to be added
+/// Describes type of a clickable rectangle area on a story media to be added.
 ///
-///Inherited by [InputStoryAreaTypeFoundVenue], [InputStoryAreaTypeLocation], [InputStoryAreaTypeSuggestedReaction], [InputStoryAreaTypePreviousVenue],
+/// Inherited by [InputStoryAreaTypeFoundVenue], [InputStoryAreaTypeLocation], [InputStoryAreaTypeSuggestedReaction], [InputStoryAreaTypePreviousVenue].
 abstract class InputStoryAreaType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputStoryAreaType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputStoryAreaType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2062,14 +2064,14 @@ abstract class InputStoryAreaType extends TlObject {
   }
 }
 
-///Contains the content of a story
+/// Contains the content of a story.
 ///
-///Inherited by [StoryContentVideo], [StoryContentUnsupported], [StoryContentPhoto],
+/// Inherited by [StoryContentVideo], [StoryContentUnsupported], [StoryContentPhoto].
 abstract class StoryContent extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "storyContent";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StoryContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2087,14 +2089,14 @@ abstract class StoryContent extends TlObject {
   }
 }
 
-///The content of a story to send
+/// The content of a story to send.
 ///
-///Inherited by [InputStoryContentPhoto], [InputStoryContentVideo],
+/// Inherited by [InputStoryContentPhoto], [InputStoryContentVideo].
 abstract class InputStoryContent extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputStoryContent";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputStoryContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2110,14 +2112,14 @@ abstract class InputStoryContent extends TlObject {
   }
 }
 
-///Describes a list of stories
+/// Describes a list of stories.
 ///
-///Inherited by [StoryListArchive], [StoryListMain],
+/// Inherited by [StoryListArchive], [StoryListMain].
 abstract class StoryList extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "storyList";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StoryList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2133,14 +2135,14 @@ abstract class StoryList extends TlObject {
   }
 }
 
-///Describes the reason why a call was discarded
+/// Describes the reason why a call was discarded.
 ///
-///Inherited by [CallDiscardReasonDisconnected], [CallDiscardReasonEmpty], [CallDiscardReasonHungUp], [CallDiscardReasonDeclined], [CallDiscardReasonMissed],
+/// Inherited by [CallDiscardReasonDisconnected], [CallDiscardReasonEmpty], [CallDiscardReasonHungUp], [CallDiscardReasonDeclined], [CallDiscardReasonMissed].
 abstract class CallDiscardReason extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "callDiscardReason";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CallDiscardReason? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2162,14 +2164,14 @@ abstract class CallDiscardReason extends TlObject {
   }
 }
 
-///Describes the type of a call server
+/// Describes the type of a call server.
 ///
-///Inherited by [CallServerTypeTelegramReflector], [CallServerTypeWebrtc],
+/// Inherited by [CallServerTypeTelegramReflector], [CallServerTypeWebrtc].
 abstract class CallServerType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "callServerType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CallServerType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2185,14 +2187,14 @@ abstract class CallServerType extends TlObject {
   }
 }
 
-///Describes the current call state
+/// Describes the current call state.
 ///
-///Inherited by [CallStateError], [CallStateDiscarded], [CallStateExchangingKeys], [CallStatePending], [CallStateReady], [CallStateHangingUp],
+/// Inherited by [CallStateError], [CallStateDiscarded], [CallStateExchangingKeys], [CallStatePending], [CallStateReady], [CallStateHangingUp].
 abstract class CallState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "callState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CallState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2216,14 +2218,14 @@ abstract class CallState extends TlObject {
   }
 }
 
-///Describes the quality of a group call video
+/// Describes the quality of a group call video.
 ///
-///Inherited by [GroupCallVideoQualityMedium], [GroupCallVideoQualityThumbnail], [GroupCallVideoQualityFull],
+/// Inherited by [GroupCallVideoQualityMedium], [GroupCallVideoQualityThumbnail], [GroupCallVideoQualityFull].
 abstract class GroupCallVideoQuality extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "groupCallVideoQuality";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GroupCallVideoQuality? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2241,14 +2243,14 @@ abstract class GroupCallVideoQuality extends TlObject {
   }
 }
 
-///Describes the exact type of a problem with a call
+/// Describes the exact type of a problem with a call.
 ///
-///Inherited by [CallProblemInterruptions], [CallProblemDistortedVideo], [CallProblemEcho], [CallProblemDistortedSpeech], [CallProblemPixelatedVideo], [CallProblemSilentLocal], [CallProblemSilentRemote], [CallProblemNoise], [CallProblemDropped],
+/// Inherited by [CallProblemInterruptions], [CallProblemDistortedVideo], [CallProblemEcho], [CallProblemDistortedSpeech], [CallProblemPixelatedVideo], [CallProblemSilentLocal], [CallProblemSilentRemote], [CallProblemNoise], [CallProblemDropped].
 abstract class CallProblem extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "callProblem";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CallProblem? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2278,14 +2280,14 @@ abstract class CallProblem extends TlObject {
   }
 }
 
-///Contains settings for Firebase Authentication in the official applications
+/// Contains settings for Firebase Authentication in the official applications.
 ///
-///Inherited by [FirebaseAuthenticationSettingsIos], [FirebaseAuthenticationSettingsAndroid],
+/// Inherited by [FirebaseAuthenticationSettingsIos], [FirebaseAuthenticationSettingsAndroid].
 abstract class FirebaseAuthenticationSettings extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "firebaseAuthenticationSettings";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static FirebaseAuthenticationSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2301,14 +2303,14 @@ abstract class FirebaseAuthenticationSettings extends TlObject {
   }
 }
 
-///Contains animated stickers which must be used for dice animation rendering
+/// Contains animated stickers which must be used for dice animation rendering.
 ///
-///Inherited by [DiceStickersRegular], [DiceStickersSlotMachine],
+/// Inherited by [DiceStickersRegular], [DiceStickersSlotMachine].
 abstract class DiceStickers extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "diceStickers";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DiceStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2324,14 +2326,14 @@ abstract class DiceStickers extends TlObject {
   }
 }
 
-///Describes result of speech recognition in a voice note
+/// Describes result of speech recognition in a voice note.
 ///
-///Inherited by [SpeechRecognitionResultError], [SpeechRecognitionResultText], [SpeechRecognitionResultPending],
+/// Inherited by [SpeechRecognitionResultError], [SpeechRecognitionResultText], [SpeechRecognitionResultPending].
 abstract class SpeechRecognitionResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "speechRecognitionResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SpeechRecognitionResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2349,14 +2351,14 @@ abstract class SpeechRecognitionResult extends TlObject {
   }
 }
 
-///Represents a single result of an inline query; for bots only
+/// Represents a single result of an inline query; for bots only.
 ///
-///Inherited by [InputInlineQueryResultAnimation], [InputInlineQueryResultVenue], [InputInlineQueryResultSticker], [InputInlineQueryResultGame], [InputInlineQueryResultVideo], [InputInlineQueryResultContact], [InputInlineQueryResultArticle], [InputInlineQueryResultAudio], [InputInlineQueryResultPhoto], [InputInlineQueryResultLocation], [InputInlineQueryResultDocument], [InputInlineQueryResultVoiceNote],
+/// Inherited by [InputInlineQueryResultAnimation], [InputInlineQueryResultVenue], [InputInlineQueryResultSticker], [InputInlineQueryResultGame], [InputInlineQueryResultVideo], [InputInlineQueryResultContact], [InputInlineQueryResultArticle], [InputInlineQueryResultAudio], [InputInlineQueryResultPhoto], [InputInlineQueryResultLocation], [InputInlineQueryResultDocument], [InputInlineQueryResultVoiceNote].
 abstract class InputInlineQueryResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputInlineQueryResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputInlineQueryResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2392,14 +2394,14 @@ abstract class InputInlineQueryResult extends TlObject {
   }
 }
 
-///Represents a single result of an inline query
+/// Represents a single result of an inline query.
 ///
-///Inherited by [InlineQueryResultAudio], [InlineQueryResultVenue], [InlineQueryResultPhoto], [InlineQueryResultVideo], [InlineQueryResultSticker], [InlineQueryResultContact], [InlineQueryResultGame], [InlineQueryResultDocument], [InlineQueryResultVoiceNote], [InlineQueryResultAnimation], [InlineQueryResultArticle], [InlineQueryResultLocation],
+/// Inherited by [InlineQueryResultAudio], [InlineQueryResultVenue], [InlineQueryResultPhoto], [InlineQueryResultVideo], [InlineQueryResultSticker], [InlineQueryResultContact], [InlineQueryResultGame], [InlineQueryResultDocument], [InlineQueryResultVoiceNote], [InlineQueryResultAnimation], [InlineQueryResultArticle], [InlineQueryResultLocation].
 abstract class InlineQueryResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inlineQueryResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InlineQueryResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2435,14 +2437,14 @@ abstract class InlineQueryResult extends TlObject {
   }
 }
 
-///Represents a type of a button in results of inline query
+/// Represents a type of a button in results of inline query.
 ///
-///Inherited by [InlineQueryResultsButtonTypeStartBot], [InlineQueryResultsButtonTypeWebApp],
+/// Inherited by [InlineQueryResultsButtonTypeStartBot], [InlineQueryResultsButtonTypeWebApp].
 abstract class InlineQueryResultsButtonType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inlineQueryResultsButtonType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InlineQueryResultsButtonType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2458,14 +2460,14 @@ abstract class InlineQueryResultsButtonType extends TlObject {
   }
 }
 
-///Represents a payload of a callback query
+/// Represents a payload of a callback query.
 ///
-///Inherited by [CallbackQueryPayloadGame], [CallbackQueryPayloadDataWithPassword], [CallbackQueryPayloadData],
+/// Inherited by [CallbackQueryPayloadGame], [CallbackQueryPayloadDataWithPassword], [CallbackQueryPayloadData].
 abstract class CallbackQueryPayload extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "callbackQueryPayload";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CallbackQueryPayload? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2483,14 +2485,14 @@ abstract class CallbackQueryPayload extends TlObject {
   }
 }
 
-///Represents a chat event
+/// Represents a chat event.
 ///
-///Inherited by [ChatEventUsernameChanged], [ChatEventInviteLinkDeleted], [ChatEventLinkedChatChanged], [ChatEventMessageAutoDeleteTimeChanged], [ChatEventInviteLinkRevoked], [ChatEventVideoChatEnded], [ChatEventForumTopicCreated], [ChatEventMemberJoinedByRequest], [ChatEventVideoChatCreated], [ChatEventForumTopicPinned], [ChatEventTitleChanged], [ChatEventInviteLinkEdited], [ChatEventSlowModeDelayChanged], [ChatEventIsForumToggled], [ChatEventHasProtectedContentToggled], [ChatEventMessageUnpinned], [ChatEventMemberJoinedByInviteLink], [ChatEventInvitesToggled], [ChatEventPermissionsChanged], [ChatEventSignMessagesToggled], [ChatEventPollStopped], [ChatEventLocationChanged], [ChatEventAvailableReactionsChanged], [ChatEventStickerSetChanged], [ChatEventHasAggressiveAntiSpamEnabledToggled], [ChatEventMemberRestricted], [ChatEventIsAllHistoryAvailableToggled], [ChatEventMemberJoined], [ChatEventForumTopicEdited], [ChatEventMemberInvited], [ChatEventMemberPromoted], [ChatEventForumTopicToggleIsClosed], [ChatEventMemberLeft], [ChatEventVideoChatMuteNewParticipantsToggled], [ChatEventVideoChatParticipantIsMutedToggled], [ChatEventForumTopicDeleted], [ChatEventMessagePinned], [ChatEventMessageDeleted], [ChatEventDescriptionChanged], [ChatEventActiveUsernamesChanged], [ChatEventMessageEdited], [ChatEventPhotoChanged], [ChatEventForumTopicToggleIsHidden], [ChatEventVideoChatParticipantVolumeLevelChanged],
+/// Inherited by [ChatEventUsernameChanged], [ChatEventInviteLinkDeleted], [ChatEventLinkedChatChanged], [ChatEventMessageAutoDeleteTimeChanged], [ChatEventInviteLinkRevoked], [ChatEventVideoChatEnded], [ChatEventForumTopicCreated], [ChatEventMemberJoinedByRequest], [ChatEventVideoChatCreated], [ChatEventForumTopicPinned], [ChatEventTitleChanged], [ChatEventInviteLinkEdited], [ChatEventSlowModeDelayChanged], [ChatEventIsForumToggled], [ChatEventHasProtectedContentToggled], [ChatEventMessageUnpinned], [ChatEventMemberJoinedByInviteLink], [ChatEventInvitesToggled], [ChatEventPermissionsChanged], [ChatEventSignMessagesToggled], [ChatEventPollStopped], [ChatEventLocationChanged], [ChatEventAvailableReactionsChanged], [ChatEventStickerSetChanged], [ChatEventHasAggressiveAntiSpamEnabledToggled], [ChatEventMemberRestricted], [ChatEventIsAllHistoryAvailableToggled], [ChatEventMemberJoined], [ChatEventForumTopicEdited], [ChatEventMemberInvited], [ChatEventMemberPromoted], [ChatEventForumTopicToggleIsClosed], [ChatEventMemberLeft], [ChatEventVideoChatMuteNewParticipantsToggled], [ChatEventVideoChatParticipantIsMutedToggled], [ChatEventForumTopicDeleted], [ChatEventMessagePinned], [ChatEventMessageDeleted], [ChatEventDescriptionChanged], [ChatEventActiveUsernamesChanged], [ChatEventMessageEdited], [ChatEventPhotoChanged], [ChatEventForumTopicToggleIsHidden], [ChatEventVideoChatParticipantVolumeLevelChanged].
 abstract class ChatEventAction extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatEventAction";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatEventAction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2590,14 +2592,14 @@ abstract class ChatEventAction extends TlObject {
   }
 }
 
-///Represents the value of a string in a language pack
+/// Represents the value of a string in a language pack.
 ///
-///Inherited by [LanguagePackStringValueOrdinary], [LanguagePackStringValuePluralized], [LanguagePackStringValueDeleted],
+/// Inherited by [LanguagePackStringValueOrdinary], [LanguagePackStringValuePluralized], [LanguagePackStringValueDeleted].
 abstract class LanguagePackStringValue extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "languagePackStringValue";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LanguagePackStringValue? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2615,14 +2617,14 @@ abstract class LanguagePackStringValue extends TlObject {
   }
 }
 
-///Describes type of a limit, increased for Premium users
+/// Describes type of a limit, increased for Premium users.
 ///
-///Inherited by [PremiumLimitTypeSavedAnimationCount], [PremiumLimitTypeChatFolderChosenChatCount], [PremiumLimitTypeMonthlySentStoryCount], [PremiumLimitTypePinnedArchivedChatCount], [PremiumLimitTypeSupergroupCount], [PremiumLimitTypeChatFolderCount], [PremiumLimitTypePinnedChatCount], [PremiumLimitTypeShareableChatFolderCount], [PremiumLimitTypeActiveStoryCount], [PremiumLimitTypeWeeklySentStoryCount], [PremiumLimitTypeCreatedPublicChatCount], [PremiumLimitTypeBioLength], [PremiumLimitTypeStorySuggestedReactionAreaCount], [PremiumLimitTypeCaptionLength], [PremiumLimitTypeFavoriteStickerCount], [PremiumLimitTypeChatFolderInviteLinkCount], [PremiumLimitTypeStoryCaptionLength],
+/// Inherited by [PremiumLimitTypeSavedAnimationCount], [PremiumLimitTypeChatFolderChosenChatCount], [PremiumLimitTypeMonthlySentStoryCount], [PremiumLimitTypePinnedArchivedChatCount], [PremiumLimitTypeSupergroupCount], [PremiumLimitTypeChatFolderCount], [PremiumLimitTypePinnedChatCount], [PremiumLimitTypeShareableChatFolderCount], [PremiumLimitTypeActiveStoryCount], [PremiumLimitTypeWeeklySentStoryCount], [PremiumLimitTypeCreatedPublicChatCount], [PremiumLimitTypeBioLength], [PremiumLimitTypeStorySuggestedReactionAreaCount], [PremiumLimitTypeCaptionLength], [PremiumLimitTypeFavoriteStickerCount], [PremiumLimitTypeChatFolderInviteLinkCount], [PremiumLimitTypeStoryCaptionLength].
 abstract class PremiumLimitType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "premiumLimitType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PremiumLimitType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2668,14 +2670,14 @@ abstract class PremiumLimitType extends TlObject {
   }
 }
 
-///Describes a feature available to Premium users
+/// Describes a feature available to Premium users.
 ///
-///Inherited by [PremiumFeatureDisabledAds], [PremiumFeatureAdvancedChatManagement], [PremiumFeatureUniqueStickers], [PremiumFeatureVoiceRecognition], [PremiumFeatureEmojiStatus], [PremiumFeatureCustomEmoji], [PremiumFeatureImprovedDownloadSpeed], [PremiumFeatureForumTopicIcon], [PremiumFeatureUpgradedStories], [PremiumFeatureRealTimeChatTranslation], [PremiumFeatureIncreasedLimits], [PremiumFeatureAnimatedProfilePhoto], [PremiumFeatureAppIcons], [PremiumFeatureIncreasedUploadFileSize], [PremiumFeatureProfileBadge], [PremiumFeatureChatBoost], [PremiumFeatureUniqueReactions],
+/// Inherited by [PremiumFeatureDisabledAds], [PremiumFeatureAdvancedChatManagement], [PremiumFeatureUniqueStickers], [PremiumFeatureVoiceRecognition], [PremiumFeatureEmojiStatus], [PremiumFeatureCustomEmoji], [PremiumFeatureImprovedDownloadSpeed], [PremiumFeatureForumTopicIcon], [PremiumFeatureUpgradedStories], [PremiumFeatureRealTimeChatTranslation], [PremiumFeatureIncreasedLimits], [PremiumFeatureAnimatedProfilePhoto], [PremiumFeatureAppIcons], [PremiumFeatureIncreasedUploadFileSize], [PremiumFeatureProfileBadge], [PremiumFeatureChatBoost], [PremiumFeatureUniqueReactions].
 abstract class PremiumFeature extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "premiumFeature";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PremiumFeature? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2721,14 +2723,14 @@ abstract class PremiumFeature extends TlObject {
   }
 }
 
-///Describes a story feature available to Premium users
+/// Describes a story feature available to Premium users.
 ///
-///Inherited by [PremiumStoryFeatureSaveStories], [PremiumStoryFeaturePermanentViewsHistory], [PremiumStoryFeatureLinksAndFormatting], [PremiumStoryFeatureStealthMode], [PremiumStoryFeatureCustomExpirationDuration], [PremiumStoryFeaturePriorityOrder],
+/// Inherited by [PremiumStoryFeatureSaveStories], [PremiumStoryFeaturePermanentViewsHistory], [PremiumStoryFeatureLinksAndFormatting], [PremiumStoryFeatureStealthMode], [PremiumStoryFeatureCustomExpirationDuration], [PremiumStoryFeaturePriorityOrder].
 abstract class PremiumStoryFeature extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "premiumStoryFeature";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PremiumStoryFeature? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2752,14 +2754,14 @@ abstract class PremiumStoryFeature extends TlObject {
   }
 }
 
-///Describes a source from which the Premium features screen is opened
+/// Describes a source from which the Premium features screen is opened.
 ///
-///Inherited by [PremiumSourceStoryFeature], [PremiumSourceLimitExceeded], [PremiumSourceFeature], [PremiumSourceLink], [PremiumSourceSettings],
+/// Inherited by [PremiumSourceStoryFeature], [PremiumSourceLimitExceeded], [PremiumSourceFeature], [PremiumSourceLink], [PremiumSourceSettings].
 abstract class PremiumSource extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "premiumSource";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PremiumSource? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2781,14 +2783,14 @@ abstract class PremiumSource extends TlObject {
   }
 }
 
-///Describes a purpose of an in-store payment
+/// Describes a purpose of an in-store payment.
 ///
-///Inherited by [StorePaymentPurposePremiumSubscription], [StorePaymentPurposeGiftedPremium],
+/// Inherited by [StorePaymentPurposePremiumSubscription], [StorePaymentPurposeGiftedPremium].
 abstract class StorePaymentPurpose extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "storePaymentPurpose";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StorePaymentPurpose? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2804,14 +2806,14 @@ abstract class StorePaymentPurpose extends TlObject {
   }
 }
 
-///Represents a data needed to subscribe for push notifications through registerDevice method.
+/// Represents a data needed to subscribe for push notifications through registerDevice method..
 ///
-///Inherited by [DeviceTokenFirebaseCloudMessaging], [DeviceTokenHuaweiPush], [DeviceTokenMicrosoftPush], [DeviceTokenWebPush], [DeviceTokenTizenPush], [DeviceTokenMicrosoftPushVoIP], [DeviceTokenApplePush], [DeviceTokenSimplePush], [DeviceTokenUbuntuPush], [DeviceTokenApplePushVoIP], [DeviceTokenWindowsPush], [DeviceTokenBlackBerryPush],
+/// Inherited by [DeviceTokenFirebaseCloudMessaging], [DeviceTokenHuaweiPush], [DeviceTokenMicrosoftPush], [DeviceTokenWebPush], [DeviceTokenTizenPush], [DeviceTokenMicrosoftPushVoIP], [DeviceTokenApplePush], [DeviceTokenSimplePush], [DeviceTokenUbuntuPush], [DeviceTokenApplePushVoIP], [DeviceTokenWindowsPush], [DeviceTokenBlackBerryPush].
 abstract class DeviceToken extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deviceToken";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeviceToken? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2847,14 +2849,14 @@ abstract class DeviceToken extends TlObject {
   }
 }
 
-///Describes a fill of a background
+/// Describes a fill of a background.
 ///
-///Inherited by [BackgroundFillFreeformGradient], [BackgroundFillSolid], [BackgroundFillGradient],
+/// Inherited by [BackgroundFillFreeformGradient], [BackgroundFillSolid], [BackgroundFillGradient].
 abstract class BackgroundFill extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "backgroundFill";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BackgroundFill? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2872,14 +2874,14 @@ abstract class BackgroundFill extends TlObject {
   }
 }
 
-///Describes the type of a background
+/// Describes the type of a background.
 ///
-///Inherited by [BackgroundTypeFill], [BackgroundTypeWallpaper], [BackgroundTypePattern],
+/// Inherited by [BackgroundTypeFill], [BackgroundTypeWallpaper], [BackgroundTypePattern].
 abstract class BackgroundType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "backgroundType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BackgroundType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2897,14 +2899,14 @@ abstract class BackgroundType extends TlObject {
   }
 }
 
-///Contains information about background to set
+/// Contains information about background to set.
 ///
-///Inherited by [InputBackgroundLocal], [InputBackgroundPrevious], [InputBackgroundRemote],
+/// Inherited by [InputBackgroundLocal], [InputBackgroundPrevious], [InputBackgroundRemote].
 abstract class InputBackground extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inputBackground";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InputBackground? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2922,14 +2924,14 @@ abstract class InputBackground extends TlObject {
   }
 }
 
-///Represents result of checking whether the current user can send a story in the specific chat
+/// Represents result of checking whether the current user can send a story in the specific chat.
 ///
-///Inherited by [CanSendStoryResultPremiumNeeded], [CanSendStoryResultWeeklyLimitExceeded], [CanSendStoryResultBoostNeeded], [CanSendStoryResultOk], [CanSendStoryResultMonthlyLimitExceeded], [CanSendStoryResultActiveStoryLimitExceeded],
+/// Inherited by [CanSendStoryResultPremiumNeeded], [CanSendStoryResultWeeklyLimitExceeded], [CanSendStoryResultBoostNeeded], [CanSendStoryResultOk], [CanSendStoryResultMonthlyLimitExceeded], [CanSendStoryResultActiveStoryLimitExceeded].
 abstract class CanSendStoryResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canSendStoryResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanSendStoryResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2953,14 +2955,14 @@ abstract class CanSendStoryResult extends TlObject {
   }
 }
 
-///Represents result of checking whether the current user can boost the specific chat
+/// Represents result of checking whether the current user can boost the specific chat.
 ///
-///Inherited by [CanBoostChatResultAlreadyBoosted], [CanBoostChatResultOk], [CanBoostChatResultPremiumSubscriptionNeeded], [CanBoostChatResultWaitNeeded], [CanBoostChatResultInvalidChat], [CanBoostChatResultPremiumNeeded],
+/// Inherited by [CanBoostChatResultAlreadyBoosted], [CanBoostChatResultOk], [CanBoostChatResultPremiumSubscriptionNeeded], [CanBoostChatResultWaitNeeded], [CanBoostChatResultInvalidChat], [CanBoostChatResultPremiumNeeded].
 abstract class CanBoostChatResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canBoostChatResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanBoostChatResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2984,14 +2986,14 @@ abstract class CanBoostChatResult extends TlObject {
   }
 }
 
-///Represents result of checking whether the current session can be used to transfer a chat ownership to another user
+/// Represents result of checking whether the current session can be used to transfer a chat ownership to another user.
 ///
-///Inherited by [CanTransferOwnershipResultPasswordNeeded], [CanTransferOwnershipResultPasswordTooFresh], [CanTransferOwnershipResultOk], [CanTransferOwnershipResultSessionTooFresh],
+/// Inherited by [CanTransferOwnershipResultPasswordNeeded], [CanTransferOwnershipResultPasswordTooFresh], [CanTransferOwnershipResultOk], [CanTransferOwnershipResultSessionTooFresh].
 abstract class CanTransferOwnershipResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canTransferOwnershipResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanTransferOwnershipResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3011,14 +3013,14 @@ abstract class CanTransferOwnershipResult extends TlObject {
   }
 }
 
-///Represents result of checking whether a username can be set for a chat
+/// Represents result of checking whether a username can be set for a chat.
 ///
-///Inherited by [CheckChatUsernameResultUsernameInvalid], [CheckChatUsernameResultUsernameOccupied], [CheckChatUsernameResultUsernamePurchasable], [CheckChatUsernameResultPublicChatsTooMany], [CheckChatUsernameResultPublicGroupsUnavailable], [CheckChatUsernameResultOk],
+/// Inherited by [CheckChatUsernameResultUsernameInvalid], [CheckChatUsernameResultUsernameOccupied], [CheckChatUsernameResultUsernamePurchasable], [CheckChatUsernameResultPublicChatsTooMany], [CheckChatUsernameResultPublicGroupsUnavailable], [CheckChatUsernameResultOk].
 abstract class CheckChatUsernameResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkChatUsernameResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckChatUsernameResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3042,14 +3044,14 @@ abstract class CheckChatUsernameResult extends TlObject {
   }
 }
 
-///Represents result of checking whether a name can be used for a new sticker set
+/// Represents result of checking whether a name can be used for a new sticker set.
 ///
-///Inherited by [CheckStickerSetNameResultNameOccupied], [CheckStickerSetNameResultOk], [CheckStickerSetNameResultNameInvalid],
+/// Inherited by [CheckStickerSetNameResultNameOccupied], [CheckStickerSetNameResultOk], [CheckStickerSetNameResultNameInvalid].
 abstract class CheckStickerSetNameResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkStickerSetNameResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckStickerSetNameResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3067,14 +3069,14 @@ abstract class CheckStickerSetNameResult extends TlObject {
   }
 }
 
-///Represents result of 2-step verification password reset
+/// Represents result of 2-step verification password reset.
 ///
-///Inherited by [ResetPasswordResultOk], [ResetPasswordResultPending], [ResetPasswordResultDeclined],
+/// Inherited by [ResetPasswordResultOk], [ResetPasswordResultPending], [ResetPasswordResultDeclined].
 abstract class ResetPasswordResult extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetPasswordResult";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetPasswordResult? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3092,14 +3094,14 @@ abstract class ResetPasswordResult extends TlObject {
   }
 }
 
-///Contains information about a file with messages exported from another app
+/// Contains information about a file with messages exported from another app.
 ///
-///Inherited by [MessageFileTypeUnknown], [MessageFileTypePrivate], [MessageFileTypeGroup],
+/// Inherited by [MessageFileTypeUnknown], [MessageFileTypePrivate], [MessageFileTypeGroup].
 abstract class MessageFileType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "messageFileType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static MessageFileType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3117,14 +3119,14 @@ abstract class MessageFileType extends TlObject {
   }
 }
 
-///Contains content of a push message notification
+/// Contains content of a push message notification.
 ///
-///Inherited by [PushMessageContentChatChangeTitle], [PushMessageContentInvoice], [PushMessageContentAnimation], [PushMessageContentStory], [PushMessageContentChatSetBackground], [PushMessageContentGame], [PushMessageContentDocument], [PushMessageContentPhoto], [PushMessageContentGameScore], [PushMessageContentLocation], [PushMessageContentChatJoinByRequest], [PushMessageContentContact], [PushMessageContentRecurringPayment], [PushMessageContentSuggestProfilePhoto], [PushMessageContentMessageForwards], [PushMessageContentMediaAlbum], [PushMessageContentVideo], [PushMessageContentBasicGroupChatCreate], [PushMessageContentAudio], [PushMessageContentHidden], [PushMessageContentChatDeleteMember], [PushMessageContentSticker], [PushMessageContentPoll], [PushMessageContentVoiceNote], [PushMessageContentContactRegistered], [PushMessageContentVideoNote], [PushMessageContentChatSetTheme], [PushMessageContentChatChangePhoto], [PushMessageContentChatJoinByLink], [PushMessageContentText], [PushMessageContentChatAddMembers], [PushMessageContentScreenshotTaken],
+/// Inherited by [PushMessageContentChatChangeTitle], [PushMessageContentInvoice], [PushMessageContentAnimation], [PushMessageContentStory], [PushMessageContentChatSetBackground], [PushMessageContentGame], [PushMessageContentDocument], [PushMessageContentPhoto], [PushMessageContentGameScore], [PushMessageContentLocation], [PushMessageContentChatJoinByRequest], [PushMessageContentContact], [PushMessageContentRecurringPayment], [PushMessageContentSuggestProfilePhoto], [PushMessageContentMessageForwards], [PushMessageContentMediaAlbum], [PushMessageContentVideo], [PushMessageContentBasicGroupChatCreate], [PushMessageContentAudio], [PushMessageContentHidden], [PushMessageContentChatDeleteMember], [PushMessageContentSticker], [PushMessageContentPoll], [PushMessageContentVoiceNote], [PushMessageContentContactRegistered], [PushMessageContentVideoNote], [PushMessageContentChatSetTheme], [PushMessageContentChatChangePhoto], [PushMessageContentChatJoinByLink], [PushMessageContentText], [PushMessageContentChatAddMembers], [PushMessageContentScreenshotTaken].
 abstract class PushMessageContent extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pushMessageContent";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PushMessageContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3200,14 +3202,14 @@ abstract class PushMessageContent extends TlObject {
   }
 }
 
-///Contains detailed information about a notification
+/// Contains detailed information about a notification.
 ///
-///Inherited by [NotificationTypeNewCall], [NotificationTypeNewPushMessage], [NotificationTypeNewMessage], [NotificationTypeNewSecretChat],
+/// Inherited by [NotificationTypeNewCall], [NotificationTypeNewPushMessage], [NotificationTypeNewMessage], [NotificationTypeNewSecretChat].
 abstract class NotificationType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "notificationType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static NotificationType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3227,14 +3229,14 @@ abstract class NotificationType extends TlObject {
   }
 }
 
-///Describes the type of notifications in a notification group
+/// Describes the type of notifications in a notification group.
 ///
-///Inherited by [NotificationGroupTypeCalls], [NotificationGroupTypeMentions], [NotificationGroupTypeSecretChat], [NotificationGroupTypeMessages],
+/// Inherited by [NotificationGroupTypeCalls], [NotificationGroupTypeMentions], [NotificationGroupTypeSecretChat], [NotificationGroupTypeMessages].
 abstract class NotificationGroupType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "notificationGroupType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static NotificationGroupType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3254,14 +3256,14 @@ abstract class NotificationGroupType extends TlObject {
   }
 }
 
-///Represents the value of an option
+/// Represents the value of an option.
 ///
-///Inherited by [OptionValueString], [OptionValueInteger], [OptionValueBoolean], [OptionValueEmpty],
+/// Inherited by [OptionValueString], [OptionValueInteger], [OptionValueBoolean], [OptionValueEmpty].
 abstract class OptionValue extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "optionValue";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OptionValue? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3281,14 +3283,14 @@ abstract class OptionValue extends TlObject {
   }
 }
 
-///Represents a JSON value
+/// Represents a JSON value.
 ///
-///Inherited by [JsonValueObject], [JsonValueArray], [JsonValueBoolean], [JsonValueNumber], [JsonValueString], [JsonValueNull],
+/// Inherited by [JsonValueObject], [JsonValueArray], [JsonValueBoolean], [JsonValueNumber], [JsonValueString], [JsonValueNull].
 abstract class JsonValue extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "jsonValue";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static JsonValue? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3312,14 +3314,14 @@ abstract class JsonValue extends TlObject {
   }
 }
 
-///Describes privacy settings of a story
+/// Describes privacy settings of a story.
 ///
-///Inherited by [StoryPrivacySettingsEveryone], [StoryPrivacySettingsCloseFriends], [StoryPrivacySettingsContacts], [StoryPrivacySettingsSelectedUsers],
+/// Inherited by [StoryPrivacySettingsEveryone], [StoryPrivacySettingsCloseFriends], [StoryPrivacySettingsContacts], [StoryPrivacySettingsSelectedUsers].
 abstract class StoryPrivacySettings extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "storyPrivacySettings";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StoryPrivacySettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3339,14 +3341,14 @@ abstract class StoryPrivacySettings extends TlObject {
   }
 }
 
-///Represents a single rule for managing user privacy settings
+/// Represents a single rule for managing user privacy settings.
 ///
-///Inherited by [UserPrivacySettingRuleRestrictChatMembers], [UserPrivacySettingRuleAllowChatMembers], [UserPrivacySettingRuleRestrictUsers], [UserPrivacySettingRuleRestrictAll], [UserPrivacySettingRuleAllowAll], [UserPrivacySettingRuleAllowContacts], [UserPrivacySettingRuleRestrictContacts], [UserPrivacySettingRuleAllowUsers],
+/// Inherited by [UserPrivacySettingRuleRestrictChatMembers], [UserPrivacySettingRuleAllowChatMembers], [UserPrivacySettingRuleRestrictUsers], [UserPrivacySettingRuleRestrictAll], [UserPrivacySettingRuleAllowAll], [UserPrivacySettingRuleAllowContacts], [UserPrivacySettingRuleRestrictContacts], [UserPrivacySettingRuleAllowUsers].
 abstract class UserPrivacySettingRule extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "userPrivacySettingRule";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UserPrivacySettingRule? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3374,14 +3376,14 @@ abstract class UserPrivacySettingRule extends TlObject {
   }
 }
 
-///Describes available user privacy settings
+/// Describes available user privacy settings.
 ///
-///Inherited by [UserPrivacySettingAllowCalls], [UserPrivacySettingShowProfilePhoto], [UserPrivacySettingShowLinkInForwardedMessages], [UserPrivacySettingShowStatus], [UserPrivacySettingAllowPeerToPeerCalls], [UserPrivacySettingAllowFindingByPhoneNumber], [UserPrivacySettingShowPhoneNumber], [UserPrivacySettingAllowChatInvites], [UserPrivacySettingShowBio], [UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages],
+/// Inherited by [UserPrivacySettingAllowCalls], [UserPrivacySettingShowProfilePhoto], [UserPrivacySettingShowLinkInForwardedMessages], [UserPrivacySettingShowStatus], [UserPrivacySettingAllowPeerToPeerCalls], [UserPrivacySettingAllowFindingByPhoneNumber], [UserPrivacySettingShowPhoneNumber], [UserPrivacySettingAllowChatInvites], [UserPrivacySettingShowBio], [UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages].
 abstract class UserPrivacySetting extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "userPrivacySetting";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UserPrivacySetting? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3414,14 +3416,14 @@ abstract class UserPrivacySetting extends TlObject {
   }
 }
 
-///Represents the type of a session
+/// Represents the type of a session.
 ///
-///Inherited by [SessionTypeEdge], [SessionTypeUbuntu], [SessionTypeWindows], [SessionTypeIpad], [SessionTypeBrave], [SessionTypeIphone], [SessionTypeMac], [SessionTypeUnknown], [SessionTypeSafari], [SessionTypeLinux], [SessionTypeOpera], [SessionTypeAndroid], [SessionTypeXbox], [SessionTypeFirefox], [SessionTypeVivaldi], [SessionTypeChrome], [SessionTypeApple],
+/// Inherited by [SessionTypeEdge], [SessionTypeUbuntu], [SessionTypeWindows], [SessionTypeIpad], [SessionTypeBrave], [SessionTypeIphone], [SessionTypeMac], [SessionTypeUnknown], [SessionTypeSafari], [SessionTypeLinux], [SessionTypeOpera], [SessionTypeAndroid], [SessionTypeXbox], [SessionTypeFirefox], [SessionTypeVivaldi], [SessionTypeChrome], [SessionTypeApple].
 abstract class SessionType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sessionType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SessionType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3467,14 +3469,14 @@ abstract class SessionType extends TlObject {
   }
 }
 
-///Describes the reason why a chat is reported
+/// Describes the reason why a chat is reported.
 ///
-///Inherited by [ReportReasonUnrelatedLocation], [ReportReasonSpam], [ReportReasonFake], [ReportReasonViolence], [ReportReasonIllegalDrugs], [ReportReasonChildAbuse], [ReportReasonPersonalDetails], [ReportReasonPornography], [ReportReasonCustom], [ReportReasonCopyright],
+/// Inherited by [ReportReasonUnrelatedLocation], [ReportReasonSpam], [ReportReasonFake], [ReportReasonViolence], [ReportReasonIllegalDrugs], [ReportReasonChildAbuse], [ReportReasonPersonalDetails], [ReportReasonPornography], [ReportReasonCustom], [ReportReasonCopyright].
 abstract class ReportReason extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportReason";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportReason? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3506,14 +3508,14 @@ abstract class ReportReason extends TlObject {
   }
 }
 
-///Describes the target chat to be opened
+/// Describes the target chat to be opened.
 ///
-///Inherited by [TargetChatInternalLink], [TargetChatChosen], [TargetChatCurrent],
+/// Inherited by [TargetChatInternalLink], [TargetChatChosen], [TargetChatCurrent].
 abstract class TargetChat extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "targetChat";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TargetChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3531,14 +3533,14 @@ abstract class TargetChat extends TlObject {
   }
 }
 
-///Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
+/// Describes an internal https://t.me or tg: link, which must be processed by the application in a special way.
 ///
-///Inherited by [InternalLinkTypeGame], [InternalLinkTypeChatFolderSettings], [InternalLinkTypeStory], [InternalLinkTypeChangePhoneNumber], [InternalLinkTypeQrCodeAuthentication], [InternalLinkTypeBotStartInGroup], [InternalLinkTypePhoneNumberConfirmation], [InternalLinkTypeMessageDraft], [InternalLinkTypeThemeSettings], [InternalLinkTypeUnsupportedProxy], [InternalLinkTypeChatFolderInvite], [InternalLinkTypeChatBoost], [InternalLinkTypeVideoChat], [InternalLinkTypeStickerSet], [InternalLinkTypeEditProfileSettings], [InternalLinkTypePublicChat], [InternalLinkTypeBotStart], [InternalLinkTypeWebApp], [InternalLinkTypeUserPhoneNumber], [InternalLinkTypeBackground], [InternalLinkTypeLanguagePack], [InternalLinkTypeUserToken], [InternalLinkTypeTheme], [InternalLinkTypeUnknownDeepLink], [InternalLinkTypeSideMenuBot], [InternalLinkTypeAuthenticationCode], [InternalLinkTypeInstantView], [InternalLinkTypeBotAddToChannel], [InternalLinkTypePrivacyAndSecuritySettings], [InternalLinkTypeInvoice], [InternalLinkTypeSettings], [InternalLinkTypeAttachmentMenuBot], [InternalLinkTypeChatInvite], [InternalLinkTypeDefaultMessageAutoDeleteTimerSettings], [InternalLinkTypePassportDataRequest], [InternalLinkTypeLanguageSettings], [InternalLinkTypeRestorePurchases], [InternalLinkTypePremiumFeatures], [InternalLinkTypeActiveSessions], [InternalLinkTypeMessage], [InternalLinkTypeProxy],
+/// Inherited by [InternalLinkTypeGame], [InternalLinkTypeChatFolderSettings], [InternalLinkTypeStory], [InternalLinkTypeChangePhoneNumber], [InternalLinkTypeQrCodeAuthentication], [InternalLinkTypeBotStartInGroup], [InternalLinkTypePhoneNumberConfirmation], [InternalLinkTypeMessageDraft], [InternalLinkTypeThemeSettings], [InternalLinkTypeUnsupportedProxy], [InternalLinkTypeChatFolderInvite], [InternalLinkTypeChatBoost], [InternalLinkTypeVideoChat], [InternalLinkTypeStickerSet], [InternalLinkTypeEditProfileSettings], [InternalLinkTypePublicChat], [InternalLinkTypeBotStart], [InternalLinkTypeWebApp], [InternalLinkTypeUserPhoneNumber], [InternalLinkTypeBackground], [InternalLinkTypeLanguagePack], [InternalLinkTypeUserToken], [InternalLinkTypeTheme], [InternalLinkTypeUnknownDeepLink], [InternalLinkTypeSideMenuBot], [InternalLinkTypeAuthenticationCode], [InternalLinkTypeInstantView], [InternalLinkTypeBotAddToChannel], [InternalLinkTypePrivacyAndSecuritySettings], [InternalLinkTypeInvoice], [InternalLinkTypeSettings], [InternalLinkTypeAttachmentMenuBot], [InternalLinkTypeChatInvite], [InternalLinkTypeDefaultMessageAutoDeleteTimerSettings], [InternalLinkTypePassportDataRequest], [InternalLinkTypeLanguageSettings], [InternalLinkTypeRestorePurchases], [InternalLinkTypePremiumFeatures], [InternalLinkTypeActiveSessions], [InternalLinkTypeMessage], [InternalLinkTypeProxy].
 abstract class InternalLinkType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "internalLinkType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InternalLinkType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3633,14 +3635,14 @@ abstract class InternalLinkType extends TlObject {
   }
 }
 
-///Describes a type of a block list
+/// Describes a type of a block list.
 ///
-///Inherited by [BlockListStories], [BlockListMain],
+/// Inherited by [BlockListStories], [BlockListMain].
 abstract class BlockList extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "blockList";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BlockList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3656,14 +3658,14 @@ abstract class BlockList extends TlObject {
   }
 }
 
-///Represents the type of a file
+/// Represents the type of a file.
 ///
-///Inherited by [FileTypeDocument], [FileTypeThumbnail], [FileTypeSecretThumbnail], [FileTypeAudio], [FileTypeSecret], [FileTypeWallpaper], [FileTypeUnknown], [FileTypeSticker], [FileTypeProfilePhoto], [FileTypeNotificationSound], [FileTypeVideoNote], [FileTypeAnimation], [FileTypeVideoStory], [FileTypeVideo], [FileTypePhoto], [FileTypeSecure], [FileTypeNone], [FileTypePhotoStory], [FileTypeVoiceNote],
+/// Inherited by [FileTypeDocument], [FileTypeThumbnail], [FileTypeSecretThumbnail], [FileTypeAudio], [FileTypeSecret], [FileTypeWallpaper], [FileTypeUnknown], [FileTypeSticker], [FileTypeProfilePhoto], [FileTypeNotificationSound], [FileTypeVideoNote], [FileTypeAnimation], [FileTypeVideoStory], [FileTypeVideo], [FileTypePhoto], [FileTypeSecure], [FileTypeNone], [FileTypePhotoStory], [FileTypeVoiceNote].
 abstract class FileType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "fileType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static FileType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3713,14 +3715,14 @@ abstract class FileType extends TlObject {
   }
 }
 
-///Represents the type of a network
+/// Represents the type of a network.
 ///
-///Inherited by [NetworkTypeOther], [NetworkTypeMobile], [NetworkTypeWiFi], [NetworkTypeNone], [NetworkTypeMobileRoaming],
+/// Inherited by [NetworkTypeOther], [NetworkTypeMobile], [NetworkTypeWiFi], [NetworkTypeNone], [NetworkTypeMobileRoaming].
 abstract class NetworkType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "networkType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static NetworkType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3742,14 +3744,14 @@ abstract class NetworkType extends TlObject {
   }
 }
 
-///Contains statistics about network usage
+/// Contains statistics about network usage.
 ///
-///Inherited by [NetworkStatisticsEntryCall], [NetworkStatisticsEntryFile],
+/// Inherited by [NetworkStatisticsEntryCall], [NetworkStatisticsEntryFile].
 abstract class NetworkStatisticsEntry extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "networkStatisticsEntry";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static NetworkStatisticsEntry? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3765,14 +3767,14 @@ abstract class NetworkStatisticsEntry extends TlObject {
   }
 }
 
-///Describes scope of autosave settings
+/// Describes scope of autosave settings.
 ///
-///Inherited by [AutosaveSettingsScopeGroupChats], [AutosaveSettingsScopeChannelChats], [AutosaveSettingsScopeChat], [AutosaveSettingsScopePrivateChats],
+/// Inherited by [AutosaveSettingsScopeGroupChats], [AutosaveSettingsScopeChannelChats], [AutosaveSettingsScopeChat], [AutosaveSettingsScopePrivateChats].
 abstract class AutosaveSettingsScope extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "autosaveSettingsScope";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AutosaveSettingsScope? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3792,14 +3794,14 @@ abstract class AutosaveSettingsScope extends TlObject {
   }
 }
 
-///Describes the current state of the connection to Telegram servers
+/// Describes the current state of the connection to Telegram servers.
 ///
-///Inherited by [ConnectionStateConnectingToProxy], [ConnectionStateUpdating], [ConnectionStateReady], [ConnectionStateWaitingForNetwork], [ConnectionStateConnecting],
+/// Inherited by [ConnectionStateConnectingToProxy], [ConnectionStateUpdating], [ConnectionStateReady], [ConnectionStateWaitingForNetwork], [ConnectionStateConnecting].
 abstract class ConnectionState extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "connectionState";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ConnectionState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3821,14 +3823,14 @@ abstract class ConnectionState extends TlObject {
   }
 }
 
-///Represents the categories of chats for which a list of frequently used chats can be retrieved
+/// Represents the categories of chats for which a list of frequently used chats can be retrieved.
 ///
-///Inherited by [TopChatCategoryForwardChats], [TopChatCategoryChannels], [TopChatCategoryUsers], [TopChatCategoryCalls], [TopChatCategoryInlineBots], [TopChatCategoryBots], [TopChatCategoryGroups],
+/// Inherited by [TopChatCategoryForwardChats], [TopChatCategoryChannels], [TopChatCategoryUsers], [TopChatCategoryCalls], [TopChatCategoryInlineBots], [TopChatCategoryBots], [TopChatCategoryGroups].
 abstract class TopChatCategory extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "topChatCategory";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TopChatCategory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3854,14 +3856,14 @@ abstract class TopChatCategory extends TlObject {
   }
 }
 
-///Describes the type of a URL linking to an internal Telegram entity
+/// Describes the type of a URL linking to an internal Telegram entity.
 ///
-///Inherited by [TMeUrlTypeStickerSet], [TMeUrlTypeChatInvite], [TMeUrlTypeUser], [TMeUrlTypeSupergroup],
+/// Inherited by [TMeUrlTypeStickerSet], [TMeUrlTypeChatInvite], [TMeUrlTypeUser], [TMeUrlTypeSupergroup].
 abstract class TMeUrlType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "tMeUrlType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TMeUrlType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3881,14 +3883,14 @@ abstract class TMeUrlType extends TlObject {
   }
 }
 
-///Describes an action suggested to the current user
+/// Describes an action suggested to the current user.
 ///
-///Inherited by [SuggestedActionUpgradePremium], [SuggestedActionCheckPhoneNumber], [SuggestedActionEnableArchiveAndMuteNewChats], [SuggestedActionConvertToBroadcastGroup], [SuggestedActionViewChecksHint], [SuggestedActionSubscribeToAnnualPremium], [SuggestedActionCheckPassword], [SuggestedActionRestorePremium], [SuggestedActionSetPassword],
+/// Inherited by [SuggestedActionUpgradePremium], [SuggestedActionCheckPhoneNumber], [SuggestedActionEnableArchiveAndMuteNewChats], [SuggestedActionConvertToBroadcastGroup], [SuggestedActionViewChecksHint], [SuggestedActionSubscribeToAnnualPremium], [SuggestedActionCheckPassword], [SuggestedActionRestorePremium], [SuggestedActionSetPassword].
 abstract class SuggestedAction extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "suggestedAction";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SuggestedAction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3918,14 +3920,14 @@ abstract class SuggestedAction extends TlObject {
   }
 }
 
-///Describes the way the text needs to be parsed for text entities
+/// Describes the way the text needs to be parsed for text entities.
 ///
-///Inherited by [TextParseModeMarkdown], [TextParseModeHTML],
+/// Inherited by [TextParseModeMarkdown], [TextParseModeHTML].
 abstract class TextParseMode extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "textParseMode";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TextParseMode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3941,14 +3943,14 @@ abstract class TextParseMode extends TlObject {
   }
 }
 
-///Describes the type of a proxy server
+/// Describes the type of a proxy server.
 ///
-///Inherited by [ProxyTypeHttp], [ProxyTypeSocks5], [ProxyTypeMtproto],
+/// Inherited by [ProxyTypeHttp], [ProxyTypeSocks5], [ProxyTypeMtproto].
 abstract class ProxyType extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "proxyType";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ProxyType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3966,14 +3968,14 @@ abstract class ProxyType extends TlObject {
   }
 }
 
-///Describes a statistical graph
+/// Describes a statistical graph.
 ///
-///Inherited by [StatisticalGraphData], [StatisticalGraphAsync], [StatisticalGraphError],
+/// Inherited by [StatisticalGraphData], [StatisticalGraphAsync], [StatisticalGraphError].
 abstract class StatisticalGraph extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "statisticalGraph";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StatisticalGraph? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3991,14 +3993,14 @@ abstract class StatisticalGraph extends TlObject {
   }
 }
 
-///Contains a detailed statistics about a chat
+/// Contains a detailed statistics about a chat.
 ///
-///Inherited by [ChatStatisticsChannel], [ChatStatisticsSupergroup],
+/// Inherited by [ChatStatisticsChannel], [ChatStatisticsSupergroup].
 abstract class ChatStatistics extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "chatStatistics";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChatStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4014,14 +4016,14 @@ abstract class ChatStatistics extends TlObject {
   }
 }
 
-///Represents a vector path command
+/// Represents a vector path command.
 ///
-///Inherited by [VectorPathCommandCubicBezierCurve], [VectorPathCommandLine],
+/// Inherited by [VectorPathCommandCubicBezierCurve], [VectorPathCommandLine].
 abstract class VectorPathCommand extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "vectorPathCommand";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static VectorPathCommand? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4037,14 +4039,14 @@ abstract class VectorPathCommand extends TlObject {
   }
 }
 
-///Represents the scope to which bot commands are relevant
+/// Represents the scope to which bot commands are relevant.
 ///
-///Inherited by [BotCommandScopeChatAdministrators], [BotCommandScopeAllChatAdministrators], [BotCommandScopeAllPrivateChats], [BotCommandScopeAllGroupChats], [BotCommandScopeChatMember], [BotCommandScopeDefault], [BotCommandScopeChat],
+/// Inherited by [BotCommandScopeChatAdministrators], [BotCommandScopeAllChatAdministrators], [BotCommandScopeAllPrivateChats], [BotCommandScopeAllGroupChats], [BotCommandScopeChatMember], [BotCommandScopeDefault], [BotCommandScopeChat].
 abstract class BotCommandScope extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "botCommandScope";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BotCommandScope? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4070,14 +4072,14 @@ abstract class BotCommandScope extends TlObject {
   }
 }
 
-///Contains notifications about data changes
+/// Contains notifications about data changes.
 ///
-///Inherited by [UpdateFile], [UpdateNotificationGroup], [UpdateFileGenerationStop], [UpdateMessageSendAcknowledged], [UpdateMessageUnreadReactions], [UpdateStorySendSucceeded], [UpdateNewInlineCallbackQuery], [UpdateNewInlineQuery], [UpdateChatMember], [UpdateScopeNotificationSettings], [UpdateUserPrivacySettingRules], [UpdateSupergroupFullInfo], [UpdateServiceNotification], [UpdateActiveNotifications], [UpdateStory], [UpdateTermsOfService], [UpdateChatHasProtectedContent], [UpdateMessageEdited], [UpdateOption], [UpdateChatReadInbox], [UpdateHavePendingNotifications], [UpdateChatActiveStories], [UpdateInstalledStickerSets], [UpdateAnimationSearchParameters], [UpdateChatMessageSender], [UpdateChatLastMessage], [UpdateFileGenerationStart], [UpdateChatUnreadMentionCount], [UpdateChatFolders], [UpdateChatHasScheduledMessages], [UpdateDiceEmojis], [UpdateAnimatedEmojiMessageClicked], [UpdateRecentStickers], [UpdateAuthorizationState], [UpdateSuggestedActions], [UpdateBasicGroupFullInfo], [UpdateSavedAnimations], [UpdateUserStatus], [UpdateSavedNotificationSounds], [UpdateAutosaveSettings], [UpdateUnconfirmedSession], [UpdateChatIsTranslatable], [UpdateFileDownload], [UpdateConnectionState], [UpdateChatPhoto], [UpdateFileDownloads], [UpdateChatPosition], [UpdateNewShippingQuery], [UpdateGroupCallParticipant], [UpdateChatDefaultDisableNotification], [UpdateMessageContentOpened], [UpdateWebAppMessageSent], [UpdatePollAnswer], [UpdateChatReadOutbox], [UpdateTrendingStickerSets], [UpdateMessageSendSucceeded], [UpdateStickerSet], [UpdateGroupCall], [UpdateSelectedBackground], [UpdateChatPermissions], [UpdateStoryStealthMode], [UpdateChatThemes], [UpdateUsersNearby], [UpdateStoryListChatCount], [UpdateChatActionBar], [UpdateMessageMentionRead], [UpdateNewCallbackQuery], [UpdateStoryDeleted], [UpdateNewCallSignalingData], [UpdateNewPreCheckoutQuery], [UpdateUnreadChatCount], [UpdateLanguagePackStrings], [UpdateUserFullInfo], [UpdateChatNotificationSettings], [UpdateMessageInteractionInfo], [UpdatePoll], [UpdateMessageIsPinned], [UpdateCall], [UpdateMessageContent], [UpdateAttachmentMenuBots], [UpdateChatAction], [UpdateNewCustomEvent], [UpdateActiveEmojiReactions], [UpdateSupergroup], [UpdateNewChat], [UpdateChatTitle], [UpdateNewCustomQuery], [UpdateChatIsMarkedAsUnread], [UpdateChatTheme], [UpdateForumTopicInfo], [UpdateNotification], [UpdateChatReplyMarkup], [UpdateChatBlockList], [UpdateFavoriteStickers], [UpdateDefaultReactionType], [UpdateMessageLiveLocationViewed], [UpdateChatAvailableReactions], [UpdateAddChatMembersPrivacyForbidden], [UpdateDeleteMessages], [UpdateNewMessage], [UpdateSecretChat], [UpdateFileRemovedFromDownloads], [UpdateChatOnlineMemberCount], [UpdateChatUnreadReactionCount], [UpdateMessageSendFailed], [UpdateUser], [UpdateUnreadMessageCount], [UpdateChatMessageAutoDeleteTime], [UpdateFileAddedToDownloads], [UpdateBasicGroup], [UpdateChatVideoChat], [UpdateNewChatJoinRequest], [UpdateStorySendFailed], [UpdateChatPendingJoinRequests], [UpdateChatBackground], [UpdateChatDraftMessage], [UpdateNewChosenInlineResult],
+/// Inherited by [UpdateFile], [UpdateNotificationGroup], [UpdateFileGenerationStop], [UpdateMessageSendAcknowledged], [UpdateMessageUnreadReactions], [UpdateStorySendSucceeded], [UpdateNewInlineCallbackQuery], [UpdateNewInlineQuery], [UpdateChatMember], [UpdateScopeNotificationSettings], [UpdateUserPrivacySettingRules], [UpdateSupergroupFullInfo], [UpdateServiceNotification], [UpdateActiveNotifications], [UpdateStory], [UpdateTermsOfService], [UpdateChatHasProtectedContent], [UpdateMessageEdited], [UpdateOption], [UpdateChatReadInbox], [UpdateHavePendingNotifications], [UpdateChatActiveStories], [UpdateInstalledStickerSets], [UpdateAnimationSearchParameters], [UpdateChatMessageSender], [UpdateChatLastMessage], [UpdateFileGenerationStart], [UpdateChatUnreadMentionCount], [UpdateChatFolders], [UpdateChatHasScheduledMessages], [UpdateDiceEmojis], [UpdateAnimatedEmojiMessageClicked], [UpdateRecentStickers], [UpdateAuthorizationState], [UpdateSuggestedActions], [UpdateBasicGroupFullInfo], [UpdateSavedAnimations], [UpdateUserStatus], [UpdateSavedNotificationSounds], [UpdateAutosaveSettings], [UpdateUnconfirmedSession], [UpdateChatIsTranslatable], [UpdateFileDownload], [UpdateConnectionState], [UpdateChatPhoto], [UpdateFileDownloads], [UpdateChatPosition], [UpdateNewShippingQuery], [UpdateGroupCallParticipant], [UpdateChatDefaultDisableNotification], [UpdateMessageContentOpened], [UpdateWebAppMessageSent], [UpdatePollAnswer], [UpdateChatReadOutbox], [UpdateTrendingStickerSets], [UpdateMessageSendSucceeded], [UpdateStickerSet], [UpdateGroupCall], [UpdateSelectedBackground], [UpdateChatPermissions], [UpdateStoryStealthMode], [UpdateChatThemes], [UpdateUsersNearby], [UpdateStoryListChatCount], [UpdateChatActionBar], [UpdateMessageMentionRead], [UpdateNewCallbackQuery], [UpdateStoryDeleted], [UpdateNewCallSignalingData], [UpdateNewPreCheckoutQuery], [UpdateUnreadChatCount], [UpdateLanguagePackStrings], [UpdateUserFullInfo], [UpdateChatNotificationSettings], [UpdateMessageInteractionInfo], [UpdatePoll], [UpdateMessageIsPinned], [UpdateCall], [UpdateMessageContent], [UpdateAttachmentMenuBots], [UpdateChatAction], [UpdateNewCustomEvent], [UpdateActiveEmojiReactions], [UpdateSupergroup], [UpdateNewChat], [UpdateChatTitle], [UpdateNewCustomQuery], [UpdateChatIsMarkedAsUnread], [UpdateChatTheme], [UpdateForumTopicInfo], [UpdateNotification], [UpdateChatReplyMarkup], [UpdateChatBlockList], [UpdateFavoriteStickers], [UpdateDefaultReactionType], [UpdateMessageLiveLocationViewed], [UpdateChatAvailableReactions], [UpdateAddChatMembersPrivacyForbidden], [UpdateDeleteMessages], [UpdateNewMessage], [UpdateSecretChat], [UpdateFileRemovedFromDownloads], [UpdateChatOnlineMemberCount], [UpdateChatUnreadReactionCount], [UpdateMessageSendFailed], [UpdateUser], [UpdateUnreadMessageCount], [UpdateChatMessageAutoDeleteTime], [UpdateFileAddedToDownloads], [UpdateBasicGroup], [UpdateChatVideoChat], [UpdateNewChatJoinRequest], [UpdateStorySendFailed], [UpdateChatPendingJoinRequests], [UpdateChatBackground], [UpdateChatDraftMessage], [UpdateNewChosenInlineResult].
 abstract class Update extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "update";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static Update? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4323,14 +4325,14 @@ abstract class Update extends TlObject {
   }
 }
 
-///Describes a stream to which TDLib internal log is written
+/// Describes a stream to which TDLib internal log is written.
 ///
-///Inherited by [LogStreamDefault], [LogStreamFile], [LogStreamEmpty],
+/// Inherited by [LogStreamDefault], [LogStreamFile], [LogStreamEmpty].
 abstract class LogStream extends TlObject {
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "logStream";
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LogStream? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];

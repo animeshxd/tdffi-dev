@@ -2,17 +2,17 @@
 import './abc.dart';
 import './classes.dart';
 
-///Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+/// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization.
 ///
-///Returns [AuthorizationState]
+/// Returns [AuthorizationState].
 class GetAuthorizationState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAuthorizationState";
 
   /// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
@@ -33,7 +33,7 @@ class GetAuthorizationState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAuthorizationState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -48,66 +48,66 @@ class GetAuthorizationState extends Func {
   }
 }
 
-///Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+/// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetTdlibParameters extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setTdlibParameters";
 
-  /// [use_test_dc] Pass true to use Telegram test environment instead of the production environment
+  /// Pass true to use Telegram test environment instead of the production environment.
   late bool use_test_dc;
 
-  /// [database_directory] The path to the directory for the persistent database; if empty, the current working directory will be used
+  /// The path to the directory for the persistent database; if empty, the current working directory will be used.
   String? database_directory;
 
-  /// [files_directory] The path to the directory for storing files; if empty, database_directory will be used
+  /// The path to the directory for storing files; if empty, database_directory will be used.
   String? files_directory;
 
-  /// [database_encryption_key] Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
+  /// Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned.
   /// ; base64-encoded bytes `List<int>`
   late bytes database_encryption_key;
 
-  /// [use_file_database] Pass true to keep information about downloaded and uploaded files between application restarts
+  /// Pass true to keep information about downloaded and uploaded files between application restarts.
   late bool use_file_database;
 
-  /// [use_chat_info_database] Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
+  /// Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database.
   late bool use_chat_info_database;
 
-  /// [use_message_database] Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database
+  /// Pass true to keep cache of chats and messages between restarts. Implies use_chat_info_database.
   late bool use_message_database;
 
-  /// [use_secret_chats] Pass true to enable support for secret chats
+  /// Pass true to enable support for secret chats.
   late bool use_secret_chats;
 
-  /// [api_id] Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+  /// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org.
   late int api_id;
 
-  /// [api_hash] Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+  /// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org.
   late String api_hash;
 
-  /// [system_language_code] IETF language tag of the user's operating system language; must be non-empty
+  /// IETF language tag of the user's operating system language; must be non-empty.
   late String system_language_code;
 
-  /// [device_model] Model of the device the application is being run on; must be non-empty
+  /// Model of the device the application is being run on; must be non-empty.
   late String device_model;
 
-  /// [system_version] Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+  /// Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib.
   String? system_version;
 
-  /// [application_version] Application version; must be non-empty
+  /// Application version; must be non-empty.
   late String application_version;
 
-  /// [enable_storage_optimizer] Pass true to automatically delete old files in background
+  /// Pass true to automatically delete old files in background.
   late bool enable_storage_optimizer;
 
-  /// [ignore_file_names] Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
+  /// Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name.
   late bool ignore_file_names;
 
   /// Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
@@ -162,7 +162,7 @@ class SetTdlibParameters extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetTdlibParameters? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -208,23 +208,23 @@ class SetTdlibParameters extends Func {
   }
 }
 
-///Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+/// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAuthenticationPhoneNumber extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAuthenticationPhoneNumber";
 
-  /// [phone_number] The phone number of the user, in international format
+  /// The phone number of the user, in international format.
   late String phone_number;
 
-  /// [settings] Settings for the authentication of the user's phone number; pass null to use default settings
+  /// Settings for the authentication of the user's phone number; pass null to use default settings.
   PhoneNumberAuthenticationSettings? settings;
 
   /// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
@@ -248,7 +248,7 @@ class SetAuthenticationPhoneNumber extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAuthenticationPhoneNumber? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -266,20 +266,20 @@ class SetAuthenticationPhoneNumber extends Func {
   }
 }
 
-///Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
+/// Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAuthenticationEmailAddress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAuthenticationEmailAddress";
 
-  /// [email_address] The email address of the user
+  /// The email address of the user.
   late String email_address;
 
   /// Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
@@ -302,7 +302,7 @@ class SetAuthenticationEmailAddress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAuthenticationEmailAddress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -318,17 +318,17 @@ class SetAuthenticationEmailAddress extends Func {
   }
 }
 
-///Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed,
+/// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed,.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ResendAuthenticationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendAuthenticationCode";
 
   /// Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed,
@@ -349,7 +349,7 @@ class ResendAuthenticationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendAuthenticationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -364,20 +364,20 @@ class ResendAuthenticationCode extends Func {
   }
 }
 
-///Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+/// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckAuthenticationEmailCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkAuthenticationEmailCode";
 
-  /// [code] Email address authentication to check
+  /// Email address authentication to check.
   late EmailAddressAuthentication code;
 
   /// Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
@@ -399,7 +399,7 @@ class CheckAuthenticationEmailCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckAuthenticationEmailCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -415,20 +415,20 @@ class CheckAuthenticationEmailCode extends Func {
   }
 }
 
-///Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
+/// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckAuthenticationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkAuthenticationCode";
 
-  /// [code] Authentication code to check
+  /// Authentication code to check.
   late String code;
 
   /// Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
@@ -450,7 +450,7 @@ class CheckAuthenticationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckAuthenticationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -466,20 +466,20 @@ class CheckAuthenticationCode extends Func {
   }
 }
 
-///Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
+/// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RequestQrCodeAuthentication extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "requestQrCodeAuthentication";
 
-  /// [other_user_ids] List of user identifiers of other users currently using the application
+  /// List of user identifiers of other users currently using the application.
   late List<int> other_user_ids;
 
   /// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber,
@@ -502,7 +502,7 @@ class RequestQrCodeAuthentication extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RequestQrCodeAuthentication? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -522,23 +522,23 @@ class RequestQrCodeAuthentication extends Func {
   }
 }
 
-///Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+/// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RegisterUser extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "registerUser";
 
-  /// [first_name] The first name of the user; 1-64 characters
+  /// The first name of the user; 1-64 characters.
   late String first_name;
 
-  /// [last_name] The last name of the user; 0-64 characters
+  /// The last name of the user; 0-64 characters.
   late String last_name;
 
   /// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -565,7 +565,7 @@ class RegisterUser extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RegisterUser? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -583,17 +583,17 @@ class RegisterUser extends Func {
   }
 }
 
-///Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
+/// Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ResetAuthenticationEmailAddress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetAuthenticationEmailAddress";
 
   /// Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
@@ -614,7 +614,7 @@ class ResetAuthenticationEmailAddress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetAuthenticationEmailAddress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -629,20 +629,20 @@ class ResetAuthenticationEmailAddress extends Func {
   }
 }
 
-///Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
+/// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckAuthenticationPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkAuthenticationPassword";
 
-  /// [password] The 2-step verification password to check
+  /// The 2-step verification password to check.
   late String password;
 
   /// Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
@@ -665,7 +665,7 @@ class CheckAuthenticationPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckAuthenticationPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -681,17 +681,17 @@ class CheckAuthenticationPassword extends Func {
   }
 }
 
-///Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+/// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RequestAuthenticationPasswordRecovery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "requestAuthenticationPasswordRecovery";
 
   /// Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -712,7 +712,7 @@ class RequestAuthenticationPasswordRecovery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RequestAuthenticationPasswordRecovery? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -728,20 +728,20 @@ class RequestAuthenticationPasswordRecovery extends Func {
   }
 }
 
-///Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+/// Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckAuthenticationPasswordRecoveryCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkAuthenticationPasswordRecoveryCode";
 
-  /// [recovery_code] Recovery code to check
+  /// Recovery code to check.
   late String recovery_code;
 
   /// Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
@@ -764,7 +764,7 @@ class CheckAuthenticationPasswordRecoveryCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckAuthenticationPasswordRecoveryCode? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -781,26 +781,26 @@ class CheckAuthenticationPasswordRecoveryCode extends Func {
   }
 }
 
-///Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+/// Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RecoverAuthenticationPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "recoverAuthenticationPassword";
 
-  /// [recovery_code] Recovery code to check
+  /// Recovery code to check.
   late String recovery_code;
 
-  /// [new_password] New 2-step verification password of the user; may be empty to remove the password
+  /// New 2-step verification password of the user; may be empty to remove the password.
   late String new_password;
 
-  /// [new_hint] New password hint; may be empty
+  /// New password hint; may be empty.
   late String new_hint;
 
   /// Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -829,7 +829,7 @@ class RecoverAuthenticationPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RecoverAuthenticationPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -849,20 +849,20 @@ class RecoverAuthenticationPassword extends Func {
   }
 }
 
-///Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+/// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendAuthenticationFirebaseSms extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendAuthenticationFirebaseSms";
 
-  /// [token] SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+  /// SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application.
   late String token;
 
   /// Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
@@ -885,7 +885,7 @@ class SendAuthenticationFirebaseSms extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendAuthenticationFirebaseSms? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -901,20 +901,20 @@ class SendAuthenticationFirebaseSms extends Func {
   }
 }
 
-///Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
+/// Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckAuthenticationBotToken extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkAuthenticationBotToken";
 
-  /// [token] The bot token
+  /// The bot token.
   late String token;
 
   /// Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
@@ -936,7 +936,7 @@ class CheckAuthenticationBotToken extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckAuthenticationBotToken? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -952,17 +952,17 @@ class CheckAuthenticationBotToken extends Func {
   }
 }
 
-///Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
+/// Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LogOut extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "logOut";
 
   /// Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
@@ -980,7 +980,7 @@ class LogOut extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LogOut? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -995,17 +995,17 @@ class LogOut extends Func {
   }
 }
 
-///Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
+/// Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class Close extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "close";
 
   /// Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
@@ -1023,7 +1023,7 @@ class Close extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static Close? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1038,17 +1038,17 @@ class Close extends Func {
   }
 }
 
-///Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
+/// Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class Destroy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "destroy";
 
   /// Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
@@ -1066,7 +1066,7 @@ class Destroy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static Destroy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1081,20 +1081,20 @@ class Destroy extends Func {
   }
 }
 
-///Confirms QR code authentication on another device. Returns created session on success
+/// Confirms QR code authentication on another device. Returns created session on success.
 ///
-///Returns [Session]
+/// Returns [Session].
 class ConfirmQrCodeAuthentication extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "confirmQrCodeAuthentication";
 
-  /// [link] A link from a QR code. The link must be scanned by the in-app camera
+  /// A link from a QR code. The link must be scanned by the in-app camera.
   late String link;
 
   /// Confirms QR code authentication on another device. Returns created session on success
@@ -1116,7 +1116,7 @@ class ConfirmQrCodeAuthentication extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ConfirmQrCodeAuthentication? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1132,17 +1132,17 @@ class ConfirmQrCodeAuthentication extends Func {
   }
 }
 
-///Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
+/// Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization.
 ///
-///Returns [Updates]
+/// Returns [Updates].
 class GetCurrentState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCurrentState";
 
   /// Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -1160,7 +1160,7 @@ class GetCurrentState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCurrentState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1175,20 +1175,20 @@ class GetCurrentState extends Func {
   }
 }
 
-///Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
+/// Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetDatabaseEncryptionKey extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setDatabaseEncryptionKey";
 
-  /// [new_encryption_key] New encryption key
+  /// New encryption key.
   /// ; base64-encoded bytes `List<int>`
   late bytes new_encryption_key;
 
@@ -1212,7 +1212,7 @@ class SetDatabaseEncryptionKey extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetDatabaseEncryptionKey? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1228,17 +1228,17 @@ class SetDatabaseEncryptionKey extends Func {
   }
 }
 
-///Returns the current state of 2-step verification
+/// Returns the current state of 2-step verification.
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class GetPasswordState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPasswordState";
 
   /// Returns the current state of 2-step verification
@@ -1256,7 +1256,7 @@ class GetPasswordState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPasswordState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1271,32 +1271,32 @@ class GetPasswordState extends Func {
   }
 }
 
-///Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+/// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class SetPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPassword";
 
-  /// [old_password] Previous 2-step verification password of the user
+  /// Previous 2-step verification password of the user.
   late String old_password;
 
-  /// [new_password] New 2-step verification password of the user; may be empty to remove the password
+  /// New 2-step verification password of the user; may be empty to remove the password.
   late String new_password;
 
-  /// [new_hint] New password hint; may be empty
+  /// New password hint; may be empty.
   late String new_hint;
 
-  /// [set_recovery_email_address] Pass true to change also the recovery email address
+  /// Pass true to change also the recovery email address.
   late bool set_recovery_email_address;
 
-  /// [new_recovery_email_address] New recovery email address; may be empty
+  /// New recovery email address; may be empty.
   late String new_recovery_email_address;
 
   /// Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
@@ -1329,7 +1329,7 @@ class SetPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1355,20 +1355,20 @@ class SetPassword extends Func {
   }
 }
 
-///Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty.
+/// Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty..
 ///
-///Returns [EmailAddressAuthenticationCodeInfo]
+/// Returns [EmailAddressAuthenticationCodeInfo].
 class SetLoginEmailAddress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setLoginEmailAddress";
 
-  /// [new_login_email_address] New login email address
+  /// New login email address.
   late String new_login_email_address;
 
   /// Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty.
@@ -1391,7 +1391,7 @@ class SetLoginEmailAddress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetLoginEmailAddress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1407,17 +1407,17 @@ class SetLoginEmailAddress extends Func {
   }
 }
 
-///Resends the login email address verification code
+/// Resends the login email address verification code.
 ///
-///Returns [EmailAddressAuthenticationCodeInfo]
+/// Returns [EmailAddressAuthenticationCodeInfo].
 class ResendLoginEmailAddressCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendLoginEmailAddressCode";
 
   /// Resends the login email address verification code
@@ -1438,7 +1438,7 @@ class ResendLoginEmailAddressCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendLoginEmailAddressCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1453,20 +1453,20 @@ class ResendLoginEmailAddressCode extends Func {
   }
 }
 
-///Checks the login email address authentication
+/// Checks the login email address authentication.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckLoginEmailAddressCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkLoginEmailAddressCode";
 
-  /// [code] Email address authentication to check
+  /// Email address authentication to check.
   late EmailAddressAuthentication code;
 
   /// Checks the login email address authentication
@@ -1488,7 +1488,7 @@ class CheckLoginEmailAddressCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckLoginEmailAddressCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1504,20 +1504,20 @@ class CheckLoginEmailAddressCode extends Func {
   }
 }
 
-///Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
+/// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user.
 ///
-///Returns [RecoveryEmailAddress]
+/// Returns [RecoveryEmailAddress].
 class GetRecoveryEmailAddress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecoveryEmailAddress";
 
-  /// [password] The 2-step verification password for the current user
+  /// The 2-step verification password for the current user.
   late String password;
 
   /// Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
@@ -1539,7 +1539,7 @@ class GetRecoveryEmailAddress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecoveryEmailAddress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1555,23 +1555,23 @@ class GetRecoveryEmailAddress extends Func {
   }
 }
 
-///Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
+/// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed..
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class SetRecoveryEmailAddress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setRecoveryEmailAddress";
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
-  /// [new_recovery_email_address] New recovery email address
+  /// New recovery email address.
   late String new_recovery_email_address;
 
   /// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed.
@@ -1598,7 +1598,7 @@ class SetRecoveryEmailAddress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetRecoveryEmailAddress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1617,20 +1617,20 @@ class SetRecoveryEmailAddress extends Func {
   }
 }
 
-///Checks the 2-step verification recovery email address verification code
+/// Checks the 2-step verification recovery email address verification code.
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class CheckRecoveryEmailAddressCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkRecoveryEmailAddressCode";
 
-  /// [code] Verification code to check
+  /// Verification code to check.
   late String code;
 
   /// Checks the 2-step verification recovery email address verification code
@@ -1653,7 +1653,7 @@ class CheckRecoveryEmailAddressCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckRecoveryEmailAddressCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1669,17 +1669,17 @@ class CheckRecoveryEmailAddressCode extends Func {
   }
 }
 
-///Resends the 2-step verification recovery email address verification code
+/// Resends the 2-step verification recovery email address verification code.
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class ResendRecoveryEmailAddressCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendRecoveryEmailAddressCode";
 
   /// Resends the 2-step verification recovery email address verification code
@@ -1700,7 +1700,7 @@ class ResendRecoveryEmailAddressCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendRecoveryEmailAddressCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1715,17 +1715,17 @@ class ResendRecoveryEmailAddressCode extends Func {
   }
 }
 
-///Requests to send a 2-step verification password recovery code to an email address that was previously set up
+/// Requests to send a 2-step verification password recovery code to an email address that was previously set up.
 ///
-///Returns [EmailAddressAuthenticationCodeInfo]
+/// Returns [EmailAddressAuthenticationCodeInfo].
 class RequestPasswordRecovery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "requestPasswordRecovery";
 
   /// Requests to send a 2-step verification password recovery code to an email address that was previously set up
@@ -1746,7 +1746,7 @@ class RequestPasswordRecovery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RequestPasswordRecovery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1761,20 +1761,20 @@ class RequestPasswordRecovery extends Func {
   }
 }
 
-///Checks whether a 2-step verification password recovery code sent to an email address is valid
+/// Checks whether a 2-step verification password recovery code sent to an email address is valid.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckPasswordRecoveryCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkPasswordRecoveryCode";
 
-  /// [recovery_code] Recovery code to check
+  /// Recovery code to check.
   late String recovery_code;
 
   /// Checks whether a 2-step verification password recovery code sent to an email address is valid
@@ -1797,7 +1797,7 @@ class CheckPasswordRecoveryCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckPasswordRecoveryCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1813,26 +1813,26 @@ class CheckPasswordRecoveryCode extends Func {
   }
 }
 
-///Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
+/// Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up.
 ///
-///Returns [PasswordState]
+/// Returns [PasswordState].
 class RecoverPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "recoverPassword";
 
-  /// [recovery_code] Recovery code to check
+  /// Recovery code to check.
   late String recovery_code;
 
-  /// [new_password] New 2-step verification password of the user; may be empty to remove the password
+  /// New 2-step verification password of the user; may be empty to remove the password.
   late String new_password;
 
-  /// [new_hint] New password hint; may be empty
+  /// New password hint; may be empty.
   late String new_hint;
 
   /// Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
@@ -1861,7 +1861,7 @@ class RecoverPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RecoverPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1881,17 +1881,17 @@ class RecoverPassword extends Func {
   }
 }
 
-///Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+/// Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time.
 ///
-///Returns [ResetPasswordResult]
+/// Returns [ResetPasswordResult].
 class ResetPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetPassword";
 
   /// Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
@@ -1909,7 +1909,7 @@ class ResetPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1924,17 +1924,17 @@ class ResetPassword extends Func {
   }
 }
 
-///Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+/// Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CancelPasswordReset extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "cancelPasswordReset";
 
   /// Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
@@ -1952,7 +1952,7 @@ class CancelPasswordReset extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CancelPasswordReset? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -1967,23 +1967,23 @@ class CancelPasswordReset extends Func {
   }
 }
 
-///Creates a new temporary password for processing payments
+/// Creates a new temporary password for processing payments.
 ///
-///Returns [TemporaryPasswordState]
+/// Returns [TemporaryPasswordState].
 class CreateTemporaryPassword extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createTemporaryPassword";
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
-  /// [valid_for] Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
+  /// Time during which the temporary password will be valid, in seconds; must be between 60 and 86400.
   late int valid_for;
 
   /// Creates a new temporary password for processing payments
@@ -2010,7 +2010,7 @@ class CreateTemporaryPassword extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateTemporaryPassword? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2028,17 +2028,17 @@ class CreateTemporaryPassword extends Func {
   }
 }
 
-///Returns information about the current temporary password
+/// Returns information about the current temporary password.
 ///
-///Returns [TemporaryPasswordState]
+/// Returns [TemporaryPasswordState].
 class GetTemporaryPasswordState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getTemporaryPasswordState";
 
   /// Returns information about the current temporary password
@@ -2059,7 +2059,7 @@ class GetTemporaryPasswordState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetTemporaryPasswordState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2074,17 +2074,17 @@ class GetTemporaryPasswordState extends Func {
   }
 }
 
-///Returns the current user
+/// Returns the current user.
 ///
-///Returns [User]
+/// Returns [User].
 class GetMe extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMe";
 
   /// Returns the current user
@@ -2102,7 +2102,7 @@ class GetMe extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMe? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2117,20 +2117,20 @@ class GetMe extends Func {
   }
 }
 
-///Returns information about a user by their identifier. This is an offline request if the current user is not a bot
+/// Returns information about a user by their identifier. This is an offline request if the current user is not a bot.
 ///
-///Returns [User]
+/// Returns [User].
 class GetUser extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUser";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
   /// Returns information about a user by their identifier. This is an offline request if the current user is not a bot
@@ -2152,7 +2152,7 @@ class GetUser extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUser? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2168,20 +2168,20 @@ class GetUser extends Func {
   }
 }
 
-///Returns full information about a user by their identifier
+/// Returns full information about a user by their identifier.
 ///
-///Returns [UserFullInfo]
+/// Returns [UserFullInfo].
 class GetUserFullInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUserFullInfo";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
   /// Returns full information about a user by their identifier
@@ -2203,7 +2203,7 @@ class GetUserFullInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUserFullInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2219,20 +2219,20 @@ class GetUserFullInfo extends Func {
   }
 }
 
-///Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
+/// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot.
 ///
-///Returns [BasicGroup]
+/// Returns [BasicGroup].
 class GetBasicGroup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBasicGroup";
 
-  /// [basic_group_id] Basic group identifier
+  /// Basic group identifier.
   late int basic_group_id;
 
   /// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
@@ -2254,7 +2254,7 @@ class GetBasicGroup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBasicGroup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2270,20 +2270,20 @@ class GetBasicGroup extends Func {
   }
 }
 
-///Returns full information about a basic group by its identifier
+/// Returns full information about a basic group by its identifier.
 ///
-///Returns [BasicGroupFullInfo]
+/// Returns [BasicGroupFullInfo].
 class GetBasicGroupFullInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBasicGroupFullInfo";
 
-  /// [basic_group_id] Basic group identifier
+  /// Basic group identifier.
   late int basic_group_id;
 
   /// Returns full information about a basic group by its identifier
@@ -2306,7 +2306,7 @@ class GetBasicGroupFullInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBasicGroupFullInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2322,20 +2322,20 @@ class GetBasicGroupFullInfo extends Func {
   }
 }
 
-///Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
+/// Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot.
 ///
-///Returns [Supergroup]
+/// Returns [Supergroup].
 class GetSupergroup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSupergroup";
 
-  /// [supergroup_id] Supergroup or channel identifier
+  /// Supergroup or channel identifier.
   late int supergroup_id;
 
   /// Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
@@ -2357,7 +2357,7 @@ class GetSupergroup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSupergroup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2373,20 +2373,20 @@ class GetSupergroup extends Func {
   }
 }
 
-///Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
+/// Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute.
 ///
-///Returns [SupergroupFullInfo]
+/// Returns [SupergroupFullInfo].
 class GetSupergroupFullInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSupergroupFullInfo";
 
-  /// [supergroup_id] Supergroup or channel identifier
+  /// Supergroup or channel identifier.
   late int supergroup_id;
 
   /// Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -2409,7 +2409,7 @@ class GetSupergroupFullInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSupergroupFullInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2425,20 +2425,20 @@ class GetSupergroupFullInfo extends Func {
   }
 }
 
-///Returns information about a secret chat by its identifier. This is an offline request
+/// Returns information about a secret chat by its identifier. This is an offline request.
 ///
-///Returns [SecretChat]
+/// Returns [SecretChat].
 class GetSecretChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSecretChat";
 
-  /// [secret_chat_id] Secret chat identifier
+  /// Secret chat identifier.
   late int secret_chat_id;
 
   /// Returns information about a secret chat by its identifier. This is an offline request
@@ -2460,7 +2460,7 @@ class GetSecretChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSecretChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2476,20 +2476,20 @@ class GetSecretChat extends Func {
   }
 }
 
-///Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
+/// Returns information about a chat by its identifier; this is an offline request if the current user is not a bot.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class GetChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
@@ -2511,7 +2511,7 @@ class GetChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2527,23 +2527,23 @@ class GetChat extends Func {
   }
 }
 
-///Returns information about a message
+/// Returns information about a message.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessage";
 
-  /// [chat_id] Identifier of the chat the message belongs to
+  /// Identifier of the chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message to get
+  /// Identifier of the message to get.
   late int message_id;
 
   /// Returns information about a message
@@ -2570,7 +2570,7 @@ class GetMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2588,23 +2588,23 @@ class GetMessage extends Func {
   }
 }
 
-///Returns information about a message, if it is available without sending network request. This is an offline request
+/// Returns information about a message, if it is available without sending network request. This is an offline request.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetMessageLocally extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageLocally";
 
-  /// [chat_id] Identifier of the chat the message belongs to
+  /// Identifier of the chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message to get
+  /// Identifier of the message to get.
   late int message_id;
 
   /// Returns information about a message, if it is available without sending network request. This is an offline request
@@ -2631,7 +2631,7 @@ class GetMessageLocally extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageLocally? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2649,23 +2649,23 @@ class GetMessageLocally extends Func {
   }
 }
 
-///Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages
+/// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetRepliedMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRepliedMessage";
 
-  /// [chat_id] Identifier of the chat the message belongs to
+  /// Identifier of the chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the reply message
+  /// Identifier of the reply message.
   late int message_id;
 
   /// Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages
@@ -2692,7 +2692,7 @@ class GetRepliedMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRepliedMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2710,20 +2710,20 @@ class GetRepliedMessage extends Func {
   }
 }
 
-///Returns information about a newest pinned message in the chat
+/// Returns information about a newest pinned message in the chat.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetChatPinnedMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatPinnedMessage";
 
-  /// [chat_id] Identifier of the chat the message belongs to
+  /// Identifier of the chat the message belongs to.
   late int chat_id;
 
   /// Returns information about a newest pinned message in the chat
@@ -2745,7 +2745,7 @@ class GetChatPinnedMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatPinnedMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2761,26 +2761,26 @@ class GetChatPinnedMessage extends Func {
   }
 }
 
-///Returns information about a message with the callback button that originated a callback query; for bots only
+/// Returns information about a message with the callback button that originated a callback query; for bots only.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetCallbackQueryMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCallbackQueryMessage";
 
-  /// [chat_id] Identifier of the chat the message belongs to
+  /// Identifier of the chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [callback_query_id] Identifier of the callback query
+  /// Identifier of the callback query.
   /// ; string representation of int, use `int.parse`
   late int64 callback_query_id;
 
@@ -2810,7 +2810,7 @@ class GetCallbackQueryMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCallbackQueryMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2830,23 +2830,23 @@ class GetCallbackQueryMessage extends Func {
   }
 }
 
-///Returns information about messages. If a message is not found, returns null on the corresponding position of the result
+/// Returns information about messages. If a message is not found, returns null on the corresponding position of the result.
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class GetMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessages";
 
-  /// [chat_id] Identifier of the chat the messages belong to
+  /// Identifier of the chat the messages belong to.
   late int chat_id;
 
-  /// [message_ids] Identifiers of the messages to get
+  /// Identifiers of the messages to get.
   late List<int> message_ids;
 
   /// Returns information about messages. If a message is not found, returns null on the corresponding position of the result
@@ -2873,7 +2873,7 @@ class GetMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2895,23 +2895,23 @@ class GetMessages extends Func {
   }
 }
 
-///Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+/// Returns information about a message thread. Can be used only if message.can_get_message_thread == true.
 ///
-///Returns [MessageThreadInfo]
+/// Returns [MessageThreadInfo].
 class GetMessageThread extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageThread";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
   /// Returns information about a message thread. Can be used only if message.can_get_message_thread == true
@@ -2938,7 +2938,7 @@ class GetMessageThread extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageThread? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -2956,23 +2956,23 @@ class GetMessageThread extends Func {
   }
 }
 
-///Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+/// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true.
 ///
-///Returns [MessageViewers]
+/// Returns [MessageViewers].
 class GetMessageViewers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageViewers";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
   /// Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
@@ -2999,7 +2999,7 @@ class GetMessageViewers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageViewers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3017,20 +3017,20 @@ class GetMessageViewers extends Func {
   }
 }
 
-///Returns information about a file; this is an offline request
+/// Returns information about a file; this is an offline request.
 ///
-///Returns [File]
+/// Returns [File].
 class GetFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getFile";
 
-  /// [file_id] Identifier of the file to get
+  /// Identifier of the file to get.
   late int file_id;
 
   /// Returns information about a file; this is an offline request
@@ -3052,7 +3052,7 @@ class GetFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3068,23 +3068,23 @@ class GetFile extends Func {
   }
 }
 
-///Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
+/// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user..
 ///
-///Returns [File]
+/// Returns [File].
 class GetRemoteFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRemoteFile";
 
-  /// [remote_file_id] Remote identifier of the file to get
+  /// Remote identifier of the file to get.
   late String remote_file_id;
 
-  /// [file_type] File type; pass null if unknown
+  /// File type; pass null if unknown.
   FileType? file_type;
 
   /// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user.
@@ -3111,7 +3111,7 @@ class GetRemoteFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRemoteFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3129,23 +3129,23 @@ class GetRemoteFile extends Func {
   }
 }
 
-///Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
+/// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LoadChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "loadChats";
 
-  /// [chat_list] The chat list in which to load chats; pass null to load chats from the main chat list
+  /// The chat list in which to load chats; pass null to load chats from the main chat list.
   ChatList? chat_list;
 
-  /// [limit] The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+  /// The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached.
   late int limit;
 
   /// Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
@@ -3168,7 +3168,7 @@ class LoadChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LoadChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3186,23 +3186,23 @@ class LoadChats extends Func {
   }
 }
 
-///Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
+/// Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChats";
 
-  /// [chat_list] The chat list in which to return chats; pass null to get chats from the main chat list
+  /// The chat list in which to return chats; pass null to get chats from the main chat list.
   ChatList? chat_list;
 
-  /// [limit] The maximum number of chats to be returned
+  /// The maximum number of chats to be returned.
   late int limit;
 
   /// Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
@@ -3225,7 +3225,7 @@ class GetChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3243,20 +3243,20 @@ class GetChats extends Func {
   }
 }
 
-///Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
+/// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class SearchPublicChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchPublicChat";
 
-  /// [username] Username to be resolved
+  /// Username to be resolved.
   late String username;
 
   /// Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
@@ -3278,7 +3278,7 @@ class SearchPublicChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchPublicChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3294,20 +3294,20 @@ class SearchPublicChat extends Func {
   }
 }
 
-///Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
+/// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results..
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class SearchPublicChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchPublicChats";
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
   /// Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results.
@@ -3329,7 +3329,7 @@ class SearchPublicChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchPublicChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3345,23 +3345,23 @@ class SearchPublicChats extends Func {
   }
 }
 
-///Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
+/// Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class SearchChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChats";
 
-  /// [query] Query to search for. If the query is empty, returns up to 50 recently found chats
+  /// Query to search for. If the query is empty, returns up to 50 recently found chats.
   late String query;
 
-  /// [limit] The maximum number of chats to be returned
+  /// The maximum number of chats to be returned.
   late int limit;
 
   /// Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
@@ -3385,7 +3385,7 @@ class SearchChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3403,23 +3403,23 @@ class SearchChats extends Func {
   }
 }
 
-///Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
+/// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class SearchChatsOnServer extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChatsOnServer";
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [limit] The maximum number of chats to be returned
+  /// The maximum number of chats to be returned.
   late int limit;
 
   /// Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
@@ -3443,7 +3443,7 @@ class SearchChatsOnServer extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChatsOnServer? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3461,20 +3461,20 @@ class SearchChatsOnServer extends Func {
   }
 }
 
-///Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby.
+/// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby..
 ///
-///Returns [ChatsNearby]
+/// Returns [ChatsNearby].
 class SearchChatsNearby extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChatsNearby";
 
-  /// [location] Current user location
+  /// Current user location.
   late Location location;
 
   /// Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby.
@@ -3496,7 +3496,7 @@ class SearchChatsNearby extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChatsNearby? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3512,23 +3512,23 @@ class SearchChatsNearby extends Func {
   }
 }
 
-///Returns a list of frequently used chats
+/// Returns a list of frequently used chats.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetTopChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getTopChats";
 
-  /// [category] Category of chats to be returned
+  /// Category of chats to be returned.
   late TopChatCategory category;
 
-  /// [limit] The maximum number of chats to be returned; up to 30
+  /// The maximum number of chats to be returned; up to 30.
   late int limit;
 
   /// Returns a list of frequently used chats
@@ -3552,7 +3552,7 @@ class GetTopChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetTopChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3570,23 +3570,23 @@ class GetTopChats extends Func {
   }
 }
 
-///Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
+/// Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveTopChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeTopChat";
 
-  /// [category] Category of frequently used chats
+  /// Category of frequently used chats.
   late TopChatCategory category;
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
@@ -3613,7 +3613,7 @@ class RemoveTopChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveTopChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3631,23 +3631,23 @@ class RemoveTopChat extends Func {
   }
 }
 
-///Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+/// Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class SearchRecentlyFoundChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchRecentlyFoundChats";
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [limit] The maximum number of chats to be returned
+  /// The maximum number of chats to be returned.
   late int limit;
 
   /// Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
@@ -3671,7 +3671,7 @@ class SearchRecentlyFoundChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchRecentlyFoundChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3689,20 +3689,20 @@ class SearchRecentlyFoundChats extends Func {
   }
 }
 
-///Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
+/// Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddRecentlyFoundChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addRecentlyFoundChat";
 
-  /// [chat_id] Identifier of the chat to add
+  /// Identifier of the chat to add.
   late int chat_id;
 
   /// Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
@@ -3724,7 +3724,7 @@ class AddRecentlyFoundChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddRecentlyFoundChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3740,20 +3740,20 @@ class AddRecentlyFoundChat extends Func {
   }
 }
 
-///Removes a chat from the list of recently found chats
+/// Removes a chat from the list of recently found chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveRecentlyFoundChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeRecentlyFoundChat";
 
-  /// [chat_id] Identifier of the chat to be removed
+  /// Identifier of the chat to be removed.
   late int chat_id;
 
   /// Removes a chat from the list of recently found chats
@@ -3775,7 +3775,7 @@ class RemoveRecentlyFoundChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveRecentlyFoundChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3791,17 +3791,17 @@ class RemoveRecentlyFoundChat extends Func {
   }
 }
 
-///Clears the list of recently found chats
+/// Clears the list of recently found chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearRecentlyFoundChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearRecentlyFoundChats";
 
   /// Clears the list of recently found chats
@@ -3822,7 +3822,7 @@ class ClearRecentlyFoundChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearRecentlyFoundChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3837,20 +3837,20 @@ class ClearRecentlyFoundChats extends Func {
   }
 }
 
-///Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
+/// Returns recently opened chats; this is an offline request. Returns chats in the order of last opening.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetRecentlyOpenedChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecentlyOpenedChats";
 
-  /// [limit] The maximum number of chats to be returned
+  /// The maximum number of chats to be returned.
   late int limit;
 
   /// Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
@@ -3872,7 +3872,7 @@ class GetRecentlyOpenedChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecentlyOpenedChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3888,23 +3888,23 @@ class GetRecentlyOpenedChats extends Func {
   }
 }
 
-///Checks whether a username can be set for a chat
+/// Checks whether a username can be set for a chat.
 ///
-///Returns [CheckChatUsernameResult]
+/// Returns [CheckChatUsernameResult].
 class CheckChatUsername extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkChatUsername";
 
-  /// [chat_id] Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
+  /// Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created.
   late int chat_id;
 
-  /// [username] Username to be checked
+  /// Username to be checked.
   late String username;
 
   /// Checks whether a username can be set for a chat
@@ -3931,7 +3931,7 @@ class CheckChatUsername extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckChatUsername? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -3949,20 +3949,20 @@ class CheckChatUsername extends Func {
   }
 }
 
-///Returns a list of public chats of the specified type, owned by the user
+/// Returns a list of public chats of the specified type, owned by the user.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetCreatedPublicChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCreatedPublicChats";
 
-  /// [type] Type of the public chats to return
+  /// Type of the public chats to return.
   late PublicChatType type;
 
   /// Returns a list of public chats of the specified type, owned by the user
@@ -3984,7 +3984,7 @@ class GetCreatedPublicChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCreatedPublicChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4000,20 +4000,20 @@ class GetCreatedPublicChats extends Func {
   }
 }
 
-///Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
+/// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckCreatedPublicChatsLimit extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkCreatedPublicChatsLimit";
 
-  /// [type] Type of the public chats, for which to check the limit
+  /// Type of the public chats, for which to check the limit.
   late PublicChatType type;
 
   /// Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
@@ -4035,7 +4035,7 @@ class CheckCreatedPublicChatsLimit extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckCreatedPublicChatsLimit? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4051,17 +4051,17 @@ class CheckCreatedPublicChatsLimit extends Func {
   }
 }
 
-///Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
+/// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group..
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetSuitableDiscussionChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSuitableDiscussionChats";
 
   /// Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group.
@@ -4082,7 +4082,7 @@ class GetSuitableDiscussionChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSuitableDiscussionChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4097,17 +4097,17 @@ class GetSuitableDiscussionChats extends Func {
   }
 }
 
-///Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
+/// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetInactiveSupergroupChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInactiveSupergroupChats";
 
   /// Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
@@ -4128,7 +4128,7 @@ class GetInactiveSupergroupChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInactiveSupergroupChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4143,26 +4143,26 @@ class GetInactiveSupergroupChats extends Func {
   }
 }
 
-///Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
+/// Returns a list of common group chats with a given user. Chats are sorted by their type and creation date.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetGroupsInCommon extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGroupsInCommon";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [offset_chat_id] Chat identifier starting from which to return chats; use 0 for the first request
+  /// Chat identifier starting from which to return chats; use 0 for the first request.
   late int offset_chat_id;
 
-  /// [limit] The maximum number of chats to be returned; up to 100
+  /// The maximum number of chats to be returned; up to 100.
   late int limit;
 
   /// Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
@@ -4191,7 +4191,7 @@ class GetGroupsInCommon extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGroupsInCommon? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4211,32 +4211,32 @@ class GetGroupsInCommon extends Func {
   }
 }
 
-///Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
+/// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)..
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class GetChatHistory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatHistory";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [from_message_id] Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+  /// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
   late int from_message_id;
 
-  /// [offset] Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+  /// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages.
   late int offset;
 
-  /// [limit] The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.
+  /// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset..
   late int limit;
 
-  /// [only_local] Pass true to get only messages that are available without sending network requests
+  /// Pass true to get only messages that are available without sending network requests.
   late bool only_local;
 
   /// Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
@@ -4269,7 +4269,7 @@ class GetChatHistory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatHistory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4293,32 +4293,32 @@ class GetChatHistory extends Func {
   }
 }
 
-///Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
+/// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup..
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class GetMessageThreadHistory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageThreadHistory";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] Message identifier, which thread history needs to be returned
+  /// Message identifier, which thread history needs to be returned.
   late int message_id;
 
-  /// [from_message_id] Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+  /// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
   late int from_message_id;
 
-  /// [offset] Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+  /// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages.
   late int offset;
 
-  /// [limit] The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset.
+  /// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset..
   late int limit;
 
   /// Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup.
@@ -4351,7 +4351,7 @@ class GetMessageThreadHistory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageThreadHistory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4375,26 +4375,26 @@ class GetMessageThreadHistory extends Func {
   }
 }
 
-///Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+/// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatHistory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatHistory";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [remove_from_chat_list] Pass true to remove the chat from all chat lists
+  /// Pass true to remove the chat from all chat lists.
   late bool remove_from_chat_list;
 
-  /// [revoke] Pass true to delete chat history for all users
+  /// Pass true to delete chat history for all users.
   late bool revoke;
 
   /// Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
@@ -4423,7 +4423,7 @@ class DeleteChatHistory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatHistory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4443,20 +4443,20 @@ class DeleteChatHistory extends Func {
   }
 }
 
-///Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
+/// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
@@ -4478,7 +4478,7 @@ class DeleteChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4494,41 +4494,41 @@ class DeleteChat extends Func {
   }
 }
 
-///Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
+/// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query.
 ///
-///Returns [FoundChatMessages]
+/// Returns [FoundChatMessages].
 class SearchChatMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChatMessages";
 
-  /// [chat_id] Identifier of the chat in which to search messages
+  /// Identifier of the chat in which to search messages.
   late int chat_id;
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [sender_id] Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+  /// Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats.
   MessageSender? sender_id;
 
-  /// [from_message_id] Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+  /// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message.
   late int from_message_id;
 
-  /// [offset] Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+  /// Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages.
   late int offset;
 
-  /// [limit] The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset.
+  /// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset..
   late int limit;
 
-  /// [filter] Additional filter for messages to search; pass null to search for all messages
+  /// Additional filter for messages to search; pass null to search for all messages.
   SearchMessagesFilter? filter;
 
-  /// [message_thread_id] If not 0, only messages in the specified thread will be returned; supergroups only
+  /// If not 0, only messages in the specified thread will be returned; supergroups only.
   late int message_thread_id;
 
   /// Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query
@@ -4567,7 +4567,7 @@ class SearchChatMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChatMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4597,38 +4597,38 @@ class SearchChatMessages extends Func {
   }
 }
 
-///Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
+/// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id))..
 ///
-///Returns [FoundMessages]
+/// Returns [FoundMessages].
 class SearchMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchMessages";
 
-  /// [chat_list] Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
+  /// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported.
   ChatList? chat_list;
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+  /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
   late int limit;
 
-  /// [filter] Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
+  /// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function.
   SearchMessagesFilter? filter;
 
-  /// [min_date] If not 0, the minimum date of the messages to return
+  /// If not 0, the minimum date of the messages to return.
   late int min_date;
 
-  /// [max_date] If not 0, the maximum date of the messages to return
+  /// If not 0, the maximum date of the messages to return.
   late int max_date;
 
   /// Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
@@ -4665,7 +4665,7 @@ class SearchMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4693,32 +4693,32 @@ class SearchMessages extends Func {
   }
 }
 
-///Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
+/// Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib.
 ///
-///Returns [FoundMessages]
+/// Returns [FoundMessages].
 class SearchSecretMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchSecretMessages";
 
-  /// [chat_id] Identifier of the chat in which to search. Specify 0 to search in all secret chats
+  /// Identifier of the chat in which to search. Specify 0 to search in all secret chats.
   late int chat_id;
 
-  /// [query] Query to search for. If empty, searchChatMessages must be used instead
+  /// Query to search for. If empty, searchChatMessages must be used instead.
   String? query;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+  /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
   late int limit;
 
-  /// [filter] Additional filter for messages to search; pass null to search for all messages
+  /// Additional filter for messages to search; pass null to search for all messages.
   SearchMessagesFilter? filter;
 
   /// Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
@@ -4751,7 +4751,7 @@ class SearchSecretMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchSecretMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4775,26 +4775,26 @@ class SearchSecretMessages extends Func {
   }
 }
 
-///Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+/// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib.
 ///
-///Returns [FoundMessages]
+/// Returns [FoundMessages].
 class SearchCallMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchCallMessages";
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+  /// The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
   late int limit;
 
-  /// [only_missed] Pass true to search only for messages with missed/declined calls
+  /// Pass true to search only for messages with missed/declined calls.
   late bool only_missed;
 
   /// Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -4823,7 +4823,7 @@ class SearchCallMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchCallMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4843,23 +4843,23 @@ class SearchCallMessages extends Func {
   }
 }
 
-///Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+/// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order.
 ///
-///Returns [FoundMessages]
+/// Returns [FoundMessages].
 class SearchOutgoingDocumentMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchOutgoingDocumentMessages";
 
-  /// [query] Query to search for in document file name and message caption
+  /// Query to search for in document file name and message caption.
   late String query;
 
-  /// [limit] The maximum number of messages to be returned; up to 100
+  /// The maximum number of messages to be returned; up to 100.
   late int limit;
 
   /// Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
@@ -4883,7 +4883,7 @@ class SearchOutgoingDocumentMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchOutgoingDocumentMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4901,20 +4901,20 @@ class SearchOutgoingDocumentMessages extends Func {
   }
 }
 
-///Deletes all call messages
+/// Deletes all call messages.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteAllCallMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteAllCallMessages";
 
-  /// [revoke] Pass true to delete the messages for all users
+  /// Pass true to delete the messages for all users.
   late bool revoke;
 
   /// Deletes all call messages
@@ -4936,7 +4936,7 @@ class DeleteAllCallMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteAllCallMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -4952,23 +4952,23 @@ class DeleteAllCallMessages extends Func {
   }
 }
 
-///Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+/// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user.
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class SearchChatRecentLocationMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChatRecentLocationMessages";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [limit] The maximum number of messages to be returned
+  /// The maximum number of messages to be returned.
   late int limit;
 
   /// Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
@@ -4992,7 +4992,7 @@ class SearchChatRecentLocationMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChatRecentLocationMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5010,17 +5010,17 @@ class SearchChatRecentLocationMessages extends Func {
   }
 }
 
-///Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
+/// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used.
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class GetActiveLiveLocationMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getActiveLiveLocationMessages";
 
   /// Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
@@ -5041,7 +5041,7 @@ class GetActiveLiveLocationMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetActiveLiveLocationMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5056,23 +5056,23 @@ class GetActiveLiveLocationMessages extends Func {
   }
 }
 
-///Returns the last message sent in a chat no later than the specified date
+/// Returns the last message sent in a chat no later than the specified date.
 ///
-///Returns [Message]
+/// Returns [Message].
 class GetChatMessageByDate extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatMessageByDate";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [date] Point in time (Unix timestamp) relative to which to search for messages
+  /// Point in time (Unix timestamp) relative to which to search for messages.
   late int date;
 
   /// Returns the last message sent in a chat no later than the specified date
@@ -5096,7 +5096,7 @@ class GetChatMessageByDate extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatMessageByDate? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5114,29 +5114,29 @@ class GetChatMessageByDate extends Func {
   }
 }
 
-///Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
+/// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id)..
 ///
-///Returns [MessagePositions]
+/// Returns [MessagePositions].
 class GetChatSparseMessagePositions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatSparseMessagePositions";
 
-  /// [chat_id] Identifier of the chat in which to return information about message positions
+  /// Identifier of the chat in which to return information about message positions.
   late int chat_id;
 
-  /// [filter] Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+  /// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
   late SearchMessagesFilter filter;
 
-  /// [from_message_id] The message identifier from which to return information about message positions
+  /// The message identifier from which to return information about message positions.
   late int from_message_id;
 
-  /// [limit] The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+  /// The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages.
   late int limit;
 
   /// Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
@@ -5167,7 +5167,7 @@ class GetChatSparseMessagePositions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatSparseMessagePositions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5189,26 +5189,26 @@ class GetChatSparseMessagePositions extends Func {
   }
 }
 
-///Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+/// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset".
 ///
-///Returns [MessageCalendar]
+/// Returns [MessageCalendar].
 class GetChatMessageCalendar extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatMessageCalendar";
 
-  /// [chat_id] Identifier of the chat in which to return information about messages
+  /// Identifier of the chat in which to return information about messages.
   late int chat_id;
 
-  /// [filter] Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+  /// Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function.
   late SearchMessagesFilter filter;
 
-  /// [from_message_id] The message identifier from which to return information about messages; use 0 to get results from the last message
+  /// The message identifier from which to return information about messages; use 0 to get results from the last message.
   late int from_message_id;
 
   /// Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
@@ -5237,7 +5237,7 @@ class GetChatMessageCalendar extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatMessageCalendar? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5257,26 +5257,26 @@ class GetChatMessageCalendar extends Func {
   }
 }
 
-///Returns approximate number of messages of the specified type in the chat
+/// Returns approximate number of messages of the specified type in the chat.
 ///
-///Returns [Count]
+/// Returns [Count].
 class GetChatMessageCount extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatMessageCount";
 
-  /// [chat_id] Identifier of the chat in which to count messages
+  /// Identifier of the chat in which to count messages.
   late int chat_id;
 
-  /// [filter] Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+  /// Filter for message content; searchMessagesFilterEmpty is unsupported in this function.
   late SearchMessagesFilter filter;
 
-  /// [return_local] Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
+  /// Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally.
   late bool return_local;
 
   /// Returns approximate number of messages of the specified type in the chat
@@ -5305,7 +5305,7 @@ class GetChatMessageCount extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatMessageCount? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5325,29 +5325,29 @@ class GetChatMessageCount extends Func {
   }
 }
 
-///Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+/// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats.
 ///
-///Returns [Count]
+/// Returns [Count].
 class GetChatMessagePosition extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatMessagePosition";
 
-  /// [chat_id] Identifier of the chat in which to find message position
+  /// Identifier of the chat in which to find message position.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [filter] Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+  /// Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function.
   late SearchMessagesFilter filter;
 
-  /// [message_thread_id] If not 0, only messages in the specified thread will be considered; supergroups only
+  /// If not 0, only messages in the specified thread will be considered; supergroups only.
   late int message_thread_id;
 
   /// Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
@@ -5378,7 +5378,7 @@ class GetChatMessagePosition extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatMessagePosition? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5400,20 +5400,20 @@ class GetChatMessagePosition extends Func {
   }
 }
 
-///Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+/// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class GetChatScheduledMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatScheduledMessages";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -5435,7 +5435,7 @@ class GetChatScheduledMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatScheduledMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5451,29 +5451,29 @@ class GetChatScheduledMessages extends Func {
   }
 }
 
-///Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+/// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib.
 ///
-///Returns [FoundMessages]
+/// Returns [FoundMessages].
 class GetMessagePublicForwards extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessagePublicForwards";
 
-  /// [chat_id] Chat identifier of the message
+  /// Chat identifier of the message.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+  /// The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit.
   late int limit;
 
   /// Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
@@ -5504,7 +5504,7 @@ class GetMessagePublicForwards extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessagePublicForwards? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5526,20 +5526,20 @@ class GetMessagePublicForwards extends Func {
   }
 }
 
-///Returns sponsored messages to be shown in a chat; for channel chats only
+/// Returns sponsored messages to be shown in a chat; for channel chats only.
 ///
-///Returns [SponsoredMessages]
+/// Returns [SponsoredMessages].
 class GetChatSponsoredMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatSponsoredMessages";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
   /// Returns sponsored messages to be shown in a chat; for channel chats only
@@ -5561,7 +5561,7 @@ class GetChatSponsoredMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatSponsoredMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5577,23 +5577,23 @@ class GetChatSponsoredMessages extends Func {
   }
 }
 
-///Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+/// Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClickChatSponsoredMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clickChatSponsoredMessage";
 
-  /// [chat_id] Chat identifier of the sponsored message
+  /// Chat identifier of the sponsored message.
   late int chat_id;
 
-  /// [message_id] Identifier of the sponsored message
+  /// Identifier of the sponsored message.
   late int message_id;
 
   /// Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
@@ -5620,7 +5620,7 @@ class ClickChatSponsoredMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClickChatSponsoredMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5638,23 +5638,23 @@ class ClickChatSponsoredMessage extends Func {
   }
 }
 
-///Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
+/// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveNotification extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeNotification";
 
-  /// [notification_group_id] Identifier of notification group to which the notification belongs
+  /// Identifier of notification group to which the notification belongs.
   late int notification_group_id;
 
-  /// [notification_id] Identifier of removed notification
+  /// Identifier of removed notification.
   late int notification_id;
 
   /// Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -5681,7 +5681,7 @@ class RemoveNotification extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveNotification? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5699,23 +5699,23 @@ class RemoveNotification extends Func {
   }
 }
 
-///Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
+/// Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveNotificationGroup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeNotificationGroup";
 
-  /// [notification_group_id] Notification group identifier
+  /// Notification group identifier.
   late int notification_group_id;
 
-  /// [max_notification_id] The maximum identifier of removed notifications
+  /// The maximum identifier of removed notifications.
   late int max_notification_id;
 
   /// Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -5742,7 +5742,7 @@ class RemoveNotificationGroup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveNotificationGroup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5760,32 +5760,32 @@ class RemoveNotificationGroup extends Func {
   }
 }
 
-///Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+/// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request.
 ///
-///Returns [MessageLink]
+/// Returns [MessageLink].
 class GetMessageLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageLink";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [media_timestamp] If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+  /// If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview.
   late int media_timestamp;
 
-  /// [for_album] Pass true to create a link for the whole media album
+  /// Pass true to create a link for the whole media album.
   late bool for_album;
 
-  /// [in_message_thread] Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
+  /// Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic.
   late bool in_message_thread;
 
   /// Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
@@ -5818,7 +5818,7 @@ class GetMessageLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5842,26 +5842,26 @@ class GetMessageLink extends Func {
   }
 }
 
-///Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+/// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetMessageEmbeddingCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageEmbeddingCode";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [for_album] Pass true to return an HTML code for embedding of the whole media album
+  /// Pass true to return an HTML code for embedding of the whole media album.
   late bool for_album;
 
   /// Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
@@ -5890,7 +5890,7 @@ class GetMessageEmbeddingCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageEmbeddingCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5910,20 +5910,20 @@ class GetMessageEmbeddingCode extends Func {
   }
 }
 
-///Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
+/// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage.
 ///
-///Returns [MessageLinkInfo]
+/// Returns [MessageLinkInfo].
 class GetMessageLinkInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageLinkInfo";
 
-  /// [url] The message link
+  /// The message link.
   late String url;
 
   /// Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
@@ -5945,7 +5945,7 @@ class GetMessageLinkInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageLinkInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -5961,23 +5961,23 @@ class GetMessageLinkInfo extends Func {
   }
 }
 
-///Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+/// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved.
 ///
-///Returns [FormattedText]
+/// Returns [FormattedText].
 class TranslateText extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "translateText";
 
-  /// [text] Text to translate
+  /// Text to translate.
   late FormattedText text;
 
-  /// [to_language_code] Language code of the language to which the message is translated. Must be one of
+  /// Language code of the language to which the message is translated. Must be one of.
   late String to_language_code;
 
   /// Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -6004,7 +6004,7 @@ class TranslateText extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TranslateText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6022,26 +6022,26 @@ class TranslateText extends Func {
   }
 }
 
-///Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+/// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved.
 ///
-///Returns [FormattedText]
+/// Returns [FormattedText].
 class TranslateMessageText extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "translateMessageText";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [to_language_code] Language code of the language to which the message is translated. Must be one of
+  /// Language code of the language to which the message is translated. Must be one of.
   late String to_language_code;
 
   /// Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -6070,7 +6070,7 @@ class TranslateMessageText extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TranslateMessageText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6090,23 +6090,23 @@ class TranslateMessageText extends Func {
   }
 }
 
-///Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+/// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RecognizeSpeech extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "recognizeSpeech";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
   /// Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
@@ -6133,7 +6133,7 @@ class RecognizeSpeech extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RecognizeSpeech? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6151,26 +6151,26 @@ class RecognizeSpeech extends Func {
   }
 }
 
-///Rates recognized speech in a video note or a voice note message
+/// Rates recognized speech in a video note or a voice note message.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RateSpeechRecognition extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "rateSpeechRecognition";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [is_good] Pass true if the speech recognition is good
+  /// Pass true if the speech recognition is good.
   late bool is_good;
 
   /// Rates recognized speech in a video note or a voice note message
@@ -6199,7 +6199,7 @@ class RateSpeechRecognition extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RateSpeechRecognition? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6219,20 +6219,20 @@ class RateSpeechRecognition extends Func {
   }
 }
 
-///Returns list of message sender identifiers, which can be used to send messages in a chat
+/// Returns list of message sender identifiers, which can be used to send messages in a chat.
 ///
-///Returns [ChatMessageSenders]
+/// Returns [ChatMessageSenders].
 class GetChatAvailableMessageSenders extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatAvailableMessageSenders";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns list of message sender identifiers, which can be used to send messages in a chat
@@ -6255,7 +6255,7 @@ class GetChatAvailableMessageSenders extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatAvailableMessageSenders? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6271,23 +6271,23 @@ class GetChatAvailableMessageSenders extends Func {
   }
 }
 
-///Selects a message sender to send messages in a chat
+/// Selects a message sender to send messages in a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatMessageSender extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatMessageSender";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_sender_id] New message sender for the chat
+  /// New message sender for the chat.
   late MessageSender message_sender_id;
 
   /// Selects a message sender to send messages in a chat
@@ -6314,7 +6314,7 @@ class SetChatMessageSender extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatMessageSender? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6332,35 +6332,35 @@ class SetChatMessageSender extends Func {
   }
 }
 
-///Sends a message. Returns the sent message
+/// Sends a message. Returns the sent message.
 ///
-///Returns [Message]
+/// Returns [Message].
 class SendMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendMessage";
 
-  /// [chat_id] Target chat
+  /// Target chat.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the message will be sent
+  /// If not 0, a message thread identifier in which the message will be sent.
   late int message_thread_id;
 
-  /// [reply_to] Identifier of the replied message or story; pass null if none
+  /// Identifier of the replied message or story; pass null if none.
   MessageReplyTo? reply_to;
 
-  /// [options] Options to be used to send the message; pass null to use default options
+  /// Options to be used to send the message; pass null to use default options.
   MessageSendOptions? options;
 
-  /// [reply_markup] Markup for replying to the message; pass null if none; for bots only
+  /// Markup for replying to the message; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [input_message_content] The content of the message to be sent
+  /// The content of the message to be sent.
   late InputMessageContent input_message_content;
 
   /// Sends a message. Returns the sent message
@@ -6395,7 +6395,7 @@ class SendMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6422,35 +6422,35 @@ class SendMessage extends Func {
   }
 }
 
-///Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+/// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages.
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class SendMessageAlbum extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendMessageAlbum";
 
-  /// [chat_id] Target chat
+  /// Target chat.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the messages will be sent
+  /// If not 0, a message thread identifier in which the messages will be sent.
   late int message_thread_id;
 
-  /// [reply_to] Identifier of the replied message or story; pass null if none
+  /// Identifier of the replied message or story; pass null if none.
   MessageReplyTo? reply_to;
 
-  /// [options] Options to be used to send the messages; pass null to use default options
+  /// Options to be used to send the messages; pass null to use default options.
   MessageSendOptions? options;
 
-  /// [input_message_contents] Contents of messages to be sent. At most 10 messages can be added to an album
+  /// Contents of messages to be sent. At most 10 messages can be added to an album.
   late List<InputMessageContent> input_message_contents;
 
-  /// [only_preview] Pass true to get fake messages instead of actually sending them
+  /// Pass true to get fake messages instead of actually sending them.
   late bool only_preview;
 
   /// Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
@@ -6485,7 +6485,7 @@ class SendMessageAlbum extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendMessageAlbum? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6515,26 +6515,26 @@ class SendMessageAlbum extends Func {
   }
 }
 
-///Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+/// Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message.
 ///
-///Returns [Message]
+/// Returns [Message].
 class SendBotStartMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendBotStartMessage";
 
-  /// [bot_user_id] Identifier of the bot
+  /// Identifier of the bot.
   late int bot_user_id;
 
-  /// [chat_id] Identifier of the target chat
+  /// Identifier of the target chat.
   late int chat_id;
 
-  /// [parameter] A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+  /// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking).
   late String parameter;
 
   /// Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
@@ -6563,7 +6563,7 @@ class SendBotStartMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendBotStartMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6583,39 +6583,39 @@ class SendBotStartMessage extends Func {
   }
 }
 
-///Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
+/// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message.
 ///
-///Returns [Message]
+/// Returns [Message].
 class SendInlineQueryResultMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendInlineQueryResultMessage";
 
-  /// [chat_id] Target chat
+  /// Target chat.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the message will be sent
+  /// If not 0, a message thread identifier in which the message will be sent.
   late int message_thread_id;
 
-  /// [reply_to] Identifier of the replied message or story; pass null if none
+  /// Identifier of the replied message or story; pass null if none.
   MessageReplyTo? reply_to;
 
-  /// [options] Options to be used to send the message; pass null to use default options
+  /// Options to be used to send the message; pass null to use default options.
   MessageSendOptions? options;
 
-  /// [query_id] Identifier of the inline query
+  /// Identifier of the inline query.
   /// ; string representation of int, use `int.parse`
   late int64 query_id;
 
-  /// [result_id] Identifier of the inline query result
+  /// Identifier of the inline query result.
   late String result_id;
 
-  /// [hide_via_bot] Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+  /// Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username").
   late bool hide_via_bot;
 
   /// Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
@@ -6652,7 +6652,7 @@ class SendInlineQueryResultMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendInlineQueryResultMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6680,41 +6680,41 @@ class SendInlineQueryResultMessage extends Func {
   }
 }
 
-///Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
+/// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message.
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class ForwardMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "forwardMessages";
 
-  /// [chat_id] Identifier of the chat to which to forward messages
+  /// Identifier of the chat to which to forward messages.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the message will be sent; for forum threads only
+  /// If not 0, a message thread identifier in which the message will be sent; for forum threads only.
   late int message_thread_id;
 
-  /// [from_chat_id] Identifier of the chat from which to forward messages
+  /// Identifier of the chat from which to forward messages.
   late int from_chat_id;
 
-  /// [message_ids] Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+  /// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously.
   late List<int> message_ids;
 
-  /// [options] Options to be used to send the messages; pass null to use default options
+  /// Options to be used to send the messages; pass null to use default options.
   MessageSendOptions? options;
 
-  /// [send_copy] Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+  /// Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local.
   late bool send_copy;
 
-  /// [remove_caption] Pass true to remove media captions of message copies. Ignored if send_copy is false
+  /// Pass true to remove media captions of message copies. Ignored if send_copy is false.
   late bool remove_caption;
 
-  /// [only_preview] Pass true to get fake messages instead of actually forwarding them
+  /// Pass true to get fake messages instead of actually forwarding them.
   late bool only_preview;
 
   /// Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -6753,7 +6753,7 @@ class ForwardMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ForwardMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6787,23 +6787,23 @@ class ForwardMessages extends Func {
   }
 }
 
-///Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
+/// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed..
 ///
-///Returns [Messages]
+/// Returns [Messages].
 class ResendMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendMessages";
 
-  /// [chat_id] Identifier of the chat to send messages
+  /// Identifier of the chat to send messages.
   late int chat_id;
 
-  /// [message_ids] Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+  /// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order.
   late List<int> message_ids;
 
   /// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed.
@@ -6830,7 +6830,7 @@ class ResendMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6852,32 +6852,32 @@ class ResendMessages extends Func {
   }
 }
 
-///Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
+/// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message.
 ///
-///Returns [Message]
+/// Returns [Message].
 class AddLocalMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addLocalMessage";
 
-  /// [chat_id] Target chat
+  /// Target chat.
   late int chat_id;
 
-  /// [sender_id] Identifier of the sender of the message
+  /// Identifier of the sender of the message.
   late MessageSender sender_id;
 
-  /// [reply_to] Identifier of the replied message or story; pass null if none
+  /// Identifier of the replied message or story; pass null if none.
   MessageReplyTo? reply_to;
 
-  /// [disable_notification] Pass true to disable notification for the message
+  /// Pass true to disable notification for the message.
   late bool disable_notification;
 
-  /// [input_message_content] The content of the message to be added
+  /// The content of the message to be added.
   late InputMessageContent input_message_content;
 
   /// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
@@ -6910,7 +6910,7 @@ class AddLocalMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddLocalMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -6935,26 +6935,26 @@ class AddLocalMessage extends Func {
   }
 }
 
-///Deletes messages
+/// Deletes messages.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteMessages";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_ids] Identifiers of the messages to be deleted
+  /// Identifiers of the messages to be deleted.
   late List<int> message_ids;
 
-  /// [revoke] Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
+  /// Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats.
   late bool revoke;
 
   /// Deletes messages
@@ -6983,7 +6983,7 @@ class DeleteMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7007,23 +7007,23 @@ class DeleteMessages extends Func {
   }
 }
 
-///Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+/// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatMessagesBySender extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatMessagesBySender";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [sender_id] Identifier of the sender of messages to delete
+  /// Identifier of the sender of messages to delete.
   late MessageSender sender_id;
 
   /// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
@@ -7050,7 +7050,7 @@ class DeleteChatMessagesBySender extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatMessagesBySender? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7068,29 +7068,29 @@ class DeleteChatMessagesBySender extends Func {
   }
 }
 
-///Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
+/// Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatMessagesByDate extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatMessagesByDate";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [min_date] The minimum date of the messages to delete
+  /// The minimum date of the messages to delete.
   late int min_date;
 
-  /// [max_date] The maximum date of the messages to delete
+  /// The maximum date of the messages to delete.
   late int max_date;
 
-  /// [revoke] Pass true to delete chat messages for all users; private chats only
+  /// Pass true to delete chat messages for all users; private chats only.
   late bool revoke;
 
   /// Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
@@ -7121,7 +7121,7 @@ class DeleteChatMessagesByDate extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatMessagesByDate? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7143,29 +7143,29 @@ class DeleteChatMessagesByDate extends Func {
   }
 }
 
-///Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+/// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side.
 ///
-///Returns [Message]
+/// Returns [Message].
 class EditMessageText extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageText";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [input_message_content] New text content of the message. Must be of type inputMessageText
+  /// New text content of the message. Must be of type inputMessageText.
   late InputMessageContent input_message_content;
 
   /// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
@@ -7196,7 +7196,7 @@ class EditMessageText extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7219,35 +7219,35 @@ class EditMessageText extends Func {
   }
 }
 
-///Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+/// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side.
 ///
-///Returns [Message]
+/// Returns [Message].
 class EditMessageLiveLocation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageLiveLocation";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [location] New location content of the message; pass null to stop sharing the live location
+  /// New location content of the message; pass null to stop sharing the live location.
   Location? location;
 
-  /// [heading] The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+  /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
   late int heading;
 
-  /// [proximity_alert_radius] The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+  /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled.
   late int proximity_alert_radius;
 
   /// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
@@ -7282,7 +7282,7 @@ class EditMessageLiveLocation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageLiveLocation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7308,29 +7308,29 @@ class EditMessageLiveLocation extends Func {
   }
 }
 
-///Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
+/// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead..
 ///
-///Returns [Message]
+/// Returns [Message].
 class EditMessageMedia extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageMedia";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [input_message_content] New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+  /// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo.
   late InputMessageContent input_message_content;
 
   /// Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead.
@@ -7361,7 +7361,7 @@ class EditMessageMedia extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageMedia? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7384,29 +7384,29 @@ class EditMessageMedia extends Func {
   }
 }
 
-///Edits the message content caption. Returns the edited message after the edit is completed on the server side
+/// Edits the message content caption. Returns the edited message after the edit is completed on the server side.
 ///
-///Returns [Message]
+/// Returns [Message].
 class EditMessageCaption extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageCaption";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [caption] New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
+  /// New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption.
   FormattedText? caption;
 
   /// Edits the message content caption. Returns the edited message after the edit is completed on the server side
@@ -7437,7 +7437,7 @@ class EditMessageCaption extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageCaption? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7459,26 +7459,26 @@ class EditMessageCaption extends Func {
   }
 }
 
-///Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+/// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side.
 ///
-///Returns [Message]
+/// Returns [Message].
 class EditMessageReplyMarkup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageReplyMarkup";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none
+  /// The new message reply markup; pass null if none.
   ReplyMarkup? reply_markup;
 
   /// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
@@ -7507,7 +7507,7 @@ class EditMessageReplyMarkup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageReplyMarkup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7527,26 +7527,26 @@ class EditMessageReplyMarkup extends Func {
   }
 }
 
-///Edits the text of an inline text or game message sent via a bot; for bots only
+/// Edits the text of an inline text or game message sent via a bot; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditInlineMessageText extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editInlineMessageText";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none
+  /// The new message reply markup; pass null if none.
   ReplyMarkup? reply_markup;
 
-  /// [input_message_content] New text content of the message. Must be of type inputMessageText
+  /// New text content of the message. Must be of type inputMessageText.
   late InputMessageContent input_message_content;
 
   /// Edits the text of an inline text or game message sent via a bot; for bots only
@@ -7575,7 +7575,7 @@ class EditInlineMessageText extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditInlineMessageText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7596,32 +7596,32 @@ class EditInlineMessageText extends Func {
   }
 }
 
-///Edits the content of a live location in an inline message sent via a bot; for bots only
+/// Edits the content of a live location in an inline message sent via a bot; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditInlineMessageLiveLocation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editInlineMessageLiveLocation";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none
+  /// The new message reply markup; pass null if none.
   ReplyMarkup? reply_markup;
 
-  /// [location] New location content of the message; pass null to stop sharing the live location
+  /// New location content of the message; pass null to stop sharing the live location.
   Location? location;
 
-  /// [heading] The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+  /// The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown.
   late int heading;
 
-  /// [proximity_alert_radius] The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+  /// The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled.
   late int proximity_alert_radius;
 
   /// Edits the content of a live location in an inline message sent via a bot; for bots only
@@ -7654,7 +7654,7 @@ class EditInlineMessageLiveLocation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditInlineMessageLiveLocation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7678,26 +7678,26 @@ class EditInlineMessageLiveLocation extends Func {
   }
 }
 
-///Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+/// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditInlineMessageMedia extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editInlineMessageMedia";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
-  /// [input_message_content] New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+  /// New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo.
   late InputMessageContent input_message_content;
 
   /// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
@@ -7726,7 +7726,7 @@ class EditInlineMessageMedia extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditInlineMessageMedia? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7747,26 +7747,26 @@ class EditInlineMessageMedia extends Func {
   }
 }
 
-///Edits the caption of an inline message sent via a bot; for bots only
+/// Edits the caption of an inline message sent via a bot; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditInlineMessageCaption extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editInlineMessageCaption";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none
+  /// The new message reply markup; pass null if none.
   ReplyMarkup? reply_markup;
 
-  /// [caption] New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+  /// New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters.
   FormattedText? caption;
 
   /// Edits the caption of an inline message sent via a bot; for bots only
@@ -7795,7 +7795,7 @@ class EditInlineMessageCaption extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditInlineMessageCaption? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7815,23 +7815,23 @@ class EditInlineMessageCaption extends Func {
   }
 }
 
-///Edits the reply markup of an inline message sent via a bot; for bots only
+/// Edits the reply markup of an inline message sent via a bot; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditInlineMessageReplyMarkup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editInlineMessageReplyMarkup";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none
+  /// The new message reply markup; pass null if none.
   ReplyMarkup? reply_markup;
 
   /// Edits the reply markup of an inline message sent via a bot; for bots only
@@ -7858,7 +7858,7 @@ class EditInlineMessageReplyMarkup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditInlineMessageReplyMarkup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7876,26 +7876,26 @@ class EditInlineMessageReplyMarkup extends Func {
   }
 }
 
-///Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
+/// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditMessageSchedulingState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editMessageSchedulingState";
 
-  /// [chat_id] The chat the message belongs to
+  /// The chat the message belongs to.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [scheduling_state] The new message scheduling state; pass null to send the message immediately
+  /// The new message scheduling state; pass null to send the message immediately.
   MessageSchedulingState? scheduling_state;
 
   /// Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
@@ -7924,7 +7924,7 @@ class EditMessageSchedulingState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditMessageSchedulingState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7945,17 +7945,17 @@ class EditMessageSchedulingState extends Func {
   }
 }
 
-///Returns list of custom emojis, which can be used as forum topic icon by all users
+/// Returns list of custom emojis, which can be used as forum topic icon by all users.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetForumTopicDefaultIcons extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getForumTopicDefaultIcons";
 
   /// Returns list of custom emojis, which can be used as forum topic icon by all users
@@ -7976,7 +7976,7 @@ class GetForumTopicDefaultIcons extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetForumTopicDefaultIcons? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -7991,26 +7991,26 @@ class GetForumTopicDefaultIcons extends Func {
   }
 }
 
-///Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+/// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup.
 ///
-///Returns [ForumTopicInfo]
+/// Returns [ForumTopicInfo].
 class CreateForumTopic extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createForumTopic";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [name] Name of the topic; 1-128 characters
+  /// Name of the topic; 1-128 characters.
   late String name;
 
-  /// [icon] Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+  /// Icon of the topic. Icon color must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F. Telegram Premium users can use any custom emoji as topic icon, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
   late ForumTopicIcon icon;
 
   /// Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
@@ -8039,7 +8039,7 @@ class CreateForumTopic extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateForumTopic? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8059,32 +8059,32 @@ class CreateForumTopic extends Func {
   }
 }
 
-///Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+/// Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditForumTopic extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editForumTopic";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
-  /// [name] New name of the topic; 0-128 characters. If empty, the previous topic name is kept
+  /// New name of the topic; 0-128 characters. If empty, the previous topic name is kept.
   String? name;
 
-  /// [edit_icon_custom_emoji] Pass true to edit the icon of the topic. Icon of the General topic can't be edited
+  /// Pass true to edit the icon of the topic. Icon of the General topic can't be edited.
   late bool edit_icon_custom_emoji;
 
-  /// [icon_custom_emoji_id] Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
+  /// Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons.
   /// ; string representation of int, use `int.parse`
   late int64 icon_custom_emoji_id;
 
@@ -8118,7 +8118,7 @@ class EditForumTopic extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditForumTopic? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8142,23 +8142,23 @@ class EditForumTopic extends Func {
   }
 }
 
-///Returns information about a forum topic
+/// Returns information about a forum topic.
 ///
-///Returns [ForumTopic]
+/// Returns [ForumTopic].
 class GetForumTopic extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getForumTopic";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
   /// Returns information about a forum topic
@@ -8185,7 +8185,7 @@ class GetForumTopic extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetForumTopic? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8203,23 +8203,23 @@ class GetForumTopic extends Func {
   }
 }
 
-///Returns an HTTPS link to a topic in a forum chat. This is an offline request
+/// Returns an HTTPS link to a topic in a forum chat. This is an offline request.
 ///
-///Returns [MessageLink]
+/// Returns [MessageLink].
 class GetForumTopicLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getForumTopicLink";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
   /// Returns an HTTPS link to a topic in a forum chat. This is an offline request
@@ -8246,7 +8246,7 @@ class GetForumTopicLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetForumTopicLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8264,35 +8264,35 @@ class GetForumTopicLink extends Func {
   }
 }
 
-///Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
+/// Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server.
 ///
-///Returns [ForumTopics]
+/// Returns [ForumTopics].
 class GetForumTopics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getForumTopics";
 
-  /// [chat_id] Identifier of the forum chat
+  /// Identifier of the forum chat.
   late int chat_id;
 
-  /// [query] Query to search for in the forum topic's name
+  /// Query to search for in the forum topic's name.
   late String query;
 
-  /// [offset_date] The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
+  /// The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic.
   late int offset_date;
 
-  /// [offset_message_id] The message identifier of the last message in the last found topic, or 0 for the first request
+  /// The message identifier of the last message in the last found topic, or 0 for the first request.
   late int offset_message_id;
 
-  /// [offset_message_thread_id] The message thread identifier of the last found topic, or 0 for the first request
+  /// The message thread identifier of the last found topic, or 0 for the first request.
   late int offset_message_thread_id;
 
-  /// [limit] The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+  /// The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit.
   late int limit;
 
   /// Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
@@ -8327,7 +8327,7 @@ class GetForumTopics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetForumTopics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8353,26 +8353,26 @@ class GetForumTopics extends Func {
   }
 }
 
-///Changes the notification settings of a forum topic
+/// Changes the notification settings of a forum topic.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetForumTopicNotificationSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setForumTopicNotificationSettings";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
-  /// [notification_settings] New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
+  /// New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever.
   late ChatNotificationSettings notification_settings;
 
   /// Changes the notification settings of a forum topic
@@ -8401,7 +8401,7 @@ class SetForumTopicNotificationSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetForumTopicNotificationSettings? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -8423,26 +8423,26 @@ class SetForumTopicNotificationSettings extends Func {
   }
 }
 
-///Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+/// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleForumTopicIsClosed extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleForumTopicIsClosed";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
-  /// [is_closed] Pass true to close the topic; pass false to reopen it
+  /// Pass true to close the topic; pass false to reopen it.
   late bool is_closed;
 
   /// Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
@@ -8471,7 +8471,7 @@ class ToggleForumTopicIsClosed extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleForumTopicIsClosed? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8491,23 +8491,23 @@ class ToggleForumTopicIsClosed extends Func {
   }
 }
 
-///Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+/// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGeneralForumTopicIsHidden extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGeneralForumTopicIsHidden";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [is_hidden] Pass true to hide and close the General topic; pass false to unhide it
+  /// Pass true to hide and close the General topic; pass false to unhide it.
   late bool is_hidden;
 
   /// Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
@@ -8534,7 +8534,7 @@ class ToggleGeneralForumTopicIsHidden extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGeneralForumTopicIsHidden? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8552,26 +8552,26 @@ class ToggleGeneralForumTopicIsHidden extends Func {
   }
 }
 
-///Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+/// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleForumTopicIsPinned extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleForumTopicIsPinned";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
-  /// [is_pinned] Pass true to pin the topic; pass false to unpin it
+  /// Pass true to pin the topic; pass false to unpin it.
   late bool is_pinned;
 
   /// Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
@@ -8600,7 +8600,7 @@ class ToggleForumTopicIsPinned extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleForumTopicIsPinned? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8620,23 +8620,23 @@ class ToggleForumTopicIsPinned extends Func {
   }
 }
 
-///Changes the order of pinned forum topics
+/// Changes the order of pinned forum topics.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetPinnedForumTopics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPinnedForumTopics";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_ids] The new list of pinned forum topics
+  /// The new list of pinned forum topics.
   late List<int> message_thread_ids;
 
   /// Changes the order of pinned forum topics
@@ -8663,7 +8663,7 @@ class SetPinnedForumTopics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPinnedForumTopics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8685,23 +8685,23 @@ class SetPinnedForumTopics extends Func {
   }
 }
 
-///Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+/// Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteForumTopic extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteForumTopic";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier of the forum topic
+  /// Message thread identifier of the forum topic.
   late int message_thread_id;
 
   /// Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
@@ -8728,7 +8728,7 @@ class DeleteForumTopic extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteForumTopic? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8746,20 +8746,20 @@ class DeleteForumTopic extends Func {
   }
 }
 
-///Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+/// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found.
 ///
-///Returns [EmojiReaction]
+/// Returns [EmojiReaction].
 class GetEmojiReaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getEmojiReaction";
 
-  /// [emoji] Text representation of the reaction
+  /// Text representation of the reaction.
   late String emoji;
 
   /// Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
@@ -8781,7 +8781,7 @@ class GetEmojiReaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetEmojiReaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8797,17 +8797,17 @@ class GetEmojiReaction extends Func {
   }
 }
 
-///Returns TGS stickers with generic animations for custom emoji reactions
+/// Returns TGS stickers with generic animations for custom emoji reactions.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetCustomEmojiReactionAnimations extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCustomEmojiReactionAnimations";
 
   /// Returns TGS stickers with generic animations for custom emoji reactions
@@ -8828,7 +8828,7 @@ class GetCustomEmojiReactionAnimations extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCustomEmojiReactionAnimations? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8843,26 +8843,26 @@ class GetCustomEmojiReactionAnimations extends Func {
   }
 }
 
-///Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+/// Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message.
 ///
-///Returns [AvailableReactions]
+/// Returns [AvailableReactions].
 class GetMessageAvailableReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageAvailableReactions";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [row_size] Number of reaction per row, 5-25
+  /// Number of reaction per row, 5-25.
   late int row_size;
 
   /// Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
@@ -8891,7 +8891,7 @@ class GetMessageAvailableReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageAvailableReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8911,17 +8911,17 @@ class GetMessageAvailableReactions extends Func {
   }
 }
 
-///Clears the list of recently used reactions
+/// Clears the list of recently used reactions.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearRecentReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearRecentReactions";
 
   /// Clears the list of recently used reactions
@@ -8942,7 +8942,7 @@ class ClearRecentReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearRecentReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -8957,32 +8957,32 @@ class ClearRecentReactions extends Func {
   }
 }
 
-///Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+/// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddMessageReaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addMessageReaction";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reaction_type] Type of the reaction to add
+  /// Type of the reaction to add.
   late ReactionType reaction_type;
 
-  /// [is_big] Pass true if the reaction is added with a big animation
+  /// Pass true if the reaction is added with a big animation.
   late bool is_big;
 
-  /// [update_recent_reactions] Pass true if the reaction needs to be added to recent reactions
+  /// Pass true if the reaction needs to be added to recent reactions.
   late bool update_recent_reactions;
 
   /// Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
@@ -9015,7 +9015,7 @@ class AddMessageReaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddMessageReaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9039,26 +9039,26 @@ class AddMessageReaction extends Func {
   }
 }
 
-///Removes a reaction from a message. A chosen reaction can always be removed
+/// Removes a reaction from a message. A chosen reaction can always be removed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveMessageReaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeMessageReaction";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reaction_type] Type of the reaction to remove
+  /// Type of the reaction to remove.
   late ReactionType reaction_type;
 
   /// Removes a reaction from a message. A chosen reaction can always be removed
@@ -9087,7 +9087,7 @@ class RemoveMessageReaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveMessageReaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9107,32 +9107,32 @@ class RemoveMessageReaction extends Func {
   }
 }
 
-///Returns reactions added for a message, along with their sender
+/// Returns reactions added for a message, along with their sender.
 ///
-///Returns [AddedReactions]
+/// Returns [AddedReactions].
 class GetMessageAddedReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageAddedReactions";
 
-  /// [chat_id] Identifier of the chat to which the message belongs
+  /// Identifier of the chat to which the message belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [reaction_type] Type of the reactions to return; pass null to return all added reactions
+  /// Type of the reactions to return; pass null to return all added reactions.
   ReactionType? reaction_type;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of reactions to be returned; must be positive and can't be greater than 100
+  /// The maximum number of reactions to be returned; must be positive and can't be greater than 100.
   late int limit;
 
   /// Returns reactions added for a message, along with their sender
@@ -9165,7 +9165,7 @@ class GetMessageAddedReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageAddedReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9189,20 +9189,20 @@ class GetMessageAddedReactions extends Func {
   }
 }
 
-///Changes type of default reaction for the current user
+/// Changes type of default reaction for the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetDefaultReactionType extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setDefaultReactionType";
 
-  /// [reaction_type] New type of the default reaction
+  /// New type of the default reaction.
   late ReactionType reaction_type;
 
   /// Changes type of default reaction for the current user
@@ -9225,7 +9225,7 @@ class SetDefaultReactionType extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetDefaultReactionType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9241,20 +9241,20 @@ class SetDefaultReactionType extends Func {
   }
 }
 
-///Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+/// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously.
 ///
-///Returns [TextEntities]
+/// Returns [TextEntities].
 class GetTextEntities extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getTextEntities";
 
-  /// [text] The text in which to look for entities
+  /// The text in which to look for entities.
   late String text;
 
   /// Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
@@ -9276,7 +9276,7 @@ class GetTextEntities extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetTextEntities? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9292,23 +9292,23 @@ class GetTextEntities extends SyncFunc {
   }
 }
 
-///Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+/// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously.
 ///
-///Returns [FormattedText]
+/// Returns [FormattedText].
 class ParseTextEntities extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "parseTextEntities";
 
-  /// [text] The text to parse
+  /// The text to parse.
   late String text;
 
-  /// [parse_mode] Text parse mode
+  /// Text parse mode.
   late TextParseMode parse_mode;
 
   /// Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
@@ -9335,7 +9335,7 @@ class ParseTextEntities extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ParseTextEntities? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9353,20 +9353,20 @@ class ParseTextEntities extends SyncFunc {
   }
 }
 
-///Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
+/// Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously.
 ///
-///Returns [FormattedText]
+/// Returns [FormattedText].
 class ParseMarkdown extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "parseMarkdown";
 
-  /// [text] The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+  /// The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**".
   late FormattedText text;
 
   /// Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
@@ -9388,7 +9388,7 @@ class ParseMarkdown extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ParseMarkdown? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9404,20 +9404,20 @@ class ParseMarkdown extends SyncFunc {
   }
 }
 
-///Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
+/// Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously.
 ///
-///Returns [FormattedText]
+/// Returns [FormattedText].
 class GetMarkdownText extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMarkdownText";
 
-  /// [text] The text
+  /// The text.
   late FormattedText text;
 
   /// Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
@@ -9439,7 +9439,7 @@ class GetMarkdownText extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMarkdownText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9455,20 +9455,20 @@ class GetMarkdownText extends SyncFunc {
   }
 }
 
-///Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
+/// Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetFileMimeType extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getFileMimeType";
 
-  /// [file_name] The name of the file or path to the file
+  /// The name of the file or path to the file.
   late String file_name;
 
   /// Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
@@ -9490,7 +9490,7 @@ class GetFileMimeType extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetFileMimeType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9506,20 +9506,20 @@ class GetFileMimeType extends SyncFunc {
   }
 }
 
-///Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
+/// Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetFileExtension extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getFileExtension";
 
-  /// [mime_type] The MIME type of the file
+  /// The MIME type of the file.
   late String mime_type;
 
   /// Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
@@ -9541,7 +9541,7 @@ class GetFileExtension extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetFileExtension? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9557,20 +9557,20 @@ class GetFileExtension extends SyncFunc {
   }
 }
 
-///Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
+/// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously.
 ///
-///Returns [Text]
+/// Returns [Text].
 class CleanFileName extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "cleanFileName";
 
-  /// [file_name] File name or path to the file
+  /// File name or path to the file.
   late String file_name;
 
   /// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
@@ -9592,7 +9592,7 @@ class CleanFileName extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CleanFileName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9608,29 +9608,29 @@ class CleanFileName extends SyncFunc {
   }
 }
 
-///Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
+/// Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously.
 ///
-///Returns [LanguagePackStringValue]
+/// Returns [LanguagePackStringValue].
 class GetLanguagePackString extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLanguagePackString";
 
-  /// [language_pack_database_path] Path to the language pack database in which strings are stored
+  /// Path to the language pack database in which strings are stored.
   late String language_pack_database_path;
 
-  /// [localization_target] Localization target to which the language pack belongs
+  /// Localization target to which the language pack belongs.
   late String localization_target;
 
-  /// [language_pack_id] Language pack identifier
+  /// Language pack identifier.
   late String language_pack_id;
 
-  /// [key] Language pack key of the string to be returned
+  /// Language pack key of the string to be returned.
   late String key;
 
   /// Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
@@ -9661,7 +9661,7 @@ class GetLanguagePackString extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLanguagePackString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9684,20 +9684,20 @@ class GetLanguagePackString extends SyncFunc {
   }
 }
 
-///Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
+/// Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously.
 ///
-///Returns [JsonValue]
+/// Returns [JsonValue].
 class GetJsonValue extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getJsonValue";
 
-  /// [json] The JSON-serialized string
+  /// The JSON-serialized string.
   late String json;
 
   /// Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
@@ -9719,7 +9719,7 @@ class GetJsonValue extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetJsonValue? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9735,20 +9735,20 @@ class GetJsonValue extends SyncFunc {
   }
 }
 
-///Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
+/// Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetJsonString extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getJsonString";
 
-  /// [json_value] The JsonValue object
+  /// The JsonValue object.
   late JsonValue json_value;
 
   /// Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -9770,7 +9770,7 @@ class GetJsonString extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetJsonString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9786,20 +9786,20 @@ class GetJsonString extends SyncFunc {
   }
 }
 
-///Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+/// Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetThemeParametersJsonString extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getThemeParametersJsonString";
 
-  /// [theme] Theme parameters to convert to JSON
+  /// Theme parameters to convert to JSON.
   late ThemeParameters theme;
 
   /// Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
@@ -9822,7 +9822,7 @@ class GetThemeParametersJsonString extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetThemeParametersJsonString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9838,26 +9838,26 @@ class GetThemeParametersJsonString extends SyncFunc {
   }
 }
 
-///Changes the user answer to a poll. A poll in quiz mode can be answered only once
+/// Changes the user answer to a poll. A poll in quiz mode can be answered only once.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetPollAnswer extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPollAnswer";
 
-  /// [chat_id] Identifier of the chat to which the poll belongs
+  /// Identifier of the chat to which the poll belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message containing the poll
+  /// Identifier of the message containing the poll.
   late int message_id;
 
-  /// [option_ids] 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
+  /// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers.
   late List<int> option_ids;
 
   /// Changes the user answer to a poll. A poll in quiz mode can be answered only once
@@ -9886,7 +9886,7 @@ class SetPollAnswer extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPollAnswer? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9910,32 +9910,32 @@ class SetPollAnswer extends Func {
   }
 }
 
-///Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+/// Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib.
 ///
-///Returns [MessageSenders]
+/// Returns [MessageSenders].
 class GetPollVoters extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPollVoters";
 
-  /// [chat_id] Identifier of the chat to which the poll belongs
+  /// Identifier of the chat to which the poll belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message containing the poll
+  /// Identifier of the message containing the poll.
   late int message_id;
 
-  /// [option_id] 0-based identifier of the answer option
+  /// 0-based identifier of the answer option.
   late int option_id;
 
-  /// [offset] Number of voters to skip in the result; must be non-negative
+  /// Number of voters to skip in the result; must be non-negative.
   late int offset;
 
-  /// [limit] The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+  /// The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached.
   late int limit;
 
   /// Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
@@ -9968,7 +9968,7 @@ class GetPollVoters extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPollVoters? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -9992,26 +9992,26 @@ class GetPollVoters extends Func {
   }
 }
 
-///Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+/// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class StopPoll extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "stopPoll";
 
-  /// [chat_id] Identifier of the chat to which the poll belongs
+  /// Identifier of the chat to which the poll belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message containing the poll
+  /// Identifier of the message containing the poll.
   late int message_id;
 
-  /// [reply_markup] The new message reply markup; pass null if none; for bots only
+  /// The new message reply markup; pass null if none; for bots only.
   ReplyMarkup? reply_markup;
 
   /// Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
@@ -10040,7 +10040,7 @@ class StopPoll extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StopPoll? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10060,20 +10060,20 @@ class StopPoll extends Func {
   }
 }
 
-///Hides a suggested action
+/// Hides a suggested action.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class HideSuggestedAction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "hideSuggestedAction";
 
-  /// [action] Suggested action to hide
+  /// Suggested action to hide.
   late SuggestedAction action;
 
   /// Hides a suggested action
@@ -10095,7 +10095,7 @@ class HideSuggestedAction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static HideSuggestedAction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10111,26 +10111,26 @@ class HideSuggestedAction extends Func {
   }
 }
 
-///Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+/// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button.
 ///
-///Returns [LoginUrlInfo]
+/// Returns [LoginUrlInfo].
 class GetLoginUrlInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLoginUrlInfo";
 
-  /// [chat_id] Chat identifier of the message with the button
+  /// Chat identifier of the message with the button.
   late int chat_id;
 
-  /// [message_id] Message identifier of the message with the button
+  /// Message identifier of the message with the button.
   late int message_id;
 
-  /// [button_id] Button identifier
+  /// Button identifier.
   late int button_id;
 
   /// Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -10159,7 +10159,7 @@ class GetLoginUrlInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLoginUrlInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10179,29 +10179,29 @@ class GetLoginUrlInfo extends Func {
   }
 }
 
-///Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
+/// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl..
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetLoginUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLoginUrl";
 
-  /// [chat_id] Chat identifier of the message with the button
+  /// Chat identifier of the message with the button.
   late int chat_id;
 
-  /// [message_id] Message identifier of the message with the button
+  /// Message identifier of the message with the button.
   late int message_id;
 
-  /// [button_id] Button identifier
+  /// Button identifier.
   late int button_id;
 
-  /// [allow_write_access] Pass true to allow the bot to send messages to the current user
+  /// Pass true to allow the bot to send messages to the current user.
   late bool allow_write_access;
 
   /// Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl.
@@ -10232,7 +10232,7 @@ class GetLoginUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLoginUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10254,32 +10254,32 @@ class GetLoginUrl extends Func {
   }
 }
 
-///Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+/// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ShareUserWithBot extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "shareUserWithBot";
 
-  /// [chat_id] Identifier of the chat with the bot
+  /// Identifier of the chat with the bot.
   late int chat_id;
 
-  /// [message_id] Identifier of the message with the button
+  /// Identifier of the message with the button.
   late int message_id;
 
-  /// [button_id] Identifier of the button
+  /// Identifier of the button.
   late int button_id;
 
-  /// [shared_user_id] Identifier of the shared user
+  /// Identifier of the shared user.
   late int shared_user_id;
 
-  /// [only_check] Pass true to check that the user can be shared by the button instead of actually sharing them
+  /// Pass true to check that the user can be shared by the button instead of actually sharing them.
   late bool only_check;
 
   /// Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
@@ -10312,7 +10312,7 @@ class ShareUserWithBot extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ShareUserWithBot? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10336,32 +10336,32 @@ class ShareUserWithBot extends Func {
   }
 }
 
-///Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
+/// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ShareChatWithBot extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "shareChatWithBot";
 
-  /// [chat_id] Identifier of the chat with the bot
+  /// Identifier of the chat with the bot.
   late int chat_id;
 
-  /// [message_id] Identifier of the message with the button
+  /// Identifier of the message with the button.
   late int message_id;
 
-  /// [button_id] Identifier of the button
+  /// Identifier of the button.
   late int button_id;
 
-  /// [shared_chat_id] Identifier of the shared chat
+  /// Identifier of the shared chat.
   late int shared_chat_id;
 
-  /// [only_check] Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions.
+  /// Pass true to check that the chat can be shared by the button instead of actually sharing it. Doesn't check bot_is_member and bot_administrator_rights restrictions..
   late bool only_check;
 
   /// Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
@@ -10394,7 +10394,7 @@ class ShareChatWithBot extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ShareChatWithBot? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10418,32 +10418,32 @@ class ShareChatWithBot extends Func {
   }
 }
 
-///Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+/// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
 ///
-///Returns [InlineQueryResults]
+/// Returns [InlineQueryResults].
 class GetInlineQueryResults extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInlineQueryResults";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [chat_id] Identifier of the chat where the query was sent
+  /// Identifier of the chat where the query was sent.
   late int chat_id;
 
-  /// [user_location] Location of the user; pass null if unknown or the bot doesn't need user's location
+  /// Location of the user; pass null if unknown or the bot doesn't need user's location.
   Location? user_location;
 
-  /// [query] Text of the query
+  /// Text of the query.
   late String query;
 
-  /// [offset] Offset of the first entry to return; use empty string to get the first chunk of results
+  /// Offset of the first entry to return; use empty string to get the first chunk of results.
   late String offset;
 
   /// Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -10476,7 +10476,7 @@ class GetInlineQueryResults extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInlineQueryResults? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10500,36 +10500,36 @@ class GetInlineQueryResults extends Func {
   }
 }
 
-///Sets the result of an inline query; for bots only
+/// Sets the result of an inline query; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AnswerInlineQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerInlineQuery";
 
-  /// [inline_query_id] Identifier of the inline query
+  /// Identifier of the inline query.
   /// ; string representation of int, use `int.parse`
   late int64 inline_query_id;
 
-  /// [is_personal] Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+  /// Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query.
   late bool is_personal;
 
-  /// [button] Button to be shown above inline query results; pass null if none
+  /// Button to be shown above inline query results; pass null if none.
   InlineQueryResultsButton? button;
 
-  /// [results] The results of the query
+  /// The results of the query.
   late List<InputInlineQueryResult> results;
 
-  /// [cache_time] Allowed time to cache the results of the query, in seconds
+  /// Allowed time to cache the results of the query, in seconds.
   late int cache_time;
 
-  /// [next_offset] Offset for the next inline query; pass an empty string if there are no more results
+  /// Offset for the next inline query; pass an empty string if there are no more results.
   late String next_offset;
 
   /// Sets the result of an inline query; for bots only
@@ -10564,7 +10564,7 @@ class AnswerInlineQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerInlineQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10594,23 +10594,23 @@ class AnswerInlineQuery extends Func {
   }
 }
 
-///Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+/// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found.
 ///
-///Returns [FoundWebApp]
+/// Returns [FoundWebApp].
 class SearchWebApp extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchWebApp";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [web_app_short_name] Short name of the Web App
+  /// Short name of the Web App.
   late String web_app_short_name;
 
   /// Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
@@ -10637,7 +10637,7 @@ class SearchWebApp extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchWebApp? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10655,38 +10655,38 @@ class SearchWebApp extends Func {
   }
 }
 
-///Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
+/// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetWebAppLinkUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getWebAppLinkUrl";
 
-  /// [chat_id] Identifier of the chat in which the link was clicked; pass 0 if none
+  /// Identifier of the chat in which the link was clicked; pass 0 if none.
   late int chat_id;
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [web_app_short_name] Short name of the Web App
+  /// Short name of the Web App.
   late String web_app_short_name;
 
-  /// [start_parameter] Start parameter from internalLinkTypeWebApp
+  /// Start parameter from internalLinkTypeWebApp.
   late String start_parameter;
 
-  /// [theme] Preferred Web App theme; pass null to use the default theme
+  /// Preferred Web App theme; pass null to use the default theme.
   ThemeParameters? theme;
 
-  /// [application_name] Short name of the application; 0-64 English letters, digits, and underscores
+  /// Short name of the application; 0-64 English letters, digits, and underscores.
   late String application_name;
 
-  /// [allow_write_access] Pass true if the current user allowed the bot to send them messages
+  /// Pass true if the current user allowed the bot to send them messages.
   late bool allow_write_access;
 
   /// Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -10723,7 +10723,7 @@ class GetWebAppLinkUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetWebAppLinkUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10751,29 +10751,29 @@ class GetWebAppLinkUrl extends Func {
   }
 }
 
-///Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+/// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetWebAppUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getWebAppUrl";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [url] The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
+  /// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu.
   late String url;
 
-  /// [theme] Preferred Web App theme; pass null to use the default theme
+  /// Preferred Web App theme; pass null to use the default theme.
   ThemeParameters? theme;
 
-  /// [application_name] Short name of the application; 0-64 English letters, digits, and underscores
+  /// Short name of the application; 0-64 English letters, digits, and underscores.
   late String application_name;
 
   /// Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
@@ -10804,7 +10804,7 @@ class GetWebAppUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetWebAppUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10826,26 +10826,26 @@ class GetWebAppUrl extends Func {
   }
 }
 
-///Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+/// Sends data received from a keyboardButtonTypeWebApp Web App to a bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendWebAppData extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendWebAppData";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [button_text] Text of the keyboardButtonTypeWebApp button, which opened the Web App
+  /// Text of the keyboardButtonTypeWebApp button, which opened the Web App.
   late String button_text;
 
-  /// [data] The data
+  /// The data.
   late String data;
 
   /// Sends data received from a keyboardButtonTypeWebApp Web App to a bot
@@ -10874,7 +10874,7 @@ class SendWebAppData extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendWebAppData? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10894,38 +10894,38 @@ class SendWebAppData extends Func {
   }
 }
 
-///Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
+/// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button..
 ///
-///Returns [WebAppInfo]
+/// Returns [WebAppInfo].
 class OpenWebApp extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "openWebApp";
 
-  /// [chat_id] Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+  /// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats.
   late int chat_id;
 
-  /// [bot_user_id] Identifier of the bot, providing the Web App
+  /// Identifier of the bot, providing the Web App.
   late int bot_user_id;
 
-  /// [url] The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+  /// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise.
   late String url;
 
-  /// [theme] Preferred Web App theme; pass null to use the default theme
+  /// Preferred Web App theme; pass null to use the default theme.
   ThemeParameters? theme;
 
-  /// [application_name] Short name of the application; 0-64 English letters, digits, and underscores
+  /// Short name of the application; 0-64 English letters, digits, and underscores.
   late String application_name;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the message will be sent
+  /// If not 0, a message thread identifier in which the message will be sent.
   late int message_thread_id;
 
-  /// [reply_to] Identifier of the replied message or story for the message sent by the Web App; pass null if none
+  /// Identifier of the replied message or story for the message sent by the Web App; pass null if none.
   MessageReplyTo? reply_to;
 
   /// Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
@@ -10962,7 +10962,7 @@ class OpenWebApp extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OpenWebApp? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -10990,20 +10990,20 @@ class OpenWebApp extends Func {
   }
 }
 
-///Informs TDLib that a previously opened Web App was closed
+/// Informs TDLib that a previously opened Web App was closed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CloseWebApp extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "closeWebApp";
 
-  /// [web_app_launch_id] Identifier of Web App launch, received from openWebApp
+  /// Identifier of Web App launch, received from openWebApp.
   /// ; string representation of int, use `int.parse`
   late int64 web_app_launch_id;
 
@@ -11026,7 +11026,7 @@ class CloseWebApp extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CloseWebApp? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11042,23 +11042,23 @@ class CloseWebApp extends Func {
   }
 }
 
-///Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+/// Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only.
 ///
-///Returns [SentWebAppMessage]
+/// Returns [SentWebAppMessage].
 class AnswerWebAppQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerWebAppQuery";
 
-  /// [web_app_query_id] Identifier of the Web App query
+  /// Identifier of the Web App query.
   late String web_app_query_id;
 
-  /// [result] The result of the query
+  /// The result of the query.
   late InputInlineQueryResult result;
 
   /// Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
@@ -11085,7 +11085,7 @@ class AnswerWebAppQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerWebAppQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11103,26 +11103,26 @@ class AnswerWebAppQuery extends Func {
   }
 }
 
-///Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+/// Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires.
 ///
-///Returns [CallbackQueryAnswer]
+/// Returns [CallbackQueryAnswer].
 class GetCallbackQueryAnswer extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCallbackQueryAnswer";
 
-  /// [chat_id] Identifier of the chat with the message
+  /// Identifier of the chat with the message.
   late int chat_id;
 
-  /// [message_id] Identifier of the message from which the query originated
+  /// Identifier of the message from which the query originated.
   late int message_id;
 
-  /// [payload] Query payload
+  /// Query payload.
   late CallbackQueryPayload payload;
 
   /// Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -11151,7 +11151,7 @@ class GetCallbackQueryAnswer extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCallbackQueryAnswer? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11171,33 +11171,33 @@ class GetCallbackQueryAnswer extends Func {
   }
 }
 
-///Sets the result of a callback query; for bots only
+/// Sets the result of a callback query; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AnswerCallbackQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerCallbackQuery";
 
-  /// [callback_query_id] Identifier of the callback query
+  /// Identifier of the callback query.
   /// ; string representation of int, use `int.parse`
   late int64 callback_query_id;
 
-  /// [text] Text of the answer
+  /// Text of the answer.
   late String text;
 
-  /// [show_alert] Pass true to show an alert to the user instead of a toast notification
+  /// Pass true to show an alert to the user instead of a toast notification.
   late bool show_alert;
 
-  /// [url] URL to be opened
+  /// URL to be opened.
   late String url;
 
-  /// [cache_time] Time during which the result of the query can be cached, in seconds
+  /// Time during which the result of the query can be cached, in seconds.
   late int cache_time;
 
   /// Sets the result of a callback query; for bots only
@@ -11230,7 +11230,7 @@ class AnswerCallbackQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerCallbackQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11254,27 +11254,27 @@ class AnswerCallbackQuery extends Func {
   }
 }
 
-///Sets the result of a shipping query; for bots only
+/// Sets the result of a shipping query; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AnswerShippingQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerShippingQuery";
 
-  /// [shipping_query_id] Identifier of the shipping query
+  /// Identifier of the shipping query.
   /// ; string representation of int, use `int.parse`
   late int64 shipping_query_id;
 
-  /// [shipping_options] Available shipping options
+  /// Available shipping options.
   late List<ShippingOption> shipping_options;
 
-  /// [error_message] An error message, empty on success
+  /// An error message, empty on success.
   late String error_message;
 
   /// Sets the result of a shipping query; for bots only
@@ -11303,7 +11303,7 @@ class AnswerShippingQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerShippingQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11327,24 +11327,24 @@ class AnswerShippingQuery extends Func {
   }
 }
 
-///Sets the result of a pre-checkout query; for bots only
+/// Sets the result of a pre-checkout query; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AnswerPreCheckoutQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerPreCheckoutQuery";
 
-  /// [pre_checkout_query_id] Identifier of the pre-checkout query
+  /// Identifier of the pre-checkout query.
   /// ; string representation of int, use `int.parse`
   late int64 pre_checkout_query_id;
 
-  /// [error_message] An error message, empty on success
+  /// An error message, empty on success.
   late String error_message;
 
   /// Sets the result of a pre-checkout query; for bots only
@@ -11371,7 +11371,7 @@ class AnswerPreCheckoutQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerPreCheckoutQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11389,35 +11389,35 @@ class AnswerPreCheckoutQuery extends Func {
   }
 }
 
-///Updates the game score of the specified user in the game; for bots only
+/// Updates the game score of the specified user in the game; for bots only.
 ///
-///Returns [Message]
+/// Returns [Message].
 class SetGameScore extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setGameScore";
 
-  /// [chat_id] The chat to which the message with the game belongs
+  /// The chat to which the message with the game belongs.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [edit_message] Pass true to edit the game message to include the current scoreboard
+  /// Pass true to edit the game message to include the current scoreboard.
   late bool edit_message;
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [score] The new score
+  /// The new score.
   late int score;
 
-  /// [force] Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+  /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
   late bool force;
 
   /// Updates the game score of the specified user in the game; for bots only
@@ -11452,7 +11452,7 @@ class SetGameScore extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetGameScore? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11478,32 +11478,32 @@ class SetGameScore extends Func {
   }
 }
 
-///Updates the game score of the specified user in a game; for bots only
+/// Updates the game score of the specified user in a game; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetInlineGameScore extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setInlineGameScore";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [edit_message] Pass true to edit the game message to include the current scoreboard
+  /// Pass true to edit the game message to include the current scoreboard.
   late bool edit_message;
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [score] The new score
+  /// The new score.
   late int score;
 
-  /// [force] Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+  /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table.
   late bool force;
 
   /// Updates the game score of the specified user in a game; for bots only
@@ -11536,7 +11536,7 @@ class SetInlineGameScore extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetInlineGameScore? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11560,26 +11560,26 @@ class SetInlineGameScore extends Func {
   }
 }
 
-///Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
+/// Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only.
 ///
-///Returns [GameHighScores]
+/// Returns [GameHighScores].
 class GetGameHighScores extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGameHighScores";
 
-  /// [chat_id] The chat that contains the message with the game
+  /// The chat that contains the message with the game.
   late int chat_id;
 
-  /// [message_id] Identifier of the message
+  /// Identifier of the message.
   late int message_id;
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
   /// Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -11608,7 +11608,7 @@ class GetGameHighScores extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGameHighScores? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11628,23 +11628,23 @@ class GetGameHighScores extends Func {
   }
 }
 
-///Returns game high scores and some part of the high score table in the range of the specified user; for bots only
+/// Returns game high scores and some part of the high score table in the range of the specified user; for bots only.
 ///
-///Returns [GameHighScores]
+/// Returns [GameHighScores].
 class GetInlineGameHighScores extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInlineGameHighScores";
 
-  /// [inline_message_id] Inline message identifier
+  /// Inline message identifier.
   late String inline_message_id;
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
   /// Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -11671,7 +11671,7 @@ class GetInlineGameHighScores extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInlineGameHighScores? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11689,23 +11689,23 @@ class GetInlineGameHighScores extends Func {
   }
 }
 
-///Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
+/// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatReplyMarkup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatReplyMarkup";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] The message identifier of the used keyboard
+  /// The message identifier of the used keyboard.
   late int message_id;
 
   /// Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
@@ -11732,7 +11732,7 @@ class DeleteChatReplyMarkup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatReplyMarkup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11750,26 +11750,26 @@ class DeleteChatReplyMarkup extends Func {
   }
 }
 
-///Sends a notification about user activity in a chat
+/// Sends a notification about user activity in a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendChatAction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendChatAction";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the action was performed
+  /// If not 0, a message thread identifier in which the action was performed.
   late int message_thread_id;
 
-  /// [action] The action description; pass null to cancel the currently active action
+  /// The action description; pass null to cancel the currently active action.
   ChatAction? action;
 
   /// Sends a notification about user activity in a chat
@@ -11798,7 +11798,7 @@ class SendChatAction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendChatAction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11818,20 +11818,20 @@ class SendChatAction extends Func {
   }
 }
 
-///Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
+/// Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats).
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class OpenChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "openChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
@@ -11853,7 +11853,7 @@ class OpenChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OpenChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11869,20 +11869,20 @@ class OpenChat extends Func {
   }
 }
 
-///Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
+/// Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CloseChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "closeChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
@@ -11904,7 +11904,7 @@ class CloseChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CloseChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11920,29 +11920,29 @@ class CloseChat extends Func {
   }
 }
 
-///Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
+/// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button)..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ViewMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "viewMessages";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_ids] The identifiers of the messages being viewed
+  /// The identifiers of the messages being viewed.
   late List<int> message_ids;
 
-  /// [source] Source of the message view; pass null to guess the source based on chat open state
+  /// Source of the message view; pass null to guess the source based on chat open state.
   MessageSource? source;
 
-  /// [force_read] Pass true to mark as read the specified messages even the chat is closed
+  /// Pass true to mark as read the specified messages even the chat is closed.
   late bool force_read;
 
   /// Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button).
@@ -11973,7 +11973,7 @@ class ViewMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ViewMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -11999,23 +11999,23 @@ class ViewMessages extends Func {
   }
 }
 
-///Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
+/// Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message)..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class OpenMessageContent extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "openMessageContent";
 
-  /// [chat_id] Chat identifier of the message
+  /// Chat identifier of the message.
   late int chat_id;
 
-  /// [message_id] Identifier of the message with the opened content
+  /// Identifier of the message with the opened content.
   late int message_id;
 
   /// Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message).
@@ -12042,7 +12042,7 @@ class OpenMessageContent extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OpenMessageContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12060,23 +12060,23 @@ class OpenMessageContent extends Func {
   }
 }
 
-///Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
+/// Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played.
 ///
-///Returns [Sticker]
+/// Returns [Sticker].
 class ClickAnimatedEmojiMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clickAnimatedEmojiMessage";
 
-  /// [chat_id] Chat identifier of the message
+  /// Chat identifier of the message.
   late int chat_id;
 
-  /// [message_id] Identifier of the clicked message
+  /// Identifier of the clicked message.
   late int message_id;
 
   /// Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
@@ -12103,7 +12103,7 @@ class ClickAnimatedEmojiMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClickAnimatedEmojiMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12121,23 +12121,23 @@ class ClickAnimatedEmojiMessage extends Func {
   }
 }
 
-///Returns an HTTPS or a tg: link with the given type. Can be called before authorization
+/// Returns an HTTPS or a tg: link with the given type. Can be called before authorization.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetInternalLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInternalLink";
 
-  /// [type] Expected type of the link
+  /// Expected type of the link.
   late InternalLinkType type;
 
-  /// [is_http] Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
+  /// Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link.
   late bool is_http;
 
   /// Returns an HTTPS or a tg: link with the given type. Can be called before authorization
@@ -12161,7 +12161,7 @@ class GetInternalLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInternalLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12179,20 +12179,20 @@ class GetInternalLink extends Func {
   }
 }
 
-///Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+/// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization.
 ///
-///Returns [InternalLinkType]
+/// Returns [InternalLinkType].
 class GetInternalLinkType extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInternalLinkType";
 
-  /// [link] The link
+  /// The link.
   late String link;
 
   /// Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
@@ -12214,7 +12214,7 @@ class GetInternalLinkType extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInternalLinkType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12230,20 +12230,20 @@ class GetInternalLinkType extends Func {
   }
 }
 
-///Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
+/// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats.
 ///
-///Returns [LoginUrlInfo]
+/// Returns [LoginUrlInfo].
 class GetExternalLinkInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getExternalLinkInfo";
 
-  /// [link] The link
+  /// The link.
   late String link;
 
   /// Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
@@ -12265,7 +12265,7 @@ class GetExternalLinkInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetExternalLinkInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12281,23 +12281,23 @@ class GetExternalLinkInfo extends Func {
   }
 }
 
-///Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
+/// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetExternalLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getExternalLink";
 
-  /// [link] The HTTP link
+  /// The HTTP link.
   late String link;
 
-  /// [allow_write_access] Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+  /// Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages.
   late bool allow_write_access;
 
   /// Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
@@ -12324,7 +12324,7 @@ class GetExternalLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetExternalLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12342,20 +12342,20 @@ class GetExternalLink extends Func {
   }
 }
 
-///Marks all mentions in a chat as read
+/// Marks all mentions in a chat as read.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReadAllChatMentions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readAllChatMentions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Marks all mentions in a chat as read
@@ -12377,7 +12377,7 @@ class ReadAllChatMentions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadAllChatMentions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12393,23 +12393,23 @@ class ReadAllChatMentions extends Func {
   }
 }
 
-///Marks all mentions in a forum topic as read
+/// Marks all mentions in a forum topic as read.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReadAllMessageThreadMentions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readAllMessageThreadMentions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier in which mentions are marked as read
+  /// Message thread identifier in which mentions are marked as read.
   late int message_thread_id;
 
   /// Marks all mentions in a forum topic as read
@@ -12436,7 +12436,7 @@ class ReadAllMessageThreadMentions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadAllMessageThreadMentions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12454,20 +12454,20 @@ class ReadAllMessageThreadMentions extends Func {
   }
 }
 
-///Marks all reactions in a chat or a forum topic as read
+/// Marks all reactions in a chat or a forum topic as read.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReadAllChatReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readAllChatReactions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Marks all reactions in a chat or a forum topic as read
@@ -12489,7 +12489,7 @@ class ReadAllChatReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadAllChatReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12505,23 +12505,23 @@ class ReadAllChatReactions extends Func {
   }
 }
 
-///Marks all reactions in a forum topic as read
+/// Marks all reactions in a forum topic as read.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReadAllMessageThreadReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readAllMessageThreadReactions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier in which reactions are marked as read
+  /// Message thread identifier in which reactions are marked as read.
   late int message_thread_id;
 
   /// Marks all reactions in a forum topic as read
@@ -12548,7 +12548,7 @@ class ReadAllMessageThreadReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadAllMessageThreadReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12566,23 +12566,23 @@ class ReadAllMessageThreadReactions extends Func {
   }
 }
 
-///Returns an existing chat corresponding to a given user
+/// Returns an existing chat corresponding to a given user.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreatePrivateChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createPrivateChat";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [force] Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+  /// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
   late bool force;
 
   /// Returns an existing chat corresponding to a given user
@@ -12606,7 +12606,7 @@ class CreatePrivateChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreatePrivateChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12624,23 +12624,23 @@ class CreatePrivateChat extends Func {
   }
 }
 
-///Returns an existing chat corresponding to a known basic group
+/// Returns an existing chat corresponding to a known basic group.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateBasicGroupChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createBasicGroupChat";
 
-  /// [basic_group_id] Basic group identifier
+  /// Basic group identifier.
   late int basic_group_id;
 
-  /// [force] Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+  /// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
   late bool force;
 
   /// Returns an existing chat corresponding to a known basic group
@@ -12667,7 +12667,7 @@ class CreateBasicGroupChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateBasicGroupChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12685,23 +12685,23 @@ class CreateBasicGroupChat extends Func {
   }
 }
 
-///Returns an existing chat corresponding to a known supergroup or channel
+/// Returns an existing chat corresponding to a known supergroup or channel.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateSupergroupChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createSupergroupChat";
 
-  /// [supergroup_id] Supergroup or channel identifier
+  /// Supergroup or channel identifier.
   late int supergroup_id;
 
-  /// [force] Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+  /// Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect.
   late bool force;
 
   /// Returns an existing chat corresponding to a known supergroup or channel
@@ -12728,7 +12728,7 @@ class CreateSupergroupChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateSupergroupChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12746,20 +12746,20 @@ class CreateSupergroupChat extends Func {
   }
 }
 
-///Returns an existing chat corresponding to a known secret chat
+/// Returns an existing chat corresponding to a known secret chat.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateSecretChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createSecretChat";
 
-  /// [secret_chat_id] Secret chat identifier
+  /// Secret chat identifier.
   late int secret_chat_id;
 
   /// Returns an existing chat corresponding to a known secret chat
@@ -12781,7 +12781,7 @@ class CreateSecretChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateSecretChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12797,26 +12797,26 @@ class CreateSecretChat extends Func {
   }
 }
 
-///Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+/// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateNewBasicGroupChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createNewBasicGroupChat";
 
-  /// [user_ids] Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
+  /// Identifiers of users to be added to the basic group; may be empty to create a basic group without other members.
   late List<int> user_ids;
 
-  /// [title] Title of the new basic group; 1-128 characters
+  /// Title of the new basic group; 1-128 characters.
   late String title;
 
-  /// [message_auto_delete_time] Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+  /// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
   late int message_auto_delete_time;
 
   /// Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
@@ -12845,7 +12845,7 @@ class CreateNewBasicGroupChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateNewBasicGroupChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12869,38 +12869,38 @@ class CreateNewBasicGroupChat extends Func {
   }
 }
 
-///Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
+/// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateNewSupergroupChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createNewSupergroupChat";
 
-  /// [title] Title of the new chat; 1-128 characters
+  /// Title of the new chat; 1-128 characters.
   late String title;
 
-  /// [is_forum] Pass true to create a forum supergroup chat
+  /// Pass true to create a forum supergroup chat.
   late bool is_forum;
 
-  /// [is_channel] Pass true to create a channel chat; ignored if a forum is created
+  /// Pass true to create a channel chat; ignored if a forum is created.
   late bool is_channel;
 
-  /// [description] Chat description; 0-255 characters
+  /// Chat description; 0-255 characters.
   late String description;
 
-  /// [location] Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
+  /// Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat.
   ChatLocation? location;
 
-  /// [message_auto_delete_time] Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+  /// Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
   late int message_auto_delete_time;
 
-  /// [for_import] Pass true to create a supergroup for importing messages using importMessages
+  /// Pass true to create a supergroup for importing messages using importMessages.
   late bool for_import;
 
   /// Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -12937,7 +12937,7 @@ class CreateNewSupergroupChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateNewSupergroupChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -12965,20 +12965,20 @@ class CreateNewSupergroupChat extends Func {
   }
 }
 
-///Creates a new secret chat. Returns the newly created chat
+/// Creates a new secret chat. Returns the newly created chat.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class CreateNewSecretChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createNewSecretChat";
 
-  /// [user_id] Identifier of the target user
+  /// Identifier of the target user.
   late int user_id;
 
   /// Creates a new secret chat. Returns the newly created chat
@@ -13000,7 +13000,7 @@ class CreateNewSecretChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateNewSecretChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13016,20 +13016,20 @@ class CreateNewSecretChat extends Func {
   }
 }
 
-///Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+/// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class UpgradeBasicGroupChatToSupergroupChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "upgradeBasicGroupChatToSupergroupChat";
 
-  /// [chat_id] Identifier of the chat to upgrade
+  /// Identifier of the chat to upgrade.
   late int chat_id;
 
   /// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
@@ -13052,7 +13052,7 @@ class UpgradeBasicGroupChatToSupergroupChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UpgradeBasicGroupChatToSupergroupChat? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -13069,20 +13069,20 @@ class UpgradeBasicGroupChatToSupergroupChat extends Func {
   }
 }
 
-///Returns chat lists to which the chat can be added. This is an offline request
+/// Returns chat lists to which the chat can be added. This is an offline request.
 ///
-///Returns [ChatLists]
+/// Returns [ChatLists].
 class GetChatListsToAddChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatListsToAddChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns chat lists to which the chat can be added. This is an offline request
@@ -13104,7 +13104,7 @@ class GetChatListsToAddChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatListsToAddChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13120,23 +13120,23 @@ class GetChatListsToAddChat extends Func {
   }
 }
 
-///Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
+/// Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddChatToList extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addChatToList";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [chat_list] The chat list. Use getChatListsToAddChat to get suitable chat lists
+  /// The chat list. Use getChatListsToAddChat to get suitable chat lists.
   late ChatList chat_list;
 
   /// Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
@@ -13163,7 +13163,7 @@ class AddChatToList extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddChatToList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13181,20 +13181,20 @@ class AddChatToList extends Func {
   }
 }
 
-///Returns information about a chat folder by its identifier
+/// Returns information about a chat folder by its identifier.
 ///
-///Returns [ChatFolder]
+/// Returns [ChatFolder].
 class GetChatFolder extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolder";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
   /// Returns information about a chat folder by its identifier
@@ -13216,7 +13216,7 @@ class GetChatFolder extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolder? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13232,20 +13232,20 @@ class GetChatFolder extends Func {
   }
 }
 
-///Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+/// Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium.
 ///
-///Returns [ChatFolderInfo]
+/// Returns [ChatFolderInfo].
 class CreateChatFolder extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createChatFolder";
 
-  /// [folder] The new chat folder
+  /// The new chat folder.
   late ChatFolder folder;
 
   /// Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
@@ -13267,7 +13267,7 @@ class CreateChatFolder extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateChatFolder? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13283,23 +13283,23 @@ class CreateChatFolder extends Func {
   }
 }
 
-///Edits existing chat folder. Returns information about the edited chat folder
+/// Edits existing chat folder. Returns information about the edited chat folder.
 ///
-///Returns [ChatFolderInfo]
+/// Returns [ChatFolderInfo].
 class EditChatFolder extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editChatFolder";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [folder] The edited chat folder
+  /// The edited chat folder.
   late ChatFolder folder;
 
   /// Edits existing chat folder. Returns information about the edited chat folder
@@ -13326,7 +13326,7 @@ class EditChatFolder extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditChatFolder? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13344,23 +13344,23 @@ class EditChatFolder extends Func {
   }
 }
 
-///Deletes existing chat folder
+/// Deletes existing chat folder.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatFolder extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatFolder";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [leave_chat_ids] Identifiers of the chats to leave. The chats must be pinned or always included in the folder
+  /// Identifiers of the chats to leave. The chats must be pinned or always included in the folder.
   late List<int> leave_chat_ids;
 
   /// Deletes existing chat folder
@@ -13387,7 +13387,7 @@ class DeleteChatFolder extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatFolder? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13409,20 +13409,20 @@ class DeleteChatFolder extends Func {
   }
 }
 
-///Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+/// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChatFolderChatsToLeave extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolderChatsToLeave";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
   /// Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
@@ -13445,7 +13445,7 @@ class GetChatFolderChatsToLeave extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolderChatsToLeave? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13461,20 +13461,20 @@ class GetChatFolderChatsToLeave extends Func {
   }
 }
 
-///Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
+/// Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly.
 ///
-///Returns [Count]
+/// Returns [Count].
 class GetChatFolderChatCount extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolderChatCount";
 
-  /// [folder] The new chat folder
+  /// The new chat folder.
   late ChatFolder folder;
 
   /// Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
@@ -13496,7 +13496,7 @@ class GetChatFolderChatCount extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolderChatCount? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13512,23 +13512,23 @@ class GetChatFolderChatCount extends Func {
   }
 }
 
-///Changes the order of chat folders
+/// Changes the order of chat folders.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReorderChatFolders extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reorderChatFolders";
 
-  /// [chat_folder_ids] Identifiers of chat folders in the new correct order
+  /// Identifiers of chat folders in the new correct order.
   late List<int> chat_folder_ids;
 
-  /// [main_chat_list_position] Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
+  /// Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users.
   late int main_chat_list_position;
 
   /// Changes the order of chat folders
@@ -13555,7 +13555,7 @@ class ReorderChatFolders extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReorderChatFolders? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13577,17 +13577,17 @@ class ReorderChatFolders extends Func {
   }
 }
 
-///Returns recommended chat folders for the current user
+/// Returns recommended chat folders for the current user.
 ///
-///Returns [RecommendedChatFolders]
+/// Returns [RecommendedChatFolders].
 class GetRecommendedChatFolders extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecommendedChatFolders";
 
   /// Returns recommended chat folders for the current user
@@ -13608,7 +13608,7 @@ class GetRecommendedChatFolders extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecommendedChatFolders? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13623,20 +13623,20 @@ class GetRecommendedChatFolders extends Func {
   }
 }
 
-///Returns default icon name for a folder. Can be called synchronously
+/// Returns default icon name for a folder. Can be called synchronously.
 ///
-///Returns [ChatFolderIcon]
+/// Returns [ChatFolderIcon].
 class GetChatFolderDefaultIconName extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolderDefaultIconName";
 
-  /// [folder] Chat folder
+  /// Chat folder.
   late ChatFolder folder;
 
   /// Returns default icon name for a folder. Can be called synchronously
@@ -13659,7 +13659,7 @@ class GetChatFolderDefaultIconName extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolderDefaultIconName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13675,20 +13675,20 @@ class GetChatFolderDefaultIconName extends SyncFunc {
   }
 }
 
-///Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+/// Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChatsForChatFolderInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatsForChatFolderInviteLink";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
   /// Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
@@ -13711,7 +13711,7 @@ class GetChatsForChatFolderInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatsForChatFolderInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13727,26 +13727,26 @@ class GetChatsForChatFolderInviteLink extends Func {
   }
 }
 
-///Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
+/// Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats.
 ///
-///Returns [ChatFolderInviteLink]
+/// Returns [ChatFolderInviteLink].
 class CreateChatFolderInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createChatFolderInviteLink";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [name] Name of the link; 0-32 characters
+  /// Name of the link; 0-32 characters.
   late String name;
 
-  /// [chat_ids] Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
+  /// Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation.
   late List<int> chat_ids;
 
   /// Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
@@ -13775,7 +13775,7 @@ class CreateChatFolderInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateChatFolderInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13799,20 +13799,20 @@ class CreateChatFolderInviteLink extends Func {
   }
 }
 
-///Returns invite links created by the current user for a shareable chat folder
+/// Returns invite links created by the current user for a shareable chat folder.
 ///
-///Returns [ChatFolderInviteLinks]
+/// Returns [ChatFolderInviteLinks].
 class GetChatFolderInviteLinks extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolderInviteLinks";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
   /// Returns invite links created by the current user for a shareable chat folder
@@ -13835,7 +13835,7 @@ class GetChatFolderInviteLinks extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolderInviteLinks? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13851,29 +13851,29 @@ class GetChatFolderInviteLinks extends Func {
   }
 }
 
-///Edits an invite link for a chat folder
+/// Edits an invite link for a chat folder.
 ///
-///Returns [ChatFolderInviteLink]
+/// Returns [ChatFolderInviteLink].
 class EditChatFolderInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editChatFolderInviteLink";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [invite_link] Invite link to be edited
+  /// Invite link to be edited.
   late String invite_link;
 
-  /// [name] New name of the link; 0-32 characters
+  /// New name of the link; 0-32 characters.
   late String name;
 
-  /// [chat_ids] New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
+  /// New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing.
   late List<int> chat_ids;
 
   /// Edits an invite link for a chat folder
@@ -13904,7 +13904,7 @@ class EditChatFolderInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditChatFolderInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13930,23 +13930,23 @@ class EditChatFolderInviteLink extends Func {
   }
 }
 
-///Deletes an invite link for a chat folder
+/// Deletes an invite link for a chat folder.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteChatFolderInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteChatFolderInviteLink";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [invite_link] Invite link to be deleted
+  /// Invite link to be deleted.
   late String invite_link;
 
   /// Deletes an invite link for a chat folder
@@ -13973,7 +13973,7 @@ class DeleteChatFolderInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteChatFolderInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -13991,20 +13991,20 @@ class DeleteChatFolderInviteLink extends Func {
   }
 }
 
-///Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+/// Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder.
 ///
-///Returns [ChatFolderInviteLinkInfo]
+/// Returns [ChatFolderInviteLinkInfo].
 class CheckChatFolderInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkChatFolderInviteLink";
 
-  /// [invite_link] Invite link to be checked
+  /// Invite link to be checked.
   late String invite_link;
 
   /// Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
@@ -14027,7 +14027,7 @@ class CheckChatFolderInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckChatFolderInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14043,23 +14043,23 @@ class CheckChatFolderInviteLink extends Func {
   }
 }
 
-///Adds a chat folder by an invite link
+/// Adds a chat folder by an invite link.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddChatFolderByInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addChatFolderByInviteLink";
 
-  /// [invite_link] Invite link for the chat folder
+  /// Invite link for the chat folder.
   late String invite_link;
 
-  /// [chat_ids] Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
+  /// Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet.
   late List<int> chat_ids;
 
   /// Adds a chat folder by an invite link
@@ -14086,7 +14086,7 @@ class AddChatFolderByInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddChatFolderByInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14108,20 +14108,20 @@ class AddChatFolderByInviteLink extends Func {
   }
 }
 
-///Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
+/// Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChatFolderNewChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatFolderNewChats";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
   /// Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
@@ -14144,7 +14144,7 @@ class GetChatFolderNewChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatFolderNewChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14160,23 +14160,23 @@ class GetChatFolderNewChats extends Func {
   }
 }
 
-///Process new chats added to a shareable chat folder by its owner
+/// Process new chats added to a shareable chat folder by its owner.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ProcessChatFolderNewChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "processChatFolderNewChats";
 
-  /// [chat_folder_id] Chat folder identifier
+  /// Chat folder identifier.
   late int chat_folder_id;
 
-  /// [added_chat_ids] Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
+  /// Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet.
   late List<int> added_chat_ids;
 
   /// Process new chats added to a shareable chat folder by its owner
@@ -14203,7 +14203,7 @@ class ProcessChatFolderNewChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ProcessChatFolderNewChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14225,17 +14225,17 @@ class ProcessChatFolderNewChats extends Func {
   }
 }
 
-///Returns settings for automatic moving of chats to and from the Archive chat lists
+/// Returns settings for automatic moving of chats to and from the Archive chat lists.
 ///
-///Returns [ArchiveChatListSettings]
+/// Returns [ArchiveChatListSettings].
 class GetArchiveChatListSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getArchiveChatListSettings";
 
   /// Returns settings for automatic moving of chats to and from the Archive chat lists
@@ -14256,7 +14256,7 @@ class GetArchiveChatListSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetArchiveChatListSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14271,20 +14271,20 @@ class GetArchiveChatListSettings extends Func {
   }
 }
 
-///Changes settings for automatic moving of chats to and from the Archive chat lists
+/// Changes settings for automatic moving of chats to and from the Archive chat lists.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetArchiveChatListSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setArchiveChatListSettings";
 
-  /// [settings] New settings
+  /// New settings.
   late ArchiveChatListSettings settings;
 
   /// Changes settings for automatic moving of chats to and from the Archive chat lists
@@ -14307,7 +14307,7 @@ class SetArchiveChatListSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetArchiveChatListSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14323,23 +14323,23 @@ class SetArchiveChatListSettings extends Func {
   }
 }
 
-///Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+/// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatTitle extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatTitle";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [title] New title of the chat; 1-128 characters
+  /// New title of the chat; 1-128 characters.
   late String title;
 
   /// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
@@ -14363,7 +14363,7 @@ class SetChatTitle extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatTitle? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14381,23 +14381,23 @@ class SetChatTitle extends Func {
   }
 }
 
-///Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+/// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatPhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatPhoto";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [photo] New chat photo; pass null to delete the chat photo
+  /// New chat photo; pass null to delete the chat photo.
   InputChatPhoto? photo;
 
   /// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
@@ -14420,7 +14420,7 @@ class SetChatPhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatPhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14438,23 +14438,23 @@ class SetChatPhoto extends Func {
   }
 }
 
-///Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels
+/// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatMessageAutoDeleteTime extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatMessageAutoDeleteTime";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_auto_delete_time] New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+  /// New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
   late int message_auto_delete_time;
 
   /// Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels
@@ -14481,7 +14481,7 @@ class SetChatMessageAutoDeleteTime extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatMessageAutoDeleteTime? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14499,23 +14499,23 @@ class SetChatMessageAutoDeleteTime extends Func {
   }
 }
 
-///Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+/// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatPermissions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatPermissions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [permissions] New non-administrator members permissions in the chat
+  /// New non-administrator members permissions in the chat.
   late ChatPermissions permissions;
 
   /// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
@@ -14542,7 +14542,7 @@ class SetChatPermissions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatPermissions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14560,29 +14560,29 @@ class SetChatPermissions extends Func {
   }
 }
 
-///Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+/// Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatBackground extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatBackground";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [background] The input background to use; pass null to create a new filled background or to remove the current background
+  /// The input background to use; pass null to create a new filled background or to remove the current background.
   InputBackground? background;
 
-  /// [type] Background type; pass null to remove the current background
+  /// Background type; pass null to remove the current background.
   BackgroundType? type;
 
-  /// [dark_theme_dimming] Dimming of the background in dark themes, as a percentage; 0-100
+  /// Dimming of the background in dark themes, as a percentage; 0-100.
   late int dark_theme_dimming;
 
   /// Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
@@ -14613,7 +14613,7 @@ class SetChatBackground extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatBackground? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14635,23 +14635,23 @@ class SetChatBackground extends Func {
   }
 }
 
-///Changes the chat theme. Supported only in private and secret chats
+/// Changes the chat theme. Supported only in private and secret chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatTheme extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatTheme";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [theme_name] Name of the new chat theme; pass an empty string to return the default theme
+  /// Name of the new chat theme; pass an empty string to return the default theme.
   late String theme_name;
 
   /// Changes the chat theme. Supported only in private and secret chats
@@ -14678,7 +14678,7 @@ class SetChatTheme extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatTheme? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14696,26 +14696,26 @@ class SetChatTheme extends Func {
   }
 }
 
-///Changes the draft message in a chat
+/// Changes the draft message in a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatDraftMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatDraftMessage";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_thread_id] If not 0, a message thread identifier in which the draft was changed
+  /// If not 0, a message thread identifier in which the draft was changed.
   late int message_thread_id;
 
-  /// [draft_message] New draft message; pass null to remove the draft
+  /// New draft message; pass null to remove the draft.
   DraftMessage? draft_message;
 
   /// Changes the draft message in a chat
@@ -14744,7 +14744,7 @@ class SetChatDraftMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatDraftMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14764,23 +14764,23 @@ class SetChatDraftMessage extends Func {
   }
 }
 
-///Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
+/// Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatNotificationSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatNotificationSettings";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [notification_settings] New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
+  /// New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever.
   late ChatNotificationSettings notification_settings;
 
   /// Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
@@ -14807,7 +14807,7 @@ class SetChatNotificationSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatNotificationSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14826,23 +14826,23 @@ class SetChatNotificationSettings extends Func {
   }
 }
 
-///Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+/// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleChatHasProtectedContent extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleChatHasProtectedContent";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [has_protected_content] New value of has_protected_content
+  /// New value of has_protected_content.
   late bool has_protected_content;
 
   /// Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
@@ -14869,7 +14869,7 @@ class ToggleChatHasProtectedContent extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleChatHasProtectedContent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14887,23 +14887,23 @@ class ToggleChatHasProtectedContent extends Func {
   }
 }
 
-///Changes the translatable state of a chat; for Telegram Premium users only
+/// Changes the translatable state of a chat; for Telegram Premium users only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleChatIsTranslatable extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleChatIsTranslatable";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [is_translatable] New value of is_translatable
+  /// New value of is_translatable.
   late bool is_translatable;
 
   /// Changes the translatable state of a chat; for Telegram Premium users only
@@ -14930,7 +14930,7 @@ class ToggleChatIsTranslatable extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleChatIsTranslatable? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -14948,23 +14948,23 @@ class ToggleChatIsTranslatable extends Func {
   }
 }
 
-///Changes the marked as unread state of a chat
+/// Changes the marked as unread state of a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleChatIsMarkedAsUnread extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleChatIsMarkedAsUnread";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [is_marked_as_unread] New value of is_marked_as_unread
+  /// New value of is_marked_as_unread.
   late bool is_marked_as_unread;
 
   /// Changes the marked as unread state of a chat
@@ -14991,7 +14991,7 @@ class ToggleChatIsMarkedAsUnread extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleChatIsMarkedAsUnread? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15009,23 +15009,23 @@ class ToggleChatIsMarkedAsUnread extends Func {
   }
 }
 
-///Changes the value of the default disable_notification parameter, used when a message is sent to a chat
+/// Changes the value of the default disable_notification parameter, used when a message is sent to a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleChatDefaultDisableNotification extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleChatDefaultDisableNotification";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [default_disable_notification] New value of default_disable_notification
+  /// New value of default_disable_notification.
   late bool default_disable_notification;
 
   /// Changes the value of the default disable_notification parameter, used when a message is sent to a chat
@@ -15052,7 +15052,7 @@ class ToggleChatDefaultDisableNotification extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleChatDefaultDisableNotification? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -15072,23 +15072,23 @@ class ToggleChatDefaultDisableNotification extends Func {
   }
 }
 
-///Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+/// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatAvailableReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatAvailableReactions";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [available_reactions] Reactions available in the chat. All emoji reactions must be active
+  /// Reactions available in the chat. All emoji reactions must be active.
   late ChatAvailableReactions available_reactions;
 
   /// Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
@@ -15115,7 +15115,7 @@ class SetChatAvailableReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatAvailableReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15134,23 +15134,23 @@ class SetChatAvailableReactions extends Func {
   }
 }
 
-///Changes application-specific data associated with a chat
+/// Changes application-specific data associated with a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatClientData extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatClientData";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [client_data] New value of client_data
+  /// New value of client_data.
   late String client_data;
 
   /// Changes application-specific data associated with a chat
@@ -15177,7 +15177,7 @@ class SetChatClientData extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatClientData? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15195,23 +15195,23 @@ class SetChatClientData extends Func {
   }
 }
 
-///Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+/// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatDescription extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatDescription";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [description] New chat description; 0-255 characters
+  /// New chat description; 0-255 characters.
   late String description;
 
   /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
@@ -15238,7 +15238,7 @@ class SetChatDescription extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatDescription? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15256,23 +15256,23 @@ class SetChatDescription extends Func {
   }
 }
 
-///Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
+/// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatDiscussionGroup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatDiscussionGroup";
 
-  /// [chat_id] Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
+  /// Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup).
   late int chat_id;
 
-  /// [discussion_chat_id] Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups.
+  /// Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups..
   late int discussion_chat_id;
 
   /// Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
@@ -15299,7 +15299,7 @@ class SetChatDiscussionGroup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatDiscussionGroup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15317,23 +15317,23 @@ class SetChatDiscussionGroup extends Func {
   }
 }
 
-///Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
+/// Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatLocation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatLocation";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [location] New location for the chat; must be valid and not null
+  /// New location for the chat; must be valid and not null.
   late ChatLocation location;
 
   /// Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
@@ -15360,7 +15360,7 @@ class SetChatLocation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatLocation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15378,23 +15378,23 @@ class SetChatLocation extends Func {
   }
 }
 
-///Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+/// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatSlowModeDelay extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatSlowModeDelay";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [slow_mode_delay] New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
+  /// New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600.
   late int slow_mode_delay;
 
   /// Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
@@ -15421,7 +15421,7 @@ class SetChatSlowModeDelay extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatSlowModeDelay? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15439,29 +15439,29 @@ class SetChatSlowModeDelay extends Func {
   }
 }
 
-///Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+/// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class PinChatMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pinChatMessage";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_id] Identifier of the new pinned message
+  /// Identifier of the new pinned message.
   late int message_id;
 
-  /// [disable_notification] Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
+  /// Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats.
   late bool disable_notification;
 
-  /// [only_for_self] Pass true to pin the message only for self; private chats only
+  /// Pass true to pin the message only for self; private chats only.
   late bool only_for_self;
 
   /// Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
@@ -15492,7 +15492,7 @@ class PinChatMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PinChatMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15514,23 +15514,23 @@ class PinChatMessage extends Func {
   }
 }
 
-///Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+/// Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class UnpinChatMessage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "unpinChatMessage";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_id] Identifier of the removed pinned message
+  /// Identifier of the removed pinned message.
   late int message_id;
 
   /// Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -15557,7 +15557,7 @@ class UnpinChatMessage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UnpinChatMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15575,20 +15575,20 @@ class UnpinChatMessage extends Func {
   }
 }
 
-///Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+/// Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class UnpinAllChatMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "unpinAllChatMessages";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
   /// Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -15610,7 +15610,7 @@ class UnpinAllChatMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UnpinAllChatMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15626,23 +15626,23 @@ class UnpinAllChatMessages extends Func {
   }
 }
 
-///Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+/// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class UnpinAllMessageThreadMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "unpinAllMessageThreadMessages";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [message_thread_id] Message thread identifier in which messages will be unpinned
+  /// Message thread identifier in which messages will be unpinned.
   late int message_thread_id;
 
   /// Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
@@ -15669,7 +15669,7 @@ class UnpinAllMessageThreadMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UnpinAllMessageThreadMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15687,20 +15687,20 @@ class UnpinAllMessageThreadMessages extends Func {
   }
 }
 
-///Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+/// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class JoinChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "joinChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
@@ -15722,7 +15722,7 @@ class JoinChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static JoinChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15738,20 +15738,20 @@ class JoinChat extends Func {
   }
 }
 
-///Removes the current user from chat members. Private and secret chats can't be left using this method
+/// Removes the current user from chat members. Private and secret chats can't be left using this method.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LeaveChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "leaveChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Removes the current user from chat members. Private and secret chats can't be left using this method
@@ -15773,7 +15773,7 @@ class LeaveChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LeaveChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15789,26 +15789,26 @@ class LeaveChat extends Func {
   }
 }
 
-///Adds a new member to a chat. Members can't be added to private or secret chats
+/// Adds a new member to a chat. Members can't be added to private or secret chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddChatMember extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addChatMember";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [user_id] Identifier of the user
+  /// Identifier of the user.
   late int user_id;
 
-  /// [forward_limit] The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
+  /// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot.
   late int forward_limit;
 
   /// Adds a new member to a chat. Members can't be added to private or secret chats
@@ -15837,7 +15837,7 @@ class AddChatMember extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddChatMember? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15857,23 +15857,23 @@ class AddChatMember extends Func {
   }
 }
 
-///Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+/// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddChatMembers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addChatMembers";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [user_ids] Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+  /// Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels.
   late List<int> user_ids;
 
   /// Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
@@ -15900,7 +15900,7 @@ class AddChatMembers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddChatMembers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15922,26 +15922,26 @@ class AddChatMembers extends Func {
   }
 }
 
-///Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+/// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatMemberStatus extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatMemberStatus";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [member_id] Member identifier. Chats can be only banned and unbanned in supergroups and channels
+  /// Member identifier. Chats can be only banned and unbanned in supergroups and channels.
   late MessageSender member_id;
 
-  /// [status] The new status of the member in the chat
+  /// The new status of the member in the chat.
   late ChatMemberStatus status;
 
   /// Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
@@ -15970,7 +15970,7 @@ class SetChatMemberStatus extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatMemberStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -15990,29 +15990,29 @@ class SetChatMemberStatus extends Func {
   }
 }
 
-///Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+/// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class BanChatMember extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "banChatMember";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [member_id] Member identifier
+  /// Member identifier.
   late MessageSender member_id;
 
-  /// [banned_until_date] Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
+  /// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned.
   late int banned_until_date;
 
-  /// [revoke_messages] Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+  /// Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels.
   late bool revoke_messages;
 
   /// Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
@@ -16043,7 +16043,7 @@ class BanChatMember extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BanChatMember? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16065,17 +16065,17 @@ class BanChatMember extends Func {
   }
 }
 
-///Checks whether the current session can be used to transfer a chat ownership to another user
+/// Checks whether the current session can be used to transfer a chat ownership to another user.
 ///
-///Returns [CanTransferOwnershipResult]
+/// Returns [CanTransferOwnershipResult].
 class CanTransferOwnership extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canTransferOwnership";
 
   /// Checks whether the current session can be used to transfer a chat ownership to another user
@@ -16096,7 +16096,7 @@ class CanTransferOwnership extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanTransferOwnership? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16111,26 +16111,26 @@ class CanTransferOwnership extends Func {
   }
 }
 
-///Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+/// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TransferChatOwnership extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "transferChatOwnership";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [user_id] Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+  /// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user.
   late int user_id;
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
   /// Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
@@ -16159,7 +16159,7 @@ class TransferChatOwnership extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TransferChatOwnership? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16179,23 +16179,23 @@ class TransferChatOwnership extends Func {
   }
 }
 
-///Returns information about a single member of a chat
+/// Returns information about a single member of a chat.
 ///
-///Returns [ChatMember]
+/// Returns [ChatMember].
 class GetChatMember extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatMember";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [member_id] Member identifier
+  /// Member identifier.
   late MessageSender member_id;
 
   /// Returns information about a single member of a chat
@@ -16222,7 +16222,7 @@ class GetChatMember extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatMember? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16240,29 +16240,29 @@ class GetChatMember extends Func {
   }
 }
 
-///Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
+/// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels.
 ///
-///Returns [ChatMembers]
+/// Returns [ChatMembers].
 class SearchChatMembers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchChatMembers";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [limit] The maximum number of users to be returned; up to 200
+  /// The maximum number of users to be returned; up to 200.
   late int limit;
 
-  /// [filter] The type of users to search for; pass null to search among all chat members
+  /// The type of users to search for; pass null to search among all chat members.
   ChatMembersFilter? filter;
 
   /// Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
@@ -16293,7 +16293,7 @@ class SearchChatMembers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchChatMembers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16315,20 +16315,20 @@ class SearchChatMembers extends Func {
   }
 }
 
-///Returns a list of administrators of the chat with their custom titles
+/// Returns a list of administrators of the chat with their custom titles.
 ///
-///Returns [ChatAdministrators]
+/// Returns [ChatAdministrators].
 class GetChatAdministrators extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatAdministrators";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns a list of administrators of the chat with their custom titles
@@ -16350,7 +16350,7 @@ class GetChatAdministrators extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatAdministrators? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16366,20 +16366,20 @@ class GetChatAdministrators extends Func {
   }
 }
 
-///Clears message drafts in all chats
+/// Clears message drafts in all chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearAllDraftMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearAllDraftMessages";
 
-  /// [exclude_secret_chats] Pass true to keep local message drafts in secret chats
+  /// Pass true to keep local message drafts in secret chats.
   late bool exclude_secret_chats;
 
   /// Clears message drafts in all chats
@@ -16402,7 +16402,7 @@ class ClearAllDraftMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearAllDraftMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16418,20 +16418,20 @@ class ClearAllDraftMessages extends Func {
   }
 }
 
-///Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
+/// Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier.
 ///
-///Returns [NotificationSounds]
+/// Returns [NotificationSounds].
 class GetSavedNotificationSound extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSavedNotificationSound";
 
-  /// [notification_sound_id] Identifier of the notification sound
+  /// Identifier of the notification sound.
   /// ; string representation of int, use `int.parse`
   late int64 notification_sound_id;
 
@@ -16455,7 +16455,7 @@ class GetSavedNotificationSound extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSavedNotificationSound? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16471,17 +16471,17 @@ class GetSavedNotificationSound extends Func {
   }
 }
 
-///Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+/// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used.
 ///
-///Returns [NotificationSounds]
+/// Returns [NotificationSounds].
 class GetSavedNotificationSounds extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSavedNotificationSounds";
 
   /// Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
@@ -16502,7 +16502,7 @@ class GetSavedNotificationSounds extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSavedNotificationSounds? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16517,20 +16517,20 @@ class GetSavedNotificationSounds extends Func {
   }
 }
 
-///Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
+/// Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed.
 ///
-///Returns [NotificationSound]
+/// Returns [NotificationSound].
 class AddSavedNotificationSound extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addSavedNotificationSound";
 
-  /// [sound] Notification sound file to add
+  /// Notification sound file to add.
   late InputFile sound;
 
   /// Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
@@ -16552,7 +16552,7 @@ class AddSavedNotificationSound extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddSavedNotificationSound? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16568,20 +16568,20 @@ class AddSavedNotificationSound extends Func {
   }
 }
 
-///Removes a notification sound from the list of saved notification sounds
+/// Removes a notification sound from the list of saved notification sounds.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveSavedNotificationSound extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeSavedNotificationSound";
 
-  /// [notification_sound_id] Identifier of the notification sound
+  /// Identifier of the notification sound.
   /// ; string representation of int, use `int.parse`
   late int64 notification_sound_id;
 
@@ -16605,7 +16605,7 @@ class RemoveSavedNotificationSound extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveSavedNotificationSound? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16621,23 +16621,23 @@ class RemoveSavedNotificationSound extends Func {
   }
 }
 
-///Returns list of chats with non-default notification settings for new messages
+/// Returns list of chats with non-default notification settings for new messages.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChatNotificationSettingsExceptions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatNotificationSettingsExceptions";
 
-  /// [scope] If specified, only chats from the scope will be returned; pass null to return chats from all scopes
+  /// If specified, only chats from the scope will be returned; pass null to return chats from all scopes.
   NotificationSettingsScope? scope;
 
-  /// [compare_sound] Pass true to include in the response chats with only non-default sound
+  /// Pass true to include in the response chats with only non-default sound.
   late bool compare_sound;
 
   /// Returns list of chats with non-default notification settings for new messages
@@ -16661,7 +16661,7 @@ class GetChatNotificationSettingsExceptions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatNotificationSettingsExceptions? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -16680,20 +16680,20 @@ class GetChatNotificationSettingsExceptions extends Func {
   }
 }
 
-///Returns the notification settings for chats of a given type
+/// Returns the notification settings for chats of a given type.
 ///
-///Returns [ScopeNotificationSettings]
+/// Returns [ScopeNotificationSettings].
 class GetScopeNotificationSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getScopeNotificationSettings";
 
-  /// [scope] Types of chats for which to return the notification settings information
+  /// Types of chats for which to return the notification settings information.
   late NotificationSettingsScope scope;
 
   /// Returns the notification settings for chats of a given type
@@ -16716,7 +16716,7 @@ class GetScopeNotificationSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetScopeNotificationSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16732,23 +16732,23 @@ class GetScopeNotificationSettings extends Func {
   }
 }
 
-///Changes notification settings for chats of a given type
+/// Changes notification settings for chats of a given type.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetScopeNotificationSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setScopeNotificationSettings";
 
-  /// [scope] Types of chats for which to change the notification settings
+  /// Types of chats for which to change the notification settings.
   late NotificationSettingsScope scope;
 
-  /// [notification_settings] The new notification settings for the given scope
+  /// The new notification settings for the given scope.
   late ScopeNotificationSettings notification_settings;
 
   /// Changes notification settings for chats of a given type
@@ -16775,7 +16775,7 @@ class SetScopeNotificationSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetScopeNotificationSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16794,17 +16794,17 @@ class SetScopeNotificationSettings extends Func {
   }
 }
 
-///Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+/// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ResetAllNotificationSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetAllNotificationSettings";
 
   /// Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
@@ -16825,7 +16825,7 @@ class ResetAllNotificationSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetAllNotificationSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16840,26 +16840,26 @@ class ResetAllNotificationSettings extends Func {
   }
 }
 
-///Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
+/// Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleChatIsPinned extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleChatIsPinned";
 
-  /// [chat_list] Chat list in which to change the pinned state of the chat
+  /// Chat list in which to change the pinned state of the chat.
   late ChatList chat_list;
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [is_pinned] Pass true to pin the chat; pass false to unpin it
+  /// Pass true to pin the chat; pass false to unpin it.
   late bool is_pinned;
 
   /// Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
@@ -16888,7 +16888,7 @@ class ToggleChatIsPinned extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleChatIsPinned? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16908,23 +16908,23 @@ class ToggleChatIsPinned extends Func {
   }
 }
 
-///Changes the order of pinned chats
+/// Changes the order of pinned chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetPinnedChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPinnedChats";
 
-  /// [chat_list] Chat list in which to change the order of pinned chats
+  /// Chat list in which to change the order of pinned chats.
   late ChatList chat_list;
 
-  /// [chat_ids] The new list of pinned chats
+  /// The new list of pinned chats.
   late List<int> chat_ids;
 
   /// Changes the order of pinned chats
@@ -16951,7 +16951,7 @@ class SetPinnedChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPinnedChats? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -16973,20 +16973,20 @@ class SetPinnedChats extends Func {
   }
 }
 
-///Traverse all chats in a chat list and marks all messages in the chats as read
+/// Traverse all chats in a chat list and marks all messages in the chats as read.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReadChatList extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readChatList";
 
-  /// [chat_list] Chat list in which to mark all chats as read
+  /// Chat list in which to mark all chats as read.
   late ChatList chat_list;
 
   /// Traverse all chats in a chat list and marks all messages in the chats as read
@@ -17008,7 +17008,7 @@ class ReadChatList extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadChatList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17024,26 +17024,26 @@ class ReadChatList extends Func {
   }
 }
 
-///Returns a story
+/// Returns a story.
 ///
-///Returns [Story]
+/// Returns [Story].
 class GetStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStory";
 
-  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  /// Identifier of the chat that posted the story.
   late int story_sender_chat_id;
 
-  /// [story_id] Story identifier
+  /// Story identifier.
   late int story_id;
 
-  /// [only_local] Pass true to get only locally available information without sending network requests
+  /// Pass true to get only locally available information without sending network requests.
   late bool only_local;
 
   /// Returns a story
@@ -17072,7 +17072,7 @@ class GetStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17092,17 +17092,17 @@ class GetStory extends Func {
   }
 }
 
-///Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+/// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetChatsToSendStories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatsToSendStories";
 
   /// Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
@@ -17123,7 +17123,7 @@ class GetChatsToSendStories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatsToSendStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17138,20 +17138,20 @@ class GetChatsToSendStories extends Func {
   }
 }
 
-///Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+/// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats.
 ///
-///Returns [CanSendStoryResult]
+/// Returns [CanSendStoryResult].
 class CanSendStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canSendStory";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
@@ -17173,7 +17173,7 @@ class CanSendStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanSendStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17189,41 +17189,41 @@ class CanSendStory extends Func {
   }
 }
 
-///Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
+/// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story.
 ///
-///Returns [Story]
+/// Returns [Story].
 class SendStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendStory";
 
-  /// [chat_id] Identifier of the chat that will post the story
+  /// Identifier of the chat that will post the story.
   late int chat_id;
 
-  /// [content] Content of the story
+  /// Content of the story.
   late InputStoryContent content;
 
-  /// [areas] Clickable rectangle areas to be shown on the story media; pass null if none
+  /// Clickable rectangle areas to be shown on the story media; pass null if none.
   InputStoryAreas? areas;
 
-  /// [caption] Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+  /// Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters.
   FormattedText? caption;
 
-  /// [privacy_settings] The privacy settings for the story
+  /// The privacy settings for the story.
   late StoryPrivacySettings privacy_settings;
 
-  /// [active_period] Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+  /// Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise.
   late int active_period;
 
-  /// [is_pinned] Pass true to keep the story accessible after expiration
+  /// Pass true to keep the story accessible after expiration.
   late bool is_pinned;
 
-  /// [protect_content] Pass true if the content of the story must be protected from forwarding and screenshotting
+  /// Pass true if the content of the story must be protected from forwarding and screenshotting.
   late bool protect_content;
 
   /// Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
@@ -17262,7 +17262,7 @@ class SendStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17293,32 +17293,32 @@ class SendStory extends Func {
   }
 }
 
-///Changes content and caption of a story. Can be called only if story.can_be_edited == true
+/// Changes content and caption of a story. Can be called only if story.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editStory";
 
-  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  /// Identifier of the chat that posted the story.
   late int story_sender_chat_id;
 
-  /// [story_id] Identifier of the story to edit
+  /// Identifier of the story to edit.
   late int story_id;
 
-  /// [content] New content of the story; pass null to keep the current content
+  /// New content of the story; pass null to keep the current content.
   InputStoryContent? content;
 
-  /// [areas] New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
+  /// New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed.
   InputStoryAreas? areas;
 
-  /// [caption] New story caption; pass null to keep the current caption
+  /// New story caption; pass null to keep the current caption.
   FormattedText? caption;
 
   /// Changes content and caption of a story. Can be called only if story.can_be_edited == true
@@ -17351,7 +17351,7 @@ class EditStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17375,26 +17375,26 @@ class EditStory extends Func {
   }
 }
 
-///Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+/// Changes privacy settings of a story. Can be called only if story.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStoryPrivacySettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStoryPrivacySettings";
 
-  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  /// Identifier of the chat that posted the story.
   late int story_sender_chat_id;
 
-  /// [story_id] Identifier of the story
+  /// Identifier of the story.
   late int story_id;
 
-  /// [privacy_settings] The new privacy settigs for the story
+  /// The new privacy settigs for the story.
   late StoryPrivacySettings privacy_settings;
 
   /// Changes privacy settings of a story. Can be called only if story.can_be_edited == true
@@ -17423,7 +17423,7 @@ class SetStoryPrivacySettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStoryPrivacySettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17444,26 +17444,26 @@ class SetStoryPrivacySettings extends Func {
   }
 }
 
-///Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
+/// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleStoryIsPinned extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleStoryIsPinned";
 
-  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  /// Identifier of the chat that posted the story.
   late int story_sender_chat_id;
 
-  /// [story_id] Identifier of the story
+  /// Identifier of the story.
   late int story_id;
 
-  /// [is_pinned] Pass true to make the story accessible after expiration; pass false to make it private
+  /// Pass true to make the story accessible after expiration; pass false to make it private.
   late bool is_pinned;
 
   /// Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
@@ -17492,7 +17492,7 @@ class ToggleStoryIsPinned extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleStoryIsPinned? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17512,23 +17512,23 @@ class ToggleStoryIsPinned extends Func {
   }
 }
 
-///Deletes a previously sent story. Can be called only if story.can_be_deleted == true
+/// Deletes a previously sent story. Can be called only if story.can_be_deleted == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteStory";
 
-  /// [story_sender_chat_id] Identifier of the chat that posted the story
+  /// Identifier of the chat that posted the story.
   late int story_sender_chat_id;
 
-  /// [story_id] Identifier of the story to delete
+  /// Identifier of the story to delete.
   late int story_id;
 
   /// Deletes a previously sent story. Can be called only if story.can_be_deleted == true
@@ -17555,7 +17555,7 @@ class DeleteStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17573,17 +17573,17 @@ class DeleteStory extends Func {
   }
 }
 
-///Returns list of chats with non-default notification settings for stories
+/// Returns list of chats with non-default notification settings for stories.
 ///
-///Returns [Chats]
+/// Returns [Chats].
 class GetStoryNotificationSettingsExceptions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStoryNotificationSettingsExceptions";
 
   /// Returns list of chats with non-default notification settings for stories
@@ -17604,7 +17604,7 @@ class GetStoryNotificationSettingsExceptions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStoryNotificationSettingsExceptions? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -17620,20 +17620,20 @@ class GetStoryNotificationSettingsExceptions extends Func {
   }
 }
 
-///Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by
+/// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LoadActiveStories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "loadActiveStories";
 
-  /// [story_list] The story list in which to load active stories
+  /// The story list in which to load active stories.
   late StoryList story_list;
 
   /// Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by
@@ -17655,7 +17655,7 @@ class LoadActiveStories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LoadActiveStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17671,23 +17671,23 @@ class LoadActiveStories extends Func {
   }
 }
 
-///Changes story list in which stories from the chat are shown
+/// Changes story list in which stories from the chat are shown.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetChatActiveStoriesList extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setChatActiveStoriesList";
 
-  /// [chat_id] Identifier of the chat that posted stories
+  /// Identifier of the chat that posted stories.
   late int chat_id;
 
-  /// [story_list] New list for active stories posted by the chat
+  /// New list for active stories posted by the chat.
   late StoryList story_list;
 
   /// Changes story list in which stories from the chat are shown
@@ -17714,7 +17714,7 @@ class SetChatActiveStoriesList extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetChatActiveStoriesList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17732,20 +17732,20 @@ class SetChatActiveStoriesList extends Func {
   }
 }
 
-///Returns the list of active stories posted by the given chat
+/// Returns the list of active stories posted by the given chat.
 ///
-///Returns [ChatActiveStories]
+/// Returns [ChatActiveStories].
 class GetChatActiveStories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatActiveStories";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns the list of active stories posted by the given chat
@@ -17767,7 +17767,7 @@ class GetChatActiveStories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatActiveStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17783,26 +17783,26 @@ class GetChatActiveStories extends Func {
   }
 }
 
-///Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id).
+/// Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id)..
 ///
-///Returns [Stories]
+/// Returns [Stories].
 class GetChatPinnedStories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatPinnedStories";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [from_story_id] Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+  /// Identifier of the story starting from which stories must be returned; use 0 to get results from the last story.
   late int from_story_id;
 
-  /// [limit] The maximum number of stories to be returned
+  /// The maximum number of stories to be returned.
   late int limit;
 
   /// Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id).
@@ -17831,7 +17831,7 @@ class GetChatPinnedStories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatPinnedStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17851,26 +17851,26 @@ class GetChatPinnedStories extends Func {
   }
 }
 
-///Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats.
+/// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats..
 ///
-///Returns [Stories]
+/// Returns [Stories].
 class GetChatArchivedStories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatArchivedStories";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [from_story_id] Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+  /// Identifier of the story starting from which stories must be returned; use 0 to get results from the last story.
   late int from_story_id;
 
-  /// [limit] The maximum number of stories to be returned
+  /// The maximum number of stories to be returned.
   late int limit;
 
   /// Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats.
@@ -17899,7 +17899,7 @@ class GetChatArchivedStories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatArchivedStories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17919,23 +17919,23 @@ class GetChatArchivedStories extends Func {
   }
 }
 
-///Informs TDLib that a story is opened and is being viewed by the user
+/// Informs TDLib that a story is opened and is being viewed by the user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class OpenStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "openStory";
 
-  /// [story_sender_chat_id] The identifier of the sender of the opened story
+  /// The identifier of the sender of the opened story.
   late int story_sender_chat_id;
 
-  /// [story_id] The identifier of the story
+  /// The identifier of the story.
   late int story_id;
 
   /// Informs TDLib that a story is opened and is being viewed by the user
@@ -17962,7 +17962,7 @@ class OpenStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OpenStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -17980,23 +17980,23 @@ class OpenStory extends Func {
   }
 }
 
-///Informs TDLib that a story is closed by the user
+/// Informs TDLib that a story is closed by the user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CloseStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "closeStory";
 
-  /// [story_sender_chat_id] The identifier of the sender of the story to close
+  /// The identifier of the sender of the story to close.
   late int story_sender_chat_id;
 
-  /// [story_id] The identifier of the story
+  /// The identifier of the story.
   late int story_id;
 
   /// Informs TDLib that a story is closed by the user
@@ -18023,7 +18023,7 @@ class CloseStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CloseStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18041,20 +18041,20 @@ class CloseStory extends Func {
   }
 }
 
-///Returns reactions, which can be chosen for a story
+/// Returns reactions, which can be chosen for a story.
 ///
-///Returns [AvailableReactions]
+/// Returns [AvailableReactions].
 class GetStoryAvailableReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStoryAvailableReactions";
 
-  /// [row_size] Number of reaction per row, 5-25
+  /// Number of reaction per row, 5-25.
   late int row_size;
 
   /// Returns reactions, which can be chosen for a story
@@ -18077,7 +18077,7 @@ class GetStoryAvailableReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStoryAvailableReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18093,29 +18093,29 @@ class GetStoryAvailableReactions extends Func {
   }
 }
 
-///Changes chosen reaction on a story
+/// Changes chosen reaction on a story.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStoryReaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStoryReaction";
 
-  /// [story_sender_chat_id] The identifier of the sender of the story
+  /// The identifier of the sender of the story.
   late int story_sender_chat_id;
 
-  /// [story_id] The identifier of the story
+  /// The identifier of the story.
   late int story_id;
 
-  /// [reaction_type] Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+  /// Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users.
   ReactionType? reaction_type;
 
-  /// [update_recent_reactions] Pass true if the reaction needs to be added to recent reactions
+  /// Pass true if the reaction needs to be added to recent reactions.
   late bool update_recent_reactions;
 
   /// Changes chosen reaction on a story
@@ -18146,7 +18146,7 @@ class SetStoryReaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStoryReaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18168,35 +18168,35 @@ class SetStoryReaction extends Func {
   }
 }
 
-///Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
+/// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user.
 ///
-///Returns [StoryViewers]
+/// Returns [StoryViewers].
 class GetStoryViewers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStoryViewers";
 
-  /// [story_id] Story identifier
+  /// Story identifier.
   late int story_id;
 
-  /// [query] Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+  /// Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers.
   late String query;
 
-  /// [only_contacts] Pass true to get only contacts; pass false to get all relevant viewers
+  /// Pass true to get only contacts; pass false to get all relevant viewers.
   late bool only_contacts;
 
-  /// [prefer_with_reaction] Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+  /// Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date.
   late bool prefer_with_reaction;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of story viewers to return
+  /// The maximum number of story viewers to return.
   late int limit;
 
   /// Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
@@ -18231,7 +18231,7 @@ class GetStoryViewers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStoryViewers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18257,29 +18257,29 @@ class GetStoryViewers extends Func {
   }
 }
 
-///Reports a story to the Telegram moderators
+/// Reports a story to the Telegram moderators.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportStory extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportStory";
 
-  /// [story_sender_chat_id] The identifier of the sender of the story to report
+  /// The identifier of the sender of the story to report.
   late int story_sender_chat_id;
 
-  /// [story_id] The identifier of the story to report
+  /// The identifier of the story to report.
   late int story_id;
 
-  /// [reason] The reason for reporting the story
+  /// The reason for reporting the story.
   late ReportReason reason;
 
-  /// [text] Additional report details; 0-1024 characters
+  /// Additional report details; 0-1024 characters.
   late String text;
 
   /// Reports a story to the Telegram moderators
@@ -18310,7 +18310,7 @@ class ReportStory extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportStory? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18332,17 +18332,17 @@ class ReportStory extends Func {
   }
 }
 
-///Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
+/// Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ActivateStoryStealthMode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "activateStoryStealthMode";
 
   /// Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds
@@ -18363,7 +18363,7 @@ class ActivateStoryStealthMode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ActivateStoryStealthMode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18378,20 +18378,20 @@ class ActivateStoryStealthMode extends Func {
   }
 }
 
-///Returns the current boost status for a channel chat
+/// Returns the current boost status for a channel chat.
 ///
-///Returns [ChatBoostStatus]
+/// Returns [ChatBoostStatus].
 class GetChatBoostStatus extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatBoostStatus";
 
-  /// [chat_id] Identifier of the channel chat
+  /// Identifier of the channel chat.
   late int chat_id;
 
   /// Returns the current boost status for a channel chat
@@ -18413,7 +18413,7 @@ class GetChatBoostStatus extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatBoostStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18429,20 +18429,20 @@ class GetChatBoostStatus extends Func {
   }
 }
 
-///Checks whether the current user can boost a chat
+/// Checks whether the current user can boost a chat.
 ///
-///Returns [CanBoostChatResult]
+/// Returns [CanBoostChatResult].
 class CanBoostChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canBoostChat";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
   /// Checks whether the current user can boost a chat
@@ -18464,7 +18464,7 @@ class CanBoostChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanBoostChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18480,20 +18480,20 @@ class CanBoostChat extends Func {
   }
 }
 
-///Boosts a chat
+/// Boosts a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class BoostChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "boostChat";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
   /// Boosts a chat
@@ -18515,7 +18515,7 @@ class BoostChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BoostChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18531,20 +18531,20 @@ class BoostChat extends Func {
   }
 }
 
-///Returns an HTTPS link to boost the specified channel chat
+/// Returns an HTTPS link to boost the specified channel chat.
 ///
-///Returns [ChatBoostLink]
+/// Returns [ChatBoostLink].
 class GetChatBoostLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatBoostLink";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
   /// Returns an HTTPS link to boost the specified channel chat
@@ -18566,7 +18566,7 @@ class GetChatBoostLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatBoostLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18582,20 +18582,20 @@ class GetChatBoostLink extends Func {
   }
 }
 
-///Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+/// Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost.
 ///
-///Returns [ChatBoostLinkInfo]
+/// Returns [ChatBoostLinkInfo].
 class GetChatBoostLinkInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatBoostLinkInfo";
 
-  /// [url] The link to boost a chat
+  /// The link to boost a chat.
   late String url;
 
   /// Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
@@ -18617,7 +18617,7 @@ class GetChatBoostLinkInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatBoostLinkInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18633,26 +18633,26 @@ class GetChatBoostLinkInfo extends Func {
   }
 }
 
-///Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+/// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts.
 ///
-///Returns [FoundChatBoosts]
+/// Returns [FoundChatBoosts].
 class GetChatBoosts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatBoosts";
 
-  /// [chat_id] Identifier of the chat
+  /// Identifier of the chat.
   late int chat_id;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+  /// The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit.
   late int limit;
 
   /// Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
@@ -18681,7 +18681,7 @@ class GetChatBoosts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatBoosts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18701,20 +18701,20 @@ class GetChatBoosts extends Func {
   }
 }
 
-///Returns information about a bot that can be added to attachment or side menu
+/// Returns information about a bot that can be added to attachment or side menu.
 ///
-///Returns [AttachmentMenuBot]
+/// Returns [AttachmentMenuBot].
 class GetAttachmentMenuBot extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAttachmentMenuBot";
 
-  /// [bot_user_id] Bot's user identifier
+  /// Bot's user identifier.
   late int bot_user_id;
 
   /// Returns information about a bot that can be added to attachment or side menu
@@ -18736,7 +18736,7 @@ class GetAttachmentMenuBot extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAttachmentMenuBot? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18752,26 +18752,26 @@ class GetAttachmentMenuBot extends Func {
   }
 }
 
-///Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+/// Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleBotIsAddedToAttachmentMenu extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleBotIsAddedToAttachmentMenu";
 
-  /// [bot_user_id] Bot's user identifier
+  /// Bot's user identifier.
   late int bot_user_id;
 
-  /// [is_added] Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
+  /// Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu.
   late bool is_added;
 
-  /// [allow_write_access] Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
+  /// Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false.
   late bool allow_write_access;
 
   /// Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
@@ -18800,7 +18800,7 @@ class ToggleBotIsAddedToAttachmentMenu extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleBotIsAddedToAttachmentMenu? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18820,17 +18820,17 @@ class ToggleBotIsAddedToAttachmentMenu extends Func {
   }
 }
 
-///Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+/// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list.
 ///
-///Returns [EmojiStatuses]
+/// Returns [EmojiStatuses].
 class GetThemedEmojiStatuses extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getThemedEmojiStatuses";
 
   /// Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
@@ -18851,7 +18851,7 @@ class GetThemedEmojiStatuses extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetThemedEmojiStatuses? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18866,17 +18866,17 @@ class GetThemedEmojiStatuses extends Func {
   }
 }
 
-///Returns recent emoji statuses
+/// Returns recent emoji statuses.
 ///
-///Returns [EmojiStatuses]
+/// Returns [EmojiStatuses].
 class GetRecentEmojiStatuses extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecentEmojiStatuses";
 
   /// Returns recent emoji statuses
@@ -18897,7 +18897,7 @@ class GetRecentEmojiStatuses extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecentEmojiStatuses? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18912,17 +18912,17 @@ class GetRecentEmojiStatuses extends Func {
   }
 }
 
-///Returns default emoji statuses
+/// Returns default emoji statuses.
 ///
-///Returns [EmojiStatuses]
+/// Returns [EmojiStatuses].
 class GetDefaultEmojiStatuses extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDefaultEmojiStatuses";
 
   /// Returns default emoji statuses
@@ -18943,7 +18943,7 @@ class GetDefaultEmojiStatuses extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDefaultEmojiStatuses? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -18958,17 +18958,17 @@ class GetDefaultEmojiStatuses extends Func {
   }
 }
 
-///Clears the list of recently used emoji statuses
+/// Clears the list of recently used emoji statuses.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearRecentEmojiStatuses extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearRecentEmojiStatuses";
 
   /// Clears the list of recently used emoji statuses
@@ -18989,7 +18989,7 @@ class ClearRecentEmojiStatuses extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearRecentEmojiStatuses? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19004,32 +19004,32 @@ class ClearRecentEmojiStatuses extends Func {
   }
 }
 
-///Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+/// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates.
 ///
-///Returns [File]
+/// Returns [File].
 class DownloadFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "downloadFile";
 
-  /// [file_id] Identifier of the file to download
+  /// Identifier of the file to download.
   late int file_id;
 
-  /// [priority] Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+  /// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first.
   late int priority;
 
-  /// [offset] The starting position from which the file needs to be downloaded
+  /// The starting position from which the file needs to be downloaded.
   late int offset;
 
-  /// [limit] Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
+  /// Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit.
   late int limit;
 
-  /// [synchronous] Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
+  /// Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started.
   late bool synchronous;
 
   /// Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
@@ -19062,7 +19062,7 @@ class DownloadFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DownloadFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19086,23 +19086,23 @@ class DownloadFile extends Func {
   }
 }
 
-///Returns file downloaded prefix size from a given offset, in bytes
+/// Returns file downloaded prefix size from a given offset, in bytes.
 ///
-///Returns [FileDownloadedPrefixSize]
+/// Returns [FileDownloadedPrefixSize].
 class GetFileDownloadedPrefixSize extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getFileDownloadedPrefixSize";
 
-  /// [file_id] Identifier of the file
+  /// Identifier of the file.
   late int file_id;
 
-  /// [offset] Offset from which downloaded prefix size needs to be calculated
+  /// Offset from which downloaded prefix size needs to be calculated.
   late int offset;
 
   /// Returns file downloaded prefix size from a given offset, in bytes
@@ -19126,7 +19126,7 @@ class GetFileDownloadedPrefixSize extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetFileDownloadedPrefixSize? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19144,23 +19144,23 @@ class GetFileDownloadedPrefixSize extends Func {
   }
 }
 
-///Stops the downloading of a file. If a file has already been downloaded, does nothing
+/// Stops the downloading of a file. If a file has already been downloaded, does nothing.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CancelDownloadFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "cancelDownloadFile";
 
-  /// [file_id] Identifier of a file to stop downloading
+  /// Identifier of a file to stop downloading.
   late int file_id;
 
-  /// [only_if_pending] Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
+  /// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server.
   late bool only_if_pending;
 
   /// Stops the downloading of a file. If a file has already been downloaded, does nothing
@@ -19187,7 +19187,7 @@ class CancelDownloadFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CancelDownloadFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19205,23 +19205,23 @@ class CancelDownloadFile extends Func {
   }
 }
 
-///Returns suggested name for saving a file in a given directory
+/// Returns suggested name for saving a file in a given directory.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetSuggestedFileName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSuggestedFileName";
 
-  /// [file_id] Identifier of the file
+  /// Identifier of the file.
   late int file_id;
 
-  /// [directory] Directory in which the file is supposed to be saved
+  /// Directory in which the file is supposed to be saved.
   late String directory;
 
   /// Returns suggested name for saving a file in a given directory
@@ -19248,7 +19248,7 @@ class GetSuggestedFileName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSuggestedFileName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19266,26 +19266,26 @@ class GetSuggestedFileName extends Func {
   }
 }
 
-///Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used
+/// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used.
 ///
-///Returns [File]
+/// Returns [File].
 class PreliminaryUploadFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "preliminaryUploadFile";
 
-  /// [file] File to upload
+  /// File to upload.
   late InputFile file;
 
-  /// [file_type] File type; pass null if unknown
+  /// File type; pass null if unknown.
   FileType? file_type;
 
-  /// [priority] Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
+  /// Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first.
   late int priority;
 
   /// Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used
@@ -19314,7 +19314,7 @@ class PreliminaryUploadFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PreliminaryUploadFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19334,20 +19334,20 @@ class PreliminaryUploadFile extends Func {
   }
 }
 
-///Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+/// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CancelPreliminaryUploadFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "cancelPreliminaryUploadFile";
 
-  /// [file_id] Identifier of the file to stop uploading
+  /// Identifier of the file to stop uploading.
   late int file_id;
 
   /// Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
@@ -19370,7 +19370,7 @@ class CancelPreliminaryUploadFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CancelPreliminaryUploadFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19386,27 +19386,27 @@ class CancelPreliminaryUploadFile extends Func {
   }
 }
 
-///Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
+/// Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class WriteGeneratedFilePart extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "writeGeneratedFilePart";
 
-  /// [generation_id] The identifier of the generation process
+  /// The identifier of the generation process.
   /// ; string representation of int, use `int.parse`
   late int64 generation_id;
 
-  /// [offset] The offset from which to write the data to the file
+  /// The offset from which to write the data to the file.
   late int offset;
 
-  /// [data] The data to write
+  /// The data to write.
   /// ; base64-encoded bytes `List<int>`
   late bytes data;
 
@@ -19436,7 +19436,7 @@ class WriteGeneratedFilePart extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static WriteGeneratedFilePart? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19456,27 +19456,27 @@ class WriteGeneratedFilePart extends Func {
   }
 }
 
-///Informs TDLib on a file generation progress
+/// Informs TDLib on a file generation progress.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetFileGenerationProgress extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setFileGenerationProgress";
 
-  /// [generation_id] The identifier of the generation process
+  /// The identifier of the generation process.
   /// ; string representation of int, use `int.parse`
   late int64 generation_id;
 
-  /// [expected_size] Expected size of the generated file, in bytes; 0 if unknown
+  /// Expected size of the generated file, in bytes; 0 if unknown.
   late int expected_size;
 
-  /// [local_prefix_size] The number of bytes already generated
+  /// The number of bytes already generated.
   late int local_prefix_size;
 
   /// Informs TDLib on a file generation progress
@@ -19505,7 +19505,7 @@ class SetFileGenerationProgress extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetFileGenerationProgress? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19525,24 +19525,24 @@ class SetFileGenerationProgress extends Func {
   }
 }
 
-///Finishes the file generation
+/// Finishes the file generation.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class FinishFileGeneration extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "finishFileGeneration";
 
-  /// [generation_id] The identifier of the generation process
+  /// The identifier of the generation process.
   /// ; string representation of int, use `int.parse`
   late int64 generation_id;
 
-  /// [error] If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
+  /// If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded.
   Error? error;
 
   /// Finishes the file generation
@@ -19566,7 +19566,7 @@ class FinishFileGeneration extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static FinishFileGeneration? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19584,26 +19584,26 @@ class FinishFileGeneration extends Func {
   }
 }
 
-///Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
+/// Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file.
 ///
-///Returns [FilePart]
+/// Returns [FilePart].
 class ReadFilePart extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "readFilePart";
 
-  /// [file_id] Identifier of the file. The file must be located in the TDLib file cache
+  /// Identifier of the file. The file must be located in the TDLib file cache.
   late int file_id;
 
-  /// [offset] The offset from which to read the file
+  /// The offset from which to read the file.
   late int offset;
 
-  /// [count] Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
+  /// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position.
   late int count;
 
   /// Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
@@ -19632,7 +19632,7 @@ class ReadFilePart extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReadFilePart? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19652,20 +19652,20 @@ class ReadFilePart extends Func {
   }
 }
 
-///Deletes a file from the TDLib file cache
+/// Deletes a file from the TDLib file cache.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteFile";
 
-  /// [file_id] Identifier of the file to delete
+  /// Identifier of the file to delete.
   late int file_id;
 
   /// Deletes a file from the TDLib file cache
@@ -19687,7 +19687,7 @@ class DeleteFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19703,29 +19703,29 @@ class DeleteFile extends Func {
   }
 }
 
-///Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
+/// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates..
 ///
-///Returns [File]
+/// Returns [File].
 class AddFileToDownloads extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addFileToDownloads";
 
-  /// [file_id] Identifier of the file to download
+  /// Identifier of the file to download.
   late int file_id;
 
-  /// [chat_id] Chat identifier of the message with the file
+  /// Chat identifier of the message with the file.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [priority] Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
+  /// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first.
   late int priority;
 
   /// Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates.
@@ -19756,7 +19756,7 @@ class AddFileToDownloads extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddFileToDownloads? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19778,23 +19778,23 @@ class AddFileToDownloads extends Func {
   }
 }
 
-///Changes pause state of a file in the file download list
+/// Changes pause state of a file in the file download list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleDownloadIsPaused extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleDownloadIsPaused";
 
-  /// [file_id] Identifier of the downloaded file
+  /// Identifier of the downloaded file.
   late int file_id;
 
-  /// [is_paused] Pass true if the download is paused
+  /// Pass true if the download is paused.
   late bool is_paused;
 
   /// Changes pause state of a file in the file download list
@@ -19821,7 +19821,7 @@ class ToggleDownloadIsPaused extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleDownloadIsPaused? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19839,20 +19839,20 @@ class ToggleDownloadIsPaused extends Func {
   }
 }
 
-///Changes pause state of all files in the file download list
+/// Changes pause state of all files in the file download list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleAllDownloadsArePaused extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleAllDownloadsArePaused";
 
-  /// [are_paused] Pass true to pause all downloads; pass false to unpause them
+  /// Pass true to pause all downloads; pass false to unpause them.
   late bool are_paused;
 
   /// Changes pause state of all files in the file download list
@@ -19875,7 +19875,7 @@ class ToggleAllDownloadsArePaused extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleAllDownloadsArePaused? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19891,23 +19891,23 @@ class ToggleAllDownloadsArePaused extends Func {
   }
 }
 
-///Removes a file from the file download list
+/// Removes a file from the file download list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveFileFromDownloads extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeFileFromDownloads";
 
-  /// [file_id] Identifier of the downloaded file
+  /// Identifier of the downloaded file.
   late int file_id;
 
-  /// [delete_from_cache] Pass true to delete the file from the TDLib file cache
+  /// Pass true to delete the file from the TDLib file cache.
   late bool delete_from_cache;
 
   /// Removes a file from the file download list
@@ -19934,7 +19934,7 @@ class RemoveFileFromDownloads extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveFileFromDownloads? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -19952,26 +19952,26 @@ class RemoveFileFromDownloads extends Func {
   }
 }
 
-///Removes all files from the file download list
+/// Removes all files from the file download list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveAllFilesFromDownloads extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeAllFilesFromDownloads";
 
-  /// [only_active] Pass true to remove only active downloads, including paused
+  /// Pass true to remove only active downloads, including paused.
   late bool only_active;
 
-  /// [only_completed] Pass true to remove only completed downloads
+  /// Pass true to remove only completed downloads.
   late bool only_completed;
 
-  /// [delete_from_cache] Pass true to delete the file from the TDLib file cache
+  /// Pass true to delete the file from the TDLib file cache.
   late bool delete_from_cache;
 
   /// Removes all files from the file download list
@@ -20000,7 +20000,7 @@ class RemoveAllFilesFromDownloads extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveAllFilesFromDownloads? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20020,32 +20020,32 @@ class RemoveAllFilesFromDownloads extends Func {
   }
 }
 
-///Searches for files in the file download list or recently downloaded files from the list
+/// Searches for files in the file download list or recently downloaded files from the list.
 ///
-///Returns [FoundFileDownloads]
+/// Returns [FoundFileDownloads].
 class SearchFileDownloads extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchFileDownloads";
 
-  /// [query] Query to search for; may be empty to return all downloaded files
+  /// Query to search for; may be empty to return all downloaded files.
   late String query;
 
-  /// [only_active] Pass true to search only for active downloads, including paused
+  /// Pass true to search only for active downloads, including paused.
   late bool only_active;
 
-  /// [only_completed] Pass true to search only for completed downloads
+  /// Pass true to search only for completed downloads.
   late bool only_completed;
 
-  /// [offset] Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+  /// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results.
   late String offset;
 
-  /// [limit] The maximum number of files to be returned
+  /// The maximum number of files to be returned.
   late int limit;
 
   /// Searches for files in the file download list or recently downloaded files from the list
@@ -20078,7 +20078,7 @@ class SearchFileDownloads extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchFileDownloads? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20102,20 +20102,20 @@ class SearchFileDownloads extends Func {
   }
 }
 
-///Returns information about a file with messages exported from another application
+/// Returns information about a file with messages exported from another application.
 ///
-///Returns [MessageFileType]
+/// Returns [MessageFileType].
 class GetMessageFileType extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageFileType";
 
-  /// [message_file_head] Beginning of the message file; up to 100 first lines
+  /// Beginning of the message file; up to 100 first lines.
   late String message_file_head;
 
   /// Returns information about a file with messages exported from another application
@@ -20138,7 +20138,7 @@ class GetMessageFileType extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageFileType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20154,20 +20154,20 @@ class GetMessageFileType extends Func {
   }
 }
 
-///Returns a confirmation text to be shown to the user before starting message import
+/// Returns a confirmation text to be shown to the user before starting message import.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetMessageImportConfirmationText extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageImportConfirmationText";
 
-  /// [chat_id] Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+  /// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right.
   late int chat_id;
 
   /// Returns a confirmation text to be shown to the user before starting message import
@@ -20190,7 +20190,7 @@ class GetMessageImportConfirmationText extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageImportConfirmationText? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20206,26 +20206,26 @@ class GetMessageImportConfirmationText extends Func {
   }
 }
 
-///Imports messages exported from another app
+/// Imports messages exported from another app.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ImportMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "importMessages";
 
-  /// [chat_id] Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+  /// Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right.
   late int chat_id;
 
-  /// [message_file] File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
+  /// File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded.
   late InputFile message_file;
 
-  /// [attached_files] Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
+  /// Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded.
   late List<InputFile> attached_files;
 
   /// Imports messages exported from another app
@@ -20254,7 +20254,7 @@ class ImportMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ImportMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20278,20 +20278,20 @@ class ImportMessages extends Func {
   }
 }
 
-///Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+/// Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right.
 ///
-///Returns [ChatInviteLink]
+/// Returns [ChatInviteLink].
 class ReplacePrimaryChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "replacePrimaryChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
@@ -20314,7 +20314,7 @@ class ReplacePrimaryChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReplacePrimaryChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20330,32 +20330,32 @@ class ReplacePrimaryChatInviteLink extends Func {
   }
 }
 
-///Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+/// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat.
 ///
-///Returns [ChatInviteLink]
+/// Returns [ChatInviteLink].
 class CreateChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [name] Invite link name; 0-32 characters
+  /// Invite link name; 0-32 characters.
   late String name;
 
-  /// [expiration_date] Point in time (Unix timestamp) when the link will expire; pass 0 if never
+  /// Point in time (Unix timestamp) when the link will expire; pass 0 if never.
   late int expiration_date;
 
-  /// [member_limit] The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+  /// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited.
   late int member_limit;
 
-  /// [creates_join_request] Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+  /// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0.
   late bool creates_join_request;
 
   /// Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
@@ -20388,7 +20388,7 @@ class CreateChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20412,35 +20412,35 @@ class CreateChatInviteLink extends Func {
   }
 }
 
-///Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+/// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 ///
-///Returns [ChatInviteLink]
+/// Returns [ChatInviteLink].
 class EditChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link to be edited
+  /// Invite link to be edited.
   late String invite_link;
 
-  /// [name] Invite link name; 0-32 characters
+  /// Invite link name; 0-32 characters.
   late String name;
 
-  /// [expiration_date] Point in time (Unix timestamp) when the link will expire; pass 0 if never
+  /// Point in time (Unix timestamp) when the link will expire; pass 0 if never.
   late int expiration_date;
 
-  /// [member_limit] The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
+  /// The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited.
   late int member_limit;
 
-  /// [creates_join_request] Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
+  /// Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0.
   late bool creates_join_request;
 
   /// Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -20475,7 +20475,7 @@ class EditChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20501,23 +20501,23 @@ class EditChatInviteLink extends Func {
   }
 }
 
-///Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+/// Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links.
 ///
-///Returns [ChatInviteLink]
+/// Returns [ChatInviteLink].
 class GetChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link to get
+  /// Invite link to get.
   late String invite_link;
 
   /// Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -20544,7 +20544,7 @@ class GetChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20562,20 +20562,20 @@ class GetChatInviteLink extends Func {
   }
 }
 
-///Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+/// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat.
 ///
-///Returns [ChatInviteLinkCounts]
+/// Returns [ChatInviteLinkCounts].
 class GetChatInviteLinkCounts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatInviteLinkCounts";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
@@ -20597,7 +20597,7 @@ class GetChatInviteLinkCounts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatInviteLinkCounts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20613,35 +20613,35 @@ class GetChatInviteLinkCounts extends Func {
   }
 }
 
-///Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+/// Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links.
 ///
-///Returns [ChatInviteLinks]
+/// Returns [ChatInviteLinks].
 class GetChatInviteLinks extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatInviteLinks";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [creator_user_id] User identifier of a chat administrator. Must be an identifier of the current user for non-owner
+  /// User identifier of a chat administrator. Must be an identifier of the current user for non-owner.
   late int creator_user_id;
 
-  /// [is_revoked] Pass true if revoked links needs to be returned instead of active or expired
+  /// Pass true if revoked links needs to be returned instead of active or expired.
   late bool is_revoked;
 
-  /// [offset_date] Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
+  /// Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning.
   late int offset_date;
 
-  /// [offset_invite_link] Invite link starting after which to return invite links; use empty string to get results from the beginning
+  /// Invite link starting after which to return invite links; use empty string to get results from the beginning.
   late String offset_invite_link;
 
-  /// [limit] The maximum number of invite links to return; up to 100
+  /// The maximum number of invite links to return; up to 100.
   late int limit;
 
   /// Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -20676,7 +20676,7 @@ class GetChatInviteLinks extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatInviteLinks? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20702,29 +20702,29 @@ class GetChatInviteLinks extends Func {
   }
 }
 
-///Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+/// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 ///
-///Returns [ChatInviteLinkMembers]
+/// Returns [ChatInviteLinkMembers].
 class GetChatInviteLinkMembers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatInviteLinkMembers";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link for which to return chat members
+  /// Invite link for which to return chat members.
   late String invite_link;
 
-  /// [offset_member] A chat member from which to return next chat members; pass null to get results from the beginning
+  /// A chat member from which to return next chat members; pass null to get results from the beginning.
   ChatInviteLinkMember? offset_member;
 
-  /// [limit] The maximum number of chat members to return; up to 100
+  /// The maximum number of chat members to return; up to 100.
   late int limit;
 
   /// Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -20755,7 +20755,7 @@ class GetChatInviteLinkMembers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatInviteLinkMembers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20777,23 +20777,23 @@ class GetChatInviteLinkMembers extends Func {
   }
 }
 
-///Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
+/// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links..
 ///
-///Returns [ChatInviteLinks]
+/// Returns [ChatInviteLinks].
 class RevokeChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "revokeChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link to be revoked
+  /// Invite link to be revoked.
   late String invite_link;
 
   /// Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
@@ -20820,7 +20820,7 @@ class RevokeChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RevokeChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20838,23 +20838,23 @@ class RevokeChatInviteLink extends Func {
   }
 }
 
-///Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+/// Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteRevokedChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteRevokedChatInviteLink";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link to revoke
+  /// Invite link to revoke.
   late String invite_link;
 
   /// Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -20881,7 +20881,7 @@ class DeleteRevokedChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteRevokedChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20899,23 +20899,23 @@ class DeleteRevokedChatInviteLink extends Func {
   }
 }
 
-///Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+/// Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteAllRevokedChatInviteLinks extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteAllRevokedChatInviteLinks";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [creator_user_id] User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
+  /// User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner.
   late int creator_user_id;
 
   /// Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -20942,7 +20942,7 @@ class DeleteAllRevokedChatInviteLinks extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteAllRevokedChatInviteLinks? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -20960,20 +20960,20 @@ class DeleteAllRevokedChatInviteLinks extends Func {
   }
 }
 
-///Checks the validity of an invite link for a chat and returns information about the corresponding chat
+/// Checks the validity of an invite link for a chat and returns information about the corresponding chat.
 ///
-///Returns [ChatInviteLinkInfo]
+/// Returns [ChatInviteLinkInfo].
 class CheckChatInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkChatInviteLink";
 
-  /// [invite_link] Invite link to be checked
+  /// Invite link to be checked.
   late String invite_link;
 
   /// Checks the validity of an invite link for a chat and returns information about the corresponding chat
@@ -20995,7 +20995,7 @@ class CheckChatInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckChatInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21011,20 +21011,20 @@ class CheckChatInviteLink extends Func {
   }
 }
 
-///Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
+/// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created.
 ///
-///Returns [Chat]
+/// Returns [Chat].
 class JoinChatByInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "joinChatByInviteLink";
 
-  /// [invite_link] Invite link to use
+  /// Invite link to use.
   late String invite_link;
 
   /// Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
@@ -21046,7 +21046,7 @@ class JoinChatByInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static JoinChatByInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21062,32 +21062,32 @@ class JoinChatByInviteLink extends Func {
   }
 }
 
-///Returns pending join requests in a chat
+/// Returns pending join requests in a chat.
 ///
-///Returns [ChatJoinRequests]
+/// Returns [ChatJoinRequests].
 class GetChatJoinRequests extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatJoinRequests";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+  /// Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
   String? invite_link;
 
-  /// [query] A query to search for in the first names, last names and usernames of the users to return
+  /// A query to search for in the first names, last names and usernames of the users to return.
   late String query;
 
-  /// [offset_request] A chat join request from which to return next requests; pass null to get results from the beginning
+  /// A chat join request from which to return next requests; pass null to get results from the beginning.
   ChatJoinRequest? offset_request;
 
-  /// [limit] The maximum number of requests to join the chat to return
+  /// The maximum number of requests to join the chat to return.
   late int limit;
 
   /// Returns pending join requests in a chat
@@ -21120,7 +21120,7 @@ class GetChatJoinRequests extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatJoinRequests? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21144,26 +21144,26 @@ class GetChatJoinRequests extends Func {
   }
 }
 
-///Handles a pending join request in a chat
+/// Handles a pending join request in a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ProcessChatJoinRequest extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "processChatJoinRequest";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [user_id] Identifier of the user that sent the request
+  /// Identifier of the user that sent the request.
   late int user_id;
 
-  /// [approve] Pass true to approve the request; pass false to decline it
+  /// Pass true to approve the request; pass false to decline it.
   late bool approve;
 
   /// Handles a pending join request in a chat
@@ -21192,7 +21192,7 @@ class ProcessChatJoinRequest extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ProcessChatJoinRequest? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21212,26 +21212,26 @@ class ProcessChatJoinRequest extends Func {
   }
 }
 
-///Handles all pending join requests for a given link in a chat
+/// Handles all pending join requests for a given link in a chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ProcessChatJoinRequests extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "processChatJoinRequests";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [invite_link] Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+  /// Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links.
   String? invite_link;
 
-  /// [approve] Pass true to approve all requests; pass false to decline them
+  /// Pass true to approve all requests; pass false to decline them.
   late bool approve;
 
   /// Handles all pending join requests for a given link in a chat
@@ -21260,7 +21260,7 @@ class ProcessChatJoinRequests extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ProcessChatJoinRequests? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21280,26 +21280,26 @@ class ProcessChatJoinRequests extends Func {
   }
 }
 
-///Creates a new call
+/// Creates a new call.
 ///
-///Returns [CallId]
+/// Returns [CallId].
 class CreateCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createCall";
 
-  /// [user_id] Identifier of the user to be called
+  /// Identifier of the user to be called.
   late int user_id;
 
-  /// [protocol] The call protocols supported by the application
+  /// The call protocols supported by the application.
   late CallProtocol protocol;
 
-  /// [is_video] Pass true to create a video call
+  /// Pass true to create a video call.
   late bool is_video;
 
   /// Creates a new call
@@ -21328,7 +21328,7 @@ class CreateCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21348,23 +21348,23 @@ class CreateCall extends Func {
   }
 }
 
-///Accepts an incoming call
+/// Accepts an incoming call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AcceptCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "acceptCall";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [protocol] The call protocols supported by the application
+  /// The call protocols supported by the application.
   late CallProtocol protocol;
 
   /// Accepts an incoming call
@@ -21391,7 +21391,7 @@ class AcceptCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AcceptCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21409,23 +21409,23 @@ class AcceptCall extends Func {
   }
 }
 
-///Sends call signaling data
+/// Sends call signaling data.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendCallSignalingData extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendCallSignalingData";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [data] The data
+  /// The data.
   /// ; base64-encoded bytes `List<int>`
   late bytes data;
 
@@ -21450,7 +21450,7 @@ class SendCallSignalingData extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendCallSignalingData? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21468,32 +21468,32 @@ class SendCallSignalingData extends Func {
   }
 }
 
-///Discards a call
+/// Discards a call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DiscardCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "discardCall";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [is_disconnected] Pass true if the user was disconnected
+  /// Pass true if the user was disconnected.
   late bool is_disconnected;
 
-  /// [duration] The call duration, in seconds
+  /// The call duration, in seconds.
   late int duration;
 
-  /// [is_video] Pass true if the call was a video call
+  /// Pass true if the call was a video call.
   late bool is_video;
 
-  /// [connection_id] Identifier of the connection used during the call
+  /// Identifier of the connection used during the call.
   /// ; string representation of int, use `int.parse`
   late int64 connection_id;
 
@@ -21527,7 +21527,7 @@ class DiscardCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DiscardCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21551,29 +21551,29 @@ class DiscardCall extends Func {
   }
 }
 
-///Sends a call rating
+/// Sends a call rating.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendCallRating extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendCallRating";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [rating] Call rating; 1-5
+  /// Call rating; 1-5.
   late int rating;
 
-  /// [comment] An optional user comment if the rating is less than 5
+  /// An optional user comment if the rating is less than 5.
   late String comment;
 
-  /// [problems] List of the exact types of problems with the call, specified by the user
+  /// List of the exact types of problems with the call, specified by the user.
   late List<CallProblem> problems;
 
   /// Sends a call rating
@@ -21604,7 +21604,7 @@ class SendCallRating extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendCallRating? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21630,23 +21630,23 @@ class SendCallRating extends Func {
   }
 }
 
-///Sends debug information for a call to Telegram servers
+/// Sends debug information for a call to Telegram servers.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendCallDebugInformation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendCallDebugInformation";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [debug_information] Debug information in application-specific format
+  /// Debug information in application-specific format.
   late String debug_information;
 
   /// Sends debug information for a call to Telegram servers
@@ -21673,7 +21673,7 @@ class SendCallDebugInformation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendCallDebugInformation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21691,23 +21691,23 @@ class SendCallDebugInformation extends Func {
   }
 }
 
-///Sends log file for a call to Telegram servers
+/// Sends log file for a call to Telegram servers.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendCallLog extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendCallLog";
 
-  /// [call_id] Call identifier
+  /// Call identifier.
   late int call_id;
 
-  /// [log_file] Call log file. Only inputFileLocal and inputFileGenerated are supported
+  /// Call log file. Only inputFileLocal and inputFileGenerated are supported.
   late InputFile log_file;
 
   /// Sends log file for a call to Telegram servers
@@ -21734,7 +21734,7 @@ class SendCallLog extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendCallLog? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21752,20 +21752,20 @@ class SendCallLog extends Func {
   }
 }
 
-///Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+/// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined.
 ///
-///Returns [MessageSenders]
+/// Returns [MessageSenders].
 class GetVideoChatAvailableParticipants extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getVideoChatAvailableParticipants";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -21788,7 +21788,7 @@ class GetVideoChatAvailableParticipants extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetVideoChatAvailableParticipants? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -21805,23 +21805,23 @@ class GetVideoChatAvailableParticipants extends Func {
   }
 }
 
-///Changes default participant identifier, on whose behalf a video chat in the chat will be joined
+/// Changes default participant identifier, on whose behalf a video chat in the chat will be joined.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetVideoChatDefaultParticipant extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setVideoChatDefaultParticipant";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [default_participant_id] Default group call participant identifier to join the video chats
+  /// Default group call participant identifier to join the video chats.
   late MessageSender default_participant_id;
 
   /// Changes default participant identifier, on whose behalf a video chat in the chat will be joined
@@ -21848,7 +21848,7 @@ class SetVideoChatDefaultParticipant extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetVideoChatDefaultParticipant? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21867,29 +21867,29 @@ class SetVideoChatDefaultParticipant extends Func {
   }
 }
 
-///Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+/// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights.
 ///
-///Returns [GroupCallId]
+/// Returns [GroupCallId].
 class CreateVideoChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createVideoChat";
 
-  /// [chat_id] Identifier of a chat in which the video chat will be created
+  /// Identifier of a chat in which the video chat will be created.
   late int chat_id;
 
-  /// [title] Group call title; if empty, chat title will be used
+  /// Group call title; if empty, chat title will be used.
   String? title;
 
-  /// [start_date] Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+  /// Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future.
   late int start_date;
 
-  /// [is_rtmp_stream] Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+  /// Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges.
   late bool is_rtmp_stream;
 
   /// Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
@@ -21920,7 +21920,7 @@ class CreateVideoChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateVideoChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21942,20 +21942,20 @@ class CreateVideoChat extends Func {
   }
 }
 
-///Returns RTMP URL for streaming to the chat; requires creator privileges
+/// Returns RTMP URL for streaming to the chat; requires creator privileges.
 ///
-///Returns [RtmpUrl]
+/// Returns [RtmpUrl].
 class GetVideoChatRtmpUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getVideoChatRtmpUrl";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Returns RTMP URL for streaming to the chat; requires creator privileges
@@ -21977,7 +21977,7 @@ class GetVideoChatRtmpUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetVideoChatRtmpUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -21993,20 +21993,20 @@ class GetVideoChatRtmpUrl extends Func {
   }
 }
 
-///Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+/// Replaces the current RTMP URL for streaming to the chat; requires creator privileges.
 ///
-///Returns [RtmpUrl]
+/// Returns [RtmpUrl].
 class ReplaceVideoChatRtmpUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "replaceVideoChatRtmpUrl";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Replaces the current RTMP URL for streaming to the chat; requires creator privileges
@@ -22028,7 +22028,7 @@ class ReplaceVideoChatRtmpUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReplaceVideoChatRtmpUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22044,20 +22044,20 @@ class ReplaceVideoChatRtmpUrl extends Func {
   }
 }
 
-///Returns information about a group call
+/// Returns information about a group call.
 ///
-///Returns [GroupCall]
+/// Returns [GroupCall].
 class GetGroupCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGroupCall";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Returns information about a group call
@@ -22079,7 +22079,7 @@ class GetGroupCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGroupCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22095,20 +22095,20 @@ class GetGroupCall extends Func {
   }
 }
 
-///Starts a scheduled group call
+/// Starts a scheduled group call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class StartScheduledGroupCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "startScheduledGroupCall";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Starts a scheduled group call
@@ -22131,7 +22131,7 @@ class StartScheduledGroupCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StartScheduledGroupCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22147,23 +22147,23 @@ class StartScheduledGroupCall extends Func {
   }
 }
 
-///Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+/// Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallEnabledStartNotification extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallEnabledStartNotification";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [enabled_start_notification] New value of the enabled_start_notification setting
+  /// New value of the enabled_start_notification setting.
   late bool enabled_start_notification;
 
   /// Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
@@ -22190,7 +22190,7 @@ class ToggleGroupCallEnabledStartNotification extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallEnabledStartNotification? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -22210,38 +22210,38 @@ class ToggleGroupCallEnabledStartNotification extends Func {
   }
 }
 
-///Joins an active group call. Returns join response payload for tgcalls
+/// Joins an active group call. Returns join response payload for tgcalls.
 ///
-///Returns [Text]
+/// Returns [Text].
 class JoinGroupCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "joinGroupCall";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [participant_id] Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
+  /// Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only.
   MessageSender? participant_id;
 
-  /// [audio_source_id] Caller audio channel synchronization source identifier; received from tgcalls
+  /// Caller audio channel synchronization source identifier; received from tgcalls.
   late int audio_source_id;
 
-  /// [payload] Group call join payload; received from tgcalls
+  /// Group call join payload; received from tgcalls.
   late String payload;
 
-  /// [is_muted] Pass true to join the call with muted microphone
+  /// Pass true to join the call with muted microphone.
   late bool is_muted;
 
-  /// [is_my_video_enabled] Pass true if the user's video is enabled
+  /// Pass true if the user's video is enabled.
   late bool is_my_video_enabled;
 
-  /// [invite_hash] If non-empty, invite hash to be used to join the group call without being muted by administrators
+  /// If non-empty, invite hash to be used to join the group call without being muted by administrators.
   late String invite_hash;
 
   /// Joins an active group call. Returns join response payload for tgcalls
@@ -22278,7 +22278,7 @@ class JoinGroupCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static JoinGroupCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22306,26 +22306,26 @@ class JoinGroupCall extends Func {
   }
 }
 
-///Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+/// Starts screen sharing in a joined group call. Returns join response payload for tgcalls.
 ///
-///Returns [Text]
+/// Returns [Text].
 class StartGroupCallScreenSharing extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "startGroupCallScreenSharing";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [audio_source_id] Screen sharing audio channel synchronization source identifier; received from tgcalls
+  /// Screen sharing audio channel synchronization source identifier; received from tgcalls.
   late int audio_source_id;
 
-  /// [payload] Group call join payload; received from tgcalls
+  /// Group call join payload; received from tgcalls.
   late String payload;
 
   /// Starts screen sharing in a joined group call. Returns join response payload for tgcalls
@@ -22354,7 +22354,7 @@ class StartGroupCallScreenSharing extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StartGroupCallScreenSharing? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22374,23 +22374,23 @@ class StartGroupCallScreenSharing extends Func {
   }
 }
 
-///Pauses or unpauses screen sharing in a joined group call
+/// Pauses or unpauses screen sharing in a joined group call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallScreenSharingIsPaused extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallScreenSharingIsPaused";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [is_paused] Pass true to pause screen sharing; pass false to unpause it
+  /// Pass true to pause screen sharing; pass false to unpause it.
   late bool is_paused;
 
   /// Pauses or unpauses screen sharing in a joined group call
@@ -22417,7 +22417,7 @@ class ToggleGroupCallScreenSharingIsPaused extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallScreenSharingIsPaused? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -22436,20 +22436,20 @@ class ToggleGroupCallScreenSharingIsPaused extends Func {
   }
 }
 
-///Ends screen sharing in a joined group call
+/// Ends screen sharing in a joined group call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EndGroupCallScreenSharing extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "endGroupCallScreenSharing";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Ends screen sharing in a joined group call
@@ -22472,7 +22472,7 @@ class EndGroupCallScreenSharing extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EndGroupCallScreenSharing? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22488,23 +22488,23 @@ class EndGroupCallScreenSharing extends Func {
   }
 }
 
-///Sets group call title. Requires groupCall.can_be_managed group call flag
+/// Sets group call title. Requires groupCall.can_be_managed group call flag.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetGroupCallTitle extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setGroupCallTitle";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [title] New group call title; 1-64 characters
+  /// New group call title; 1-64 characters.
   late String title;
 
   /// Sets group call title. Requires groupCall.can_be_managed group call flag
@@ -22531,7 +22531,7 @@ class SetGroupCallTitle extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetGroupCallTitle? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22549,23 +22549,23 @@ class SetGroupCallTitle extends Func {
   }
 }
 
-///Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
+/// Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallMuteNewParticipants extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallMuteNewParticipants";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [mute_new_participants] New value of the mute_new_participants setting
+  /// New value of the mute_new_participants setting.
   late bool mute_new_participants;
 
   /// Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
@@ -22592,7 +22592,7 @@ class ToggleGroupCallMuteNewParticipants extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallMuteNewParticipants? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -22611,23 +22611,23 @@ class ToggleGroupCallMuteNewParticipants extends Func {
   }
 }
 
-///Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
+/// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class InviteGroupCallParticipants extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "inviteGroupCallParticipants";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [user_ids] User identifiers. At most 10 users can be invited simultaneously
+  /// User identifiers. At most 10 users can be invited simultaneously.
   late List<int> user_ids;
 
   /// Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
@@ -22654,7 +22654,7 @@ class InviteGroupCallParticipants extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static InviteGroupCallParticipants? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22676,23 +22676,23 @@ class InviteGroupCallParticipants extends Func {
   }
 }
 
-///Returns invite link to a video chat in a public chat
+/// Returns invite link to a video chat in a public chat.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetGroupCallInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGroupCallInviteLink";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [can_self_unmute] Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+  /// Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag.
   late bool can_self_unmute;
 
   /// Returns invite link to a video chat in a public chat
@@ -22719,7 +22719,7 @@ class GetGroupCallInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGroupCallInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22737,20 +22737,20 @@ class GetGroupCallInviteLink extends Func {
   }
 }
 
-///Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
+/// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RevokeGroupCallInviteLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "revokeGroupCallInviteLink";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
@@ -22773,7 +22773,7 @@ class RevokeGroupCallInviteLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RevokeGroupCallInviteLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22789,29 +22789,29 @@ class RevokeGroupCallInviteLink extends Func {
   }
 }
 
-///Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
+/// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class StartGroupCallRecording extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "startGroupCallRecording";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [title] Group call recording title; 0-64 characters
+  /// Group call recording title; 0-64 characters.
   late String title;
 
-  /// [record_video] Pass true to record a video file instead of an audio file
+  /// Pass true to record a video file instead of an audio file.
   late bool record_video;
 
-  /// [use_portrait_orientation] Pass true to use portrait orientation for video instead of landscape one
+  /// Pass true to use portrait orientation for video instead of landscape one.
   late bool use_portrait_orientation;
 
   /// Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
@@ -22842,7 +22842,7 @@ class StartGroupCallRecording extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static StartGroupCallRecording? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22864,20 +22864,20 @@ class StartGroupCallRecording extends Func {
   }
 }
 
-///Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
+/// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EndGroupCallRecording extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "endGroupCallRecording";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
@@ -22900,7 +22900,7 @@ class EndGroupCallRecording extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EndGroupCallRecording? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22916,23 +22916,23 @@ class EndGroupCallRecording extends Func {
   }
 }
 
-///Toggles whether current user's video is paused
+/// Toggles whether current user's video is paused.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallIsMyVideoPaused extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallIsMyVideoPaused";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [is_my_video_paused] Pass true if the current user's video is paused
+  /// Pass true if the current user's video is paused.
   late bool is_my_video_paused;
 
   /// Toggles whether current user's video is paused
@@ -22959,7 +22959,7 @@ class ToggleGroupCallIsMyVideoPaused extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallIsMyVideoPaused? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -22977,23 +22977,23 @@ class ToggleGroupCallIsMyVideoPaused extends Func {
   }
 }
 
-///Toggles whether current user's video is enabled
+/// Toggles whether current user's video is enabled.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallIsMyVideoEnabled extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallIsMyVideoEnabled";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [is_my_video_enabled] Pass true if the current user's video is enabled
+  /// Pass true if the current user's video is enabled.
   late bool is_my_video_enabled;
 
   /// Toggles whether current user's video is enabled
@@ -23020,7 +23020,7 @@ class ToggleGroupCallIsMyVideoEnabled extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallIsMyVideoEnabled? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23038,26 +23038,26 @@ class ToggleGroupCallIsMyVideoEnabled extends Func {
   }
 }
 
-///Informs TDLib that speaking state of a participant of an active group has changed
+/// Informs TDLib that speaking state of a participant of an active group has changed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetGroupCallParticipantIsSpeaking extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setGroupCallParticipantIsSpeaking";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [audio_source] Group call participant's synchronization audio source identifier, or 0 for the current user
+  /// Group call participant's synchronization audio source identifier, or 0 for the current user.
   late int audio_source;
 
-  /// [is_speaking] Pass true if the user is speaking
+  /// Pass true if the user is speaking.
   late bool is_speaking;
 
   /// Informs TDLib that speaking state of a participant of an active group has changed
@@ -23086,7 +23086,7 @@ class SetGroupCallParticipantIsSpeaking extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetGroupCallParticipantIsSpeaking? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -23107,26 +23107,26 @@ class SetGroupCallParticipantIsSpeaking extends Func {
   }
 }
 
-///Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
+/// Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallParticipantIsMuted extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallParticipantIsMuted";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [participant_id] Participant identifier
+  /// Participant identifier.
   late MessageSender participant_id;
 
-  /// [is_muted] Pass true to mute the user; pass false to unmute them
+  /// Pass true to mute the user; pass false to unmute them.
   late bool is_muted;
 
   /// Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
@@ -23155,7 +23155,7 @@ class ToggleGroupCallParticipantIsMuted extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallParticipantIsMuted? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -23176,26 +23176,26 @@ class ToggleGroupCallParticipantIsMuted extends Func {
   }
 }
 
-///Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
+/// Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetGroupCallParticipantVolumeLevel extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setGroupCallParticipantVolumeLevel";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [participant_id] Participant identifier
+  /// Participant identifier.
   late MessageSender participant_id;
 
-  /// [volume_level] New participant's volume level; 1-20000 in hundreds of percents
+  /// New participant's volume level; 1-20000 in hundreds of percents.
   late int volume_level;
 
   /// Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
@@ -23224,7 +23224,7 @@ class SetGroupCallParticipantVolumeLevel extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetGroupCallParticipantVolumeLevel? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -23245,26 +23245,26 @@ class SetGroupCallParticipantVolumeLevel extends Func {
   }
 }
 
-///Toggles whether a group call participant hand is rased
+/// Toggles whether a group call participant hand is rased.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleGroupCallParticipantIsHandRaised extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleGroupCallParticipantIsHandRaised";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [participant_id] Participant identifier
+  /// Participant identifier.
   late MessageSender participant_id;
 
-  /// [is_hand_raised] Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+  /// Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand.
   late bool is_hand_raised;
 
   /// Toggles whether a group call participant hand is rased
@@ -23293,7 +23293,7 @@ class ToggleGroupCallParticipantIsHandRaised extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleGroupCallParticipantIsHandRaised? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -23314,23 +23314,23 @@ class ToggleGroupCallParticipantIsHandRaised extends Func {
   }
 }
 
-///Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
+/// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LoadGroupCallParticipants extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "loadGroupCallParticipants";
 
-  /// [group_call_id] Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
+  /// Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined.
   late int group_call_id;
 
-  /// [limit] The maximum number of participants to load; up to 100
+  /// The maximum number of participants to load; up to 100.
   late int limit;
 
   /// Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
@@ -23357,7 +23357,7 @@ class LoadGroupCallParticipants extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LoadGroupCallParticipants? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23375,20 +23375,20 @@ class LoadGroupCallParticipants extends Func {
   }
 }
 
-///Leaves a group call
+/// Leaves a group call.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class LeaveGroupCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "leaveGroupCall";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Leaves a group call
@@ -23410,7 +23410,7 @@ class LeaveGroupCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static LeaveGroupCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23426,20 +23426,20 @@ class LeaveGroupCall extends Func {
   }
 }
 
-///Ends a group call. Requires groupCall.can_be_managed
+/// Ends a group call. Requires groupCall.can_be_managed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EndGroupCall extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "endGroupCall";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Ends a group call. Requires groupCall.can_be_managed
@@ -23461,7 +23461,7 @@ class EndGroupCall extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EndGroupCall? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23477,20 +23477,20 @@ class EndGroupCall extends Func {
   }
 }
 
-///Returns information about available group call streams
+/// Returns information about available group call streams.
 ///
-///Returns [GroupCallStreams]
+/// Returns [GroupCallStreams].
 class GetGroupCallStreams extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGroupCallStreams";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
   /// Returns information about available group call streams
@@ -23512,7 +23512,7 @@ class GetGroupCallStreams extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGroupCallStreams? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23528,32 +23528,32 @@ class GetGroupCallStreams extends Func {
   }
 }
 
-///Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+/// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video.
 ///
-///Returns [FilePart]
+/// Returns [FilePart].
 class GetGroupCallStreamSegment extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getGroupCallStreamSegment";
 
-  /// [group_call_id] Group call identifier
+  /// Group call identifier.
   late int group_call_id;
 
-  /// [time_offset] Point in time when the stream segment begins; Unix timestamp in milliseconds
+  /// Point in time when the stream segment begins; Unix timestamp in milliseconds.
   late int time_offset;
 
-  /// [scale] Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
+  /// Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds.
   late int scale;
 
-  /// [channel_id] Identifier of an audio/video channel to get as received from tgcalls
+  /// Identifier of an audio/video channel to get as received from tgcalls.
   late int channel_id;
 
-  /// [video_quality] Video quality as received from tgcalls; pass null to get the worst available quality
+  /// Video quality as received from tgcalls; pass null to get the worst available quality.
   GroupCallVideoQuality? video_quality;
 
   /// Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
@@ -23586,7 +23586,7 @@ class GetGroupCallStreamSegment extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetGroupCallStreamSegment? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23610,23 +23610,23 @@ class GetGroupCallStreamSegment extends Func {
   }
 }
 
-///Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+/// Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetMessageSenderBlockList extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setMessageSenderBlockList";
 
-  /// [sender_id] Identifier of a message sender to block/unblock
+  /// Identifier of a message sender to block/unblock.
   late MessageSender sender_id;
 
-  /// [block_list] New block list for the message sender; pass null to unblock the message sender
+  /// New block list for the message sender; pass null to unblock the message sender.
   BlockList? block_list;
 
   /// Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
@@ -23650,7 +23650,7 @@ class SetMessageSenderBlockList extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetMessageSenderBlockList? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23668,29 +23668,29 @@ class SetMessageSenderBlockList extends Func {
   }
 }
 
-///Blocks an original sender of a message in the Replies chat
+/// Blocks an original sender of a message in the Replies chat.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class BlockMessageSenderFromReplies extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "blockMessageSenderFromReplies";
 
-  /// [message_id] The identifier of an incoming message in the Replies chat
+  /// The identifier of an incoming message in the Replies chat.
   late int message_id;
 
-  /// [delete_message] Pass true to delete the message
+  /// Pass true to delete the message.
   late bool delete_message;
 
-  /// [delete_all_messages] Pass true to delete all messages from the same sender
+  /// Pass true to delete all messages from the same sender.
   late bool delete_all_messages;
 
-  /// [report_spam] Pass true to report the sender to the Telegram moderators
+  /// Pass true to report the sender to the Telegram moderators.
   late bool report_spam;
 
   /// Blocks an original sender of a message in the Replies chat
@@ -23721,7 +23721,7 @@ class BlockMessageSenderFromReplies extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static BlockMessageSenderFromReplies? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23743,26 +23743,26 @@ class BlockMessageSenderFromReplies extends Func {
   }
 }
 
-///Returns users and chats that were blocked by the current user
+/// Returns users and chats that were blocked by the current user.
 ///
-///Returns [MessageSenders]
+/// Returns [MessageSenders].
 class GetBlockedMessageSenders extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBlockedMessageSenders";
 
-  /// [block_list] Block list from which to return users
+  /// Block list from which to return users.
   late BlockList block_list;
 
-  /// [offset] Number of users and chats to skip in the result; must be non-negative
+  /// Number of users and chats to skip in the result; must be non-negative.
   late int offset;
 
-  /// [limit] The maximum number of users and chats to return; up to 100
+  /// The maximum number of users and chats to return; up to 100.
   late int limit;
 
   /// Returns users and chats that were blocked by the current user
@@ -23791,7 +23791,7 @@ class GetBlockedMessageSenders extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBlockedMessageSenders? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23811,23 +23811,23 @@ class GetBlockedMessageSenders extends Func {
   }
 }
 
-///Adds a user to the contact list or edits an existing contact by their user identifier
+/// Adds a user to the contact list or edits an existing contact by their user identifier.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddContact extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addContact";
 
-  /// [contact] The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored
+  /// The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored.
   late Contact contact;
 
-  /// [share_phone_number] Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed.
+  /// Pass true to share the current user's phone number with the new contact. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed..
   late bool share_phone_number;
 
   /// Adds a user to the contact list or edits an existing contact by their user identifier
@@ -23854,7 +23854,7 @@ class AddContact extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddContact? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23872,20 +23872,20 @@ class AddContact extends Func {
   }
 }
 
-///Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+/// Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored.
 ///
-///Returns [ImportedContacts]
+/// Returns [ImportedContacts].
 class ImportContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "importContacts";
 
-  /// [contacts] The list of contacts to import or edit; contacts' vCard are ignored and are not imported
+  /// The list of contacts to import or edit; contacts' vCard are ignored and are not imported.
   late List<Contact> contacts;
 
   /// Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
@@ -23907,7 +23907,7 @@ class ImportContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ImportContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23927,17 +23927,17 @@ class ImportContacts extends Func {
   }
 }
 
-///Returns all contacts of the user
+/// Returns all contacts of the user.
 ///
-///Returns [Users]
+/// Returns [Users].
 class GetContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getContacts";
 
   /// Returns all contacts of the user
@@ -23955,7 +23955,7 @@ class GetContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -23970,23 +23970,23 @@ class GetContacts extends Func {
   }
 }
 
-///Searches for the specified query in the first names, last names and usernames of the known user contacts
+/// Searches for the specified query in the first names, last names and usernames of the known user contacts.
 ///
-///Returns [Users]
+/// Returns [Users].
 class SearchContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchContacts";
 
-  /// [query] Query to search for; may be empty to return all contacts
+  /// Query to search for; may be empty to return all contacts.
   late String query;
 
-  /// [limit] The maximum number of users to be returned
+  /// The maximum number of users to be returned.
   late int limit;
 
   /// Searches for the specified query in the first names, last names and usernames of the known user contacts
@@ -24010,7 +24010,7 @@ class SearchContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24028,20 +24028,20 @@ class SearchContacts extends Func {
   }
 }
 
-///Removes users from the contact list
+/// Removes users from the contact list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeContacts";
 
-  /// [user_ids] Identifiers of users to be deleted
+  /// Identifiers of users to be deleted.
   late List<int> user_ids;
 
   /// Removes users from the contact list
@@ -24063,7 +24063,7 @@ class RemoveContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24083,17 +24083,17 @@ class RemoveContacts extends Func {
   }
 }
 
-///Returns the total number of imported contacts
+/// Returns the total number of imported contacts.
 ///
-///Returns [Count]
+/// Returns [Count].
 class GetImportedContactCount extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getImportedContactCount";
 
   /// Returns the total number of imported contacts
@@ -24114,7 +24114,7 @@ class GetImportedContactCount extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetImportedContactCount? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24129,20 +24129,20 @@ class GetImportedContactCount extends Func {
   }
 }
 
-///Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
+/// Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts..
 ///
-///Returns [ImportedContacts]
+/// Returns [ImportedContacts].
 class ChangeImportedContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "changeImportedContacts";
 
-  /// [contacts] The new list of contacts, contact's vCard are ignored and are not imported
+  /// The new list of contacts, contact's vCard are ignored and are not imported.
   late List<Contact> contacts;
 
   /// Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
@@ -24164,7 +24164,7 @@ class ChangeImportedContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChangeImportedContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24184,17 +24184,17 @@ class ChangeImportedContacts extends Func {
   }
 }
 
-///Clears all imported contacts, contact list remains unchanged
+/// Clears all imported contacts, contact list remains unchanged.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearImportedContacts extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearImportedContacts";
 
   /// Clears all imported contacts, contact list remains unchanged
@@ -24215,7 +24215,7 @@ class ClearImportedContacts extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearImportedContacts? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24230,20 +24230,20 @@ class ClearImportedContacts extends Func {
   }
 }
 
-///Changes the list of close friends of the current user
+/// Changes the list of close friends of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetCloseFriends extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setCloseFriends";
 
-  /// [user_ids] User identifiers of close friends; the users must be contacts of the current user
+  /// User identifiers of close friends; the users must be contacts of the current user.
   late List<int> user_ids;
 
   /// Changes the list of close friends of the current user
@@ -24265,7 +24265,7 @@ class SetCloseFriends extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetCloseFriends? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24285,17 +24285,17 @@ class SetCloseFriends extends Func {
   }
 }
 
-///Returns all close friends of the current user
+/// Returns all close friends of the current user.
 ///
-///Returns [Users]
+/// Returns [Users].
 class GetCloseFriends extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCloseFriends";
 
   /// Returns all close friends of the current user
@@ -24313,7 +24313,7 @@ class GetCloseFriends extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCloseFriends? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24328,23 +24328,23 @@ class GetCloseFriends extends Func {
   }
 }
 
-///Changes a personal profile photo of a contact user
+/// Changes a personal profile photo of a contact user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetUserPersonalProfilePhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setUserPersonalProfilePhoto";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [photo] Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
+  /// Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function.
   InputChatPhoto? photo;
 
   /// Changes a personal profile photo of a contact user
@@ -24368,7 +24368,7 @@ class SetUserPersonalProfilePhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetUserPersonalProfilePhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24386,23 +24386,23 @@ class SetUserPersonalProfilePhoto extends Func {
   }
 }
 
-///Suggests a profile photo to another regular user with common messages
+/// Suggests a profile photo to another regular user with common messages.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SuggestUserProfilePhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "suggestUserProfilePhoto";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [photo] Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
+  /// Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function.
   late InputChatPhoto photo;
 
   /// Suggests a profile photo to another regular user with common messages
@@ -24426,7 +24426,7 @@ class SuggestUserProfilePhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SuggestUserProfilePhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24444,20 +24444,20 @@ class SuggestUserProfilePhoto extends Func {
   }
 }
 
-///Searches a user by their phone number. Returns a 404 error if the user can't be found
+/// Searches a user by their phone number. Returns a 404 error if the user can't be found.
 ///
-///Returns [User]
+/// Returns [User].
 class SearchUserByPhoneNumber extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchUserByPhoneNumber";
 
-  /// [phone_number] Phone number to search for
+  /// Phone number to search for.
   late String phone_number;
 
   /// Searches a user by their phone number. Returns a 404 error if the user can't be found
@@ -24480,7 +24480,7 @@ class SearchUserByPhoneNumber extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchUserByPhoneNumber? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24496,20 +24496,20 @@ class SearchUserByPhoneNumber extends Func {
   }
 }
 
-///Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
+/// Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SharePhoneNumber extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sharePhoneNumber";
 
-  /// [user_id] Identifier of the user with whom to share the phone number. The user must be a mutual contact
+  /// Identifier of the user with whom to share the phone number. The user must be a mutual contact.
   late int user_id;
 
   /// Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
@@ -24531,7 +24531,7 @@ class SharePhoneNumber extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SharePhoneNumber? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24547,26 +24547,26 @@ class SharePhoneNumber extends Func {
   }
 }
 
-///Returns the profile photos of a user. Personal and public photo aren't returned
+/// Returns the profile photos of a user. Personal and public photo aren't returned.
 ///
-///Returns [ChatPhotos]
+/// Returns [ChatPhotos].
 class GetUserProfilePhotos extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUserProfilePhotos";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [offset] The number of photos to skip; must be non-negative
+  /// The number of photos to skip; must be non-negative.
   late int offset;
 
-  /// [limit] The maximum number of photos to be returned; up to 100
+  /// The maximum number of photos to be returned; up to 100.
   late int limit;
 
   /// Returns the profile photos of a user. Personal and public photo aren't returned
@@ -24595,7 +24595,7 @@ class GetUserProfilePhotos extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUserProfilePhotos? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24615,29 +24615,29 @@ class GetUserProfilePhotos extends Func {
   }
 }
 
-///Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+/// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStickers";
 
-  /// [sticker_type] Type of the stickers to return
+  /// Type of the stickers to return.
   late StickerType sticker_type;
 
-  /// [query] Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+  /// Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers.
   String? query;
 
-  /// [limit] The maximum number of stickers to be returned
+  /// The maximum number of stickers to be returned.
   late int limit;
 
-  /// [chat_id] Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
+  /// Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats.
   late int chat_id;
 
   /// Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
@@ -24668,7 +24668,7 @@ class GetStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24690,29 +24690,29 @@ class GetStickers extends Func {
   }
 }
 
-///Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+/// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id).
 ///
-///Returns [Emojis]
+/// Returns [Emojis].
 class GetAllStickerEmojis extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAllStickerEmojis";
 
-  /// [sticker_type] Type of the stickers to search for
+  /// Type of the stickers to search for.
   late StickerType sticker_type;
 
-  /// [query] Search query
+  /// Search query.
   late String query;
 
-  /// [chat_id] Chat identifier for which to find stickers
+  /// Chat identifier for which to find stickers.
   late int chat_id;
 
-  /// [return_only_main_emoji] Pass true if only main emoji for each found sticker must be included in the result
+  /// Pass true if only main emoji for each found sticker must be included in the result.
   late bool return_only_main_emoji;
 
   /// Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
@@ -24743,7 +24743,7 @@ class GetAllStickerEmojis extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAllStickerEmojis? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24765,26 +24765,26 @@ class GetAllStickerEmojis extends Func {
   }
 }
 
-///Searches for stickers from public sticker sets that correspond to any of the given emoji
+/// Searches for stickers from public sticker sets that correspond to any of the given emoji.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class SearchStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchStickers";
 
-  /// [sticker_type] Type of the stickers to return
+  /// Type of the stickers to return.
   late StickerType sticker_type;
 
-  /// [emojis] Space-separated list of emoji to search for; must be non-empty
+  /// Space-separated list of emoji to search for; must be non-empty.
   late String emojis;
 
-  /// [limit] The maximum number of stickers to be returned; 0-100
+  /// The maximum number of stickers to be returned; 0-100.
   late int limit;
 
   /// Searches for stickers from public sticker sets that correspond to any of the given emoji
@@ -24813,7 +24813,7 @@ class SearchStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24833,20 +24833,20 @@ class SearchStickers extends Func {
   }
 }
 
-///Returns premium stickers from regular sticker sets
+/// Returns premium stickers from regular sticker sets.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetPremiumStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPremiumStickers";
 
-  /// [limit] The maximum number of stickers to be returned; 0-100
+  /// The maximum number of stickers to be returned; 0-100.
   late int limit;
 
   /// Returns premium stickers from regular sticker sets
@@ -24868,7 +24868,7 @@ class GetPremiumStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPremiumStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24884,20 +24884,20 @@ class GetPremiumStickers extends Func {
   }
 }
 
-///Returns a list of installed sticker sets
+/// Returns a list of installed sticker sets.
 ///
-///Returns [StickerSets]
+/// Returns [StickerSets].
 class GetInstalledStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getInstalledStickerSets";
 
-  /// [sticker_type] Type of the sticker sets to return
+  /// Type of the sticker sets to return.
   late StickerType sticker_type;
 
   /// Returns a list of installed sticker sets
@@ -24920,7 +24920,7 @@ class GetInstalledStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetInstalledStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -24936,27 +24936,27 @@ class GetInstalledStickerSets extends Func {
   }
 }
 
-///Returns a list of archived sticker sets
+/// Returns a list of archived sticker sets.
 ///
-///Returns [StickerSets]
+/// Returns [StickerSets].
 class GetArchivedStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getArchivedStickerSets";
 
-  /// [sticker_type] Type of the sticker sets to return
+  /// Type of the sticker sets to return.
   late StickerType sticker_type;
 
-  /// [offset_sticker_set_id] Identifier of the sticker set from which to return the result
+  /// Identifier of the sticker set from which to return the result.
   /// ; string representation of int, use `int.parse`
   late int64 offset_sticker_set_id;
 
-  /// [limit] The maximum number of sticker sets to return; up to 100
+  /// The maximum number of sticker sets to return; up to 100.
   late int limit;
 
   /// Returns a list of archived sticker sets
@@ -24985,7 +24985,7 @@ class GetArchivedStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetArchivedStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25005,26 +25005,26 @@ class GetArchivedStickerSets extends Func {
   }
 }
 
-///Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+/// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib.
 ///
-///Returns [TrendingStickerSets]
+/// Returns [TrendingStickerSets].
 class GetTrendingStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getTrendingStickerSets";
 
-  /// [sticker_type] Type of the sticker sets to return
+  /// Type of the sticker sets to return.
   late StickerType sticker_type;
 
-  /// [offset] The offset from which to return the sticker sets; must be non-negative
+  /// The offset from which to return the sticker sets; must be non-negative.
   late int offset;
 
-  /// [limit] The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+  /// The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached.
   late int limit;
 
   /// Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
@@ -25053,7 +25053,7 @@ class GetTrendingStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetTrendingStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25073,20 +25073,20 @@ class GetTrendingStickerSets extends Func {
   }
 }
 
-///Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
+/// Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets.
 ///
-///Returns [StickerSets]
+/// Returns [StickerSets].
 class GetAttachedStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAttachedStickerSets";
 
-  /// [file_id] File identifier
+  /// File identifier.
   late int file_id;
 
   /// Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
@@ -25108,7 +25108,7 @@ class GetAttachedStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAttachedStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25124,20 +25124,20 @@ class GetAttachedStickerSets extends Func {
   }
 }
 
-///Returns information about a sticker set by its identifier
+/// Returns information about a sticker set by its identifier.
 ///
-///Returns [StickerSet]
+/// Returns [StickerSet].
 class GetStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStickerSet";
 
-  /// [set_id] Identifier of the sticker set
+  /// Identifier of the sticker set.
   /// ; string representation of int, use `int.parse`
   late int64 set_id;
 
@@ -25160,7 +25160,7 @@ class GetStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25176,20 +25176,20 @@ class GetStickerSet extends Func {
   }
 }
 
-///Searches for a sticker set by its name
+/// Searches for a sticker set by its name.
 ///
-///Returns [StickerSet]
+/// Returns [StickerSet].
 class SearchStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchStickerSet";
 
-  /// [name] Name of the sticker set
+  /// Name of the sticker set.
   late String name;
 
   /// Searches for a sticker set by its name
@@ -25211,7 +25211,7 @@ class SearchStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25227,26 +25227,26 @@ class SearchStickerSet extends Func {
   }
 }
 
-///Searches for installed sticker sets by looking for specified query in their title and name
+/// Searches for installed sticker sets by looking for specified query in their title and name.
 ///
-///Returns [StickerSets]
+/// Returns [StickerSets].
 class SearchInstalledStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchInstalledStickerSets";
 
-  /// [sticker_type] Type of the sticker sets to search for
+  /// Type of the sticker sets to search for.
   late StickerType sticker_type;
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [limit] The maximum number of sticker sets to return
+  /// The maximum number of sticker sets to return.
   late int limit;
 
   /// Searches for installed sticker sets by looking for specified query in their title and name
@@ -25275,7 +25275,7 @@ class SearchInstalledStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchInstalledStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25295,20 +25295,20 @@ class SearchInstalledStickerSets extends Func {
   }
 }
 
-///Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
+/// Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results.
 ///
-///Returns [StickerSets]
+/// Returns [StickerSets].
 class SearchStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchStickerSets";
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
   /// Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
@@ -25330,7 +25330,7 @@ class SearchStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25346,27 +25346,27 @@ class SearchStickerSets extends Func {
   }
 }
 
-///Installs/uninstalls or activates/archives a sticker set
+/// Installs/uninstalls or activates/archives a sticker set.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ChangeStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "changeStickerSet";
 
-  /// [set_id] Identifier of the sticker set
+  /// Identifier of the sticker set.
   /// ; string representation of int, use `int.parse`
   late int64 set_id;
 
-  /// [is_installed] The new value of is_installed
+  /// The new value of is_installed.
   late bool is_installed;
 
-  /// [is_archived] The new value of is_archived. A sticker set can't be installed and archived simultaneously
+  /// The new value of is_archived. A sticker set can't be installed and archived simultaneously.
   late bool is_archived;
 
   /// Installs/uninstalls or activates/archives a sticker set
@@ -25395,7 +25395,7 @@ class ChangeStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChangeStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25415,20 +25415,20 @@ class ChangeStickerSet extends Func {
   }
 }
 
-///Informs the server that some trending sticker sets have been viewed by the user
+/// Informs the server that some trending sticker sets have been viewed by the user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ViewTrendingStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "viewTrendingStickerSets";
 
-  /// [sticker_set_ids] Identifiers of viewed trending sticker sets
+  /// Identifiers of viewed trending sticker sets.
   late List<int64> sticker_set_ids;
 
   /// Informs the server that some trending sticker sets have been viewed by the user
@@ -25451,7 +25451,7 @@ class ViewTrendingStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ViewTrendingStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25471,23 +25471,23 @@ class ViewTrendingStickerSets extends Func {
   }
 }
 
-///Changes the order of installed sticker sets
+/// Changes the order of installed sticker sets.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReorderInstalledStickerSets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reorderInstalledStickerSets";
 
-  /// [sticker_type] Type of the sticker sets to reorder
+  /// Type of the sticker sets to reorder.
   late StickerType sticker_type;
 
-  /// [sticker_set_ids] Identifiers of installed sticker sets in the new correct order
+  /// Identifiers of installed sticker sets in the new correct order.
   late List<int64> sticker_set_ids;
 
   /// Changes the order of installed sticker sets
@@ -25514,7 +25514,7 @@ class ReorderInstalledStickerSets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReorderInstalledStickerSets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25536,20 +25536,20 @@ class ReorderInstalledStickerSets extends Func {
   }
 }
 
-///Returns a list of recently used stickers
+/// Returns a list of recently used stickers.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetRecentStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecentStickers";
 
-  /// [is_attached] Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+  /// Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers.
   late bool is_attached;
 
   /// Returns a list of recently used stickers
@@ -25571,7 +25571,7 @@ class GetRecentStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecentStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25587,23 +25587,23 @@ class GetRecentStickers extends Func {
   }
 }
 
-///Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+/// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first..
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class AddRecentSticker extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addRecentSticker";
 
-  /// [is_attached] Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
+  /// Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers.
   late bool is_attached;
 
-  /// [sticker] Sticker file to add
+  /// Sticker file to add.
   late InputFile sticker;
 
   /// Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
@@ -25630,7 +25630,7 @@ class AddRecentSticker extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddRecentSticker? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25648,23 +25648,23 @@ class AddRecentSticker extends Func {
   }
 }
 
-///Removes a sticker from the list of recently used stickers
+/// Removes a sticker from the list of recently used stickers.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveRecentSticker extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeRecentSticker";
 
-  /// [is_attached] Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
+  /// Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers.
   late bool is_attached;
 
-  /// [sticker] Sticker file to delete
+  /// Sticker file to delete.
   late InputFile sticker;
 
   /// Removes a sticker from the list of recently used stickers
@@ -25691,7 +25691,7 @@ class RemoveRecentSticker extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveRecentSticker? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25709,20 +25709,20 @@ class RemoveRecentSticker extends Func {
   }
 }
 
-///Clears the list of recently used stickers
+/// Clears the list of recently used stickers.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearRecentStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearRecentStickers";
 
-  /// [is_attached] Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
+  /// Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers.
   late bool is_attached;
 
   /// Clears the list of recently used stickers
@@ -25744,7 +25744,7 @@ class ClearRecentStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearRecentStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25760,17 +25760,17 @@ class ClearRecentStickers extends Func {
   }
 }
 
-///Returns favorite stickers
+/// Returns favorite stickers.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetFavoriteStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getFavoriteStickers";
 
   /// Returns favorite stickers
@@ -25788,7 +25788,7 @@ class GetFavoriteStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetFavoriteStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25803,20 +25803,20 @@ class GetFavoriteStickers extends Func {
   }
 }
 
-///Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
+/// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddFavoriteSticker extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addFavoriteSticker";
 
-  /// [sticker] Sticker file to add
+  /// Sticker file to add.
   late InputFile sticker;
 
   /// Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first.
@@ -25838,7 +25838,7 @@ class AddFavoriteSticker extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddFavoriteSticker? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25854,20 +25854,20 @@ class AddFavoriteSticker extends Func {
   }
 }
 
-///Removes a sticker from the list of favorite stickers
+/// Removes a sticker from the list of favorite stickers.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveFavoriteSticker extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeFavoriteSticker";
 
-  /// [sticker] Sticker file to delete from the list
+  /// Sticker file to delete from the list.
   late InputFile sticker;
 
   /// Removes a sticker from the list of favorite stickers
@@ -25889,7 +25889,7 @@ class RemoveFavoriteSticker extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveFavoriteSticker? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25905,20 +25905,20 @@ class RemoveFavoriteSticker extends Func {
   }
 }
 
-///Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+/// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object.
 ///
-///Returns [Emojis]
+/// Returns [Emojis].
 class GetStickerEmojis extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStickerEmojis";
 
-  /// [sticker] Sticker file identifier
+  /// Sticker file identifier.
   late InputFile sticker;
 
   /// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
@@ -25940,7 +25940,7 @@ class GetStickerEmojis extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStickerEmojis? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -25956,26 +25956,26 @@ class GetStickerEmojis extends Func {
   }
 }
 
-///Searches for emojis by keywords. Supported only if the file database is enabled
+/// Searches for emojis by keywords. Supported only if the file database is enabled.
 ///
-///Returns [Emojis]
+/// Returns [Emojis].
 class SearchEmojis extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchEmojis";
 
-  /// [text] Text to search for
+  /// Text to search for.
   late String text;
 
-  /// [exact_match] Pass true if only emojis, which exactly match the text, needs to be returned
+  /// Pass true if only emojis, which exactly match the text, needs to be returned.
   late bool exact_match;
 
-  /// [input_language_codes] List of possible IETF language tags of the user's input language; may be empty if unknown
+  /// List of possible IETF language tags of the user's input language; may be empty if unknown.
   late List<String> input_language_codes;
 
   /// Searches for emojis by keywords. Supported only if the file database is enabled
@@ -26004,7 +26004,7 @@ class SearchEmojis extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchEmojis? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26028,20 +26028,20 @@ class SearchEmojis extends Func {
   }
 }
 
-///Returns available emojis categories
+/// Returns available emojis categories.
 ///
-///Returns [EmojiCategories]
+/// Returns [EmojiCategories].
 class GetEmojiCategories extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getEmojiCategories";
 
-  /// [type] Type of emoji categories to return; pass null to get default emoji categories
+  /// Type of emoji categories to return; pass null to get default emoji categories.
   EmojiCategoryType? type;
 
   /// Returns available emojis categories
@@ -26063,7 +26063,7 @@ class GetEmojiCategories extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetEmojiCategories? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26079,20 +26079,20 @@ class GetEmojiCategories extends Func {
   }
 }
 
-///Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
+/// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji.
 ///
-///Returns [AnimatedEmoji]
+/// Returns [AnimatedEmoji].
 class GetAnimatedEmoji extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAnimatedEmoji";
 
-  /// [emoji] The emoji
+  /// The emoji.
   late String emoji;
 
   /// Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
@@ -26114,7 +26114,7 @@ class GetAnimatedEmoji extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAnimatedEmoji? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26130,20 +26130,20 @@ class GetAnimatedEmoji extends Func {
   }
 }
 
-///Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
+/// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetEmojiSuggestionsUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getEmojiSuggestionsUrl";
 
-  /// [language_code] Language code for which the emoji replacements will be suggested
+  /// Language code for which the emoji replacements will be suggested.
   late String language_code;
 
   /// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
@@ -26166,7 +26166,7 @@ class GetEmojiSuggestionsUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetEmojiSuggestionsUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26182,20 +26182,20 @@ class GetEmojiSuggestionsUrl extends Func {
   }
 }
 
-///Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+/// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetCustomEmojiStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCustomEmojiStickers";
 
-  /// [custom_emoji_ids] Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
+  /// Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously.
   late List<int64> custom_emoji_ids;
 
   /// Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
@@ -26218,7 +26218,7 @@ class GetCustomEmojiStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCustomEmojiStickers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26238,17 +26238,17 @@ class GetCustomEmojiStickers extends Func {
   }
 }
 
-///Returns default list of custom emoji stickers for placing on a chat photo
+/// Returns default list of custom emoji stickers for placing on a chat photo.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetDefaultChatPhotoCustomEmojiStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDefaultChatPhotoCustomEmojiStickers";
 
   /// Returns default list of custom emoji stickers for placing on a chat photo
@@ -26269,7 +26269,7 @@ class GetDefaultChatPhotoCustomEmojiStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDefaultChatPhotoCustomEmojiStickers? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -26285,17 +26285,17 @@ class GetDefaultChatPhotoCustomEmojiStickers extends Func {
   }
 }
 
-///Returns default list of custom emoji stickers for placing on a profile photo
+/// Returns default list of custom emoji stickers for placing on a profile photo.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetDefaultProfilePhotoCustomEmojiStickers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDefaultProfilePhotoCustomEmojiStickers";
 
   /// Returns default list of custom emoji stickers for placing on a profile photo
@@ -26316,7 +26316,7 @@ class GetDefaultProfilePhotoCustomEmojiStickers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDefaultProfilePhotoCustomEmojiStickers? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -26332,17 +26332,17 @@ class GetDefaultProfilePhotoCustomEmojiStickers extends Func {
   }
 }
 
-///Returns saved animations
+/// Returns saved animations.
 ///
-///Returns [Animations]
+/// Returns [Animations].
 class GetSavedAnimations extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSavedAnimations";
 
   /// Returns saved animations
@@ -26360,7 +26360,7 @@ class GetSavedAnimations extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSavedAnimations? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26375,20 +26375,20 @@ class GetSavedAnimations extends Func {
   }
 }
 
-///Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
+/// Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddSavedAnimation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addSavedAnimation";
 
-  /// [animation] The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
+  /// The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list.
   late InputFile animation;
 
   /// Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
@@ -26410,7 +26410,7 @@ class AddSavedAnimation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddSavedAnimation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26426,20 +26426,20 @@ class AddSavedAnimation extends Func {
   }
 }
 
-///Removes an animation from the list of saved animations
+/// Removes an animation from the list of saved animations.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveSavedAnimation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeSavedAnimation";
 
-  /// [animation] Animation file to be removed
+  /// Animation file to be removed.
   late InputFile animation;
 
   /// Removes an animation from the list of saved animations
@@ -26461,7 +26461,7 @@ class RemoveSavedAnimation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveSavedAnimation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26477,17 +26477,17 @@ class RemoveSavedAnimation extends Func {
   }
 }
 
-///Returns up to 20 recently used inline bots in the order of their last usage
+/// Returns up to 20 recently used inline bots in the order of their last usage.
 ///
-///Returns [Users]
+/// Returns [Users].
 class GetRecentInlineBots extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecentInlineBots";
 
   /// Returns up to 20 recently used inline bots in the order of their last usage
@@ -26505,7 +26505,7 @@ class GetRecentInlineBots extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecentInlineBots? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26520,23 +26520,23 @@ class GetRecentInlineBots extends Func {
   }
 }
 
-///Searches for recently used hashtags by their prefix
+/// Searches for recently used hashtags by their prefix.
 ///
-///Returns [Hashtags]
+/// Returns [Hashtags].
 class SearchHashtags extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchHashtags";
 
-  /// [prefix] Hashtag prefix to search for
+  /// Hashtag prefix to search for.
   late String prefix;
 
-  /// [limit] The maximum number of hashtags to be returned
+  /// The maximum number of hashtags to be returned.
   late int limit;
 
   /// Searches for recently used hashtags by their prefix
@@ -26560,7 +26560,7 @@ class SearchHashtags extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchHashtags? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26578,20 +26578,20 @@ class SearchHashtags extends Func {
   }
 }
 
-///Removes a hashtag from the list of recently used hashtags
+/// Removes a hashtag from the list of recently used hashtags.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveRecentHashtag extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeRecentHashtag";
 
-  /// [hashtag] Hashtag to delete
+  /// Hashtag to delete.
   late String hashtag;
 
   /// Removes a hashtag from the list of recently used hashtags
@@ -26613,7 +26613,7 @@ class RemoveRecentHashtag extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveRecentHashtag? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26629,20 +26629,20 @@ class RemoveRecentHashtag extends Func {
   }
 }
 
-///Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+/// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview.
 ///
-///Returns [WebPage]
+/// Returns [WebPage].
 class GetWebPagePreview extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getWebPagePreview";
 
-  /// [text] Message text with formatting
+  /// Message text with formatting.
   late FormattedText text;
 
   /// Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
@@ -26664,7 +26664,7 @@ class GetWebPagePreview extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetWebPagePreview? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26680,23 +26680,23 @@ class GetWebPagePreview extends Func {
   }
 }
 
-///Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
+/// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page.
 ///
-///Returns [WebPageInstantView]
+/// Returns [WebPageInstantView].
 class GetWebPageInstantView extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getWebPageInstantView";
 
-  /// [url] The web page URL
+  /// The web page URL.
   late String url;
 
-  /// [force_full] Pass true to get full instant view for the web page
+  /// Pass true to get full instant view for the web page.
   late bool force_full;
 
   /// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
@@ -26720,7 +26720,7 @@ class GetWebPageInstantView extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetWebPageInstantView? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26738,23 +26738,23 @@ class GetWebPageInstantView extends Func {
   }
 }
 
-///Changes a profile photo for the current user
+/// Changes a profile photo for the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetProfilePhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setProfilePhoto";
 
-  /// [photo] Profile photo to set
+  /// Profile photo to set.
   late InputChatPhoto photo;
 
-  /// [is_public] Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+  /// Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings.
   late bool is_public;
 
   /// Changes a profile photo for the current user
@@ -26781,7 +26781,7 @@ class SetProfilePhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetProfilePhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26799,20 +26799,20 @@ class SetProfilePhoto extends Func {
   }
 }
 
-///Deletes a profile photo
+/// Deletes a profile photo.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteProfilePhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteProfilePhoto";
 
-  /// [profile_photo_id] Identifier of the profile photo to delete
+  /// Identifier of the profile photo to delete.
   /// ; string representation of int, use `int.parse`
   late int64 profile_photo_id;
 
@@ -26836,7 +26836,7 @@ class DeleteProfilePhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteProfilePhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26852,23 +26852,23 @@ class DeleteProfilePhoto extends Func {
   }
 }
 
-///Changes the first and last name of the current user
+/// Changes the first and last name of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setName";
 
-  /// [first_name] The new value of the first name for the current user; 1-64 characters
+  /// The new value of the first name for the current user; 1-64 characters.
   late String first_name;
 
-  /// [last_name] The new value of the optional last name for the current user; 0-64 characters
+  /// The new value of the optional last name for the current user; 0-64 characters.
   late String last_name;
 
   /// Changes the first and last name of the current user
@@ -26895,7 +26895,7 @@ class SetName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26913,20 +26913,20 @@ class SetName extends Func {
   }
 }
 
-///Changes the bio of the current user
+/// Changes the bio of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBio extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBio";
 
-  /// [bio] The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
+  /// The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds.
   late String bio;
 
   /// Changes the bio of the current user
@@ -26944,7 +26944,7 @@ class SetBio extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBio? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -26960,20 +26960,20 @@ class SetBio extends Func {
   }
 }
 
-///Changes the editable username of the current user
+/// Changes the editable username of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetUsername extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setUsername";
 
-  /// [username] The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+  /// The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username.
   late String username;
 
   /// Changes the editable username of the current user
@@ -26995,7 +26995,7 @@ class SetUsername extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetUsername? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27011,23 +27011,23 @@ class SetUsername extends Func {
   }
 }
 
-///Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
+/// Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleUsernameIsActive extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleUsernameIsActive";
 
-  /// [username] The username to change
+  /// The username to change.
   late String username;
 
-  /// [is_active] Pass true to activate the username; pass false to disable it
+  /// Pass true to activate the username; pass false to disable it.
   late bool is_active;
 
   /// Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
@@ -27054,7 +27054,7 @@ class ToggleUsernameIsActive extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleUsernameIsActive? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27072,20 +27072,20 @@ class ToggleUsernameIsActive extends Func {
   }
 }
 
-///Changes order of active usernames of the current user
+/// Changes order of active usernames of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReorderActiveUsernames extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reorderActiveUsernames";
 
-  /// [usernames] The new order of active usernames. All currently active usernames must be specified
+  /// The new order of active usernames. All currently active usernames must be specified.
   late List<String> usernames;
 
   /// Changes order of active usernames of the current user
@@ -27107,7 +27107,7 @@ class ReorderActiveUsernames extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReorderActiveUsernames? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27127,20 +27127,20 @@ class ReorderActiveUsernames extends Func {
   }
 }
 
-///Changes the emoji status of the current user; for Telegram Premium users only
+/// Changes the emoji status of the current user; for Telegram Premium users only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetEmojiStatus extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setEmojiStatus";
 
-  /// [emoji_status] New emoji status; pass null to switch to the default badge
+  /// New emoji status; pass null to switch to the default badge.
   EmojiStatus? emoji_status;
 
   /// Changes the emoji status of the current user; for Telegram Premium users only
@@ -27162,7 +27162,7 @@ class SetEmojiStatus extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetEmojiStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27178,20 +27178,20 @@ class SetEmojiStatus extends Func {
   }
 }
 
-///Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+/// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetLocation extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setLocation";
 
-  /// [location] The new location of the user
+  /// The new location of the user.
   late Location location;
 
   /// Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
@@ -27213,7 +27213,7 @@ class SetLocation extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetLocation? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27229,23 +27229,23 @@ class SetLocation extends Func {
   }
 }
 
-///Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
+/// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class ChangePhoneNumber extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "changePhoneNumber";
 
-  /// [phone_number] The new phone number of the user in international format
+  /// The new phone number of the user in international format.
   late String phone_number;
 
-  /// [settings] Settings for the authentication of the user's phone number; pass null to use default settings
+  /// Settings for the authentication of the user's phone number; pass null to use default settings.
   PhoneNumberAuthenticationSettings? settings;
 
   /// Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
@@ -27269,7 +27269,7 @@ class ChangePhoneNumber extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ChangePhoneNumber? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27287,17 +27287,17 @@ class ChangePhoneNumber extends Func {
   }
 }
 
-///Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+/// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class ResendChangePhoneNumberCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendChangePhoneNumberCode";
 
   /// Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
@@ -27318,7 +27318,7 @@ class ResendChangePhoneNumberCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendChangePhoneNumberCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27333,20 +27333,20 @@ class ResendChangePhoneNumberCode extends Func {
   }
 }
 
-///Checks the authentication code sent to confirm a new phone number of the user
+/// Checks the authentication code sent to confirm a new phone number of the user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckChangePhoneNumberCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkChangePhoneNumberCode";
 
-  /// [code] Authentication code to check
+  /// Authentication code to check.
   late String code;
 
   /// Checks the authentication code sent to confirm a new phone number of the user
@@ -27368,7 +27368,7 @@ class CheckChangePhoneNumberCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckChangePhoneNumberCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27384,17 +27384,17 @@ class CheckChangePhoneNumberCode extends Func {
   }
 }
 
-///Returns an HTTPS link, which can be used to get information about the current user
+/// Returns an HTTPS link, which can be used to get information about the current user.
 ///
-///Returns [UserLink]
+/// Returns [UserLink].
 class GetUserLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUserLink";
 
   /// Returns an HTTPS link, which can be used to get information about the current user
@@ -27412,7 +27412,7 @@ class GetUserLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUserLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27427,20 +27427,20 @@ class GetUserLink extends Func {
   }
 }
 
-///Searches a user by a token from the user's link
+/// Searches a user by a token from the user's link.
 ///
-///Returns [User]
+/// Returns [User].
 class SearchUserByToken extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchUserByToken";
 
-  /// [token] Token to search for
+  /// Token to search for.
   late String token;
 
   /// Searches a user by a token from the user's link
@@ -27462,7 +27462,7 @@ class SearchUserByToken extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchUserByToken? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27478,26 +27478,26 @@ class SearchUserByToken extends Func {
   }
 }
 
-///Sets the list of commands supported by the bot for the given user scope and language; for bots only
+/// Sets the list of commands supported by the bot for the given user scope and language; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetCommands extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setCommands";
 
-  /// [scope] The scope to which the commands are relevant; pass null to change commands in the default bot command scope
+  /// The scope to which the commands are relevant; pass null to change commands in the default bot command scope.
   BotCommandScope? scope;
 
-  /// [language_code] A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+  /// A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands.
   String? language_code;
 
-  /// [commands] List of the bot's commands
+  /// List of the bot's commands.
   late List<BotCommand> commands;
 
   /// Sets the list of commands supported by the bot for the given user scope and language; for bots only
@@ -27526,7 +27526,7 @@ class SetCommands extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetCommands? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27550,23 +27550,23 @@ class SetCommands extends Func {
   }
 }
 
-///Deletes commands supported by the bot for the given user scope and language; for bots only
+/// Deletes commands supported by the bot for the given user scope and language; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteCommands extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteCommands";
 
-  /// [scope] The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
+  /// The scope to which the commands are relevant; pass null to delete commands in the default bot command scope.
   BotCommandScope? scope;
 
-  /// [language_code] A two-letter ISO 639-1 language code or an empty string
+  /// A two-letter ISO 639-1 language code or an empty string.
   late String language_code;
 
   /// Deletes commands supported by the bot for the given user scope and language; for bots only
@@ -27590,7 +27590,7 @@ class DeleteCommands extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteCommands? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27608,23 +27608,23 @@ class DeleteCommands extends Func {
   }
 }
 
-///Returns list of commands supported by the bot for the given user scope and language; for bots only
+/// Returns list of commands supported by the bot for the given user scope and language; for bots only.
 ///
-///Returns [BotCommands]
+/// Returns [BotCommands].
 class GetCommands extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCommands";
 
-  /// [scope] The scope to which the commands are relevant; pass null to get commands in the default bot command scope
+  /// The scope to which the commands are relevant; pass null to get commands in the default bot command scope.
   BotCommandScope? scope;
 
-  /// [language_code] A two-letter ISO 639-1 language code or an empty string
+  /// A two-letter ISO 639-1 language code or an empty string.
   late String language_code;
 
   /// Returns list of commands supported by the bot for the given user scope and language; for bots only
@@ -27648,7 +27648,7 @@ class GetCommands extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCommands? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27666,23 +27666,23 @@ class GetCommands extends Func {
   }
 }
 
-///Sets menu button for the given user or for all users; for bots only
+/// Sets menu button for the given user or for all users; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetMenuButton extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setMenuButton";
 
-  /// [user_id] Identifier of the user or 0 to set menu button for all users
+  /// Identifier of the user or 0 to set menu button for all users.
   late int user_id;
 
-  /// [menu_button] New menu button
+  /// New menu button.
   late BotMenuButton menu_button;
 
   /// Sets menu button for the given user or for all users; for bots only
@@ -27709,7 +27709,7 @@ class SetMenuButton extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetMenuButton? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27727,20 +27727,20 @@ class SetMenuButton extends Func {
   }
 }
 
-///Returns menu button set by the bot for the given user; for bots only
+/// Returns menu button set by the bot for the given user; for bots only.
 ///
-///Returns [BotMenuButton]
+/// Returns [BotMenuButton].
 class GetMenuButton extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMenuButton";
 
-  /// [user_id] Identifier of the user or 0 to get the default menu button
+  /// Identifier of the user or 0 to get the default menu button.
   late int user_id;
 
   /// Returns menu button set by the bot for the given user; for bots only
@@ -27762,7 +27762,7 @@ class GetMenuButton extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMenuButton? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27778,20 +27778,20 @@ class GetMenuButton extends Func {
   }
 }
 
-///Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+/// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetDefaultGroupAdministratorRights extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setDefaultGroupAdministratorRights";
 
-  /// [default_group_administrator_rights] Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
+  /// Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights.
   ChatAdministratorRights? default_group_administrator_rights;
 
   /// Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
@@ -27814,7 +27814,7 @@ class SetDefaultGroupAdministratorRights extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetDefaultGroupAdministratorRights? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -27832,20 +27832,20 @@ class SetDefaultGroupAdministratorRights extends Func {
   }
 }
 
-///Sets default administrator rights for adding the bot to channel chats; for bots only
+/// Sets default administrator rights for adding the bot to channel chats; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetDefaultChannelAdministratorRights extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setDefaultChannelAdministratorRights";
 
-  /// [default_channel_administrator_rights] Default administrator rights for adding the bot to channels; pass null to remove default rights
+  /// Default administrator rights for adding the bot to channels; pass null to remove default rights.
   ChatAdministratorRights? default_channel_administrator_rights;
 
   /// Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -27869,7 +27869,7 @@ class SetDefaultChannelAdministratorRights extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetDefaultChannelAdministratorRights? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -27888,20 +27888,20 @@ class SetDefaultChannelAdministratorRights extends Func {
   }
 }
 
-///Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+/// Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CanBotSendMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canBotSendMessages";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
   /// Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
@@ -27923,7 +27923,7 @@ class CanBotSendMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanBotSendMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27939,20 +27939,20 @@ class CanBotSendMessages extends Func {
   }
 }
 
-///Allows the specified bot to send messages to the user
+/// Allows the specified bot to send messages to the user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AllowBotToSendMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "allowBotToSendMessages";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
   /// Allows the specified bot to send messages to the user
@@ -27975,7 +27975,7 @@ class AllowBotToSendMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AllowBotToSendMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -27991,26 +27991,26 @@ class AllowBotToSendMessages extends Func {
   }
 }
 
-///Sends a custom request from a Web App
+/// Sends a custom request from a Web App.
 ///
-///Returns [CustomRequestResult]
+/// Returns [CustomRequestResult].
 class SendWebAppCustomRequest extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendWebAppCustomRequest";
 
-  /// [bot_user_id] Identifier of the bot
+  /// Identifier of the bot.
   late int bot_user_id;
 
-  /// [method] The method name
+  /// The method name.
   late String method;
 
-  /// [parameters] JSON-serialized method parameters
+  /// JSON-serialized method parameters.
   late String parameters;
 
   /// Sends a custom request from a Web App
@@ -28039,7 +28039,7 @@ class SendWebAppCustomRequest extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendWebAppCustomRequest? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28059,26 +28059,26 @@ class SendWebAppCustomRequest extends Func {
   }
 }
 
-///Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
+/// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBotName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBotName";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
+  /// A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name.
   String? language_code;
 
-  /// [name] New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
+  /// New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty.
   late String name;
 
   /// Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -28107,7 +28107,7 @@ class SetBotName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBotName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28127,23 +28127,23 @@ class SetBotName extends Func {
   }
 }
 
-///Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+/// Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetBotName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBotName";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code or an empty string
+  /// A two-letter ISO 639-1 language code or an empty string.
   late String language_code;
 
   /// Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -28170,7 +28170,7 @@ class GetBotName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBotName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28188,23 +28188,23 @@ class GetBotName extends Func {
   }
 }
 
-///Changes a profile photo for a bot
+/// Changes a profile photo for a bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBotProfilePhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBotProfilePhoto";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [photo] Profile photo to set; pass null to delete the chat photo
+  /// Profile photo to set; pass null to delete the chat photo.
   InputChatPhoto? photo;
 
   /// Changes a profile photo for a bot
@@ -28228,7 +28228,7 @@ class SetBotProfilePhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBotProfilePhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28246,26 +28246,26 @@ class SetBotProfilePhoto extends Func {
   }
 }
 
-///Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+/// Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleBotUsernameIsActive extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleBotUsernameIsActive";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [username] The username to change
+  /// The username to change.
   late String username;
 
-  /// [is_active] Pass true to activate the username; pass false to disable it
+  /// Pass true to activate the username; pass false to disable it.
   late bool is_active;
 
   /// Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
@@ -28294,7 +28294,7 @@ class ToggleBotUsernameIsActive extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleBotUsernameIsActive? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28314,23 +28314,23 @@ class ToggleBotUsernameIsActive extends Func {
   }
 }
 
-///Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
+/// Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReorderBotActiveUsernames extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reorderBotActiveUsernames";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [usernames] The new order of active usernames. All currently active usernames must be specified
+  /// The new order of active usernames. All currently active usernames must be specified.
   late List<String> usernames;
 
   /// Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -28357,7 +28357,7 @@ class ReorderBotActiveUsernames extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReorderBotActiveUsernames? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28379,26 +28379,26 @@ class ReorderBotActiveUsernames extends Func {
   }
 }
 
-///Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+/// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBotInfoDescription extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBotInfoDescription";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
+  /// A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description.
   String? language_code;
 
-  /// [description] New bot's description on the specified language
+  /// New bot's description on the specified language.
   late String description;
 
   /// Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
@@ -28427,7 +28427,7 @@ class SetBotInfoDescription extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBotInfoDescription? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28447,23 +28447,23 @@ class SetBotInfoDescription extends Func {
   }
 }
 
-///Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
+/// Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetBotInfoDescription extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBotInfoDescription";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code or an empty string
+  /// A two-letter ISO 639-1 language code or an empty string.
   late String language_code;
 
   /// Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -28490,7 +28490,7 @@ class GetBotInfoDescription extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBotInfoDescription? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28508,26 +28508,26 @@ class GetBotInfoDescription extends Func {
   }
 }
 
-///Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
+/// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBotInfoShortDescription extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBotInfoShortDescription";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
+  /// A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description.
   String? language_code;
 
-  /// [short_description] New bot's short description on the specified language
+  /// New bot's short description on the specified language.
   late String short_description;
 
   /// Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
@@ -28556,7 +28556,7 @@ class SetBotInfoShortDescription extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBotInfoShortDescription? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28576,23 +28576,23 @@ class SetBotInfoShortDescription extends Func {
   }
 }
 
-///Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+/// Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetBotInfoShortDescription extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBotInfoShortDescription";
 
-  /// [bot_user_id] Identifier of the target bot
+  /// Identifier of the target bot.
   late int bot_user_id;
 
-  /// [language_code] A two-letter ISO 639-1 language code or an empty string
+  /// A two-letter ISO 639-1 language code or an empty string.
   late String language_code;
 
   /// Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -28619,7 +28619,7 @@ class GetBotInfoShortDescription extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBotInfoShortDescription? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28637,17 +28637,17 @@ class GetBotInfoShortDescription extends Func {
   }
 }
 
-///Returns all active sessions of the current user
+/// Returns all active sessions of the current user.
 ///
-///Returns [Sessions]
+/// Returns [Sessions].
 class GetActiveSessions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getActiveSessions";
 
   /// Returns all active sessions of the current user
@@ -28665,7 +28665,7 @@ class GetActiveSessions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetActiveSessions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28680,20 +28680,20 @@ class GetActiveSessions extends Func {
   }
 }
 
-///Terminates a session of the current user
+/// Terminates a session of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TerminateSession extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "terminateSession";
 
-  /// [session_id] Session identifier
+  /// Session identifier.
   /// ; string representation of int, use `int.parse`
   late int64 session_id;
 
@@ -28716,7 +28716,7 @@ class TerminateSession extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TerminateSession? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28732,17 +28732,17 @@ class TerminateSession extends Func {
   }
 }
 
-///Terminates all other sessions of the current user
+/// Terminates all other sessions of the current user.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TerminateAllOtherSessions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "terminateAllOtherSessions";
 
   /// Terminates all other sessions of the current user
@@ -28763,7 +28763,7 @@ class TerminateAllOtherSessions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TerminateAllOtherSessions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28778,20 +28778,20 @@ class TerminateAllOtherSessions extends Func {
   }
 }
 
-///Confirms an unconfirmed session of the current user from another device
+/// Confirms an unconfirmed session of the current user from another device.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ConfirmSession extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "confirmSession";
 
-  /// [session_id] Session identifier
+  /// Session identifier.
   /// ; string representation of int, use `int.parse`
   late int64 session_id;
 
@@ -28814,7 +28814,7 @@ class ConfirmSession extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ConfirmSession? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28830,24 +28830,24 @@ class ConfirmSession extends Func {
   }
 }
 
-///Toggles whether a session can accept incoming calls
+/// Toggles whether a session can accept incoming calls.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSessionCanAcceptCalls extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSessionCanAcceptCalls";
 
-  /// [session_id] Session identifier
+  /// Session identifier.
   /// ; string representation of int, use `int.parse`
   late int64 session_id;
 
-  /// [can_accept_calls] Pass true to allow accepting incoming calls by the session; pass false otherwise
+  /// Pass true to allow accepting incoming calls by the session; pass false otherwise.
   late bool can_accept_calls;
 
   /// Toggles whether a session can accept incoming calls
@@ -28874,7 +28874,7 @@ class ToggleSessionCanAcceptCalls extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSessionCanAcceptCalls? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -28892,24 +28892,24 @@ class ToggleSessionCanAcceptCalls extends Func {
   }
 }
 
-///Toggles whether a session can accept incoming secret chats
+/// Toggles whether a session can accept incoming secret chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSessionCanAcceptSecretChats extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSessionCanAcceptSecretChats";
 
-  /// [session_id] Session identifier
+  /// Session identifier.
   /// ; string representation of int, use `int.parse`
   late int64 session_id;
 
-  /// [can_accept_secret_chats] Pass true to allow accepting secret chats by the session; pass false otherwise
+  /// Pass true to allow accepting secret chats by the session; pass false otherwise.
   late bool can_accept_secret_chats;
 
   /// Toggles whether a session can accept incoming secret chats
@@ -28936,7 +28936,7 @@ class ToggleSessionCanAcceptSecretChats extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSessionCanAcceptSecretChats? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -28955,20 +28955,20 @@ class ToggleSessionCanAcceptSecretChats extends Func {
   }
 }
 
-///Changes the period of inactivity after which sessions will automatically be terminated
+/// Changes the period of inactivity after which sessions will automatically be terminated.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetInactiveSessionTtl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setInactiveSessionTtl";
 
-  /// [inactive_session_ttl_days] New number of days of inactivity before sessions will be automatically terminated; 1-366 days
+  /// New number of days of inactivity before sessions will be automatically terminated; 1-366 days.
   late int inactive_session_ttl_days;
 
   /// Changes the period of inactivity after which sessions will automatically be terminated
@@ -28991,7 +28991,7 @@ class SetInactiveSessionTtl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetInactiveSessionTtl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29007,17 +29007,17 @@ class SetInactiveSessionTtl extends Func {
   }
 }
 
-///Returns all website where the current user used Telegram to log in
+/// Returns all website where the current user used Telegram to log in.
 ///
-///Returns [ConnectedWebsites]
+/// Returns [ConnectedWebsites].
 class GetConnectedWebsites extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getConnectedWebsites";
 
   /// Returns all website where the current user used Telegram to log in
@@ -29038,7 +29038,7 @@ class GetConnectedWebsites extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetConnectedWebsites? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29053,20 +29053,20 @@ class GetConnectedWebsites extends Func {
   }
 }
 
-///Disconnects website from the current user's Telegram account
+/// Disconnects website from the current user's Telegram account.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DisconnectWebsite extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "disconnectWebsite";
 
-  /// [website_id] Website identifier
+  /// Website identifier.
   /// ; string representation of int, use `int.parse`
   late int64 website_id;
 
@@ -29089,7 +29089,7 @@ class DisconnectWebsite extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DisconnectWebsite? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29105,17 +29105,17 @@ class DisconnectWebsite extends Func {
   }
 }
 
-///Disconnects all websites from the current user's Telegram account
+/// Disconnects all websites from the current user's Telegram account.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DisconnectAllWebsites extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "disconnectAllWebsites";
 
   /// Disconnects all websites from the current user's Telegram account
@@ -29136,7 +29136,7 @@ class DisconnectAllWebsites extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DisconnectAllWebsites? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29151,23 +29151,23 @@ class DisconnectAllWebsites extends Func {
   }
 }
 
-///Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+/// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetSupergroupUsername extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setSupergroupUsername";
 
-  /// [supergroup_id] Identifier of the supergroup or channel
+  /// Identifier of the supergroup or channel.
   late int supergroup_id;
 
-  /// [username] New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+  /// New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username.
   late String username;
 
   /// Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -29194,7 +29194,7 @@ class SetSupergroupUsername extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetSupergroupUsername? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29212,26 +29212,26 @@ class SetSupergroupUsername extends Func {
   }
 }
 
-///Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
+/// Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupUsernameIsActive extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupUsernameIsActive";
 
-  /// [supergroup_id] Identifier of the supergroup or channel
+  /// Identifier of the supergroup or channel.
   late int supergroup_id;
 
-  /// [username] The username to change
+  /// The username to change.
   late String username;
 
-  /// [is_active] Pass true to activate the username; pass false to disable it
+  /// Pass true to activate the username; pass false to disable it.
   late bool is_active;
 
   /// Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled.
@@ -29260,7 +29260,7 @@ class ToggleSupergroupUsernameIsActive extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupUsernameIsActive? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29280,20 +29280,20 @@ class ToggleSupergroupUsernameIsActive extends Func {
   }
 }
 
-///Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+/// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DisableAllSupergroupUsernames extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "disableAllSupergroupUsernames";
 
-  /// [supergroup_id] Identifier of the supergroup or channel
+  /// Identifier of the supergroup or channel.
   late int supergroup_id;
 
   /// Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -29316,7 +29316,7 @@ class DisableAllSupergroupUsernames extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DisableAllSupergroupUsernames? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29332,23 +29332,23 @@ class DisableAllSupergroupUsernames extends Func {
   }
 }
 
-///Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+/// Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReorderSupergroupActiveUsernames extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reorderSupergroupActiveUsernames";
 
-  /// [supergroup_id] Identifier of the supergroup or channel
+  /// Identifier of the supergroup or channel.
   late int supergroup_id;
 
-  /// [usernames] The new order of active usernames. All currently active usernames must be specified
+  /// The new order of active usernames. All currently active usernames must be specified.
   late List<String> usernames;
 
   /// Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -29375,7 +29375,7 @@ class ReorderSupergroupActiveUsernames extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReorderSupergroupActiveUsernames? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29397,23 +29397,23 @@ class ReorderSupergroupActiveUsernames extends Func {
   }
 }
 
-///Changes the sticker set of a supergroup; requires can_change_info administrator right
+/// Changes the sticker set of a supergroup; requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetSupergroupStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setSupergroupStickerSet";
 
-  /// [supergroup_id] Identifier of the supergroup
+  /// Identifier of the supergroup.
   late int supergroup_id;
 
-  /// [sticker_set_id] New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
+  /// New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set.
   /// ; string representation of int, use `int.parse`
   late int64 sticker_set_id;
 
@@ -29441,7 +29441,7 @@ class SetSupergroupStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetSupergroupStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29459,23 +29459,23 @@ class SetSupergroupStickerSet extends Func {
   }
 }
 
-///Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+/// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupSignMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupSignMessages";
 
-  /// [supergroup_id] Identifier of the channel
+  /// Identifier of the channel.
   late int supergroup_id;
 
-  /// [sign_messages] New value of sign_messages
+  /// New value of sign_messages.
   late bool sign_messages;
 
   /// Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
@@ -29502,7 +29502,7 @@ class ToggleSupergroupSignMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupSignMessages? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29520,23 +29520,23 @@ class ToggleSupergroupSignMessages extends Func {
   }
 }
 
-///Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+/// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupJoinToSendMessages extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupJoinToSendMessages";
 
-  /// [supergroup_id] Identifier of the supergroup
+  /// Identifier of the supergroup.
   late int supergroup_id;
 
-  /// [join_to_send_messages] New value of join_to_send_messages
+  /// New value of join_to_send_messages.
   late bool join_to_send_messages;
 
   /// Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
@@ -29563,7 +29563,7 @@ class ToggleSupergroupJoinToSendMessages extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupJoinToSendMessages? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -29582,23 +29582,23 @@ class ToggleSupergroupJoinToSendMessages extends Func {
   }
 }
 
-///Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+/// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupJoinByRequest extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupJoinByRequest";
 
-  /// [supergroup_id] Identifier of the channel
+  /// Identifier of the channel.
   late int supergroup_id;
 
-  /// [join_by_request] New value of join_by_request
+  /// New value of join_by_request.
   late bool join_by_request;
 
   /// Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
@@ -29625,7 +29625,7 @@ class ToggleSupergroupJoinByRequest extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupJoinByRequest? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29643,23 +29643,23 @@ class ToggleSupergroupJoinByRequest extends Func {
   }
 }
 
-///Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+/// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupIsAllHistoryAvailable extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupIsAllHistoryAvailable";
 
-  /// [supergroup_id] The identifier of the supergroup
+  /// The identifier of the supergroup.
   late int supergroup_id;
 
-  /// [is_all_history_available] The new value of is_all_history_available
+  /// The new value of is_all_history_available.
   late bool is_all_history_available;
 
   /// Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
@@ -29686,7 +29686,7 @@ class ToggleSupergroupIsAllHistoryAvailable extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupIsAllHistoryAvailable? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -29705,23 +29705,23 @@ class ToggleSupergroupIsAllHistoryAvailable extends Func {
   }
 }
 
-///Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+/// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupHasHiddenMembers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupHasHiddenMembers";
 
-  /// [supergroup_id] Identifier of the supergroup
+  /// Identifier of the supergroup.
   late int supergroup_id;
 
-  /// [has_hidden_members] New value of has_hidden_members
+  /// New value of has_hidden_members.
   late bool has_hidden_members;
 
   /// Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
@@ -29748,7 +29748,7 @@ class ToggleSupergroupHasHiddenMembers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupHasHiddenMembers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29766,24 +29766,24 @@ class ToggleSupergroupHasHiddenMembers extends Func {
   }
 }
 
-///Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
+/// Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupHasAggressiveAntiSpamEnabled extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR =
       "toggleSupergroupHasAggressiveAntiSpamEnabled";
 
-  /// [supergroup_id] The identifier of the supergroup, which isn't a broadcast group
+  /// The identifier of the supergroup, which isn't a broadcast group.
   late int supergroup_id;
 
-  /// [has_aggressive_anti_spam_enabled] The new value of has_aggressive_anti_spam_enabled
+  /// The new value of has_aggressive_anti_spam_enabled.
   late bool has_aggressive_anti_spam_enabled;
 
   /// Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
@@ -29810,7 +29810,7 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupHasAggressiveAntiSpamEnabled? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -29830,23 +29830,23 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled extends Func {
   }
 }
 
-///Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+/// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupIsForum extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupIsForum";
 
-  /// [supergroup_id] Identifier of the supergroup
+  /// Identifier of the supergroup.
   late int supergroup_id;
 
-  /// [is_forum] New value of is_forum
+  /// New value of is_forum.
   late bool is_forum;
 
   /// Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
@@ -29873,7 +29873,7 @@ class ToggleSupergroupIsForum extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupIsForum? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29891,20 +29891,20 @@ class ToggleSupergroupIsForum extends Func {
   }
 }
 
-///Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
+/// Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ToggleSupergroupIsBroadcastGroup extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "toggleSupergroupIsBroadcastGroup";
 
-  /// [supergroup_id] Identifier of the supergroup
+  /// Identifier of the supergroup.
   late int supergroup_id;
 
   /// Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
@@ -29927,7 +29927,7 @@ class ToggleSupergroupIsBroadcastGroup extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ToggleSupergroupIsBroadcastGroup? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -29943,23 +29943,23 @@ class ToggleSupergroupIsBroadcastGroup extends Func {
   }
 }
 
-///Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+/// Reports messages in a supergroup as spam; requires administrator rights in the supergroup.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportSupergroupSpam extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportSupergroupSpam";
 
-  /// [supergroup_id] Supergroup identifier
+  /// Supergroup identifier.
   late int supergroup_id;
 
-  /// [message_ids] Identifiers of messages to report
+  /// Identifiers of messages to report.
   late List<int> message_ids;
 
   /// Reports messages in a supergroup as spam; requires administrator rights in the supergroup
@@ -29986,7 +29986,7 @@ class ReportSupergroupSpam extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportSupergroupSpam? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30008,23 +30008,23 @@ class ReportSupergroupSpam extends Func {
   }
 }
 
-///Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+/// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportSupergroupAntiSpamFalsePositive extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportSupergroupAntiSpamFalsePositive";
 
-  /// [supergroup_id] Supergroup identifier
+  /// Supergroup identifier.
   late int supergroup_id;
 
-  /// [message_id] Identifier of the erroneously deleted message
+  /// Identifier of the erroneously deleted message.
   late int message_id;
 
   /// Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
@@ -30051,7 +30051,7 @@ class ReportSupergroupAntiSpamFalsePositive extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportSupergroupAntiSpamFalsePositive? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -30070,29 +30070,29 @@ class ReportSupergroupAntiSpamFalsePositive extends Func {
   }
 }
 
-///Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+/// Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters.
 ///
-///Returns [ChatMembers]
+/// Returns [ChatMembers].
 class GetSupergroupMembers extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSupergroupMembers";
 
-  /// [supergroup_id] Identifier of the supergroup or channel
+  /// Identifier of the supergroup or channel.
   late int supergroup_id;
 
-  /// [filter] The type of users to return; pass null to use supergroupMembersFilterRecent
+  /// The type of users to return; pass null to use supergroupMembersFilterRecent.
   SupergroupMembersFilter? filter;
 
-  /// [offset] Number of users to skip
+  /// Number of users to skip.
   late int offset;
 
-  /// [limit] The maximum number of users be returned; up to 200
+  /// The maximum number of users be returned; up to 200.
   late int limit;
 
   /// Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
@@ -30123,7 +30123,7 @@ class GetSupergroupMembers extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSupergroupMembers? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30145,20 +30145,20 @@ class GetSupergroupMembers extends Func {
   }
 }
 
-///Closes a secret chat, effectively transferring its state to secretChatStateClosed
+/// Closes a secret chat, effectively transferring its state to secretChatStateClosed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CloseSecretChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "closeSecretChat";
 
-  /// [secret_chat_id] Secret chat identifier
+  /// Secret chat identifier.
   late int secret_chat_id;
 
   /// Closes a secret chat, effectively transferring its state to secretChatStateClosed
@@ -30180,7 +30180,7 @@ class CloseSecretChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CloseSecretChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30196,36 +30196,36 @@ class CloseSecretChat extends Func {
   }
 }
 
-///Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
+/// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id).
 ///
-///Returns [ChatEvents]
+/// Returns [ChatEvents].
 class GetChatEventLog extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatEventLog";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [query] Search query by which to filter events
+  /// Search query by which to filter events.
   late String query;
 
-  /// [from_event_id] Identifier of an event from which to return results. Use 0 to get results from the latest events
+  /// Identifier of an event from which to return results. Use 0 to get results from the latest events.
   /// ; string representation of int, use `int.parse`
   late int64 from_event_id;
 
-  /// [limit] The maximum number of events to return; up to 100
+  /// The maximum number of events to return; up to 100.
   late int limit;
 
-  /// [filters] The types of events to return; pass null to get chat events of all types
+  /// The types of events to return; pass null to get chat events of all types.
   ChatEventLogFilters? filters;
 
-  /// [user_ids] User identifiers by which to filter events. By default, events relating to all users will be returned
+  /// User identifiers by which to filter events. By default, events relating to all users will be returned.
   late List<int> user_ids;
 
   /// Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
@@ -30260,7 +30260,7 @@ class GetChatEventLog extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatEventLog? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30290,23 +30290,23 @@ class GetChatEventLog extends Func {
   }
 }
 
-///Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
+/// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy.
 ///
-///Returns [PaymentForm]
+/// Returns [PaymentForm].
 class GetPaymentForm extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPaymentForm";
 
-  /// [input_invoice] The invoice
+  /// The invoice.
   late InputInvoice input_invoice;
 
-  /// [theme] Preferred payment form theme; pass null to use the default theme
+  /// Preferred payment form theme; pass null to use the default theme.
   ThemeParameters? theme;
 
   /// Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
@@ -30330,7 +30330,7 @@ class GetPaymentForm extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPaymentForm? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30348,26 +30348,26 @@ class GetPaymentForm extends Func {
   }
 }
 
-///Validates the order information provided by a user and returns the available shipping options for a flexible invoice
+/// Validates the order information provided by a user and returns the available shipping options for a flexible invoice.
 ///
-///Returns [ValidatedOrderInfo]
+/// Returns [ValidatedOrderInfo].
 class ValidateOrderInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "validateOrderInfo";
 
-  /// [input_invoice] The invoice
+  /// The invoice.
   late InputInvoice input_invoice;
 
-  /// [order_info] The order information, provided by the user; pass null if empty
+  /// The order information, provided by the user; pass null if empty.
   OrderInfo? order_info;
 
-  /// [allow_save] Pass true to save the order information
+  /// Pass true to save the order information.
   late bool allow_save;
 
   /// Validates the order information provided by a user and returns the available shipping options for a flexible invoice
@@ -30396,7 +30396,7 @@ class ValidateOrderInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ValidateOrderInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30416,36 +30416,36 @@ class ValidateOrderInfo extends Func {
   }
 }
 
-///Sends a filled-out payment form to the bot for final verification
+/// Sends a filled-out payment form to the bot for final verification.
 ///
-///Returns [PaymentResult]
+/// Returns [PaymentResult].
 class SendPaymentForm extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendPaymentForm";
 
-  /// [input_invoice] The invoice
+  /// The invoice.
   late InputInvoice input_invoice;
 
-  /// [payment_form_id] Payment form identifier returned by getPaymentForm
+  /// Payment form identifier returned by getPaymentForm.
   /// ; string representation of int, use `int.parse`
   late int64 payment_form_id;
 
-  /// [order_info_id] Identifier returned by validateOrderInfo, or an empty string
+  /// Identifier returned by validateOrderInfo, or an empty string.
   late String order_info_id;
 
-  /// [shipping_option_id] Identifier of a chosen shipping option, if applicable
+  /// Identifier of a chosen shipping option, if applicable.
   late String shipping_option_id;
 
-  /// [credentials] The credentials chosen by user for payment
+  /// The credentials chosen by user for payment.
   late InputCredentials credentials;
 
-  /// [tip_amount] Chosen by the user amount of tip in the smallest units of the currency
+  /// Chosen by the user amount of tip in the smallest units of the currency.
   late int tip_amount;
 
   /// Sends a filled-out payment form to the bot for final verification
@@ -30480,7 +30480,7 @@ class SendPaymentForm extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendPaymentForm? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30506,23 +30506,23 @@ class SendPaymentForm extends Func {
   }
 }
 
-///Returns information about a successful payment
+/// Returns information about a successful payment.
 ///
-///Returns [PaymentReceipt]
+/// Returns [PaymentReceipt].
 class GetPaymentReceipt extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPaymentReceipt";
 
-  /// [chat_id] Chat identifier of the messagePaymentSuccessful message
+  /// Chat identifier of the messagePaymentSuccessful message.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
   /// Returns information about a successful payment
@@ -30549,7 +30549,7 @@ class GetPaymentReceipt extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPaymentReceipt? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30567,17 +30567,17 @@ class GetPaymentReceipt extends Func {
   }
 }
 
-///Returns saved order information. Returns a 404 error if there is no saved order information
+/// Returns saved order information. Returns a 404 error if there is no saved order information.
 ///
-///Returns [OrderInfo]
+/// Returns [OrderInfo].
 class GetSavedOrderInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSavedOrderInfo";
 
   /// Returns saved order information. Returns a 404 error if there is no saved order information
@@ -30595,7 +30595,7 @@ class GetSavedOrderInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSavedOrderInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30610,17 +30610,17 @@ class GetSavedOrderInfo extends Func {
   }
 }
 
-///Deletes saved order information
+/// Deletes saved order information.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteSavedOrderInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteSavedOrderInfo";
 
   /// Deletes saved order information
@@ -30641,7 +30641,7 @@ class DeleteSavedOrderInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteSavedOrderInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30656,17 +30656,17 @@ class DeleteSavedOrderInfo extends Func {
   }
 }
 
-///Deletes saved credentials for all payment provider bots
+/// Deletes saved credentials for all payment provider bots.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteSavedCredentials extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteSavedCredentials";
 
   /// Deletes saved credentials for all payment provider bots
@@ -30687,7 +30687,7 @@ class DeleteSavedCredentials extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteSavedCredentials? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30702,20 +30702,20 @@ class DeleteSavedCredentials extends Func {
   }
 }
 
-///Creates a link for the given invoice; for bots only
+/// Creates a link for the given invoice; for bots only.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class CreateInvoiceLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createInvoiceLink";
 
-  /// [invoice] Information about the invoice of the type inputMessageInvoice
+  /// Information about the invoice of the type inputMessageInvoice.
   late InputMessageContent invoice;
 
   /// Creates a link for the given invoice; for bots only
@@ -30737,7 +30737,7 @@ class CreateInvoiceLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateInvoiceLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30753,17 +30753,17 @@ class CreateInvoiceLink extends Func {
   }
 }
 
-///Returns a user that can be contacted to get support
+/// Returns a user that can be contacted to get support.
 ///
-///Returns [User]
+/// Returns [User].
 class GetSupportUser extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSupportUser";
 
   /// Returns a user that can be contacted to get support
@@ -30781,7 +30781,7 @@ class GetSupportUser extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSupportUser? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30796,20 +30796,20 @@ class GetSupportUser extends Func {
   }
 }
 
-///Returns backgrounds installed by the user
+/// Returns backgrounds installed by the user.
 ///
-///Returns [Backgrounds]
+/// Returns [Backgrounds].
 class GetBackgrounds extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBackgrounds";
 
-  /// [for_dark_theme] Pass true to order returned backgrounds for a dark theme
+  /// Pass true to order returned backgrounds for a dark theme.
   late bool for_dark_theme;
 
   /// Returns backgrounds installed by the user
@@ -30831,7 +30831,7 @@ class GetBackgrounds extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBackgrounds? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30847,23 +30847,23 @@ class GetBackgrounds extends Func {
   }
 }
 
-///Constructs a persistent HTTP URL for a background
+/// Constructs a persistent HTTP URL for a background.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetBackgroundUrl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBackgroundUrl";
 
-  /// [name] Background name
+  /// Background name.
   late String name;
 
-  /// [type] Background type
+  /// Background type.
   late BackgroundType type;
 
   /// Constructs a persistent HTTP URL for a background
@@ -30887,7 +30887,7 @@ class GetBackgroundUrl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBackgroundUrl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30905,20 +30905,20 @@ class GetBackgroundUrl extends Func {
   }
 }
 
-///Searches for a background by its name
+/// Searches for a background by its name.
 ///
-///Returns [Background]
+/// Returns [Background].
 class SearchBackground extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchBackground";
 
-  /// [name] The name of the background
+  /// The name of the background.
   late String name;
 
   /// Searches for a background by its name
@@ -30940,7 +30940,7 @@ class SearchBackground extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchBackground? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -30956,26 +30956,26 @@ class SearchBackground extends Func {
   }
 }
 
-///Changes the background selected by the user; adds background to the list of installed backgrounds
+/// Changes the background selected by the user; adds background to the list of installed backgrounds.
 ///
-///Returns [Background]
+/// Returns [Background].
 class SetBackground extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBackground";
 
-  /// [background] The input background to use; pass null to create a new filled background or to remove the current background
+  /// The input background to use; pass null to create a new filled background or to remove the current background.
   InputBackground? background;
 
-  /// [type] Background type; pass null to use the default type of the remote background or to remove the current background
+  /// Background type; pass null to use the default type of the remote background or to remove the current background.
   BackgroundType? type;
 
-  /// [for_dark_theme] Pass true if the background is changed for a dark theme
+  /// Pass true if the background is changed for a dark theme.
   late bool for_dark_theme;
 
   /// Changes the background selected by the user; adds background to the list of installed backgrounds
@@ -31004,7 +31004,7 @@ class SetBackground extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBackground? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31024,20 +31024,20 @@ class SetBackground extends Func {
   }
 }
 
-///Removes background from the list of installed backgrounds
+/// Removes background from the list of installed backgrounds.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveBackground extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeBackground";
 
-  /// [background_id] The background identifier
+  /// The background identifier.
   /// ; string representation of int, use `int.parse`
   late int64 background_id;
 
@@ -31060,7 +31060,7 @@ class RemoveBackground extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveBackground? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31076,17 +31076,17 @@ class RemoveBackground extends Func {
   }
 }
 
-///Resets list of installed backgrounds to its default value
+/// Resets list of installed backgrounds to its default value.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ResetBackgrounds extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetBackgrounds";
 
   /// Resets list of installed backgrounds to its default value
@@ -31104,7 +31104,7 @@ class ResetBackgrounds extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetBackgrounds? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31119,20 +31119,20 @@ class ResetBackgrounds extends Func {
   }
 }
 
-///Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+/// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization.
 ///
-///Returns [LocalizationTargetInfo]
+/// Returns [LocalizationTargetInfo].
 class GetLocalizationTargetInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLocalizationTargetInfo";
 
-  /// [only_local] Pass true to get only locally available information without sending network requests
+  /// Pass true to get only locally available information without sending network requests.
   late bool only_local;
 
   /// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
@@ -31155,7 +31155,7 @@ class GetLocalizationTargetInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLocalizationTargetInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31171,20 +31171,20 @@ class GetLocalizationTargetInfo extends Func {
   }
 }
 
-///Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
+/// Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization.
 ///
-///Returns [LanguagePackInfo]
+/// Returns [LanguagePackInfo].
 class GetLanguagePackInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLanguagePackInfo";
 
-  /// [language_pack_id] Language pack identifier
+  /// Language pack identifier.
   late String language_pack_id;
 
   /// Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
@@ -31207,7 +31207,7 @@ class GetLanguagePackInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLanguagePackInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31223,23 +31223,23 @@ class GetLanguagePackInfo extends Func {
   }
 }
 
-///Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
+/// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization.
 ///
-///Returns [LanguagePackStrings]
+/// Returns [LanguagePackStrings].
 class GetLanguagePackStrings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLanguagePackStrings";
 
-  /// [language_pack_id] Language pack identifier of the strings to be returned
+  /// Language pack identifier of the strings to be returned.
   late String language_pack_id;
 
-  /// [keys] Language pack keys of the strings to be returned; leave empty to request all available strings
+  /// Language pack keys of the strings to be returned; leave empty to request all available strings.
   late List<String> keys;
 
   /// Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
@@ -31266,7 +31266,7 @@ class GetLanguagePackStrings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLanguagePackStrings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31288,20 +31288,20 @@ class GetLanguagePackStrings extends Func {
   }
 }
 
-///Fetches the latest versions of all strings from a language pack in the current localization target from the server.
+/// Fetches the latest versions of all strings from a language pack in the current localization target from the server..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SynchronizeLanguagePack extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "synchronizeLanguagePack";
 
-  /// [language_pack_id] Language pack identifier
+  /// Language pack identifier.
   late String language_pack_id;
 
   /// Fetches the latest versions of all strings from a language pack in the current localization target from the server.
@@ -31324,7 +31324,7 @@ class SynchronizeLanguagePack extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SynchronizeLanguagePack? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31340,20 +31340,20 @@ class SynchronizeLanguagePack extends Func {
   }
 }
 
-///Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
+/// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddCustomServerLanguagePack extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addCustomServerLanguagePack";
 
-  /// [language_pack_id] Identifier of a language pack to be added
+  /// Identifier of a language pack to be added.
   late String language_pack_id;
 
   /// Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
@@ -31376,7 +31376,7 @@ class AddCustomServerLanguagePack extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddCustomServerLanguagePack? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31392,23 +31392,23 @@ class AddCustomServerLanguagePack extends Func {
   }
 }
 
-///Adds or changes a custom local language pack to the current localization target
+/// Adds or changes a custom local language pack to the current localization target.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetCustomLanguagePack extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setCustomLanguagePack";
 
-  /// [info] Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+  /// Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization.
   late LanguagePackInfo info;
 
-  /// [strings] Strings of the new language pack
+  /// Strings of the new language pack.
   late List<LanguagePackString> strings;
 
   /// Adds or changes a custom local language pack to the current localization target
@@ -31432,7 +31432,7 @@ class SetCustomLanguagePack extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetCustomLanguagePack? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31454,20 +31454,20 @@ class SetCustomLanguagePack extends Func {
   }
 }
 
-///Edits information about a custom local language pack in the current localization target. Can be called before authorization
+/// Edits information about a custom local language pack in the current localization target. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EditCustomLanguagePackInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editCustomLanguagePackInfo";
 
-  /// [info] New information about the custom local language pack
+  /// New information about the custom local language pack.
   late LanguagePackInfo info;
 
   /// Edits information about a custom local language pack in the current localization target. Can be called before authorization
@@ -31489,7 +31489,7 @@ class EditCustomLanguagePackInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditCustomLanguagePackInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31505,23 +31505,23 @@ class EditCustomLanguagePackInfo extends Func {
   }
 }
 
-///Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
+/// Adds, edits or deletes a string in a custom local language pack. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetCustomLanguagePackString extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setCustomLanguagePackString";
 
-  /// [language_pack_id] Identifier of a previously added custom local language pack in the current localization target
+  /// Identifier of a previously added custom local language pack in the current localization target.
   late String language_pack_id;
 
-  /// [new_string] New language pack string
+  /// New language pack string.
   late LanguagePackString new_string;
 
   /// Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
@@ -31548,7 +31548,7 @@ class SetCustomLanguagePackString extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetCustomLanguagePackString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31566,20 +31566,20 @@ class SetCustomLanguagePackString extends Func {
   }
 }
 
-///Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
+/// Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteLanguagePack extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteLanguagePack";
 
-  /// [language_pack_id] Identifier of the language pack to delete
+  /// Identifier of the language pack to delete.
   late String language_pack_id;
 
   /// Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted.
@@ -31602,7 +31602,7 @@ class DeleteLanguagePack extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteLanguagePack? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31618,23 +31618,23 @@ class DeleteLanguagePack extends Func {
   }
 }
 
-///Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
+/// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription.
 ///
-///Returns [PushReceiverId]
+/// Returns [PushReceiverId].
 class RegisterDevice extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "registerDevice";
 
-  /// [device_token] Device token
+  /// Device token.
   late DeviceToken device_token;
 
-  /// [other_user_ids] List of user identifiers of other users currently using the application
+  /// List of user identifiers of other users currently using the application.
   late List<int> other_user_ids;
 
   /// Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
@@ -31661,7 +31661,7 @@ class RegisterDevice extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RegisterDevice? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31683,20 +31683,20 @@ class RegisterDevice extends Func {
   }
 }
 
-///Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
+/// Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ProcessPushNotification extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "processPushNotification";
 
-  /// [payload] JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
+  /// JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added.
   late String payload;
 
   /// Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
@@ -31718,7 +31718,7 @@ class ProcessPushNotification extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ProcessPushNotification? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31734,20 +31734,20 @@ class ProcessPushNotification extends Func {
   }
 }
 
-///Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
+/// Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously.
 ///
-///Returns [PushReceiverId]
+/// Returns [PushReceiverId].
 class GetPushReceiverId extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPushReceiverId";
 
-  /// [payload] JSON-encoded push notification payload
+  /// JSON-encoded push notification payload.
   late String payload;
 
   /// Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
@@ -31769,7 +31769,7 @@ class GetPushReceiverId extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPushReceiverId? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31785,20 +31785,20 @@ class GetPushReceiverId extends SyncFunc {
   }
 }
 
-///Returns t.me URLs recently visited by a newly registered user
+/// Returns t.me URLs recently visited by a newly registered user.
 ///
-///Returns [TMeUrls]
+/// Returns [TMeUrls].
 class GetRecentlyVisitedTMeUrls extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getRecentlyVisitedTMeUrls";
 
-  /// [referrer] Google Play referrer to identify the user
+  /// Google Play referrer to identify the user.
   late String referrer;
 
   /// Returns t.me URLs recently visited by a newly registered user
@@ -31821,7 +31821,7 @@ class GetRecentlyVisitedTMeUrls extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetRecentlyVisitedTMeUrls? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31837,23 +31837,23 @@ class GetRecentlyVisitedTMeUrls extends Func {
   }
 }
 
-///Changes user privacy settings
+/// Changes user privacy settings.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetUserPrivacySettingRules extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setUserPrivacySettingRules";
 
-  /// [setting] The privacy setting
+  /// The privacy setting.
   late UserPrivacySetting setting;
 
-  /// [rules] The new privacy rules
+  /// The new privacy rules.
   late UserPrivacySettingRules rules;
 
   /// Changes user privacy settings
@@ -31877,7 +31877,7 @@ class SetUserPrivacySettingRules extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetUserPrivacySettingRules? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31895,20 +31895,20 @@ class SetUserPrivacySettingRules extends Func {
   }
 }
 
-///Returns the current privacy settings
+/// Returns the current privacy settings.
 ///
-///Returns [UserPrivacySettingRules]
+/// Returns [UserPrivacySettingRules].
 class GetUserPrivacySettingRules extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUserPrivacySettingRules";
 
-  /// [setting] The privacy setting
+  /// The privacy setting.
   late UserPrivacySetting setting;
 
   /// Returns the current privacy settings
@@ -31931,7 +31931,7 @@ class GetUserPrivacySettingRules extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUserPrivacySettingRules? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31947,20 +31947,20 @@ class GetUserPrivacySettingRules extends Func {
   }
 }
 
-///Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
+/// Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash".
 ///
-///Returns [OptionValue]
+/// Returns [OptionValue].
 class GetOption extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getOption";
 
-  /// [name] The name of the option
+  /// The name of the option.
   late String name;
 
   /// Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
@@ -31982,7 +31982,7 @@ class GetOption extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetOption? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -31998,23 +31998,23 @@ class GetOption extends SyncFunc {
   }
 }
 
-///Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
+/// Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetOption extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setOption";
 
-  /// [name] The name of the option
+  /// The name of the option.
   late String name;
 
-  /// [value] The new value of the option; pass null to reset option value to a default value
+  /// The new value of the option; pass null to reset option value to a default value.
   OptionValue? value;
 
   /// Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
@@ -32037,7 +32037,7 @@ class SetOption extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetOption? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32055,20 +32055,20 @@ class SetOption extends Func {
   }
 }
 
-///Changes the period of inactivity after which the account of the current user will automatically be deleted
+/// Changes the period of inactivity after which the account of the current user will automatically be deleted.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAccountTtl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAccountTtl";
 
-  /// [ttl] New account TTL
+  /// New account TTL.
   late AccountTtl ttl;
 
   /// Changes the period of inactivity after which the account of the current user will automatically be deleted
@@ -32090,7 +32090,7 @@ class SetAccountTtl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAccountTtl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32106,17 +32106,17 @@ class SetAccountTtl extends Func {
   }
 }
 
-///Returns the period of inactivity after which the account of the current user will automatically be deleted
+/// Returns the period of inactivity after which the account of the current user will automatically be deleted.
 ///
-///Returns [AccountTtl]
+/// Returns [AccountTtl].
 class GetAccountTtl extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAccountTtl";
 
   /// Returns the period of inactivity after which the account of the current user will automatically be deleted
@@ -32134,7 +32134,7 @@ class GetAccountTtl extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAccountTtl? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32149,23 +32149,23 @@ class GetAccountTtl extends Func {
   }
 }
 
-///Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
+/// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account..
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteAccount extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteAccount";
 
-  /// [reason] The reason why the account was deleted; optional
+  /// The reason why the account was deleted; optional.
   late String reason;
 
-  /// [password] The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+  /// The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week.
   late String password;
 
   /// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account.
@@ -32192,7 +32192,7 @@ class DeleteAccount extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteAccount? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32210,20 +32210,20 @@ class DeleteAccount extends Func {
   }
 }
 
-///Changes the default message auto-delete time for new chats
+/// Changes the default message auto-delete time for new chats.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetDefaultMessageAutoDeleteTime extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setDefaultMessageAutoDeleteTime";
 
-  /// [message_auto_delete_time] New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+  /// New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically.
   late MessageAutoDeleteTime message_auto_delete_time;
 
   /// Changes the default message auto-delete time for new chats
@@ -32246,7 +32246,7 @@ class SetDefaultMessageAutoDeleteTime extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetDefaultMessageAutoDeleteTime? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32263,17 +32263,17 @@ class SetDefaultMessageAutoDeleteTime extends Func {
   }
 }
 
-///Returns default message auto-delete time setting for new chats
+/// Returns default message auto-delete time setting for new chats.
 ///
-///Returns [MessageAutoDeleteTime]
+/// Returns [MessageAutoDeleteTime].
 class GetDefaultMessageAutoDeleteTime extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDefaultMessageAutoDeleteTime";
 
   /// Returns default message auto-delete time setting for new chats
@@ -32294,7 +32294,7 @@ class GetDefaultMessageAutoDeleteTime extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDefaultMessageAutoDeleteTime? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32309,20 +32309,20 @@ class GetDefaultMessageAutoDeleteTime extends Func {
   }
 }
 
-///Removes a chat action bar without any other action
+/// Removes a chat action bar without any other action.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveChatActionBar extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeChatActionBar";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
   /// Removes a chat action bar without any other action
@@ -32344,7 +32344,7 @@ class RemoveChatActionBar extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveChatActionBar? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32360,29 +32360,29 @@ class RemoveChatActionBar extends Func {
   }
 }
 
-///Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
+/// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportChat extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportChat";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_ids] Identifiers of reported messages; may be empty to report the whole chat
+  /// Identifiers of reported messages; may be empty to report the whole chat.
   late List<int> message_ids;
 
-  /// [reason] The reason for reporting the chat
+  /// The reason for reporting the chat.
   late ReportReason reason;
 
-  /// [text] Additional report details; 0-1024 characters
+  /// Additional report details; 0-1024 characters.
   late String text;
 
   /// Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
@@ -32413,7 +32413,7 @@ class ReportChat extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportChat? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32439,29 +32439,29 @@ class ReportChat extends Func {
   }
 }
 
-///Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+/// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportChatPhoto extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportChatPhoto";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [file_id] Identifier of the photo to report. Only full photos from chatPhoto can be reported
+  /// Identifier of the photo to report. Only full photos from chatPhoto can be reported.
   late int file_id;
 
-  /// [reason] The reason for reporting the chat photo
+  /// The reason for reporting the chat photo.
   late ReportReason reason;
 
-  /// [text] Additional report details; 0-1024 characters
+  /// Additional report details; 0-1024 characters.
   late String text;
 
   /// Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
@@ -32492,7 +32492,7 @@ class ReportChatPhoto extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportChatPhoto? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32514,26 +32514,26 @@ class ReportChatPhoto extends Func {
   }
 }
 
-///Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+/// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ReportMessageReactions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "reportMessageReactions";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [sender_id] Identifier of the sender, which added the reaction
+  /// Identifier of the sender, which added the reaction.
   late MessageSender sender_id;
 
   /// Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
@@ -32562,7 +32562,7 @@ class ReportMessageReactions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ReportMessageReactions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32582,23 +32582,23 @@ class ReportMessageReactions extends Func {
   }
 }
 
-///Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+/// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true.
 ///
-///Returns [ChatStatistics]
+/// Returns [ChatStatistics].
 class GetChatStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getChatStatistics";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [is_dark] Pass true if a dark theme is used by the application
+  /// Pass true if a dark theme is used by the application.
   late bool is_dark;
 
   /// Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
@@ -32625,7 +32625,7 @@ class GetChatStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetChatStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32643,26 +32643,26 @@ class GetChatStatistics extends Func {
   }
 }
 
-///Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+/// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true.
 ///
-///Returns [MessageStatistics]
+/// Returns [MessageStatistics].
 class GetMessageStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMessageStatistics";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [message_id] Message identifier
+  /// Message identifier.
   late int message_id;
 
-  /// [is_dark] Pass true if a dark theme is used by the application
+  /// Pass true if a dark theme is used by the application.
   late bool is_dark;
 
   /// Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
@@ -32691,7 +32691,7 @@ class GetMessageStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMessageStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32711,26 +32711,26 @@ class GetMessageStatistics extends Func {
   }
 }
 
-///Loads an asynchronous or a zoomed in statistical graph
+/// Loads an asynchronous or a zoomed in statistical graph.
 ///
-///Returns [StatisticalGraph]
+/// Returns [StatisticalGraph].
 class GetStatisticalGraph extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStatisticalGraph";
 
-  /// [chat_id] Chat identifier
+  /// Chat identifier.
   late int chat_id;
 
-  /// [token] The token for graph loading
+  /// The token for graph loading.
   late String token;
 
-  /// [x] X-value for zoomed in graph or 0 otherwise
+  /// X-value for zoomed in graph or 0 otherwise.
   late int x;
 
   /// Loads an asynchronous or a zoomed in statistical graph
@@ -32759,7 +32759,7 @@ class GetStatisticalGraph extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStatisticalGraph? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32779,20 +32779,20 @@ class GetStatisticalGraph extends Func {
   }
 }
 
-///Returns storage usage statistics. Can be called before authorization
+/// Returns storage usage statistics. Can be called before authorization.
 ///
-///Returns [StorageStatistics]
+/// Returns [StorageStatistics].
 class GetStorageStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStorageStatistics";
 
-  /// [chat_limit] The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+  /// The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0.
   late int chat_limit;
 
   /// Returns storage usage statistics. Can be called before authorization
@@ -32814,7 +32814,7 @@ class GetStorageStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStorageStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32830,17 +32830,17 @@ class GetStorageStatistics extends Func {
   }
 }
 
-///Quickly returns approximate storage usage statistics. Can be called before authorization
+/// Quickly returns approximate storage usage statistics. Can be called before authorization.
 ///
-///Returns [StorageStatisticsFast]
+/// Returns [StorageStatisticsFast].
 class GetStorageStatisticsFast extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getStorageStatisticsFast";
 
   /// Quickly returns approximate storage usage statistics. Can be called before authorization
@@ -32861,7 +32861,7 @@ class GetStorageStatisticsFast extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetStorageStatisticsFast? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32876,17 +32876,17 @@ class GetStorageStatisticsFast extends Func {
   }
 }
 
-///Returns database statistics
+/// Returns database statistics.
 ///
-///Returns [DatabaseStatistics]
+/// Returns [DatabaseStatistics].
 class GetDatabaseStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDatabaseStatistics";
 
   /// Returns database statistics
@@ -32907,7 +32907,7 @@ class GetDatabaseStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDatabaseStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -32922,44 +32922,44 @@ class GetDatabaseStatistics extends Func {
   }
 }
 
-///Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
+/// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted.
 ///
-///Returns [StorageStatistics]
+/// Returns [StorageStatistics].
 class OptimizeStorage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "optimizeStorage";
 
-  /// [size] Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
+  /// Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit.
   late int size;
 
-  /// [ttl] Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
+  /// Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit.
   late int ttl;
 
-  /// [count] Limit on the total number of files after deletion. Pass -1 to use the default limit
+  /// Limit on the total number of files after deletion. Pass -1 to use the default limit.
   late int count;
 
-  /// [immunity_delay] The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
+  /// The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value.
   late int immunity_delay;
 
-  /// [file_types] If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+  /// If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted.
   late List<FileType> file_types;
 
-  /// [chat_ids] If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
+  /// If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos).
   late List<int> chat_ids;
 
-  /// [exclude_chat_ids] If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
+  /// If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos).
   late List<int> exclude_chat_ids;
 
-  /// [return_deleted_file_statistics] Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
+  /// Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics.
   late bool return_deleted_file_statistics;
 
-  /// [chat_limit] Same as in getStorageStatistics. Affects only returned statistics
+  /// Same as in getStorageStatistics. Affects only returned statistics.
   late int chat_limit;
 
   /// Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
@@ -33000,7 +33000,7 @@ class OptimizeStorage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static OptimizeStorage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33045,20 +33045,20 @@ class OptimizeStorage extends Func {
   }
 }
 
-///Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
+/// Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetNetworkType extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setNetworkType";
 
-  /// [type] The new network type; pass null to set network type to networkTypeOther
+  /// The new network type; pass null to set network type to networkTypeOther.
   NetworkType? type;
 
   /// Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks,
@@ -33080,7 +33080,7 @@ class SetNetworkType extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetNetworkType? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33096,20 +33096,20 @@ class SetNetworkType extends Func {
   }
 }
 
-///Returns network data usage statistics. Can be called before authorization
+/// Returns network data usage statistics. Can be called before authorization.
 ///
-///Returns [NetworkStatistics]
+/// Returns [NetworkStatistics].
 class GetNetworkStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getNetworkStatistics";
 
-  /// [only_current] Pass true to get statistics only for the current library launch
+  /// Pass true to get statistics only for the current library launch.
   late bool only_current;
 
   /// Returns network data usage statistics. Can be called before authorization
@@ -33131,7 +33131,7 @@ class GetNetworkStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetNetworkStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33147,20 +33147,20 @@ class GetNetworkStatistics extends Func {
   }
 }
 
-///Adds the specified data to data usage statistics. Can be called before authorization
+/// Adds the specified data to data usage statistics. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddNetworkStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addNetworkStatistics";
 
-  /// [entry] The network statistics entry with the data to be added to statistics
+  /// The network statistics entry with the data to be added to statistics.
   late NetworkStatisticsEntry entry;
 
   /// Adds the specified data to data usage statistics. Can be called before authorization
@@ -33182,7 +33182,7 @@ class AddNetworkStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddNetworkStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33198,17 +33198,17 @@ class AddNetworkStatistics extends Func {
   }
 }
 
-///Resets all network data usage statistics to zero. Can be called before authorization
+/// Resets all network data usage statistics to zero. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ResetNetworkStatistics extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resetNetworkStatistics";
 
   /// Resets all network data usage statistics to zero. Can be called before authorization
@@ -33229,7 +33229,7 @@ class ResetNetworkStatistics extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResetNetworkStatistics? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33244,17 +33244,17 @@ class ResetNetworkStatistics extends Func {
   }
 }
 
-///Returns auto-download settings presets for the current user
+/// Returns auto-download settings presets for the current user.
 ///
-///Returns [AutoDownloadSettingsPresets]
+/// Returns [AutoDownloadSettingsPresets].
 class GetAutoDownloadSettingsPresets extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAutoDownloadSettingsPresets";
 
   /// Returns auto-download settings presets for the current user
@@ -33275,7 +33275,7 @@ class GetAutoDownloadSettingsPresets extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAutoDownloadSettingsPresets? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33290,23 +33290,23 @@ class GetAutoDownloadSettingsPresets extends Func {
   }
 }
 
-///Sets auto-download settings
+/// Sets auto-download settings.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAutoDownloadSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAutoDownloadSettings";
 
-  /// [settings] New user auto-download settings
+  /// New user auto-download settings.
   late AutoDownloadSettings settings;
 
-  /// [type] Type of the network for which the new settings are relevant
+  /// Type of the network for which the new settings are relevant.
   late NetworkType type;
 
   /// Sets auto-download settings
@@ -33330,7 +33330,7 @@ class SetAutoDownloadSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAutoDownloadSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33348,17 +33348,17 @@ class SetAutoDownloadSettings extends Func {
   }
 }
 
-///Returns autosave settings for the current user
+/// Returns autosave settings for the current user.
 ///
-///Returns [AutosaveSettings]
+/// Returns [AutosaveSettings].
 class GetAutosaveSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAutosaveSettings";
 
   /// Returns autosave settings for the current user
@@ -33376,7 +33376,7 @@ class GetAutosaveSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAutosaveSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33391,23 +33391,23 @@ class GetAutosaveSettings extends Func {
   }
 }
 
-///Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
+/// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAutosaveSettings extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAutosaveSettings";
 
-  /// [scope] Autosave settings scope
+  /// Autosave settings scope.
   late AutosaveSettingsScope scope;
 
-  /// [settings] New autosave settings for the scope; pass null to set autosave settings to default
+  /// New autosave settings for the scope; pass null to set autosave settings to default.
   ScopeAutosaveSettings? settings;
 
   /// Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -33431,7 +33431,7 @@ class SetAutosaveSettings extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAutosaveSettings? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33449,17 +33449,17 @@ class SetAutosaveSettings extends Func {
   }
 }
 
-///Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
+/// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClearAutosaveSettingsExceptions extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clearAutosaveSettingsExceptions";
 
   /// Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -33480,7 +33480,7 @@ class ClearAutosaveSettingsExceptions extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClearAutosaveSettingsExceptions? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33495,20 +33495,20 @@ class ClearAutosaveSettingsExceptions extends Func {
   }
 }
 
-///Returns information about a bank card
+/// Returns information about a bank card.
 ///
-///Returns [BankCardInfo]
+/// Returns [BankCardInfo].
 class GetBankCardInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getBankCardInfo";
 
-  /// [bank_card_number] The bank card number
+  /// The bank card number.
   late String bank_card_number;
 
   /// Returns information about a bank card
@@ -33530,7 +33530,7 @@ class GetBankCardInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetBankCardInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33546,23 +33546,23 @@ class GetBankCardInfo extends Func {
   }
 }
 
-///Returns one of the available Telegram Passport elements
+/// Returns one of the available Telegram Passport elements.
 ///
-///Returns [PassportElement]
+/// Returns [PassportElement].
 class GetPassportElement extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPassportElement";
 
-  /// [type] Telegram Passport element type
+  /// Telegram Passport element type.
   late PassportElementType type;
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
   /// Returns one of the available Telegram Passport elements
@@ -33586,7 +33586,7 @@ class GetPassportElement extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPassportElement? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33604,20 +33604,20 @@ class GetPassportElement extends Func {
   }
 }
 
-///Returns all available Telegram Passport elements
+/// Returns all available Telegram Passport elements.
 ///
-///Returns [PassportElements]
+/// Returns [PassportElements].
 class GetAllPassportElements extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getAllPassportElements";
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
   /// Returns all available Telegram Passport elements
@@ -33639,7 +33639,7 @@ class GetAllPassportElements extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetAllPassportElements? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33655,23 +33655,23 @@ class GetAllPassportElements extends Func {
   }
 }
 
-///Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
+/// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first.
 ///
-///Returns [PassportElement]
+/// Returns [PassportElement].
 class SetPassportElement extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPassportElement";
 
-  /// [element] Input Telegram Passport element
+  /// Input Telegram Passport element.
   late InputPassportElement element;
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
   /// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
@@ -33698,7 +33698,7 @@ class SetPassportElement extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPassportElement? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33716,20 +33716,20 @@ class SetPassportElement extends Func {
   }
 }
 
-///Deletes a Telegram Passport element
+/// Deletes a Telegram Passport element.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeletePassportElement extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deletePassportElement";
 
-  /// [type] Element type
+  /// Element type.
   late PassportElementType type;
 
   /// Deletes a Telegram Passport element
@@ -33751,7 +33751,7 @@ class DeletePassportElement extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeletePassportElement? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33767,23 +33767,23 @@ class DeletePassportElement extends Func {
   }
 }
 
-///Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+/// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetPassportElementErrors extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setPassportElementErrors";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [errors] The errors
+  /// The errors.
   late List<InputPassportElementError> errors;
 
   /// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
@@ -33807,7 +33807,7 @@ class SetPassportElementErrors extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetPassportElementErrors? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33829,20 +33829,20 @@ class SetPassportElementErrors extends Func {
   }
 }
 
-///Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
+/// Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetPreferredCountryLanguage extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPreferredCountryLanguage";
 
-  /// [country_code] A two-letter ISO 3166-1 alpha-2 country code
+  /// A two-letter ISO 3166-1 alpha-2 country code.
   late String country_code;
 
   /// Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
@@ -33865,7 +33865,7 @@ class GetPreferredCountryLanguage extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPreferredCountryLanguage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33881,23 +33881,23 @@ class GetPreferredCountryLanguage extends Func {
   }
 }
 
-///Sends a code to verify a phone number to be added to a user's Telegram Passport
+/// Sends a code to verify a phone number to be added to a user's Telegram Passport.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class SendPhoneNumberVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendPhoneNumberVerificationCode";
 
-  /// [phone_number] The phone number of the user, in international format
+  /// The phone number of the user, in international format.
   late String phone_number;
 
-  /// [settings] Settings for the authentication of the user's phone number; pass null to use default settings
+  /// Settings for the authentication of the user's phone number; pass null to use default settings.
   PhoneNumberAuthenticationSettings? settings;
 
   /// Sends a code to verify a phone number to be added to a user's Telegram Passport
@@ -33921,7 +33921,7 @@ class SendPhoneNumberVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendPhoneNumberVerificationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -33939,17 +33939,17 @@ class SendPhoneNumberVerificationCode extends Func {
   }
 }
 
-///Resends the code to verify a phone number to be added to a user's Telegram Passport
+/// Resends the code to verify a phone number to be added to a user's Telegram Passport.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class ResendPhoneNumberVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendPhoneNumberVerificationCode";
 
   /// Resends the code to verify a phone number to be added to a user's Telegram Passport
@@ -33970,7 +33970,7 @@ class ResendPhoneNumberVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendPhoneNumberVerificationCode? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -33986,20 +33986,20 @@ class ResendPhoneNumberVerificationCode extends Func {
   }
 }
 
-///Checks the phone number verification code for Telegram Passport
+/// Checks the phone number verification code for Telegram Passport.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckPhoneNumberVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkPhoneNumberVerificationCode";
 
-  /// [code] Verification code to check
+  /// Verification code to check.
   late String code;
 
   /// Checks the phone number verification code for Telegram Passport
@@ -34022,7 +34022,7 @@ class CheckPhoneNumberVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckPhoneNumberVerificationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34038,20 +34038,20 @@ class CheckPhoneNumberVerificationCode extends Func {
   }
 }
 
-///Sends a code to verify an email address to be added to a user's Telegram Passport
+/// Sends a code to verify an email address to be added to a user's Telegram Passport.
 ///
-///Returns [EmailAddressAuthenticationCodeInfo]
+/// Returns [EmailAddressAuthenticationCodeInfo].
 class SendEmailAddressVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendEmailAddressVerificationCode";
 
-  /// [email_address] Email address
+  /// Email address.
   late String email_address;
 
   /// Sends a code to verify an email address to be added to a user's Telegram Passport
@@ -34074,7 +34074,7 @@ class SendEmailAddressVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendEmailAddressVerificationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34090,17 +34090,17 @@ class SendEmailAddressVerificationCode extends Func {
   }
 }
 
-///Resends the code to verify an email address to be added to a user's Telegram Passport
+/// Resends the code to verify an email address to be added to a user's Telegram Passport.
 ///
-///Returns [EmailAddressAuthenticationCodeInfo]
+/// Returns [EmailAddressAuthenticationCodeInfo].
 class ResendEmailAddressVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendEmailAddressVerificationCode";
 
   /// Resends the code to verify an email address to be added to a user's Telegram Passport
@@ -34121,7 +34121,7 @@ class ResendEmailAddressVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendEmailAddressVerificationCode? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -34137,20 +34137,20 @@ class ResendEmailAddressVerificationCode extends Func {
   }
 }
 
-///Checks the email address verification code for Telegram Passport
+/// Checks the email address verification code for Telegram Passport.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckEmailAddressVerificationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkEmailAddressVerificationCode";
 
-  /// [code] Verification code to check
+  /// Verification code to check.
   late String code;
 
   /// Checks the email address verification code for Telegram Passport
@@ -34173,7 +34173,7 @@ class CheckEmailAddressVerificationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckEmailAddressVerificationCode? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -34190,29 +34190,29 @@ class CheckEmailAddressVerificationCode extends Func {
   }
 }
 
-///Returns a Telegram Passport authorization form for sharing data with a service
+/// Returns a Telegram Passport authorization form for sharing data with a service.
 ///
-///Returns [PassportAuthorizationForm]
+/// Returns [PassportAuthorizationForm].
 class GetPassportAuthorizationForm extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPassportAuthorizationForm";
 
-  /// [bot_user_id] User identifier of the service's bot
+  /// User identifier of the service's bot.
   late int bot_user_id;
 
-  /// [scope] Telegram Passport element types requested by the service
+  /// Telegram Passport element types requested by the service.
   late String scope;
 
-  /// [public_key] Service's public key
+  /// Service's public key.
   late String public_key;
 
-  /// [nonce] Unique request identifier provided by the service
+  /// Unique request identifier provided by the service.
   late String nonce;
 
   /// Returns a Telegram Passport authorization form for sharing data with a service
@@ -34243,7 +34243,7 @@ class GetPassportAuthorizationForm extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPassportAuthorizationForm? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34265,24 +34265,24 @@ class GetPassportAuthorizationForm extends Func {
   }
 }
 
-///Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
+/// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form.
 ///
-///Returns [PassportElementsWithErrors]
+/// Returns [PassportElementsWithErrors].
 class GetPassportAuthorizationFormAvailableElements extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR =
       "getPassportAuthorizationFormAvailableElements";
 
-  /// [authorization_form_id] Authorization form identifier
+  /// Authorization form identifier.
   late int authorization_form_id;
 
-  /// [password] The 2-step verification password of the current user
+  /// The 2-step verification password of the current user.
   late String password;
 
   /// Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
@@ -34309,7 +34309,7 @@ class GetPassportAuthorizationFormAvailableElements extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPassportAuthorizationFormAvailableElements? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -34328,23 +34328,23 @@ class GetPassportAuthorizationFormAvailableElements extends Func {
   }
 }
 
-///Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
+/// Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SendPassportAuthorizationForm extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendPassportAuthorizationForm";
 
-  /// [authorization_form_id] Authorization form identifier
+  /// Authorization form identifier.
   late int authorization_form_id;
 
-  /// [types] Types of Telegram Passport elements chosen by user to complete the authorization form
+  /// Types of Telegram Passport elements chosen by user to complete the authorization form.
   late List<PassportElementType> types;
 
   /// Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
@@ -34371,7 +34371,7 @@ class SendPassportAuthorizationForm extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendPassportAuthorizationForm? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34393,26 +34393,26 @@ class SendPassportAuthorizationForm extends Func {
   }
 }
 
-///Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
+/// Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class SendPhoneNumberConfirmationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendPhoneNumberConfirmationCode";
 
-  /// [hash] Hash value from the link
+  /// Hash value from the link.
   late String hash;
 
-  /// [phone_number] Phone number value from the link
+  /// Phone number value from the link.
   late String phone_number;
 
-  /// [settings] Settings for the authentication of the user's phone number; pass null to use default settings
+  /// Settings for the authentication of the user's phone number; pass null to use default settings.
   PhoneNumberAuthenticationSettings? settings;
 
   /// Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
@@ -34441,7 +34441,7 @@ class SendPhoneNumberConfirmationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendPhoneNumberConfirmationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34461,17 +34461,17 @@ class SendPhoneNumberConfirmationCode extends Func {
   }
 }
 
-///Resends phone number confirmation code
+/// Resends phone number confirmation code.
 ///
-///Returns [AuthenticationCodeInfo]
+/// Returns [AuthenticationCodeInfo].
 class ResendPhoneNumberConfirmationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "resendPhoneNumberConfirmationCode";
 
   /// Resends phone number confirmation code
@@ -34492,7 +34492,7 @@ class ResendPhoneNumberConfirmationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ResendPhoneNumberConfirmationCode? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -34508,20 +34508,20 @@ class ResendPhoneNumberConfirmationCode extends Func {
   }
 }
 
-///Checks phone number confirmation code
+/// Checks phone number confirmation code.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CheckPhoneNumberConfirmationCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkPhoneNumberConfirmationCode";
 
-  /// [code] Confirmation code to check
+  /// Confirmation code to check.
   late String code;
 
   /// Checks phone number confirmation code
@@ -34544,7 +34544,7 @@ class CheckPhoneNumberConfirmationCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckPhoneNumberConfirmationCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34560,23 +34560,23 @@ class CheckPhoneNumberConfirmationCode extends Func {
   }
 }
 
-///Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
+/// Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetBotUpdatesStatus extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setBotUpdatesStatus";
 
-  /// [pending_update_count] The number of pending updates
+  /// The number of pending updates.
   late int pending_update_count;
 
-  /// [error_message] The last error message
+  /// The last error message.
   late String error_message;
 
   /// Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
@@ -34603,7 +34603,7 @@ class SetBotUpdatesStatus extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetBotUpdatesStatus? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34621,26 +34621,26 @@ class SetBotUpdatesStatus extends Func {
   }
 }
 
-///Uploads a file with a sticker; returns the uploaded file
+/// Uploads a file with a sticker; returns the uploaded file.
 ///
-///Returns [File]
+/// Returns [File].
 class UploadStickerFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "uploadStickerFile";
 
-  /// [user_id] Sticker file owner; ignored for regular users
+  /// Sticker file owner; ignored for regular users.
   late int user_id;
 
-  /// [sticker_format] Sticker format
+  /// Sticker format.
   late StickerFormat sticker_format;
 
-  /// [sticker] File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side.
+  /// File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side..
   late InputFile sticker;
 
   /// Uploads a file with a sticker; returns the uploaded file
@@ -34669,7 +34669,7 @@ class UploadStickerFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static UploadStickerFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34689,20 +34689,20 @@ class UploadStickerFile extends Func {
   }
 }
 
-///Returns a suggested name for a new sticker set with a given title
+/// Returns a suggested name for a new sticker set with a given title.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetSuggestedStickerSetName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSuggestedStickerSetName";
 
-  /// [title] Sticker set title; 1-64 characters
+  /// Sticker set title; 1-64 characters.
   late String title;
 
   /// Returns a suggested name for a new sticker set with a given title
@@ -34724,7 +34724,7 @@ class GetSuggestedStickerSetName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSuggestedStickerSetName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34740,20 +34740,20 @@ class GetSuggestedStickerSetName extends Func {
   }
 }
 
-///Checks whether a name can be used for a new sticker set
+/// Checks whether a name can be used for a new sticker set.
 ///
-///Returns [CheckStickerSetNameResult]
+/// Returns [CheckStickerSetNameResult].
 class CheckStickerSetName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "checkStickerSetName";
 
-  /// [name] Name to be checked
+  /// Name to be checked.
   late String name;
 
   /// Checks whether a name can be used for a new sticker set
@@ -34775,7 +34775,7 @@ class CheckStickerSetName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CheckStickerSetName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34791,41 +34791,41 @@ class CheckStickerSetName extends Func {
   }
 }
 
-///Creates a new sticker set. Returns the newly created sticker set
+/// Creates a new sticker set. Returns the newly created sticker set.
 ///
-///Returns [StickerSet]
+/// Returns [StickerSet].
 class CreateNewStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "createNewStickerSet";
 
-  /// [user_id] Sticker set owner; ignored for regular users
+  /// Sticker set owner; ignored for regular users.
   late int user_id;
 
-  /// [title] Sticker set title; 1-64 characters
+  /// Sticker set title; 1-64 characters.
   late String title;
 
-  /// [name] Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+  /// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters.
   late String name;
 
-  /// [sticker_format] Format of the stickers in the set
+  /// Format of the stickers in the set.
   late StickerFormat sticker_format;
 
-  /// [sticker_type] Type of the stickers in the set
+  /// Type of the stickers in the set.
   late StickerType sticker_type;
 
-  /// [needs_repainting] Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
+  /// Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only.
   late bool needs_repainting;
 
-  /// [stickers] List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+  /// List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown.
   late List<InputSticker> stickers;
 
-  /// [source] Source of the sticker set; may be empty if unknown
+  /// Source of the sticker set; may be empty if unknown.
   late String source;
 
   /// Creates a new sticker set. Returns the newly created sticker set
@@ -34864,7 +34864,7 @@ class CreateNewStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CreateNewStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34898,26 +34898,26 @@ class CreateNewStickerSet extends Func {
   }
 }
 
-///Adds a new sticker to a set; for bots only
+/// Adds a new sticker to a set; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddStickerToSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addStickerToSet";
 
-  /// [user_id] Sticker set owner
+  /// Sticker set owner.
   late int user_id;
 
-  /// [name] Sticker set name
+  /// Sticker set name.
   late String name;
 
-  /// [sticker] Sticker to add to the set
+  /// Sticker to add to the set.
   late InputSticker sticker;
 
   /// Adds a new sticker to a set; for bots only
@@ -34946,7 +34946,7 @@ class AddStickerToSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddStickerToSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -34966,26 +34966,26 @@ class AddStickerToSet extends Func {
   }
 }
 
-///Sets a sticker set thumbnail; for bots only
+/// Sets a sticker set thumbnail; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerSetThumbnail extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerSetThumbnail";
 
-  /// [user_id] Sticker set owner
+  /// Sticker set owner.
   late int user_id;
 
-  /// [name] Sticker set name
+  /// Sticker set name.
   late String name;
 
-  /// [thumbnail] Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
+  /// Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set.
   InputFile? thumbnail;
 
   /// Sets a sticker set thumbnail; for bots only
@@ -35014,7 +35014,7 @@ class SetStickerSetThumbnail extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerSetThumbnail? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35034,23 +35034,23 @@ class SetStickerSetThumbnail extends Func {
   }
 }
 
-///Sets a custom emoji sticker set thumbnail; for bots only
+/// Sets a custom emoji sticker set thumbnail; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetCustomEmojiStickerSetThumbnail extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setCustomEmojiStickerSetThumbnail";
 
-  /// [name] Sticker set name
+  /// Sticker set name.
   late String name;
 
-  /// [custom_emoji_id] Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
+  /// Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail.
   /// ; string representation of int, use `int.parse`
   late int64 custom_emoji_id;
 
@@ -35078,7 +35078,7 @@ class SetCustomEmojiStickerSetThumbnail extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetCustomEmojiStickerSetThumbnail? fromMap(
       Map<String, dynamic>? _map) {
     if (_map == null) return null;
@@ -35097,23 +35097,23 @@ class SetCustomEmojiStickerSetThumbnail extends Func {
   }
 }
 
-///Sets a sticker set title; for bots only
+/// Sets a sticker set title; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerSetTitle extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerSetTitle";
 
-  /// [name] Sticker set name
+  /// Sticker set name.
   late String name;
 
-  /// [title] New sticker set title
+  /// New sticker set title.
   late String title;
 
   /// Sets a sticker set title; for bots only
@@ -35137,7 +35137,7 @@ class SetStickerSetTitle extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerSetTitle? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35155,20 +35155,20 @@ class SetStickerSetTitle extends Func {
   }
 }
 
-///Deleted a sticker set; for bots only
+/// Deleted a sticker set; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DeleteStickerSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "deleteStickerSet";
 
-  /// [name] Sticker set name
+  /// Sticker set name.
   late String name;
 
   /// Deleted a sticker set; for bots only
@@ -35190,7 +35190,7 @@ class DeleteStickerSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DeleteStickerSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35206,23 +35206,23 @@ class DeleteStickerSet extends Func {
   }
 }
 
-///Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+/// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerPositionInSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerPositionInSet";
 
-  /// [sticker] Sticker
+  /// Sticker.
   late InputFile sticker;
 
-  /// [position] New position of the sticker in the set, 0-based
+  /// New position of the sticker in the set, 0-based.
   late int position;
 
   /// Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
@@ -35249,7 +35249,7 @@ class SetStickerPositionInSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerPositionInSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35267,20 +35267,20 @@ class SetStickerPositionInSet extends Func {
   }
 }
 
-///Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
+/// Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveStickerFromSet extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeStickerFromSet";
 
-  /// [sticker] Sticker
+  /// Sticker.
   late InputFile sticker;
 
   /// Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
@@ -35302,7 +35302,7 @@ class RemoveStickerFromSet extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveStickerFromSet? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35318,23 +35318,23 @@ class RemoveStickerFromSet extends Func {
   }
 }
 
-///Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+/// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerEmojis extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerEmojis";
 
-  /// [sticker] Sticker
+  /// Sticker.
   late InputFile sticker;
 
-  /// [emojis] New string with 1-20 emoji corresponding to the sticker
+  /// New string with 1-20 emoji corresponding to the sticker.
   late String emojis;
 
   /// Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
@@ -35358,7 +35358,7 @@ class SetStickerEmojis extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerEmojis? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35376,23 +35376,23 @@ class SetStickerEmojis extends Func {
   }
 }
 
-///Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+/// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerKeywords extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerKeywords";
 
-  /// [sticker] Sticker
+  /// Sticker.
   late InputFile sticker;
 
-  /// [keywords] List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+  /// List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker.
   late List<String> keywords;
 
   /// Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
@@ -35419,7 +35419,7 @@ class SetStickerKeywords extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerKeywords? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35441,23 +35441,23 @@ class SetStickerKeywords extends Func {
   }
 }
 
-///Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+/// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetStickerMaskPosition extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setStickerMaskPosition";
 
-  /// [sticker] Sticker
+  /// Sticker.
   late InputFile sticker;
 
-  /// [mask_position] Position where the mask is placed; pass null to remove mask position
+  /// Position where the mask is placed; pass null to remove mask position.
   MaskPosition? mask_position;
 
   /// Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
@@ -35481,7 +35481,7 @@ class SetStickerMaskPosition extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetStickerMaskPosition? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35499,35 +35499,35 @@ class SetStickerMaskPosition extends Func {
   }
 }
 
-///Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+/// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded.
 ///
-///Returns [File]
+/// Returns [File].
 class GetMapThumbnailFile extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getMapThumbnailFile";
 
-  /// [location] Location of the map center
+  /// Location of the map center.
   late Location location;
 
-  /// [zoom] Map zoom level; 13-20
+  /// Map zoom level; 13-20.
   late int zoom;
 
-  /// [width] Map width in pixels before applying scale; 16-1024
+  /// Map width in pixels before applying scale; 16-1024.
   late int width;
 
-  /// [height] Map height in pixels before applying scale; 16-1024
+  /// Map height in pixels before applying scale; 16-1024.
   late int height;
 
-  /// [scale] Map scale; 1-3
+  /// Map scale; 1-3.
   late int scale;
 
-  /// [chat_id] Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
+  /// Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown.
   late int chat_id;
 
   /// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -35562,7 +35562,7 @@ class GetMapThumbnailFile extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetMapThumbnailFile? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35588,20 +35588,20 @@ class GetMapThumbnailFile extends Func {
   }
 }
 
-///Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+/// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown.
 ///
-///Returns [PremiumLimit]
+/// Returns [PremiumLimit].
 class GetPremiumLimit extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPremiumLimit";
 
-  /// [limit_type] Type of the limit
+  /// Type of the limit.
   late PremiumLimitType limit_type;
 
   /// Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
@@ -35623,7 +35623,7 @@ class GetPremiumLimit extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPremiumLimit? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35639,20 +35639,20 @@ class GetPremiumLimit extends Func {
   }
 }
 
-///Returns information about features, available to Premium users
+/// Returns information about features, available to Premium users.
 ///
-///Returns [PremiumFeatures]
+/// Returns [PremiumFeatures].
 class GetPremiumFeatures extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPremiumFeatures";
 
-  /// [source] Source of the request; pass null if the method is called from some non-standard source
+  /// Source of the request; pass null if the method is called from some non-standard source.
   PremiumSource? source;
 
   /// Returns information about features, available to Premium users
@@ -35674,7 +35674,7 @@ class GetPremiumFeatures extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPremiumFeatures? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35690,17 +35690,17 @@ class GetPremiumFeatures extends Func {
   }
 }
 
-///Returns examples of premium stickers for demonstration purposes
+/// Returns examples of premium stickers for demonstration purposes.
 ///
-///Returns [Stickers]
+/// Returns [Stickers].
 class GetPremiumStickerExamples extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPremiumStickerExamples";
 
   /// Returns examples of premium stickers for demonstration purposes
@@ -35721,7 +35721,7 @@ class GetPremiumStickerExamples extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPremiumStickerExamples? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35736,20 +35736,20 @@ class GetPremiumStickerExamples extends Func {
   }
 }
 
-///Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+/// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ViewPremiumFeature extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "viewPremiumFeature";
 
-  /// [feature] The viewed premium feature
+  /// The viewed premium feature.
   late PremiumFeature feature;
 
   /// Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
@@ -35771,7 +35771,7 @@ class ViewPremiumFeature extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ViewPremiumFeature? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35787,17 +35787,17 @@ class ViewPremiumFeature extends Func {
   }
 }
 
-///Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+/// Informs TDLib that the user clicked Premium subscription button on the Premium features screen.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class ClickPremiumSubscriptionButton extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "clickPremiumSubscriptionButton";
 
   /// Informs TDLib that the user clicked Premium subscription button on the Premium features screen
@@ -35818,7 +35818,7 @@ class ClickPremiumSubscriptionButton extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static ClickPremiumSubscriptionButton? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35833,17 +35833,17 @@ class ClickPremiumSubscriptionButton extends Func {
   }
 }
 
-///Returns state of Telegram Premium subscription and promotion videos for Premium features
+/// Returns state of Telegram Premium subscription and promotion videos for Premium features.
 ///
-///Returns [PremiumState]
+/// Returns [PremiumState].
 class GetPremiumState extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPremiumState";
 
   /// Returns state of Telegram Premium subscription and promotion videos for Premium features
@@ -35861,7 +35861,7 @@ class GetPremiumState extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPremiumState? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35876,20 +35876,20 @@ class GetPremiumState extends Func {
   }
 }
 
-///Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+/// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class CanPurchasePremium extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "canPurchasePremium";
 
-  /// [purpose] Transaction purpose
+  /// Transaction purpose.
   late StorePaymentPurpose purpose;
 
   /// Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
@@ -35911,7 +35911,7 @@ class CanPurchasePremium extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static CanPurchasePremium? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35927,24 +35927,24 @@ class CanPurchasePremium extends Func {
   }
 }
 
-///Informs server about a purchase through App Store. For official applications only
+/// Informs server about a purchase through App Store. For official applications only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AssignAppStoreTransaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "assignAppStoreTransaction";
 
-  /// [receipt] App Store receipt
+  /// App Store receipt.
   /// ; base64-encoded bytes `List<int>`
   late bytes receipt;
 
-  /// [purpose] Transaction purpose
+  /// Transaction purpose.
   late StorePaymentPurpose purpose;
 
   /// Informs server about a purchase through App Store. For official applications only
@@ -35971,7 +35971,7 @@ class AssignAppStoreTransaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AssignAppStoreTransaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -35989,29 +35989,29 @@ class AssignAppStoreTransaction extends Func {
   }
 }
 
-///Informs server about a purchase through Google Play. For official applications only
+/// Informs server about a purchase through Google Play. For official applications only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AssignGooglePlayTransaction extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "assignGooglePlayTransaction";
 
-  /// [package_name] Application package name
+  /// Application package name.
   late String package_name;
 
-  /// [store_product_id] Identifier of the purchased store product
+  /// Identifier of the purchased store product.
   late String store_product_id;
 
-  /// [purchase_token] Google Play purchase token
+  /// Google Play purchase token.
   late String purchase_token;
 
-  /// [purpose] Transaction purpose
+  /// Transaction purpose.
   late StorePaymentPurpose purpose;
 
   /// Informs server about a purchase through Google Play. For official applications only
@@ -36042,7 +36042,7 @@ class AssignGooglePlayTransaction extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AssignGooglePlayTransaction? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36064,20 +36064,20 @@ class AssignGooglePlayTransaction extends Func {
   }
 }
 
-///Accepts Telegram terms of services
+/// Accepts Telegram terms of services.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AcceptTermsOfService extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "acceptTermsOfService";
 
-  /// [terms_of_service_id] Terms of service identifier
+  /// Terms of service identifier.
   late String terms_of_service_id;
 
   /// Accepts Telegram terms of services
@@ -36100,7 +36100,7 @@ class AcceptTermsOfService extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AcceptTermsOfService? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36116,29 +36116,29 @@ class AcceptTermsOfService extends Func {
   }
 }
 
-///Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+/// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously.
 ///
-///Returns [FoundPositions]
+/// Returns [FoundPositions].
 class SearchStringsByPrefix extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "searchStringsByPrefix";
 
-  /// [strings] The strings to search in for the query
+  /// The strings to search in for the query.
   late List<String> strings;
 
-  /// [query] Query to search for
+  /// Query to search for.
   late String query;
 
-  /// [limit] The maximum number of objects to return
+  /// The maximum number of objects to return.
   late int limit;
 
-  /// [return_none_for_empty_query] Pass true to receive no results for an empty query
+  /// Pass true to receive no results for an empty query.
   late bool return_none_for_empty_query;
 
   /// Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
@@ -36169,7 +36169,7 @@ class SearchStringsByPrefix extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SearchStringsByPrefix? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36196,23 +36196,23 @@ class SearchStringsByPrefix extends SyncFunc {
   }
 }
 
-///Sends a custom request; for bots only
+/// Sends a custom request; for bots only.
 ///
-///Returns [CustomRequestResult]
+/// Returns [CustomRequestResult].
 class SendCustomRequest extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "sendCustomRequest";
 
-  /// [method] The method name
+  /// The method name.
   late String method;
 
-  /// [parameters] JSON-serialized method parameters
+  /// JSON-serialized method parameters.
   late String parameters;
 
   /// Sends a custom request; for bots only
@@ -36239,7 +36239,7 @@ class SendCustomRequest extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SendCustomRequest? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36257,24 +36257,24 @@ class SendCustomRequest extends Func {
   }
 }
 
-///Answers a custom query; for bots only
+/// Answers a custom query; for bots only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AnswerCustomQuery extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "answerCustomQuery";
 
-  /// [custom_query_id] Identifier of a custom query
+  /// Identifier of a custom query.
   /// ; string representation of int, use `int.parse`
   late int64 custom_query_id;
 
-  /// [data] JSON-serialized answer to the query
+  /// JSON-serialized answer to the query.
   late String data;
 
   /// Answers a custom query; for bots only
@@ -36301,7 +36301,7 @@ class AnswerCustomQuery extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AnswerCustomQuery? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36319,20 +36319,20 @@ class AnswerCustomQuery extends Func {
   }
 }
 
-///Succeeds after a specified amount of time has passed. Can be called before initialization
+/// Succeeds after a specified amount of time has passed. Can be called before initialization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetAlarm extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setAlarm";
 
-  /// [seconds] Number of seconds before the function returns
+  /// Number of seconds before the function returns.
   late double seconds;
 
   /// Succeeds after a specified amount of time has passed. Can be called before initialization
@@ -36354,7 +36354,7 @@ class SetAlarm extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetAlarm? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36370,17 +36370,17 @@ class SetAlarm extends Func {
   }
 }
 
-///Returns information about existing countries. Can be called before authorization
+/// Returns information about existing countries. Can be called before authorization.
 ///
-///Returns [Countries]
+/// Returns [Countries].
 class GetCountries extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCountries";
 
   /// Returns information about existing countries. Can be called before authorization
@@ -36398,7 +36398,7 @@ class GetCountries extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCountries? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36413,17 +36413,17 @@ class GetCountries extends Func {
   }
 }
 
-///Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+/// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetCountryCode extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getCountryCode";
 
   /// Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
@@ -36441,7 +36441,7 @@ class GetCountryCode extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetCountryCode? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36456,20 +36456,20 @@ class GetCountryCode extends Func {
   }
 }
 
-///Returns information about a phone number by its prefix. Can be called before authorization
+/// Returns information about a phone number by its prefix. Can be called before authorization.
 ///
-///Returns [PhoneNumberInfo]
+/// Returns [PhoneNumberInfo].
 class GetPhoneNumberInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPhoneNumberInfo";
 
-  /// [phone_number_prefix] The phone number prefix
+  /// The phone number prefix.
   late String phone_number_prefix;
 
   /// Returns information about a phone number by its prefix. Can be called before authorization
@@ -36492,7 +36492,7 @@ class GetPhoneNumberInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPhoneNumberInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36508,23 +36508,23 @@ class GetPhoneNumberInfo extends Func {
   }
 }
 
-///Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+/// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously.
 ///
-///Returns [PhoneNumberInfo]
+/// Returns [PhoneNumberInfo].
 class GetPhoneNumberInfoSync extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getPhoneNumberInfoSync";
 
-  /// [language_code] A two-letter ISO 639-1 language code for country information localization
+  /// A two-letter ISO 639-1 language code for country information localization.
   late String language_code;
 
-  /// [phone_number_prefix] The phone number prefix
+  /// The phone number prefix.
   late String phone_number_prefix;
 
   /// Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
@@ -36551,7 +36551,7 @@ class GetPhoneNumberInfoSync extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetPhoneNumberInfoSync? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36569,20 +36569,20 @@ class GetPhoneNumberInfoSync extends SyncFunc {
   }
 }
 
-///Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
+/// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization.
 ///
-///Returns [DeepLinkInfo]
+/// Returns [DeepLinkInfo].
 class GetDeepLinkInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getDeepLinkInfo";
 
-  /// [link] The link
+  /// The link.
   late String link;
 
   /// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
@@ -36604,7 +36604,7 @@ class GetDeepLinkInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetDeepLinkInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36620,17 +36620,17 @@ class GetDeepLinkInfo extends Func {
   }
 }
 
-///Returns application config, provided by the server. Can be called before authorization
+/// Returns application config, provided by the server. Can be called before authorization.
 ///
-///Returns [JsonValue]
+/// Returns [JsonValue].
 class GetApplicationConfig extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getApplicationConfig";
 
   /// Returns application config, provided by the server. Can be called before authorization
@@ -36651,7 +36651,7 @@ class GetApplicationConfig extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetApplicationConfig? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36666,20 +36666,20 @@ class GetApplicationConfig extends Func {
   }
 }
 
-///Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
+/// Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddApplicationChangelog extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addApplicationChangelog";
 
-  /// [previous_application_version] The previous application version
+  /// The previous application version.
   late String previous_application_version;
 
   /// Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
@@ -36702,7 +36702,7 @@ class AddApplicationChangelog extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddApplicationChangelog? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36719,26 +36719,26 @@ class AddApplicationChangelog extends Func {
   }
 }
 
-///Saves application log event on the server. Can be called before authorization
+/// Saves application log event on the server. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SaveApplicationLogEvent extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "saveApplicationLogEvent";
 
-  /// [type] Event type
+  /// Event type.
   late String type;
 
-  /// [chat_id] Optional chat identifier, associated with the event
+  /// Optional chat identifier, associated with the event.
   late int chat_id;
 
-  /// [data] The log event data
+  /// The log event data.
   late JsonValue data;
 
   /// Saves application log event on the server. Can be called before authorization
@@ -36767,7 +36767,7 @@ class SaveApplicationLogEvent extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SaveApplicationLogEvent? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36787,17 +36787,17 @@ class SaveApplicationLogEvent extends Func {
   }
 }
 
-///Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+/// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetApplicationDownloadLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getApplicationDownloadLink";
 
   /// Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
@@ -36818,7 +36818,7 @@ class GetApplicationDownloadLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetApplicationDownloadLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36833,29 +36833,29 @@ class GetApplicationDownloadLink extends Func {
   }
 }
 
-///Adds a proxy server for network requests. Can be called before authorization
+/// Adds a proxy server for network requests. Can be called before authorization.
 ///
-///Returns [Proxy]
+/// Returns [Proxy].
 class AddProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addProxy";
 
-  /// [server] Proxy server domain or IP address
+  /// Proxy server domain or IP address.
   late String server;
 
-  /// [port] Proxy server port
+  /// Proxy server port.
   late int port;
 
-  /// [enable] Pass true to immediately enable the proxy
+  /// Pass true to immediately enable the proxy.
   late bool enable;
 
-  /// [type] Proxy type
+  /// Proxy type.
   late ProxyType type;
 
   /// Adds a proxy server for network requests. Can be called before authorization
@@ -36886,7 +36886,7 @@ class AddProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36908,32 +36908,32 @@ class AddProxy extends Func {
   }
 }
 
-///Edits an existing proxy server for network requests. Can be called before authorization
+/// Edits an existing proxy server for network requests. Can be called before authorization.
 ///
-///Returns [Proxy]
+/// Returns [Proxy].
 class EditProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "editProxy";
 
-  /// [proxy_id] Proxy identifier
+  /// Proxy identifier.
   late int proxy_id;
 
-  /// [server] Proxy server domain or IP address
+  /// Proxy server domain or IP address.
   late String server;
 
-  /// [port] Proxy server port
+  /// Proxy server port.
   late int port;
 
-  /// [enable] Pass true to immediately enable the proxy
+  /// Pass true to immediately enable the proxy.
   late bool enable;
 
-  /// [type] Proxy type
+  /// Proxy type.
   late ProxyType type;
 
   /// Edits an existing proxy server for network requests. Can be called before authorization
@@ -36966,7 +36966,7 @@ class EditProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EditProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -36990,20 +36990,20 @@ class EditProxy extends Func {
   }
 }
 
-///Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
+/// Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class EnableProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "enableProxy";
 
-  /// [proxy_id] Proxy identifier
+  /// Proxy identifier.
   late int proxy_id;
 
   /// Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
@@ -37025,7 +37025,7 @@ class EnableProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static EnableProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37041,17 +37041,17 @@ class EnableProxy extends Func {
   }
 }
 
-///Disables the currently enabled proxy. Can be called before authorization
+/// Disables the currently enabled proxy. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class DisableProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "disableProxy";
 
   /// Disables the currently enabled proxy. Can be called before authorization
@@ -37069,7 +37069,7 @@ class DisableProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static DisableProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37084,20 +37084,20 @@ class DisableProxy extends Func {
   }
 }
 
-///Removes a proxy server. Can be called before authorization
+/// Removes a proxy server. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class RemoveProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "removeProxy";
 
-  /// [proxy_id] Proxy identifier
+  /// Proxy identifier.
   late int proxy_id;
 
   /// Removes a proxy server. Can be called before authorization
@@ -37119,7 +37119,7 @@ class RemoveProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static RemoveProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37135,17 +37135,17 @@ class RemoveProxy extends Func {
   }
 }
 
-///Returns list of proxies that are currently set up. Can be called before authorization
+/// Returns list of proxies that are currently set up. Can be called before authorization.
 ///
-///Returns [Proxies]
+/// Returns [Proxies].
 class GetProxies extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getProxies";
 
   /// Returns list of proxies that are currently set up. Can be called before authorization
@@ -37163,7 +37163,7 @@ class GetProxies extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetProxies? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37178,20 +37178,20 @@ class GetProxies extends Func {
   }
 }
 
-///Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
+/// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization.
 ///
-///Returns [HttpUrl]
+/// Returns [HttpUrl].
 class GetProxyLink extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getProxyLink";
 
-  /// [proxy_id] Proxy identifier
+  /// Proxy identifier.
   late int proxy_id;
 
   /// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
@@ -37213,7 +37213,7 @@ class GetProxyLink extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetProxyLink? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37229,20 +37229,20 @@ class GetProxyLink extends Func {
   }
 }
 
-///Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
+/// Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization.
 ///
-///Returns [Seconds]
+/// Returns [Seconds].
 class PingProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "pingProxy";
 
-  /// [proxy_id] Proxy identifier. Use 0 to ping a Telegram server without a proxy
+  /// Proxy identifier. Use 0 to ping a Telegram server without a proxy.
   late int proxy_id;
 
   /// Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
@@ -37264,7 +37264,7 @@ class PingProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static PingProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37280,20 +37280,20 @@ class PingProxy extends Func {
   }
 }
 
-///Sets new log stream for internal logging of TDLib. Can be called synchronously
+/// Sets new log stream for internal logging of TDLib. Can be called synchronously.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetLogStream extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setLogStream";
 
-  /// [log_stream] New log stream
+  /// New log stream.
   late LogStream log_stream;
 
   /// Sets new log stream for internal logging of TDLib. Can be called synchronously
@@ -37315,7 +37315,7 @@ class SetLogStream extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetLogStream? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37331,17 +37331,17 @@ class SetLogStream extends SyncFunc {
   }
 }
 
-///Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+/// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously.
 ///
-///Returns [LogStream]
+/// Returns [LogStream].
 class GetLogStream extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLogStream";
 
   /// Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
@@ -37359,7 +37359,7 @@ class GetLogStream extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLogStream? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37374,20 +37374,20 @@ class GetLogStream extends SyncFunc {
   }
 }
 
-///Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
+/// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetLogVerbosityLevel extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setLogVerbosityLevel";
 
-  /// [new_verbosity_level] New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,
+  /// New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings,.
   late int new_verbosity_level;
 
   /// Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -37410,7 +37410,7 @@ class SetLogVerbosityLevel extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetLogVerbosityLevel? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37426,17 +37426,17 @@ class SetLogVerbosityLevel extends SyncFunc {
   }
 }
 
-///Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+/// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously.
 ///
-///Returns [LogVerbosityLevel]
+/// Returns [LogVerbosityLevel].
 class GetLogVerbosityLevel extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLogVerbosityLevel";
 
   /// Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -37457,7 +37457,7 @@ class GetLogVerbosityLevel extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLogVerbosityLevel? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37472,17 +37472,17 @@ class GetLogVerbosityLevel extends SyncFunc {
   }
 }
 
-///Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+/// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously.
 ///
-///Returns [LogTags]
+/// Returns [LogTags].
 class GetLogTags extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLogTags";
 
   /// Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
@@ -37500,7 +37500,7 @@ class GetLogTags extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLogTags? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37515,23 +37515,23 @@ class GetLogTags extends SyncFunc {
   }
 }
 
-///Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
+/// Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class SetLogTagVerbosityLevel extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setLogTagVerbosityLevel";
 
-  /// [tag] Logging tag to change verbosity level
+  /// Logging tag to change verbosity level.
   late String tag;
 
-  /// [new_verbosity_level] New verbosity level; 1-1024
+  /// New verbosity level; 1-1024.
   late int new_verbosity_level;
 
   /// Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -37558,7 +37558,7 @@ class SetLogTagVerbosityLevel extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetLogTagVerbosityLevel? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37576,20 +37576,20 @@ class SetLogTagVerbosityLevel extends SyncFunc {
   }
 }
 
-///Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
+/// Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously.
 ///
-///Returns [LogVerbosityLevel]
+/// Returns [LogVerbosityLevel].
 class GetLogTagVerbosityLevel extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getLogTagVerbosityLevel";
 
-  /// [tag] Logging tag to change verbosity level
+  /// Logging tag to change verbosity level.
   late String tag;
 
   /// Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -37611,7 +37611,7 @@ class GetLogTagVerbosityLevel extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetLogTagVerbosityLevel? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37627,23 +37627,23 @@ class GetLogTagVerbosityLevel extends SyncFunc {
   }
 }
 
-///Adds a message to TDLib internal log. Can be called synchronously
+/// Adds a message to TDLib internal log. Can be called synchronously.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class AddLogMessage extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "addLogMessage";
 
-  /// [verbosity_level] The minimum verbosity level needed for the message to be logged; 0-1023
+  /// The minimum verbosity level needed for the message to be logged; 0-1023.
   late int verbosity_level;
 
-  /// [text] Text of a message to log
+  /// Text of a message to log.
   late String text;
 
   /// Adds a message to TDLib internal log. Can be called synchronously
@@ -37670,7 +37670,7 @@ class AddLogMessage extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static AddLogMessage? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37688,20 +37688,20 @@ class AddLogMessage extends SyncFunc {
   }
 }
 
-///Returns support information for the given user; for Telegram support only
+/// Returns support information for the given user; for Telegram support only.
 ///
-///Returns [UserSupportInfo]
+/// Returns [UserSupportInfo].
 class GetUserSupportInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getUserSupportInfo";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
   /// Returns support information for the given user; for Telegram support only
@@ -37723,7 +37723,7 @@ class GetUserSupportInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetUserSupportInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37739,23 +37739,23 @@ class GetUserSupportInfo extends Func {
   }
 }
 
-///Sets support information for the given user; for Telegram support only
+/// Sets support information for the given user; for Telegram support only.
 ///
-///Returns [UserSupportInfo]
+/// Returns [UserSupportInfo].
 class SetUserSupportInfo extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "setUserSupportInfo";
 
-  /// [user_id] User identifier
+  /// User identifier.
   late int user_id;
 
-  /// [message] New information message
+  /// New information message.
   late FormattedText message;
 
   /// Sets support information for the given user; for Telegram support only
@@ -37782,7 +37782,7 @@ class SetUserSupportInfo extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static SetUserSupportInfo? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37800,17 +37800,17 @@ class SetUserSupportInfo extends Func {
   }
 }
 
-///Returns localized name of the Telegram support user; for Telegram support only
+/// Returns localized name of the Telegram support user; for Telegram support only.
 ///
-///Returns [Text]
+/// Returns [Text].
 class GetSupportName extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "getSupportName";
 
   /// Returns localized name of the Telegram support user; for Telegram support only
@@ -37828,7 +37828,7 @@ class GetSupportName extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static GetSupportName? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37843,17 +37843,17 @@ class GetSupportName extends Func {
   }
 }
 
-///Does nothing; for testing only. This is an offline method. Can be called before authorization
+/// Does nothing; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TestCallEmpty extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallEmpty";
 
   /// Does nothing; for testing only. This is an offline method. Can be called before authorization
@@ -37871,7 +37871,7 @@ class TestCallEmpty extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallEmpty? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37886,20 +37886,20 @@ class TestCallEmpty extends Func {
   }
 }
 
-///Returns the received string; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received string; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestString]
+/// Returns [TestString].
 class TestCallString extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallString";
 
-  /// [x] String to return
+  /// String to return.
   late String x;
 
   /// Returns the received string; for testing only. This is an offline method. Can be called before authorization
@@ -37921,7 +37921,7 @@ class TestCallString extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37937,20 +37937,20 @@ class TestCallString extends Func {
   }
 }
 
-///Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received bytes; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestBytes]
+/// Returns [TestBytes].
 class TestCallBytes extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallBytes";
 
-  /// [x] Bytes to return
+  /// Bytes to return.
   /// ; base64-encoded bytes `List<int>`
   late bytes x;
 
@@ -37973,7 +37973,7 @@ class TestCallBytes extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallBytes? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -37989,20 +37989,20 @@ class TestCallBytes extends Func {
   }
 }
 
-///Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestVectorInt]
+/// Returns [TestVectorInt].
 class TestCallVectorInt extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallVectorInt";
 
-  /// [x] Vector of numbers to return
+  /// Vector of numbers to return.
   late List<int> x;
 
   /// Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
@@ -38024,7 +38024,7 @@ class TestCallVectorInt extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallVectorInt? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38044,20 +38044,20 @@ class TestCallVectorInt extends Func {
   }
 }
 
-///Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestVectorIntObject]
+/// Returns [TestVectorIntObject].
 class TestCallVectorIntObject extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallVectorIntObject";
 
-  /// [x] Vector of objects to return
+  /// Vector of objects to return.
   late List<TestInt> x;
 
   /// Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
@@ -38079,7 +38079,7 @@ class TestCallVectorIntObject extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallVectorIntObject? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38099,20 +38099,20 @@ class TestCallVectorIntObject extends Func {
   }
 }
 
-///Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestVectorString]
+/// Returns [TestVectorString].
 class TestCallVectorString extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallVectorString";
 
-  /// [x] Vector of strings to return
+  /// Vector of strings to return.
   late List<String> x;
 
   /// Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
@@ -38134,7 +38134,7 @@ class TestCallVectorString extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallVectorString? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38154,20 +38154,20 @@ class TestCallVectorString extends Func {
   }
 }
 
-///Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
+/// Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestVectorStringObject]
+/// Returns [TestVectorStringObject].
 class TestCallVectorStringObject extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testCallVectorStringObject";
 
-  /// [x] Vector of objects to return
+  /// Vector of objects to return.
   late List<TestString> x;
 
   /// Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
@@ -38189,7 +38189,7 @@ class TestCallVectorStringObject extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestCallVectorStringObject? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38209,20 +38209,20 @@ class TestCallVectorStringObject extends Func {
   }
 }
 
-///Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
+/// Returns the squared received number; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [TestInt]
+/// Returns [TestInt].
 class TestSquareInt extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testSquareInt";
 
-  /// [x] Number to square
+  /// Number to square.
   late int x;
 
   /// Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
@@ -38244,7 +38244,7 @@ class TestSquareInt extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestSquareInt? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38260,17 +38260,17 @@ class TestSquareInt extends Func {
   }
 }
 
-///Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
+/// Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TestNetwork extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testNetwork";
 
   /// Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
@@ -38288,7 +38288,7 @@ class TestNetwork extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestNetwork? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38303,32 +38303,32 @@ class TestNetwork extends Func {
   }
 }
 
-///Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+/// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TestProxy extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testProxy";
 
-  /// [server] Proxy server domain or IP address
+  /// Proxy server domain or IP address.
   late String server;
 
-  /// [port] Proxy server port
+  /// Proxy server port.
   late int port;
 
-  /// [type] Proxy type
+  /// Proxy type.
   late ProxyType type;
 
-  /// [dc_id] Identifier of a datacenter with which to test connection
+  /// Identifier of a datacenter with which to test connection.
   late int dc_id;
 
-  /// [timeout] The maximum overall timeout for the request
+  /// The maximum overall timeout for the request.
   late double timeout;
 
   /// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
@@ -38361,7 +38361,7 @@ class TestProxy extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestProxy? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38385,17 +38385,17 @@ class TestProxy extends Func {
   }
 }
 
-///Forces an updates.getDifference call to the Telegram servers; for testing only
+/// Forces an updates.getDifference call to the Telegram servers; for testing only.
 ///
-///Returns [Ok]
+/// Returns [Ok].
 class TestGetDifference extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testGetDifference";
 
   /// Forces an updates.getDifference call to the Telegram servers; for testing only
@@ -38413,7 +38413,7 @@ class TestGetDifference extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestGetDifference? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38428,17 +38428,17 @@ class TestGetDifference extends Func {
   }
 }
 
-///Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
+/// Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization.
 ///
-///Returns [Update]
+/// Returns [Update].
 class TestUseUpdate extends Func {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testUseUpdate";
 
   /// Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
@@ -38456,7 +38456,7 @@ class TestUseUpdate extends Func {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestUseUpdate? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -38471,20 +38471,20 @@ class TestUseUpdate extends Func {
   }
 }
 
-///Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
+/// Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously.
 ///
-///Returns [Error]
+/// Returns [Error].
 class TestReturnError extends SyncFunc {
-  ///[extra] - Request identifier. Must be non-zero.
+  /// Request identifier. Must be non-zero.
   int? extra;
 
-  /// [clientId] - tdlib client id
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
 
-  /// [CONSTRUCTOR] - type
+  /// @type
   static const String CONSTRUCTOR = "testReturnError";
 
-  /// [error] The error to be returned
+  /// The error to be returned.
   late Error error;
 
   /// Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
@@ -38506,7 +38506,7 @@ class TestReturnError extends SyncFunc {
     return toJson().toString();
   }
 
-  /// Construct from [Map]
+  /// Construct from [Map].
   static TestReturnError? fromMap(Map<String, dynamic>? _map) {
     if (_map == null) return null;
     var _ = _map["@type"];
