@@ -34,7 +34,7 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
             constructor_parameters.append(f"{_} this.{name_}")
             static_parameters.append(f"{name_}: {name_}")
 
-            write(f, f"/// [{name_}] {description}")  # parameter comment
+            write(f, f"/// {description}.")  # parameter comment
             
             has_extra_type_info = TYPEDEFS_DESCRIPTION.get(_type)
             if has_extra_type_info:
@@ -94,7 +94,7 @@ def generate_abc_dart(abstract_classes: dict):
         # write(f,'abstract class TlObject {}',
 
         for name, body in abstract_classes.items():
-            _ = "".join(f"[{i}], " for i in body['child'])
+            _ = ", ".join(f"[{i}]" for i in body['child'])
             _ = dict(
                 name=name,
                 description=body['description'],

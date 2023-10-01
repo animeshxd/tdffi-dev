@@ -49,11 +49,13 @@ TlObject = """
 abstract class TlObject {
   /// Object to Map serializer
   Map<String, dynamic> toJson();
-  /// [extra] - Request identifier. Must be non-zero. 
+  /// Request identifier. Must be non-zero. 
   int? extra;
-  /// TDLib client instance identifier, for which the response was received. 
+  /// TDLib client instance identifier, for which the response was received.
   int? clientId;
+
   static const String CONSTRUCTOR = "TlObject";
+  // Construct from [Map].
   static TlObject? fromMap(Map<String, dynamic> map) => getObject(map);
 
 }
@@ -80,9 +82,9 @@ IMPORT_OBJECTS_DART = f"import '{IMPORT_FROM}objects.dart';"
 
 
 TYPEDEFS = """
-/// the bytes (`List<int>`) are base64-encoded
+/// The bytes (`List<int>`) are base64-encoded
 typedef bytes = String;
-/// string representation of int
+/// String representation of int
 typedef int64 = String;
 """
 
@@ -92,38 +94,40 @@ TYPEDEFS_DESCRIPTION = {
 }
 
 CLASS_BODY = """
-///{description}
+/// {description}.
 ///
 class {name} extends {parent} {{
-      /// [extra] - Request identifier. Must be non-zero. 
+      /// Request identifier. Must be non-zero. 
       int? extra;
-      /// [CONSTRUCTOR] - type
-      static const String CONSTRUCTOR = "{ID}";
-      /// [clientId] - tdlib client id
+      /// TDLib client instance identifier, for which the response was received.
       int? clientId;
+
+      /// @type
+      static const String CONSTRUCTOR = "{ID}";
     {body}
 }}
 """
 ABC_BODY = """
-///{description}
+/// {description}.
 ///
-///Inherited by {child}
+/// Inherited by {child}.
 abstract class {name} extends {parent} {{
-    /// [CONSTRUCTOR] - type
+    /// @type
     static const String CONSTRUCTOR = "{ID}";
     {body}
 }}
 """
 FUNC_BODY = """
-///{description}
+/// {description}.
 ///
-///Returns [{return_}]
+/// Returns [{return_}].
 class {name} extends {parent} {{
-      ///[extra] - Request identifier. Must be non-zero. 
-      int? extra;
-    /// [clientId] - tdlib client id
+    /// Request identifier. Must be non-zero. 
+    int? extra;
+    /// TDLib client instance identifier, for which the response was received.
     int? clientId;
-    /// [CONSTRUCTOR] - type
+
+    /// @type
     static const String CONSTRUCTOR = "{ID}";
     {body}
 }}
@@ -142,7 +146,7 @@ METHODS = """
 """
 
 STATIC_METHOD = """
-/// Construct from [Map]
+/// Construct from [Map].
 static {name}? fromMap(Map<String, dynamic>? _map){{
     if (_map == null) return null;
     var _ = _map["@type"];
@@ -155,7 +159,7 @@ static {name}? fromMap(Map<String, dynamic>? _map){{
 """
 
 ABC_STATIC_METHOD = """
-/// Construct from [Map]
+/// Construct from [Map].
 static {name}? fromMap(Map<String, dynamic>? _map){{
     if (_map == null) return null;
     var _ = _map["@type"];
