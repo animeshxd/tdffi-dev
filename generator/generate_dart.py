@@ -51,11 +51,11 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
                 factory_method_body.append(f"var {name_} = _map['{name}']{strict} as {type_};")
         constructor_parameters.extend(['this.extra', 'this.clientId'])
         if class_description:
-            write(f, f"/// {class_description} ")
+            write(f, f"/// {class_description}.")
         if function_returns:
             write(f, "///")
             write(f, f"/// Returns [{function_returns}]")
-        write(f, f"{_class}({{ {','.join(constructor_parameters)}}});")  # constructor
+        write(f, f"{_class}( {{ {','.join(constructor_parameters)}, }} );")  # constructor
         write(f, METHODS, json=','.join(_json))  # toJson method body
         write(f, STATIC_METHOD, name=_class, body="\n".join(factory_method_body), args=(', '.join(static_parameters))+',')
         f.seek(0)
