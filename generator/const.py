@@ -47,11 +47,11 @@ DART_TYPES = {
 
 TlObject = """
 abstract class TlObject {
-  /// Object to Map serializer
+  /// Object to Map serializer.
   Map<String, dynamic> toJson();
   /// Request identifier. Must be non-zero. 
   int? extra;
-  /// TDLib client instance identifier, for which the response was received.
+  /// TDLib client instance identifier.
   int? clientId;
 
   static const String CONSTRUCTOR = "TlObject";
@@ -82,15 +82,16 @@ IMPORT_OBJECTS_DART = f"import '{IMPORT_FROM}objects.dart';"
 
 
 TYPEDEFS = """
-/// The bytes (`List<int>`) are base64-encoded
+/// The bytes (`List<int>`) are base64-encoded.
 typedef bytes = String;
-/// String representation of int
+
+/// String representation of int.
 typedef int64 = String;
 """
 
 TYPEDEFS_DESCRIPTION = {
-    'bytes': '; base64-encoded bytes `List<int>`',
-    'int64': '; string representation of int, use `int.parse`'
+    'bytes': '; base64-encoded bytes `List<int>`.',
+    'int64': '; string representation of int, use `int.parse`.'
 }
 
 CLASS_BODY = """
@@ -99,7 +100,7 @@ CLASS_BODY = """
 class {name} extends {parent} {{
       /// Request identifier. Must be non-zero. 
       int? extra;
-      /// TDLib client instance identifier, for which the response was received.
+      /// TDLib client instance identifier.
       int? clientId;
 
       /// @type
@@ -124,7 +125,7 @@ FUNC_BODY = """
 class {name} extends {parent} {{
     /// Request identifier. Must be non-zero. 
     int? extra;
-    /// TDLib client instance identifier, for which the response was received.
+    /// TDLib client instance identifier.
     int? clientId;
 
     /// @type

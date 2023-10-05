@@ -38,7 +38,7 @@ def process_body(_class: str, abc: dict, params: dict, class_description: str = 
             
             has_extra_type_info = TYPEDEFS_DESCRIPTION.get(_type)
             if has_extra_type_info:
-                write(f, f'/// {has_extra_type_info}')
+                write(f, f'///  {has_extra_type_info}')
             write(f, f"{late}{type_} {name_};")  # parameter field
 
             if enum == Type.TL:
