@@ -83,6 +83,16 @@ IMPORT_OBJECTS_DART = f"import '{IMPORT_FROM}objects.dart';"
 
 TYPEDEFS = """
 /// The bytes (`List<int>`) are base64-encoded.
+/// 
+/// ```dart
+/// import 'dart:convert';
+/// 
+/// // Encode String to base64-encoded bytes 
+/// base64.encode(utf8.encode(string));
+/// 
+/// // Decode base64-encoded bytes to String
+/// utf8.decode(base64.decode(bytes));
+/// ```
 typedef bytes = String;
 
 /// String representation of int.
