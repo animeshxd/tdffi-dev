@@ -2,7 +2,7 @@ import os
 from os import path
 
 BASE_DIR_JSON = "./json/"
-TL_API_FILE = "td/td/generate/scheme/td_api.tl"
+TL_API_FILE = os.getenv('TL_API_FILE', "td/td/generate/scheme/td_api.tl")
 
 ABC_CLASS_JSON_FILE = path.join(BASE_DIR_JSON, "abstract-classes.json")
 CLASS_JSON_FILE = path.join(BASE_DIR_JSON, "classes.json")
