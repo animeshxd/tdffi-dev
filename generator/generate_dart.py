@@ -94,14 +94,15 @@ def generate_abc_dart(abstract_classes: dict):
         # write(f,'abstract class TlObject {}',
 
         for name, body in abstract_classes.items():
-            _ = ", ".join(f"[{i}]" for i in body['child'])
+            child_classes = sorted(body['child'])
+            _ = ", ".join(f"[{i}]" for i in child_classes)
             _ = dict(
                 name=name,
                 description=body['description'],
                 parent="TlObject",
                 child=_,
                 ID=lowerCamelCase(name),
-                body=abc_fromMap_static_method(name, body['child'])
+                body=abc_fromMap_static_method(name, child_classes)
             )
             write(f, ABC_BODY, **_)
 def abc_fromMap_static_method(name, children: list):
