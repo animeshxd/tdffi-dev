@@ -34,9 +34,7 @@ def process_tl_parameter(source: str, lookup_dict: dict):
     result: Optional[dict] = lookup_dict.get(parameter, None)
     if not result:
         raise KeyError(f"parameter: {parameter} is not available in lookup_dict")
-    result: dict
-    result.update(data)
-    return {parameter: result}
+    return parameter, {**result, **data}
 
 
 
@@ -62,8 +60,12 @@ def process_schema(schema: str):
     # print(class_body)
 
     class_name = CamelCase(class_body[0])
-    class_param = map(lambda a: process_tl_parameter(a, parameter_descriptions), class_body[1:])
-    list(class_param)
+
+    tl_parameters = class_body[1:]
+    for i in tl_parameters:
+        parameter, info = process_tl_parameter(i, parameter_descriptions)
+        parameter_descriptions[parameter].update(info)
+
     return class_name, parameter_descriptions, parent.strip()
 
 
