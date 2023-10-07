@@ -64,16 +64,6 @@ def _vector_to_List(vector):
     return f"List<{dart_type}>", _, Type(_enum.value * 2), 1 + depth
 
 
-def get_tl_to_dart(tl: str):
-    parameter, _type = tl.split(":")
-    _type, vectorElementType, _enum, depth = get_dart_type(_type)
-    data = {
-        "type": _type,
-        "vectorElementType": vectorElementType,
-        "enum": _enum,
-        "vector_depth": depth
-    }
-    return parameter, data
 
 
 

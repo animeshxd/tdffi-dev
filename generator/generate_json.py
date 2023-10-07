@@ -4,7 +4,7 @@ import os
 from typing import Optional
 
 from const import *
-from utils import CamelCase, Serializer, get_tl_to_dart
+from utils import CamelCase, Serializer, get_dart_type
 
 parameter_descriptions = {}
 abc_classes = {}
@@ -17,6 +17,17 @@ def reset():
     parameter_descriptions.clear()
     # input()
     ...
+
+def get_tl_to_dart(tl: str):
+    parameter, _type = tl.split(":")
+    _type, vectorElementType, _enum, depth = get_dart_type(_type)
+    info = {
+        "type": _type,
+        "vectorElementType": vectorElementType,
+        "enum": _enum,
+        "vector_depth": depth
+    }
+    return parameter, info
 
 def process_tl_parameter(source: str, lookup_dict: dict):
     parameter, data = get_tl_to_dart(source)
