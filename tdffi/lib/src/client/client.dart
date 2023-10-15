@@ -166,11 +166,19 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   }
 }
 
-extension TdlibEventExt on TdlibEventController {
+abstract class AbstractTdlibWrapper implements AbstractNativeTdlibWrapper {
+  Stream<api.Update> get updates;
+  Future<T> send<T extends api.TlObject>(api.Func request);
+}
+
+class Tdlib extends TdlibEventController implements AbstractTdlibWrapper {
+  Tdlib({super.dynamicLibPath, super.clientId});
+
   ///Sends request to the TDLib client.
   ///
   /// Throws [TelegramError] on [api.Error]
   /// and Throws [TelegramClientNotStarted] if client is not started
+  @override
   Future<T> send<T extends api.TlObject>(api.Func request) async {
     if (!isRunning) throw TelegramClientNotStarted();
     request.extra = ++_requestId;
@@ -185,7 +193,7 @@ extension TdlibEventExt on TdlibEventController {
   }
 }
 
-class Auth extends TdlibEventController {
+class Auth extends Tdlib {
   ///
   Auth({required this.tdlibParameters, super.dynamicLibPath, super.clientId});
 
