@@ -181,7 +181,7 @@ class TdlibEventController2 implements AbstractNativeTdlibWrapper {
         'clientId': await wrapper.clientId_
       };
       _isolate = await Isolate.spawn(
-        eventEmmiter,
+        TdlibEventController.eventEmmiter,
         args,
         paused: true,
         debugName: 'eventEmmiter',

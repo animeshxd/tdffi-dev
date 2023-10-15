@@ -94,22 +94,6 @@ class NativeTdlibWrapper extends api.td_json_client
   Future<void> init() async {}
 }
 
-void eventEmmiter(Map<String, dynamic> args) async {
-  // print(args);
-  SendPort sendPort = args['port'];
-  String path = args['path'];
-  int clientId = args['clientId'];
-  var client = NativeTdlibWrapper(DynamicLibrary.open(path), clientId);
-  // client.sendAsync(api.TestNetwork());
-  while (true) {
-    var object = await client.receive();
-    if (object != null) {
-      // print(object);
-      sendPort.send(object);
-    }
-  }
-}
-
 class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   int _requestId = 0;
 
@@ -129,6 +113,25 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   StreamSubscription? _subscription;
   Isolate? _isolate;
   // Map<String, api.UpdateOption> updateOptions = {};
+
+  /// Emit responses from NativeTdlibWrapper.receive to SendPort
+  /// 
+  /// Args: {SendPort port, String path, int clientId}
+  static void eventEmmiter(Map<String, dynamic> args) async {
+    // print(args);
+    SendPort sendPort = args['port'];
+    String path = args['path'];
+    int clientId = args['clientId'];
+    var client = NativeTdlibWrapper(DynamicLibrary.open(path), clientId);
+    // client.sendAsync(api.TestNetwork());
+    while (true) {
+      var object = await client.receive();
+      if (object != null) {
+        // print(object);
+        sendPort.send(object);
+      }
+    }
+  }
 
   Future<void> init() async {
     if (!_initialized) {
