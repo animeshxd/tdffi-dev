@@ -20,7 +20,8 @@ abstract class LifeCycle {
 }
 
 abstract class AbstractNativeTdlibWrapper extends LifeCycle {
-  Future<int> get clientId_;
+  int get clientId;
+  set clientId(int i);
   void sendAsync(api.Func request);
   Future<api.TlObject?> receive([double timeout = 1]);
   Future<T> execute<T extends api.TlObject>(api.SyncFunc request);
@@ -31,7 +32,16 @@ class NativeTdlibWrapper extends api.td_json_client
   final _log = Logger("NativeTdlibWrapper");
 
   /// An opaque identifier of a new TDLib instance.
-  late int clientId;
+  late int _clientId;
+
+  /// An opaque identifier of a new TDLib instance.
+  @override
+  int get clientId => _clientId;
+
+  /// An opaque identifier of a new TDLib instance.
+  @override
+  set clientId(int id) => _clientId = id;
+
   NativeTdlibWrapper(super.dynamicLibrary, [int? clientId]) {
     this.clientId = clientId ?? td_create_client_id();
   }
@@ -85,9 +95,6 @@ class NativeTdlibWrapper extends api.td_json_client
   }
 
   @override
-  Future<int> get clientId_ async => clientId;
-
-  @override
   Future<void> destroy() async {}
 
   @override
@@ -115,7 +122,7 @@ class TdlibEventController extends NativeTdlibWrapper implements LifeCycle {
   // Map<String, api.UpdateOption> updateOptions = {};
 
   /// Emit responses from NativeTdlibWrapper.receive to SendPort
-  /// 
+  ///
   /// Args: {SendPort port, String path, int clientId}
   static void eventEmmiter(Map<String, dynamic> args) async {
     // print(args);

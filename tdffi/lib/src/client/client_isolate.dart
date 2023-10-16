@@ -24,12 +24,18 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
 
   void _sendToIsolate(String json) async => (await sendPort).send(json);
 
+  /// Use [synchronizeAndgetClientId] function
   @override
-  Future<int> get clientId_ async {
-    if (_clientId != null) return _clientId!;
+  int get clientId => _clientId!;
+
+  @override
+  set clientId(int id) => _clientId = id;
+
+  /// 
+  Future<int> get synchronizeAndgetClientId async {
     _sendToIsolate('{"@xtype": "getClientId"}');
     _clientId ??= await streamController!.stream.whereType<int>().first;
-    return _clientId!;
+    return clientId;
   }
 
   IsolateTdlibWrapper(this.dynamicLibPath, [this._clientId]);
@@ -54,7 +60,7 @@ class IsolateTdlibWrapper implements AbstractNativeTdlibWrapper {
 
   @override
   Future<TlObject?> receive([double timeout = 1]) async {
-    //TODO: 
+    //TODO:
     throw UnimplementedError();
   }
 
@@ -178,7 +184,7 @@ class TdlibEventController2 implements AbstractNativeTdlibWrapper {
       var args = {
         'port': _receivePort.sendPort,
         'path': dynamicLibPath,
-        'clientId': await wrapper.clientId_
+        'clientId': wrapper.clientId // Only prevents from creating new tdlib client 
       };
       _isolate = await Isolate.spawn(
         TdlibEventController.eventEmmiter,
@@ -223,7 +229,10 @@ class TdlibEventController2 implements AbstractNativeTdlibWrapper {
   void sendAsync(Func request) async => wrapper.sendAsync(request);
 
   @override
-  Future<int> get clientId_ async => await wrapper.clientId_;
+  int get clientId => wrapper.clientId;
+
+  @override
+  set clientId(int i) => wrapper.clientId = i;
 }
 
 extension TdlibEventExt2 on TdlibEventController2 {

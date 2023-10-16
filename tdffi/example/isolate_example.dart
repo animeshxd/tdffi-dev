@@ -20,7 +20,7 @@ void main(List<String> args) async {
       ),
     ),
   );
-  print(await isolateTdlibWrapper.clientId_);
+  print(await isolateTdlibWrapper.synchronizeAndgetClientId);
   await isolateTdlibWrapper.destroy();
 
   var isolateTdlibeventwrapper = TdlibEventController2(
